@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" shape-rendering="crispEdges" width="100%" height="100%" preserveAspectRatio="none">
+  <!-- Night Sky (Deep Midnight) -->
+  <rect width="400" height="200" fill="#060B14" />
+  
+  <!-- Moon (Crescent) -->
+  <circle cx="340" cy="35" r="16" fill="#F7D75E" />
+  <circle cx="346" cy="31" r="14" fill="#060B14" />
+
+  <!-- Distant Stars (Pixel Dots) -->
+  <rect x="25" y="20" width="2" height="2" fill="#FFFFFF" opacity="0.8" />
+  <rect x="75" y="45" width="2" height="2" fill="#4EE6D8" opacity="0.7" />
+  <rect x="140" y="25" width="2" height="2" fill="#FFFFFF" opacity="0.9" />
+  <rect x="210" y="55" width="2" height="2" fill="#F59E0B" opacity="0.7" />
+  <rect x="280" y="18" width="2" height="2" fill="#FFFFFF" opacity="0.8" />
+  <rect x="370" y="65" width="2" height="2" fill="#4EE6D8" opacity="0.7" />
+
+  <!-- Background Skyscrapers Layer 1 (Dark Silhouettes) -->
+  <rect x="10" y="80" width="45" height="120" fill="#0F172A" />
+  <rect x="70" y="60" width="55" height="140" fill="#0F172A" />
+  <rect x="140" y="90" width="40" height="110" fill="#0F172A" />
+  <rect x="195" y="50" width="60" height="150" fill="#0F172A" />
+  <rect x="270" y="75" width="50" height="125" fill="#0F172A" />
+  <rect x="335" y="95" width="55" height="105" fill="#0F172A" />
+
+  <!-- Distant Windows (Glowing Cyan & Amber) -->
+  <rect x="20" y="95" width="6" height="8" fill="#4EE6D8" opacity="0.8" />
+  <rect x="32" y="95" width="6" height="8" fill="#F59E0B" opacity="0.8" />
+  <rect x="20" y="115" width="6" height="8" fill="#4EE6D8" opacity="0.6" />
+  
+  <rect x="80" y="75" width="8" height="10" fill="#4EE6D8" opacity="0.9" />
+  <rect x="95" y="75" width="8" height="10" fill="#38BDF8" opacity="0.8" />
+  <rect x="110" y="75" width="8" height="10" fill="#F59E0B" opacity="0.9" />
+  <rect x="80" y="95" width="8" height="10" fill="#4EE6D8" opacity="0.7" />
+  <rect x="110" y="95" width="8" height="10" fill="#4EE6D8" opacity="0.8" />
+  <rect x="95" y="120" width="8" height="10" fill="#F59E0B" opacity="0.7" />
+
+  <rect x="208" y="65" width="8" height="12" fill="#4EE6D8" opacity="0.9" />
+  <rect x="225" y="65" width="8" height="12" fill="#F59E0B" opacity="0.9" />
+  <rect x="240" y="65" width="8" height="12" fill="#38BDF8" opacity="0.8" />
+  <rect x="208" y="90" width="8" height="12" fill="#4EE6D8" opacity="0.8" />
+  <rect x="240" y="90" width="8" height="12" fill="#F59E0B" opacity="0.7" />
+
+  <!-- Foreground City Buildings Layer 2 (Navy Slate) -->
+  <rect x="0" y="120" width="60" height="80" fill="#1E293B" />
+  <rect x="50" y="105" width="75" height="95" fill="#1E293B" />
+  <rect x="135" y="130" width="55" height="70" fill="#1E293B" />
+  <rect x="180" y="110" width="70" height="90" fill="#1E293B" />
+  <rect x="260" y="125" width="65" height="75" fill="#1E293B" />
+  <rect x="330" y="115" width="70" height="85" fill="#1E293B" />
+
+  <!-- Foreground Glowing Windows -->
+  <rect x="60" y="120" width="10" height="12" fill="#4EE6D8" />
+  <rect x="80" y="120" width="10" height="12" fill="#F59E0B" />
+  <rect x="100" y="120" width="10" height="12" fill="#4EE6D8" />
+  <rect x="60" y="145" width="10" height="12" fill="#38BDF8" />
+  <rect x="100" y="145" width="10" height="12" fill="#F59E0B" />
+
+  <rect x="195" y="125" width="12" height="14" fill="#4EE6D8" />
+  <rect x="220" y="125" width="12" height="14" fill="#F59E0B" />
+  <rect x="195" y="150" width="12" height="14" fill="#4EE6D8" />
+  <rect x="220" y="150" width="12" height="14" fill="#38BDF8" />
+
+  <rect x="275" y="140" width="10" height="12" fill="#4EE6D8" />
+  <rect x="295" y="140" width="10" height="12" fill="#F59E0B" />
+
+  <!-- City Street Lamps (Left & Right) -->
+  <rect x="35" y="150" width="3" height="30" fill="#475569" />
+  <circle cx="36" cy="148" r="4" fill="#F59E0B" />
+  
+  <rect x="365" y="150" width="3" height="30" fill="#475569" />
+  <circle cx="366" cy="148" r="4" fill="#F59E0B" />
+
+  <!-- Street Sidewalk Road Pavement Base -->
+  <rect x="0" y="180" width="400" height="20" fill="#0A0E17" />
+  <rect x="0" y="178" width="400" height="2" fill="#4EE6D8" />
+</svg>

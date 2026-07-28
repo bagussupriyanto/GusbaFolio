@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 16" shape-rendering="crispEdges" width="128" height="64">
+  <!-- Outer Outline -->
+  <path d="M0,0 h32 v16 h-32 z" fill="#000000" />
+  
+  <!-- Roof (Brown Pyramid) -->
+  <path d="M7,1 h18 v2 h-18 z M9,0 h14 v1 h-14 z" fill="#5A361F" />
+  
+  <!-- Wooden Wall Body -->
+  <path d="M1,6 h30 v9 h-30 z" fill="#66462C" />
+  
+  <!-- Lower Darker Wood Base -->
+  <path d="M1,13 h30 v2 h-30 z" fill="#4A311E" />
+  
+  <!-- Warm Yellow Windows -->
+  <path d="M3,9 h6 v3 h-6 z M23,9 h6 v3 h-6 z" fill="#F7D75E" />
+  
+  <!-- Door (Dark Wood) -->
+  <path d="M14,11 h4 v4 h-4 z" fill="#3A2315" />
+</svg>

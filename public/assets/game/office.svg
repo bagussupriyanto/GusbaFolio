@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 16" shape-rendering="crispEdges" width="128" height="64">
+  <!-- Outer Outline -->
+  <path d="M0,0 h32 v16 h-32 z" fill="#000000" />
+  
+  <!-- Main Office Body (Dark Slate) -->
+  <path d="M1,1 h30 v14 h-30 z" fill="#2A3848" />
+  
+  <!-- Lower Darker Base Wall -->
+  <path d="M1,12 h30 v3 h-30 z" fill="#1C2733" />
+  
+  <!-- Windows Row 1 (Cyan) -->
+  <path d="M3,3 h3 v2 h-3 z M8,3 h3 v2 h-3 z M13,3 h3 v2 h-3 z M18,3 h3 v2 h-3 z M23,3 h3 v2 h-3 z M27,3 h3 v2 h-3 z" fill="#4FE6D8" />
+  
+  <!-- Windows Row 2 (Cyan) -->
+  <path d="M3,6 h3 v2 h-3 z M8,6 h3 v2 h-3 z M13,6 h3 v2 h-3 z M18,6 h3 v2 h-3 z M23,6 h3 v2 h-3 z M27,6 h3 v2 h-3 z" fill="#4FE6D8" />
+  
+  <!-- Windows Row 3 (Cyan) -->
+  <path d="M3,9 h3 v2 h-3 z M8,9 h3 v2 h-3 z M13,9 h3 v2 h-3 z M18,9 h3 v2 h-3 z M23,9 h3 v2 h-3 z M27,9 h3 v2 h-3 z" fill="#4FE6D8" />
+  
+  <!-- Center Entrance Door (White) -->
+  <path d="M14,12 h4 v4 h-4 z" fill="#FFFFFF" />
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 40" width="120" height="40">
+  <!-- Cyan Retro Pixel Sports Car -->
+  <rect x="20" y="18" width="80" height="12" fill="#0EA5E9" rx="2" />
+  <rect x="38" y="8" width="42" height="10" fill="#38BDF8" rx="2" />
+  <!-- Windshield Windows -->
+  <rect x="44" y="10" width="14" height="6" fill="#7DD3FC" />
+  <rect x="62" y="10" width="14" height="6" fill="#7DD3FC" />
+  <!-- Headlights Glow -->
+  <rect x="96" y="20" width="6" height="5" fill="#4EE6D8" />
+  <circle cx="106" cy="22" r="8" fill="#99F6E4" opacity="0.6" />
+  <!-- Tail Lights -->
+  <rect x="18" y="20" width="4" height="5" fill="#F43F5E" />
+  <!-- Wheels -->
+  <circle cx="34" cy="30" r="6.5" fill="#090D16" stroke="#0284C7" stroke-width="2" />
+  <circle cx="34" cy="30" r="2.5" fill="#E2E8F0" />
+  <circle cx="86" cy="30" r="6.5" fill="#090D16" stroke="#0284C7" stroke-width="2" />
+  <circle cx="86" cy="30" r="2.5" fill="#E2E8F0" />
+</svg>

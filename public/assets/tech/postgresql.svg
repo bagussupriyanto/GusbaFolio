@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="24" height="24">
+  <rect width="128" height="128" rx="16" fill="#336791" />
+  <!-- Elephant silhouette icon -->
+  <path d="M40,30 C60,15 90,25 95,50 C100,75 80,95 65,95 C55,95 45,85 45,70 C45,60 55,60 55,50 C55,40 35,45 25,60 C20,70 15,80 30,95 L40,110 H20" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" />
+</svg>

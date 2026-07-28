@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 16" shape-rendering="crispEdges" width="128" height="64">
+  <!-- Outer Outline -->
+  <path d="M0,0 h32 v16 h-32 z" fill="#000000" />
+  
+  <!-- Orange Stripe Roof Awning -->
+  <path d="M1,1 h30 v3 h-30 z" fill="#D86B27" />
+  <path d="M2,1 h2 v3 h-2 z M6,1 h2 v3 h-2 z M10,1 h2 v3 h-2 z M14,1 h2 v3 h-2 z M18,1 h2 v3 h-2 z M22,1 h2 v3 h-2 z M26,1 h2 v3 h-2 z M30,1 h1 v3 h-1 z" fill="#E88B47" />
+  
+  <!-- Main Wall Body -->
+  <path d="M1,4 h30 v11 h-30 z" fill="#3D4956" />
+  
+  <!-- Cyan Shop Signboard -->
+  <path d="M7,5 h18 v4 h-18 z" fill="#4FE6D8" />
+  <path d="M10,6 h2 v2 h-2 z" fill="#D86B27" />
+  <path d="M13,7 h7 v1 h-7 z" fill="#FFFFFF" />
+  
+  <!-- Warm Yellow Windows -->
+  <path d="M3,10 h6 v3 h-6 z M23,10 h6 v3 h-6 z" fill="#F7D75E" />
+  
+  <!-- Door (White) -->
+  <path d="M14,12 h4 v4 h-4 z" fill="#FFFFFF" />
+</svg>
