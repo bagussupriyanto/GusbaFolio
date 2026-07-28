@@ -152,7 +152,7 @@ export const TechSection: React.FC = React.memo(() => {
   return (
     <section
       id="stack"
-      className="relative h-screen w-full flex flex-col bg-[#0a0e17] font-silkscreen overflow-hidden text-[#F8FAFC] z-10"
+      className="relative h-screen h-[100dvh] w-full flex flex-col bg-[#0a0e17] font-silkscreen overflow-hidden text-[#F8FAFC] z-10"
     >
       {/* Background Image */}
       <style>{`
@@ -205,7 +205,7 @@ export const TechSection: React.FC = React.memo(() => {
       </div>
 
       {/* ===== TECH GRID ===== */}
-      <div className="relative z-10 flex-1 px-4 sm:px-6 lg:px-10 overflow-y-auto py-2 pb-24 sm:pb-2 scrollbar-hide">
+      <div className="relative z-10 flex-1 px-4 sm:px-6 lg:px-10 overflow-y-auto py-2 pb-36 sm:pb-2 scrollbar-hide">
         <div className="max-w-5xl mx-auto space-y-2 sm:space-y-3">
           {filteredCategories.map((cat) => (
             <div key={cat.label}>
@@ -234,7 +234,7 @@ export const TechSection: React.FC = React.memo(() => {
       </div>
 
       {/* ===== BOTTOM: ROBOT + SPEECH BUBBLE ===== */}
-      <div className="fixed sm:relative bottom-0 left-0 right-0 z-20 px-0 sm:px-6 lg:px-10 pb-0 sm:pb-2">
+      <div className="fixed sm:relative bottom-14 sm:bottom-0 left-2 right-2 sm:left-0 sm:right-0 z-20 px-0 sm:px-6 lg:px-10 pb-0 sm:pb-2 pointer-events-auto">
         <div className="max-w-5xl mx-auto flex flex-row items-center gap-4">
 
           {/* Robot Character — walks when idle, stops when talking */}
@@ -282,7 +282,7 @@ export const TechSection: React.FC = React.memo(() => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.15 }}
-                className="bg-[#12182a]/95 sm:bg-[#12182a]/90 border-t-2 sm:border-2 border-[#4ee6d8] px-4 py-2.5 shadow-[0_-4px_10px_rgba(0,0,0,0.3)] sm:shadow-[3px_3px_0px_#000]"
+                className="bg-[#12182a]/95 sm:bg-[#12182a]/90 border-2 sm:border-2 border-[#4ee6d8] px-3.5 py-2.5 sm:px-4 sm:py-2.5 shadow-[0_4px_20px_rgba(0,0,0,0.6)] sm:shadow-[3px_3px_0px_#000]"
               >
                 {/* Arrow pointing left to robot */}
                 <div className="absolute top-1/2 left-0 -translate-x-[7px] -translate-y-1/2 w-3 h-3 bg-[#12182a] border-b-2 border-l-2 border-[#4ee6d8] rotate-45" />

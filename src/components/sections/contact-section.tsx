@@ -89,7 +89,7 @@ export const ContactSection: React.FC = memo(() => {
   return (
     <section
       id="contact"
-      className="relative h-screen w-full flex flex-col bg-[#0a0e17] font-silkscreen overflow-hidden text-[#F8FAFC] z-10"
+      className="relative h-screen h-[100dvh] w-full flex flex-col bg-[#0a0e17] font-silkscreen overflow-hidden text-[#F8FAFC] z-10"
     >
       {/* ===== FULL-BLEED PORTAL BACKGROUND ===== */}
       <div ref={bgRef} onClick={handleBgClick} className="absolute inset-0 cursor-crosshair">

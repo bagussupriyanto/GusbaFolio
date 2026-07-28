@@ -10,7 +10,7 @@ export const AboutSection: React.FC = memo(() => {
   return (
     <section
       id="about"
-      className="relative h-screen w-full flex flex-col bg-[#0a0e17] font-silkscreen overflow-hidden text-[#F8FAFC] z-10"
+      className="relative h-screen h-[100dvh] w-full flex flex-col bg-[#0a0e17] font-silkscreen overflow-hidden text-[#F8FAFC] z-10"
     >
       {/* ===== FULL-BLEED CABIN BACKGROUND ===== */}
       <div className="absolute inset-0">
