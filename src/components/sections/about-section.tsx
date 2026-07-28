@@ -188,6 +188,9 @@ export const AboutSection: React.FC = memo(() => {
             <span className="text-emerald-400">🟢</span>
             <span>OPEN TO WORK</span>
             <span>•</span>
+            <span className="text-purple-400">🎬</span>
+            <span className="text-purple-300 font-bold">AI VIDEO CREATOR</span>
+            <span>•</span>
             <span>FULLTIME / REMOTE / FREELANCE</span>
           </div>
 

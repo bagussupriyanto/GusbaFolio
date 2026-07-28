@@ -12,6 +12,7 @@ export const DEVELOPER_DATA: DeveloperProfile = {
     email: "badus991@gmail.com",
     phone: "+62 85155227735",
     whatsapp: "https://wa.me/6285155227735",
+    tiktok: "https://www.tiktok.com/@editorrramatir1106",
     certification: "Microsoft Specialist — Certiport",
     thesis: "Enkripsi dan Deskripsi Data Metode DES"
   }

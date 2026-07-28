@@ -10,6 +10,7 @@ export interface DeveloperProfile {
     email: string;
     phone: string;
     whatsapp: string;
+    tiktok?: string;
     certification: string;
     thesis: string;
   };

@@ -9,7 +9,9 @@ import {
   Lock,
   Boxes,
   Cpu,
-  CheckCircle2
+  CheckCircle2,
+  Video,
+  Film
 } from 'lucide-react';
 
 interface TechItem {
@@ -73,6 +75,8 @@ const categories: TechCategory[] = [
     color: "text-purple-400",
     borderColor: "border-purple-400/30",
     items: [
+      { name: 'Google Veo', desc: 'Eksplorasi Generative AI Video — membuat animasi & visual konten kreatif digital di TikTok.', fallbackIcon: <Video className="w-5 h-5 text-purple-400" /> },
+      { name: 'Seedance AI', desc: 'AI Motion & Dance Generator — eksperimen gerakan & animasi video AI di TikTok.', fallbackIcon: <Film className="w-5 h-5 text-purple-400" /> },
       { name: 'Gemini API', desc: 'Google AI API — integrasi kecerdasan buatan ke dalam aplikasi web.', logo: si('googlegemini', '886FBF') },
       { name: 'Cursor AI', desc: 'AI-powered code editor. Akselerasi development dengan bantuan AI real-time.', fallbackIcon: <Cpu className="w-5 h-5 text-purple-400" /> },
       { name: 'DES Encryption', desc: 'Topik skripsi — implementasi enkripsi data untuk keamanan informasi.', fallbackIcon: <Lock className="w-5 h-5 text-purple-400" /> },

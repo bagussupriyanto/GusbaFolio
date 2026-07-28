@@ -4,7 +4,7 @@ import React, { useState, useRef, memo } from 'react';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { audioManager } from '@/lib/audio-manager';
-import { Mail, MessageCircle, Github, Linkedin, Copy, Check, Heart, ArrowRight } from 'lucide-react';
+import { Mail, MessageCircle, Github, Linkedin, Copy, Check, Heart, ArrowRight, Video } from 'lucide-react';
 import { DEVELOPER_DATA } from '@/lib/constants';
 import { PaperBattleGame } from '@/components/ui/paper-battle-game';
 
@@ -252,6 +252,20 @@ export const ContactSection: React.FC = memo(() => {
               </div>
               <ArrowRight className="w-4 h-4 text-sky-400 group-hover:translate-x-1 transition-transform" />
             </a>
+
+            {DEVELOPER_DATA.contact.tiktok && (
+              <a href={DEVELOPER_DATA.contact.tiktok} target="_blank" rel="noopener noreferrer" onClick={castPaperSpell}
+                className="flex items-center justify-between gap-3 p-3 bg-[#0a0e17]/50 border border-purple-400/30 hover:border-purple-400/80 transition-colors group">
+                <div className="flex items-center gap-3">
+                  <Video className="w-4 h-4 text-purple-400 shrink-0" />
+                  <div>
+                    <div className="text-[9px] text-purple-400 uppercase font-bold">TIKTOK AI CONTENT LAB</div>
+                    <div className="text-[10px] sm:text-xs font-mono text-[#F8FAFC]">@editorrramatir1106</div>
+                  </div>
+                </div>
+                <ArrowRight className="w-4 h-4 text-purple-400 group-hover:translate-x-1 transition-transform" />
+              </a>
+            )}
           </div>
 
           {/* ===== PORTAL ENTER BUTTON ===== */}
