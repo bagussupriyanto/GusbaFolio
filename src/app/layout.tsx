@@ -70,6 +70,11 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  icons: {
+    icon: '/icon.png',
+    shortcut: '/icon.png',
+    apple: '/apple-touch-icon.png',
+  },
 };
 
 import { ThemeProvider } from '@/components/providers/theme-provider';
