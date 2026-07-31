@@ -10,12 +10,14 @@ interface ProjectDrawerProps {
   project: Project | null;
   isOpen: boolean;
   onClose: () => void;
+  isCleanMode?: boolean;
 }
 
 export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({
   project,
   isOpen,
   onClose,
+  isCleanMode = false,
 }) => {
   const [selectedImage, setSelectedImage] = React.useState<string | null>(null);
   const [isZoomed, setIsZoomed] = React.useState(false);
@@ -53,7 +55,7 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-5 font-silkscreen">
+        <div className={`fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-5 ${isCleanMode ? 'font-sans' : 'font-silkscreen'}`}>
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -69,32 +71,52 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.94, y: 20 }}
             transition={{ duration: 0.3 }}
-            className="relative w-full max-w-[1100px] max-h-[94vh] overflow-hidden bg-[#12182a] border-2 sm:border-4 border-[#4ee6d8] shadow-[4px_4px_0px_#000] sm:shadow-[8px_8px_0px_#000] z-10 my-auto text-[#F8FAFC] flex flex-col"
+            className={`relative w-full max-w-[1100px] max-h-[94vh] overflow-hidden bg-[#12182a] z-10 my-auto text-[#F8FAFC] flex flex-col ${
+              isCleanMode
+                ? 'rounded-2xl border border-slate-800 shadow-[0_25px_60px_rgba(0,0,0,0.8)]'
+                : 'border-2 sm:border-4 border-[#4ee6d8] shadow-[4px_4px_0px_#000] sm:shadow-[8px_8px_0px_#000]'
+            }`}
           >
 
             {/* ── Row 1: Header Bar ── */}
-            <div className="flex items-center justify-between px-3 sm:px-4 py-2 sm:py-2.5 bg-[#0a0e17] border-b-2 border-[#4ee6d8]">
+            <div className={`flex items-center justify-between px-3 sm:px-4 py-2.5 sm:py-3 bg-[#0a0e17] border-b ${
+              isCleanMode ? 'border-slate-800' : 'border-b-2 border-[#4ee6d8]'
+            }`}>
               <div className="flex items-center gap-2 sm:gap-3 min-w-0">
-                <span className="hidden xs:inline-block px-2 py-0.5 text-[9px] sm:text-[10px] bg-[#4ee6d8] text-[#0a0e17] font-black shrink-0">
+                <span className={`px-2 py-0.5 text-[9px] sm:text-[10px] font-black shrink-0 ${
+                  isCleanMode
+                    ? 'rounded bg-[#4ee6d8]/10 text-[#4ee6d8] border border-[#4ee6d8]/30 font-mono'
+                    : 'bg-[#4ee6d8] text-[#0a0e17]'
+                }`}>
                   PROJECT DETAIL
                 </span>
                 <span className="w-1.5 h-1.5 rounded-full bg-[#4ee6d8] animate-pulse shrink-0" />
-                <span className="text-[9px] sm:text-[10px] text-[#4ee6d8] font-bold font-mono uppercase tracking-wider truncate max-w-[180px] sm:max-w-none">
+                <span className={`text-[9px] sm:text-[10px] text-[#4ee6d8] font-bold uppercase tracking-wider truncate max-w-[180px] sm:max-w-none ${
+                  isCleanMode ? 'font-mono' : 'font-mono'
+                }`}>
                   {project.category}
                 </span>
               </div>
               <button
                 onClick={onClose}
-                className="pixel-btn px-2.5 py-1 sm:px-3 sm:py-1 text-[9px] sm:text-[10px] flex items-center gap-1 bg-red-600 border-red-400 text-white hover:bg-red-700 cursor-pointer shrink-0"
+                className={`px-2.5 py-1 sm:px-3 sm:py-1 text-[10px] sm:text-xs flex items-center gap-1 cursor-pointer shrink-0 transition-all ${
+                  isCleanMode
+                    ? 'rounded-lg bg-red-500/10 border border-red-500/40 text-red-400 hover:bg-red-500/20 font-mono'
+                    : 'pixel-btn bg-red-600 border-red-400 text-white hover:bg-red-700'
+                }`}
               >
-                <X className="w-3 h-3" />
+                <X className="w-3.5 h-3.5" />
                 CLOSE
               </button>
             </div>
 
             {/* ── Row 2: Title + Visit Button ── */}
-            <div className="flex items-center justify-between gap-2 sm:gap-4 px-3 sm:px-4 py-2 sm:py-2.5 border-b border-[#4ee6d8]/20 bg-[#0d1220]">
-              <h2 className="font-pixel text-xs sm:text-base text-[#F8FAFC] tracking-wide truncate">
+            <div className={`flex items-center justify-between gap-2 sm:gap-4 px-3 sm:px-4 py-2.5 sm:py-3 border-b bg-[#0d1220] ${
+              isCleanMode ? 'border-slate-800' : 'border-[#4ee6d8]/20'
+            }`}>
+              <h2 className={`text-sm sm:text-lg text-[#F8FAFC] tracking-wide truncate ${
+                isCleanMode ? 'font-display font-bold' : 'font-pixel text-xs sm:text-base'
+              }`}>
                 {project.title}
               </h2>
               {project.liveUrl ? (
@@ -102,14 +124,18 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="pixel-btn px-2.5 py-1 sm:px-3 sm:py-1.5 text-[9px] sm:text-[10px] flex items-center gap-1 sm:gap-1.5 shrink-0 cursor-pointer"
+                  className={`px-3 py-1.5 text-[10px] sm:text-xs flex items-center gap-1.5 shrink-0 cursor-pointer font-mono font-bold transition-all ${
+                    isCleanMode
+                      ? 'rounded-lg bg-[#4ee6d8] text-[#0a0e17] hover:bg-[#6efff0] shadow-[0_0_15px_rgba(78,230,216,0.3)]'
+                      : 'pixel-btn'
+                  }`}
                 >
-                  VISIT
-                  <ExternalLink className="w-3 h-3" />
+                  VISIT WEBSITE
+                  <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               ) : (
-                <div className="px-2 py-1 sm:px-3 sm:py-1.5 text-[8px] sm:text-[9px] bg-amber-500/20 border border-amber-500/50 text-amber-400 font-bold flex items-center gap-1 sm:gap-1.5 shrink-0">
-                  <Lock className="w-3 h-3" />
+                <div className="px-2.5 py-1.5 rounded-lg text-[9px] sm:text-[10px] bg-amber-500/10 border border-amber-500/40 text-amber-400 font-bold font-mono flex items-center gap-1.5 shrink-0">
+                  <Lock className="w-3.5 h-3.5" />
                   <span>INTERNAL SYSTEM (NDA)</span>
                 </div>
               )}

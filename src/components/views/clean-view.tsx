@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import {
   Briefcase,
   GraduationCap,
@@ -13,25 +13,18 @@ import {
   Linkedin,
   MessageCircle,
   Video,
-  CheckCircle2,
   Code,
-  Laptop,
   Award,
-  Sparkles,
   Puzzle,
   Wrench,
-  TrendingUp,
   Lock,
   Gamepad2,
-  Layers,
-  Terminal,
-  ShieldCheck,
-  Workflow,
-  Boxes,
-  Cpu,
-  Film,
   ArrowUpRight,
-  ChevronRight
+  ChevronRight,
+  Menu,
+  X,
+  FileText,
+  UserCheck
 } from 'lucide-react';
 import { DEVELOPER_DATA, FEATURED_PROJECTS, CV_WORK_EXPERIENCES } from '@/lib/constants';
 import { Project } from '@/types';
@@ -42,30 +35,11 @@ interface CleanViewProps {
   onSwitchToGameMode: () => void;
 }
 
-// Simple Icon renderer helper
-const SimpleIcon = ({ name }: { name: string }) => {
-  const map: Record<string, string> = {
-    'nextdotjs': 'Next.js',
-    'typescript': 'TypeScript',
-    'react': 'React',
-    'tailwindcss': 'Tailwind CSS',
-    'supabase': 'Supabase',
-    'postgresql': 'PostgreSQL',
-    'prisma': 'Prisma',
-    'nodedotjs': 'Node.js',
-    'git': 'Git',
-    'github': 'GitHub',
-    'vercel': 'Vercel',
-    'python': 'Python',
-  };
-  return <span>{map[name.toLowerCase()] || name}</span>;
-};
-
 const TECH_CATEGORIES = [
   {
     title: "FRONTEND ENGINEERING",
     color: "from-teal-500/20 to-emerald-500/10 border-teal-500/40 text-teal-400",
-    skills: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS", "HTML5/CSS3", "Framer Motion", "Turbopack"]
+    skills: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS", "HTML5 / CSS3", "Framer Motion", "Turbopack"]
   },
   {
     title: "BACKEND & DATABASE",
@@ -75,15 +49,15 @@ const TECH_CATEGORIES = [
   {
     title: "DEVOPS & TOOLING",
     color: "from-sky-500/20 to-cyan-500/10 border-sky-500/40 text-sky-400",
-    skills: ["Git & GitHub", "Vercel Deployment", "VS Code", "Postman API", "Linux Bash", "CI/CD Pipeline"]
+    skills: ["Git & GitHub", "Vercel Deployment", "VS Code", "Postman API", "Linux Bash", "CI/CD Automation"]
   },
   {
-    title: "AI & CREATIVE EXPERIMENTATION",
+    title: "AI & CREATIVE TOOLS",
     color: "from-purple-500/20 to-pink-500/10 border-purple-500/40 text-purple-400",
     skills: ["Google Veo (AI Video)", "Seedance AI", "Gemini AI API", "Cursor AI Editor", "DES Data Encryption", "TikTok Content Lab"]
   },
   {
-    title: "INDUSTRIAL INSTRUMENTATION & SOP",
+    title: "INDUSTRIAL INSTRUMENTATION",
     color: "from-amber-500/20 to-orange-500/10 border-amber-500/40 text-amber-400",
     skills: ["Instrument Control (Plant)", "Pressure & Flow Calibration", "Wiring & P&ID Diagrams", "SOP & K3 Safety", "Precision Wiring", "Certiport Microsoft Specialist"]
   }
@@ -91,6 +65,7 @@ const TECH_CATEGORIES = [
 
 export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchToGameMode }) => {
   const [copiedEmail, setCopiedEmail] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(DEVELOPER_DATA.contact.email);
@@ -99,41 +74,143 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
   };
 
   return (
-    <div className="w-full bg-[#0a0e17] text-[#F8FAFC] min-h-screen font-sans selection:bg-[#4ee6d8]/30 selection:text-[#4ee6d8] pb-20">
+    <div className="w-full bg-[#070b14] text-[#F8FAFC] min-h-screen font-sans selection:bg-[#4ee6d8]/30 selection:text-[#4ee6d8]">
       
-      {/* ===== HERO SECTION ===== */}
-      <section className="relative pt-28 pb-16 sm:pt-36 sm:pb-24 px-4 sm:px-8 max-w-6xl mx-auto overflow-hidden">
+      {/* ===== EXECUTIVE HEADER NAVBAR ===== */}
+      <header className="fixed top-0 inset-x-0 z-40 bg-[#070b14]/85 backdrop-blur-md border-b border-slate-800/80 transition-all">
+        <div className="max-w-6xl mx-auto px-4 sm:px-8 py-3.5 flex items-center justify-between">
+          
+          {/* Logo & Name */}
+          <a href="#" className="flex items-center gap-3 group">
+            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#4ee6d8] to-emerald-500 text-[#0a0e17] font-extrabold font-mono flex items-center justify-center text-sm shadow-[0_0_15px_rgba(78,230,216,0.3)]">
+              BS
+            </div>
+            <div className="flex flex-col">
+              <span className="text-sm sm:text-base font-bold text-white tracking-wide font-display group-hover:text-[#4ee6d8] transition-colors">
+                Bagus Supriyanto
+              </span>
+              <span className="text-[11px] font-mono text-slate-400">
+                Frontend Engineer
+              </span>
+            </div>
+          </a>
+
+          {/* Navigation Links (Desktop) */}
+          <nav className="hidden md:flex items-center gap-6 text-xs font-mono text-slate-300">
+            <a href="#projects" className="hover:text-[#4ee6d8] transition-colors">PROYEK</a>
+            <a href="#experience" className="hover:text-[#4ee6d8] transition-colors">PENGALAMAN</a>
+            <a href="#skills" className="hover:text-[#4ee6d8] transition-colors">SKILL STACK</a>
+            <a href="#contact" className="hover:text-[#4ee6d8] transition-colors">KONTAK</a>
+          </nav>
+
+          {/* Right Action: Mode Toggle & CV */}
+          <div className="flex items-center gap-3">
+            <button
+              onClick={onSwitchToGameMode}
+              className="px-3 py-1.5 rounded-lg bg-purple-500/10 border border-purple-500/40 text-purple-300 text-xs font-mono font-bold flex items-center gap-1.5 hover:bg-purple-500/20 hover:text-white transition-all cursor-pointer"
+              title="Beralih ke tampilan 16-bit RPG interactive"
+            >
+              <Gamepad2 className="w-3.5 h-3.5 text-purple-400" />
+              <span className="hidden sm:inline">16-BIT RPG MODE</span>
+              <span className="sm:hidden">RPG</span>
+            </button>
+
+            <a
+              href="/assets/cv-bagus-supriyanto.pdf.pdf"
+              download
+              className="hidden sm:flex px-3.5 py-1.5 rounded-lg bg-[#4ee6d8] text-[#0a0e17] text-xs font-mono font-bold items-center gap-1.5 hover:bg-[#6efff0] transition-all cursor-pointer shadow-[0_0_15px_rgba(78,230,216,0.2)]"
+            >
+              <Download className="w-3.5 h-3.5" />
+              CV
+            </a>
+
+            {/* Mobile Menu Toggle */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden p-1.5 rounded-lg bg-slate-800 text-slate-200 hover:text-white cursor-pointer"
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
+
+        </div>
+
+        {/* Mobile Navigation Dropdown */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-[#0a0e17] border-b border-slate-800 px-4 py-4 space-y-3 font-mono text-xs">
+            <a
+              href="#projects"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block py-2 text-slate-300 hover:text-[#4ee6d8]"
+            >
+              ▸ PROYEK
+            </a>
+            <a
+              href="#experience"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block py-2 text-slate-300 hover:text-[#4ee6d8]"
+            >
+              ▸ PENGALAMAN & Karir
+            </a>
+            <a
+              href="#skills"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block py-2 text-slate-300 hover:text-[#4ee6d8]"
+            >
+              ▸ SKILL STACK
+            </a>
+            <a
+              href="#contact"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block py-2 text-slate-300 hover:text-[#4ee6d8]"
+            >
+              ▸ KONTAK
+            </a>
+            <a
+              href="/assets/cv-bagus-supriyanto.pdf.pdf"
+              download
+              className="w-full py-2.5 rounded-lg bg-[#4ee6d8] text-[#0a0e17] font-bold flex items-center justify-center gap-2"
+            >
+              <Download className="w-4 h-4" /> DOWNLOAD CV
+            </a>
+          </div>
+        )}
+      </header>
+
+      {/* ===== EXECUTIVE HERO SECTION ===== */}
+      <section className="relative pt-32 pb-16 sm:pt-40 sm:pb-24 px-4 sm:px-8 max-w-6xl mx-auto overflow-hidden">
         {/* Background Ambient Glow */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-[#4ee6d8]/10 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute top-1/3 left-1/3 w-[600px] h-[350px] bg-[#4ee6d8]/10 blur-[130px] rounded-full pointer-events-none" />
 
         <div className="relative z-10 flex flex-col items-start gap-6">
-          {/* Availability Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0d1527] border border-[#4ee6d8]/40 shadow-[0_0_15px_rgba(78,230,216,0.15)] text-xs font-mono text-[#4ee6d8]">
+          
+          {/* Availability Status Badge */}
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0d1527] border border-[#4ee6d8]/40 text-xs font-mono text-[#4ee6d8] shadow-[0_0_15px_rgba(78,230,216,0.15)]">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             <span>AVAILABLE FOR FULLTIME & REMOTE ROLES</span>
           </div>
 
-          {/* Name & Role Headline */}
-          <div className="space-y-2 max-w-4xl">
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white font-display leading-[1.1]">
-              Halo, Saya <span className="bg-gradient-to-r from-[#4ee6d8] via-[#6efff0] to-emerald-400 bg-clip-text text-transparent">{DEVELOPER_DATA.name}</span>
+          {/* Name & Headline */}
+          <div className="space-y-3 max-w-4xl">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white font-display leading-[1.15]">
+              Bagus Supriyanto
             </h1>
-            <p className="text-lg sm:text-2xl font-medium text-slate-300 tracking-wide font-sans">
-              {DEVELOPER_DATA.role}
+            <p className="text-lg sm:text-2xl font-medium bg-gradient-to-r from-[#4ee6d8] via-[#6efff0] to-emerald-400 bg-clip-text text-transparent tracking-wide font-sans">
+              Product-Focused Frontend Engineer
             </p>
           </div>
 
-          {/* Short Bio Summary */}
-          <p className="text-sm sm:text-base text-slate-400 max-w-2xl leading-relaxed">
-            Lulusan <span className="text-white font-semibold">S1 Technology Information UTY (2024)</span> yang berpengalaman membangun aplikasi web modern, sistem POS kasir, dan dashboard bisnis berskala produksi dengan performa tinggi. Berpengalaman di industri manufaktur & instrumen kontrol.
+          {/* Executive Bio */}
+          <p className="text-sm sm:text-base text-slate-300 max-w-2xl leading-relaxed">
+            Lulusan <span className="text-white font-semibold">S1 Teknologi Informatika UTY (2024)</span> yang berfokus pada arsitektur web modern, sistem kasir POS, dan aplikasi web performa tinggi berskala produksi. Berpengalaman di industri manufaktur presisi & instrumen kontrol plant.
           </p>
 
-          {/* CTAs & Game Mode Banner */}
-          <div className="flex flex-wrap items-center gap-3 pt-2 w-full sm:w-auto">
+          {/* Primary Action Buttons */}
+          <div className="flex flex-wrap items-center gap-3 pt-3">
             <a
               href="/assets/cv-bagus-supriyanto.pdf.pdf"
               download
-              className="px-5 py-3 rounded-lg bg-[#4ee6d8] text-[#0a0e17] font-bold text-xs sm:text-sm flex items-center justify-center gap-2 hover:bg-[#6efff0] transition-all shadow-[0_0_20px_rgba(78,230,216,0.3)] cursor-pointer"
+              className="px-6 py-3.5 rounded-lg bg-[#4ee6d8] text-[#0a0e17] font-bold text-xs sm:text-sm flex items-center justify-center gap-2 hover:bg-[#6efff0] transition-all shadow-[0_0_20px_rgba(78,230,216,0.3)] cursor-pointer font-mono"
             >
               <Download className="w-4 h-4" />
               DOWNLOAD CV (PDF)
@@ -141,38 +218,38 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
 
             <a
               href="#contact"
-              className="px-5 py-3 rounded-lg bg-[#12182a] border border-[#4ee6d8]/40 text-[#4ee6d8] font-bold text-xs sm:text-sm flex items-center justify-center gap-2 hover:border-[#4ee6d8] hover:bg-[#182035] transition-all cursor-pointer"
+              className="px-6 py-3.5 rounded-lg bg-[#12182a] border border-[#4ee6d8]/40 text-[#4ee6d8] font-bold text-xs sm:text-sm flex items-center justify-center gap-2 hover:border-[#4ee6d8] hover:bg-[#182035] transition-all cursor-pointer font-mono"
             >
               <Mail className="w-4 h-4" />
               HUBUNGI SAYA
             </a>
 
-            <button
-              onClick={onSwitchToGameMode}
-              className="px-5 py-3 rounded-lg bg-gradient-to-r from-purple-600/30 to-indigo-600/30 border border-purple-400/50 text-purple-300 font-bold text-xs sm:text-sm flex items-center justify-center gap-2 hover:border-purple-300 hover:text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(168,85,247,0.2)]"
+            <a
+              href="#projects"
+              className="px-6 py-3.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 font-bold text-xs sm:text-sm flex items-center justify-center gap-2 hover:text-white hover:border-slate-700 transition-all cursor-pointer font-mono"
             >
-              <Gamepad2 className="w-4 h-4 text-purple-400" />
-              🎮 COBA 16-BIT RPG GAME MODE
-            </button>
+              <Briefcase className="w-4 h-4" />
+              LIHAT PROYEK
+            </a>
           </div>
 
-          {/* Key Metrics / Fast Stats Bar */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full pt-6 border-t border-slate-800/80 mt-4">
-            <div className="p-3.5 rounded-lg bg-[#0d1322] border border-slate-800">
+          {/* Quick Metrics & Verification Cards */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full pt-8 border-t border-slate-800/80 mt-6">
+            <div className="p-4 rounded-xl bg-[#0d1322] border border-slate-800 space-y-1">
               <div className="text-xl sm:text-2xl font-bold text-[#4ee6d8] font-mono">S1 UTY</div>
               <div className="text-[11px] text-slate-400">Teknologi Informatika (2024)</div>
             </div>
-            <div className="p-3.5 rounded-lg bg-[#0d1322] border border-slate-800">
+            <div className="p-4 rounded-xl bg-[#0d1322] border border-slate-800 space-y-1">
               <div className="text-xl sm:text-2xl font-bold text-emerald-400 font-mono">3+ System</div>
               <div className="text-[11px] text-slate-400">Proyek Web Production</div>
             </div>
-            <div className="p-3.5 rounded-lg bg-[#0d1322] border border-slate-800">
+            <div className="p-4 rounded-xl bg-[#0d1322] border border-slate-800 space-y-1">
               <div className="text-xl sm:text-2xl font-bold text-sky-400 font-mono">Certiport</div>
               <div className="text-[11px] text-slate-400">Microsoft Specialist</div>
             </div>
-            <div className="p-3.5 rounded-lg bg-[#0d1322] border border-slate-800">
+            <div className="p-4 rounded-xl bg-[#0d1322] border border-slate-800 space-y-1">
               <div className="text-xl sm:text-2xl font-bold text-purple-400 font-mono">AI Lab</div>
-              <div className="text-[11px] text-slate-400">Google Veo & TikTok Content</div>
+              <div className="text-[11px] text-slate-400">Google Veo & Generative AI</div>
             </div>
           </div>
 
@@ -202,9 +279,9 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
             <div
               key={project.id}
               onClick={() => onSelectProject(project)}
-              className="group bg-[#0d1322] border border-slate-800 hover:border-[#4ee6d8]/60 rounded-xl overflow-hidden transition-all duration-300 shadow-lg hover:shadow-[0_0_25px_rgba(78,230,216,0.15)] flex flex-col cursor-pointer"
+              className="group bg-[#0d1322] border border-slate-800 hover:border-[#4ee6d8]/60 rounded-2xl overflow-hidden transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(78,230,216,0.15)] flex flex-col cursor-pointer"
             >
-              {/* MacOS Frame Header Preview */}
+              {/* MacOS Frame Preview */}
               <MacOSFrame url={project.liveUrl || `https://bagus.dev/${project.id}`} className="rounded-b-none border-x-0 border-t-0">
                 <div className="relative aspect-[16/9] bg-[#0a0e17] overflow-hidden">
                   <img
@@ -217,12 +294,12 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
                   {/* Status Overlay Badge */}
                   <div className="absolute top-3 right-3">
                     {project.liveUrl ? (
-                      <span className="px-2.5 py-1 rounded bg-emerald-500/20 border border-emerald-500/50 text-emerald-400 text-[10px] font-bold font-mono flex items-center gap-1">
+                      <span className="px-2.5 py-1 rounded-lg bg-emerald-500/20 border border-emerald-500/50 text-emerald-400 text-[10px] font-bold font-mono flex items-center gap-1">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                         LIVE DEMO
                       </span>
                     ) : (
-                      <span className="px-2.5 py-1 rounded bg-amber-500/20 border border-amber-500/50 text-amber-400 text-[10px] font-bold font-mono flex items-center gap-1">
+                      <span className="px-2.5 py-1 rounded-lg bg-amber-500/20 border border-amber-500/50 text-amber-400 text-[10px] font-bold font-mono flex items-center gap-1">
                         <Lock className="w-3 h-3" />
                         INTERNAL (NDA)
                       </span>
@@ -232,14 +309,14 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
               </MacOSFrame>
 
               {/* Content Details */}
-              <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
+              <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
                 <div>
                   <div className="text-xs font-mono text-[#4ee6d8] uppercase tracking-wider mb-1">
                     {project.category}
                   </div>
                   <h3 className="text-xl font-bold text-white group-hover:text-[#4ee6d8] transition-colors flex items-center gap-2">
                     {project.title}
-                    <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-[#4ee6d8]" />
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-300 mt-2 line-clamp-2 leading-relaxed">
                     {project.summary}
@@ -247,18 +324,18 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
                 </div>
 
                 {/* Problem & Solution Snippet */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] pt-2 border-t border-slate-800">
-                  <div className="p-2.5 rounded bg-[#070b14] border border-amber-400/20">
-                    <div className="text-amber-400 font-bold flex items-center gap-1 mb-1">
-                      <Puzzle className="w-3 h-3" /> PROBLEM
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-[11px] pt-2 border-t border-slate-800/80">
+                  <div className="p-3 rounded-lg bg-[#070b14] border border-amber-400/20">
+                    <div className="text-amber-400 font-bold flex items-center gap-1 mb-1 font-mono">
+                      <Puzzle className="w-3.5 h-3.5" /> PROBLEM
                     </div>
-                    <p className="text-slate-400 line-clamp-2">{project.problem}</p>
+                    <p className="text-slate-400 line-clamp-2 leading-normal">{project.problem}</p>
                   </div>
-                  <div className="p-2.5 rounded bg-[#070b14] border border-[#4ee6d8]/20">
-                    <div className="text-[#4ee6d8] font-bold flex items-center gap-1 mb-1">
-                      <Wrench className="w-3 h-3" /> SOLUTION
+                  <div className="p-3 rounded-lg bg-[#070b14] border border-[#4ee6d8]/20">
+                    <div className="text-[#4ee6d8] font-bold flex items-center gap-1 mb-1 font-mono">
+                      <Wrench className="w-3.5 h-3.5" /> SOLUTION
                     </div>
-                    <p className="text-slate-400 line-clamp-2">{project.solution}</p>
+                    <p className="text-slate-400 line-clamp-2 leading-normal">{project.solution}</p>
                   </div>
                 </div>
 
@@ -266,19 +343,19 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
                 <div className="flex items-center justify-between gap-2 pt-2">
                   <div className="flex flex-wrap gap-1.5">
                     {project.techStack.slice(0, 3).map((tech) => (
-                      <span key={tech} className="px-2 py-0.5 rounded bg-[#070b14] border border-slate-800 text-slate-300 text-[10px] font-mono">
+                      <span key={tech} className="px-2.5 py-1 rounded-md bg-[#070b14] border border-slate-800 text-slate-300 text-[10px] font-mono">
                         {tech}
                       </span>
                     ))}
                     {project.techStack.length > 3 && (
-                      <span className="px-2 py-0.5 rounded bg-[#070b14] border border-slate-800 text-slate-400 text-[10px] font-mono">
+                      <span className="px-2 py-1 rounded-md bg-[#070b14] border border-slate-800 text-slate-400 text-[10px] font-mono">
                         +{project.techStack.length - 3}
                       </span>
                     )}
                   </div>
 
-                  <span className="text-xs font-bold text-[#4ee6d8] group-hover:translate-x-1 transition-transform flex items-center gap-1 shrink-0">
-                    LIHAT DETAIL <ChevronRight className="w-3.5 h-3.5" />
+                  <span className="text-xs font-mono font-bold text-[#4ee6d8] group-hover:translate-x-1 transition-transform flex items-center gap-1 shrink-0">
+                    LIHAT DETAIL <ChevronRight className="w-4 h-4" />
                   </span>
                 </div>
 
@@ -310,12 +387,12 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
           {CV_WORK_EXPERIENCES.map((exp) => (
             <div
               key={exp.step}
-              className="p-5 sm:p-6 rounded-xl bg-[#0d1322] border border-slate-800 hover:border-slate-700 transition-all flex flex-col md:flex-row md:items-start gap-4 md:gap-8"
+              className="p-6 rounded-2xl bg-[#0d1322] border border-slate-800 hover:border-slate-700 transition-all flex flex-col md:flex-row md:items-start gap-4 md:gap-8"
             >
               {/* Step & Company Header */}
               <div className="md:w-1/3 shrink-0 space-y-1">
                 <div className="inline-flex items-center gap-2 text-xs font-mono text-[#4ee6d8] font-bold">
-                  <span className="px-2 py-0.5 rounded bg-[#4ee6d8]/10 border border-[#4ee6d8]/30">FASE {exp.step}</span>
+                  <span className="px-2.5 py-0.5 rounded-md bg-[#4ee6d8]/10 border border-[#4ee6d8]/30">FASE {exp.step}</span>
                   <span>{exp.period}</span>
                 </div>
                 <h3 className="text-lg font-bold text-white">{exp.company}</h3>
@@ -324,9 +401,9 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
 
               {/* Detail Points */}
               <div className="md:w-2/3 space-y-2 pt-2 md:pt-0 border-t md:border-t-0 md:border-l border-slate-800/80 md:pl-6">
-                <ul className="space-y-2">
+                <ul className="space-y-2.5">
                   {exp.points.map((pt, idx) => (
-                    <li key={idx} className="text-xs sm:text-sm text-slate-300 flex items-start gap-2 leading-relaxed">
+                    <li key={idx} className="text-xs sm:text-sm text-slate-300 flex items-start gap-2.5 leading-relaxed">
                       <span className="text-[#4ee6d8] shrink-0 mt-1">▸</span>
                       <span>{pt}</span>
                     </li>
@@ -338,7 +415,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
         </div>
       </section>
 
-      {/* ===== SKILLS MATRIX ===== */}
+      {/* ===== TECHNICAL SKILLS MATRIX ===== */}
       <section id="skills" className="py-16 px-4 sm:px-8 max-w-6xl mx-auto border-t border-slate-800/80">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
@@ -357,7 +434,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
           {TECH_CATEGORIES.map((cat) => (
             <div
               key={cat.title}
-              className={`p-5 rounded-xl bg-gradient-to-br ${cat.color} border bg-[#0d1322] space-y-4`}
+              className={`p-6 rounded-2xl bg-gradient-to-br ${cat.color} border bg-[#0d1322] space-y-4`}
             >
               <h3 className="text-xs font-mono font-bold tracking-wider uppercase flex items-center gap-2">
                 <span>▸</span> {cat.title}
@@ -366,7 +443,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
                 {cat.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="px-2.5 py-1 rounded bg-[#070b14] border border-slate-800 text-xs text-slate-200 font-mono flex items-center gap-1.5"
+                    className="px-3 py-1 rounded-lg bg-[#070b14] border border-slate-800 text-xs text-slate-200 font-mono flex items-center gap-1.5"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-[#4ee6d8]" />
                     {skill}
@@ -378,9 +455,9 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
         </div>
       </section>
 
-      {/* ===== ABOUT ME EDITORIAL CARD ===== */}
+      {/* ===== ABOUT ME CARD ===== */}
       <section className="py-16 px-4 sm:px-8 max-w-6xl mx-auto border-t border-slate-800/80">
-        <div className="p-6 sm:p-10 rounded-2xl bg-gradient-to-br from-[#0d1322] via-[#0f172a] to-[#070b14] border border-[#4ee6d8]/30 flex flex-col md:flex-row items-center gap-8">
+        <div className="p-6 sm:p-10 rounded-2xl bg-gradient-to-br from-[#0d1322] via-[#0f172a] to-[#070b14] border border-slate-800 flex flex-col md:flex-row items-center gap-8">
           {/* Photo */}
           <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-2xl overflow-hidden border-2 border-[#4ee6d8] shadow-[0_0_30px_rgba(78,230,216,0.2)] shrink-0">
             <img
@@ -440,7 +517,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
             </div>
             <button
               onClick={handleCopyEmail}
-              className="px-2.5 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-xs font-mono text-[#4ee6d8] cursor-pointer shrink-0"
+              className="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-mono text-[#4ee6d8] cursor-pointer shrink-0"
             >
               {copiedEmail ? 'COPIED!' : 'COPY'}
             </button>
@@ -527,14 +604,14 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
       </section>
 
       {/* ===== FOOTER ===== */}
-      <footer className="pt-12 pb-8 border-t border-slate-800/80 text-center text-xs font-mono text-slate-500 space-y-3">
+      <footer className="py-12 border-t border-slate-800/80 text-center text-xs font-mono text-slate-500 space-y-3">
         <div>© 2026 {DEVELOPER_DATA.name}. All rights reserved.</div>
-        <div>
+        <div className="flex items-center justify-center gap-4">
           <button
             onClick={onSwitchToGameMode}
-            className="text-[#4ee6d8] hover:underline font-pixel text-[10px] cursor-pointer"
+            className="text-purple-400 hover:underline flex items-center gap-1 cursor-pointer font-bold"
           >
-            🎮 Beralih ke 16-Bit RPG Game Mode
+            <Gamepad2 className="w-3.5 h-3.5" /> Beralih ke 16-Bit RPG Game Mode
           </button>
         </div>
       </footer>

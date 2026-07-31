@@ -167,44 +167,18 @@ export default function HomePage() {
   const handleCloseDrawer = useCallback(() => setIsDrawerOpen(false), []);
 
   return (
-    <main className="w-full bg-[#0a0e17] text-[#F8FAFC] relative font-sans">
+    <main className="w-full bg-[#070b14] text-[#F8FAFC] relative font-sans">
       <PreloaderScreen />
 
-      {/* Floating Mode Switcher Bar */}
-      <div className="fixed top-3 left-1/2 -translate-x-1/2 z-50 flex items-center p-1 rounded-full bg-[#0d1322]/90 backdrop-blur-md border border-[#4ee6d8]/40 shadow-[0_4px_25px_rgba(0,0,0,0.6)]">
-        <button
-          onClick={() => handleSetViewMode('clean')}
-          className={`px-3 py-1.5 rounded-full text-[10px] sm:text-xs font-bold font-mono transition-all flex items-center gap-1.5 cursor-pointer ${
-            viewMode === 'clean'
-              ? 'bg-[#4ee6d8] text-[#0a0e17] shadow-[0_0_12px_rgba(78,230,216,0.6)]'
-              : 'text-slate-400 hover:text-white'
-          }`}
-        >
-          <FileText className="w-3.5 h-3.5" />
-          <span>📄 EXECUTIVE MODE</span>
-        </button>
-
-        <button
-          onClick={() => handleSetViewMode('game')}
-          className={`px-3 py-1.5 rounded-full text-[10px] sm:text-xs font-bold font-mono transition-all flex items-center gap-1.5 cursor-pointer ${
-            viewMode === 'game'
-              ? 'bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-[0_0_12px_rgba(168,85,247,0.6)]'
-              : 'text-slate-400 hover:text-white'
-          }`}
-        >
-          <Gamepad2 className="w-3.5 h-3.5 text-purple-300" />
-          <span>🎮 16-BIT RPG GAME</span>
-        </button>
-      </div>
-
-      {/* Project Detail Drawer Modal (Used in both modes) */}
+      {/* Project Detail Drawer Modal */}
       <ProjectDrawer
         project={selectedProject}
         isOpen={isDrawerOpen}
         onClose={handleCloseDrawer}
+        isCleanMode={viewMode === 'clean'}
       />
 
-      {/* ===== VIEW 1: CLEAN EXECUTIVE MODE (HRD FRIENDLY) ===== */}
+      {/* ===== VIEW 1: CLEAN EXECUTIVE MODE (100% SERIOUS & PROFESSIONAL FOR HRD) ===== */}
       {viewMode === 'clean' ? (
         <CleanView
           onSelectProject={handleSelectProject}
@@ -214,6 +188,18 @@ export default function HomePage() {
         /* ===== VIEW 2: 16-BIT RPG GAME MODE ===== */
         <div className="font-silkscreen relative overflow-hidden h-screen">
           <div className="fixed inset-0 bg-[radial-gradient(#4ee6d8_1.2px,transparent_1.2px)] [background-size:28px_28px] opacity-20 pointer-events-none z-0" />
+          
+          {/* Executive Mode Switcher Pill in Game Mode */}
+          <div className="fixed top-3 left-1/2 -translate-x-1/2 z-50 flex items-center p-1 rounded-full bg-[#0d1322]/90 backdrop-blur-md border border-[#4ee6d8]/40 shadow-[0_4px_25px_rgba(0,0,0,0.6)]">
+            <button
+              onClick={() => handleSetViewMode('clean')}
+              className="px-3.5 py-1.5 rounded-full text-xs font-bold font-mono bg-[#4ee6d8] text-[#0a0e17] shadow-[0_0_15px_rgba(78,230,216,0.6)] flex items-center gap-1.5 cursor-pointer hover:bg-[#6efff0] transition-all"
+            >
+              <FileText className="w-3.5 h-3.5" />
+              <span>📄 SWITCH TO EXECUTIVE MODE</span>
+            </button>
+          </div>
+
           <HeaderNav />
 
           {/* Section Dot Indicators */}
