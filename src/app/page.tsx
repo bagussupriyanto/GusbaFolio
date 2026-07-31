@@ -9,8 +9,10 @@ import { ContactSection } from '@/components/sections/contact-section';
 import { HeaderNav } from '@/components/layout/header-nav';
 import { PreloaderScreen } from '@/components/ui/preloader-screen';
 import { ProjectDrawer } from '@/components/ui/project-drawer';
+import { CleanView } from '@/components/views/clean-view';
 import { FEATURED_PROJECTS } from '@/lib/constants';
 import { Project } from '@/types';
+import { Gamepad2, FileText, Sparkles } from 'lucide-react';
 
 const TOTAL_SECTIONS = 5;
 const SECTION_LABELS = ['OPENING', 'ABOUT ME', 'WORLD MAP', 'TECH STACK', 'CONTACT'] as const;
@@ -19,6 +21,22 @@ export default function HomePage() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [currentSection, setCurrentSection] = useState(0);
+  const [viewMode, setViewMode] = useState<'clean' | 'game'>('clean');
+
+  // Read view mode preference from localStorage if available
+  useEffect(() => {
+    try {
+      const savedMode = localStorage.getItem('portfolio_view_mode') as 'clean' | 'game';
+      if (savedMode === 'clean' || savedMode === 'game') {
+        setViewMode(savedMode);
+      }
+    } catch {}
+  }, []);
+
+  const handleSetViewMode = (mode: 'clean' | 'game') => {
+    setViewMode(mode);
+    try { localStorage.setItem('portfolio_view_mode', mode); } catch {}
+  };
 
   // Use refs to avoid event listener re-attachment
   const currentSectionRef = useRef(currentSection);
@@ -62,8 +80,10 @@ export default function HomePage() {
     return () => window.removeEventListener('navigateTo', handleNavigateTo);
   }, [goToSection]);
 
-  // Attach scroll/touch/key listeners ONCE
+  // Attach scroll/touch/key listeners ONCE (only active in Game Mode)
   useEffect(() => {
+    if (viewMode !== 'game') return;
+
     const handleWheel = (e: WheelEvent) => {
       if (isDrawerOpenRef.current) return;
 
@@ -135,7 +155,7 @@ export default function HomePage() {
       window.removeEventListener('touchend', handleTouchEnd);
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [goToSection]);
+  }, [goToSection, viewMode]);
 
   const handleExploreWork = useCallback(() => goToSection(1), [goToSection]);
 
@@ -147,51 +167,92 @@ export default function HomePage() {
   const handleCloseDrawer = useCallback(() => setIsDrawerOpen(false), []);
 
   return (
-    <main className="w-full bg-[#0a0e17] text-[#F8FAFC] font-silkscreen relative overflow-hidden h-screen">
-      <div className="fixed inset-0 bg-[radial-gradient(#4ee6d8_1.2px,transparent_1.2px)] [background-size:28px_28px] opacity-20 pointer-events-none z-0" />
+    <main className="w-full bg-[#0a0e17] text-[#F8FAFC] relative font-sans">
       <PreloaderScreen />
-      <HeaderNav />
 
+      {/* Floating Mode Switcher Bar */}
+      <div className="fixed top-3 left-1/2 -translate-x-1/2 z-50 flex items-center p-1 rounded-full bg-[#0d1322]/90 backdrop-blur-md border border-[#4ee6d8]/40 shadow-[0_4px_25px_rgba(0,0,0,0.6)]">
+        <button
+          onClick={() => handleSetViewMode('clean')}
+          className={`px-3 py-1.5 rounded-full text-[10px] sm:text-xs font-bold font-mono transition-all flex items-center gap-1.5 cursor-pointer ${
+            viewMode === 'clean'
+              ? 'bg-[#4ee6d8] text-[#0a0e17] shadow-[0_0_12px_rgba(78,230,216,0.6)]'
+              : 'text-slate-400 hover:text-white'
+          }`}
+        >
+          <FileText className="w-3.5 h-3.5" />
+          <span>📄 EXECUTIVE MODE</span>
+        </button>
+
+        <button
+          onClick={() => handleSetViewMode('game')}
+          className={`px-3 py-1.5 rounded-full text-[10px] sm:text-xs font-bold font-mono transition-all flex items-center gap-1.5 cursor-pointer ${
+            viewMode === 'game'
+              ? 'bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-[0_0_12px_rgba(168,85,247,0.6)]'
+              : 'text-slate-400 hover:text-white'
+          }`}
+        >
+          <Gamepad2 className="w-3.5 h-3.5 text-purple-300" />
+          <span>🎮 16-BIT RPG GAME</span>
+        </button>
+      </div>
+
+      {/* Project Detail Drawer Modal (Used in both modes) */}
       <ProjectDrawer
         project={selectedProject}
         isOpen={isDrawerOpen}
         onClose={handleCloseDrawer}
       />
 
-      {/* Section Dot Indicators */}
-      <div className="fixed right-4 top-1/2 -translate-y-1/2 z-30 hidden sm:flex flex-col gap-3">
-        {SECTION_LABELS.map((label, i) => (
-          <button
-            key={label}
-            onClick={() => goToSection(i)}
-            className={`group flex items-center gap-2 cursor-pointer transition-all duration-300 ${currentSection === i ? '' : 'opacity-50 hover:opacity-80'}`}
-            title={label}
-          >
-            <span className="hidden group-hover:block text-[8px] text-[#4ee6d8] font-bold whitespace-nowrap">{label}</span>
-            <div className={`rounded-full border transition-all duration-300 ${
-              currentSection === i
-                ? 'w-3 h-3 bg-[#4ee6d8] border-[#4ee6d8] shadow-[0_0_8px_rgba(78,230,216,0.6)]'
-                : 'w-2 h-2 bg-transparent border-[#4ee6d8]/50'
-            }`} />
-          </button>
-        ))}
-      </div>
+      {/* ===== VIEW 1: CLEAN EXECUTIVE MODE (HRD FRIENDLY) ===== */}
+      {viewMode === 'clean' ? (
+        <CleanView
+          onSelectProject={handleSelectProject}
+          onSwitchToGameMode={() => handleSetViewMode('game')}
+        />
+      ) : (
+        /* ===== VIEW 2: 16-BIT RPG GAME MODE ===== */
+        <div className="font-silkscreen relative overflow-hidden h-screen">
+          <div className="fixed inset-0 bg-[radial-gradient(#4ee6d8_1.2px,transparent_1.2px)] [background-size:28px_28px] opacity-20 pointer-events-none z-0" />
+          <HeaderNav />
 
-      {/* GPU-ACCELERATED SECTION CONTAINER */}
-      <div
-        className="will-change-transform"
-        style={{
-          transform: `translateY(-${currentSection * 100}vh)`,
-          transition: 'transform 0.8s cubic-bezier(0.76, 0, 0.24, 1)',
-        }}
-      >
-        <div className="h-screen w-full" style={{ contain: 'content' }}><HeroSection onExploreWork={handleExploreWork} /></div>
-        <div className="h-screen w-full" style={{ contain: 'content' }}><AboutSection /></div>
-        <div className="h-screen w-full" style={{ contain: 'content' }}><WorldMapSection onSelectProject={handleSelectProject} /></div>
-        <div className="h-screen w-full" style={{ contain: 'content' }}><TechSection /></div>
-        <div className="h-screen w-full" style={{ contain: 'content' }}><ContactSection /></div>
-      </div>
+          {/* Section Dot Indicators */}
+          <div className="fixed right-4 top-1/2 -translate-y-1/2 z-30 hidden sm:flex flex-col gap-3">
+            {SECTION_LABELS.map((label, i) => (
+              <button
+                key={label}
+                onClick={() => goToSection(i)}
+                className={`group flex items-center gap-2 cursor-pointer transition-all duration-300 ${currentSection === i ? '' : 'opacity-50 hover:opacity-80'}`}
+                title={label}
+              >
+                <span className="hidden group-hover:block text-[8px] text-[#4ee6d8] font-bold whitespace-nowrap">{label}</span>
+                <div className={`rounded-full border transition-all duration-300 ${
+                  currentSection === i
+                    ? 'w-3 h-3 bg-[#4ee6d8] border-[#4ee6d8] shadow-[0_0_8px_rgba(78,230,216,0.6)]'
+                    : 'w-2 h-2 bg-transparent border-[#4ee6d8]/50'
+                }`} />
+              </button>
+            ))}
+          </div>
+
+          {/* GPU-ACCELERATED SECTION CONTAINER */}
+          <div
+            className="will-change-transform"
+            style={{
+              transform: `translateY(-${currentSection * 100}vh)`,
+              transition: 'transform 0.8s cubic-bezier(0.76, 0, 0.24, 1)',
+            }}
+          >
+            <div className="h-screen w-full" style={{ contain: 'content' }}><HeroSection onExploreWork={handleExploreWork} /></div>
+            <div className="h-screen w-full" style={{ contain: 'content' }}><AboutSection /></div>
+            <div className="h-screen w-full" style={{ contain: 'content' }}><WorldMapSection onSelectProject={handleSelectProject} /></div>
+            <div className="h-screen w-full" style={{ contain: 'content' }}><TechSection /></div>
+            <div className="h-screen w-full" style={{ contain: 'content' }}><ContactSection /></div>
+          </div>
+        </div>
+      )}
 
     </main>
   );
 }
+
