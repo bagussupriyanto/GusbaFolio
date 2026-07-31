@@ -30,7 +30,8 @@ import {
   Terminal,
   Cpu,
   Globe2,
-  Calendar
+  Calendar,
+  Sparkles
 } from 'lucide-react';
 import { DEVELOPER_DATA, FEATURED_PROJECTS, CV_WORK_EXPERIENCES } from '@/lib/constants';
 import { Project } from '@/types';
@@ -55,7 +56,7 @@ const TECH_CATEGORIES = [
   {
     title: "DevOps & Infrastructure",
     icon: Layers,
-    skills: ["Git & GitHub", "Vercel Deployment", "VS Code", "Postman API", "Linux Bash", "CI/CD Pipelines"]
+    skills: ["Git & GitHub", "Vercel Deployment", "VS Code", "Postman API", "Linux Bash", "CI/CD Automation"]
   },
   {
     title: "AI & Creative Technology",
@@ -84,12 +85,16 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
       
       {/* ===== CORPORATE HEADER NAVBAR ===== */}
       <header className="fixed top-0 inset-x-0 z-40 bg-[#090d16]/90 backdrop-blur-md border-b border-slate-800/80">
-        <div className="max-w-6xl mx-auto px-4 sm:px-8 py-4 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-4 sm:px-8 py-3.5 flex items-center justify-between">
           
           {/* Brand Logo & Name */}
           <a href="#" className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-600 text-white font-bold font-sans flex items-center justify-center text-sm shadow-md">
-              BS
+            <div className="w-9 h-9 rounded-full overflow-hidden border-2 border-blue-500/60 shadow-md shrink-0">
+              <img
+                src="/assets/bagus-profile.jpg"
+                alt="Bagus Supriyanto Profile"
+                className="w-full h-full object-cover object-top"
+              />
             </div>
             <div className="flex flex-col">
               <span className="text-sm sm:text-base font-bold text-white tracking-tight">
@@ -103,6 +108,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
 
           {/* Navigation Links (Desktop) */}
           <nav className="hidden md:flex items-center gap-8 text-xs font-medium text-slate-300">
+            <a href="#about" className="hover:text-blue-400 transition-colors">About</a>
             <a href="#projects" className="hover:text-blue-400 transition-colors">Projects</a>
             <a href="#experience" className="hover:text-blue-400 transition-colors">Experience</a>
             <a href="#skills" className="hover:text-blue-400 transition-colors">Capabilities</a>
@@ -145,11 +151,18 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
         {mobileMenuOpen && (
           <div className="md:hidden bg-[#0d1322] border-b border-slate-800 px-4 py-4 space-y-3 text-sm font-medium">
             <a
+              href="#about"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block py-1.5 text-slate-300 hover:text-blue-400"
+            >
+              About Me
+            </a>
+            <a
               href="#projects"
               onClick={() => setMobileMenuOpen(false)}
               className="block py-1.5 text-slate-300 hover:text-blue-400"
             >
-              Projects
+              Projects & Case Studies
             </a>
             <a
               href="#experience"
@@ -184,13 +197,13 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
       </header>
 
       {/* ===== EXECUTIVE HERO SECTION ===== */}
-      <section className="relative pt-32 pb-16 sm:pt-44 sm:pb-24 px-4 sm:px-8 max-w-6xl mx-auto">
-        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-12">
+      <section className="relative pt-32 pb-16 sm:pt-40 sm:pb-24 px-4 sm:px-8 max-w-6xl mx-auto">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
           
           {/* Main Hero Content */}
-          <div className="space-y-6 max-w-2xl">
+          <div className="space-y-6 max-w-2xl text-center lg:text-left">
             {/* Status Pill */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-medium text-blue-400">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-medium text-blue-400">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               <span>Available for Fulltime & Remote Opportunities</span>
             </div>
@@ -200,22 +213,22 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.15]">
                 Bagus Supriyanto
               </h1>
-              <p className="text-xl sm:text-2xl font-medium text-slate-300">
+              <p className="text-xl sm:text-2xl font-medium text-blue-400">
                 Frontend Engineer & Web Applications Developer
               </p>
             </div>
 
             {/* Professional Summary */}
-            <p className="text-sm sm:text-base text-slate-400 leading-relaxed">
-              Bachelor of Computer Science graduate from <span className="text-white font-medium">Universitas Teknologi Yogyakarta (S1 Technology Information, 2024)</span>. Specialized in building production-ready web applications, POS cashier platforms, and enterprise dashboards with clean architecture and responsive user experiences.
+            <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+              Bachelor of Computer Science graduate from <span className="text-white font-semibold">Universitas Teknologi Yogyakarta (S1 Technology Information, 2024)</span>. Specialized in building production-ready web applications, POS cashier platforms, and enterprise dashboards with clean architecture and responsive user experiences.
             </p>
 
             {/* Primary Action Buttons */}
-            <div className="flex flex-wrap items-center gap-3 pt-2">
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
               <a
                 href="/assets/cv-bagus-supriyanto.pdf.pdf"
                 download
-                className="px-6 py-3 rounded-lg bg-blue-600 text-white font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 hover:bg-blue-500 transition-all shadow-md cursor-pointer"
+                className="px-6 py-3.5 rounded-lg bg-blue-600 text-white font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 hover:bg-blue-500 transition-all shadow-md cursor-pointer"
               >
                 <Download className="w-4 h-4" />
                 Download Resume (PDF)
@@ -223,7 +236,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
 
               <a
                 href="#contact"
-                className="px-6 py-3 rounded-lg bg-slate-800/80 border border-slate-700 text-slate-200 font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 hover:bg-slate-800 hover:text-white transition-all cursor-pointer"
+                className="px-6 py-3.5 rounded-lg bg-slate-800/80 border border-slate-700 text-slate-200 font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 hover:bg-slate-800 hover:text-white transition-all cursor-pointer"
               >
                 <Mail className="w-4 h-4" />
                 Get in Touch
@@ -231,49 +244,51 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
 
               <a
                 href="#projects"
-                className="px-6 py-3 rounded-lg bg-slate-900 text-slate-400 hover:text-slate-200 font-medium text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                className="px-6 py-3.5 rounded-lg bg-slate-900 text-slate-300 hover:text-white font-medium text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
               >
-                View Case Studies <ChevronRight className="w-4 h-4" />
+                Explore Work <ChevronRight className="w-4 h-4" />
               </a>
             </div>
           </div>
 
-          {/* Right Highlight Card */}
-          <div className="w-full lg:w-[380px] shrink-0 p-6 rounded-2xl bg-[#0f172a]/60 border border-slate-800/80 space-y-5">
-            <div className="flex items-center gap-3 pb-4 border-b border-slate-800">
-              <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 flex items-center justify-center font-bold text-lg">
-                BS
-              </div>
-              <div>
-                <div className="text-sm font-bold text-white">Bagus Supriyanto, S.Kom</div>
-                <div className="text-xs text-slate-400">UTY Graduate • 2024</div>
+          {/* Right Highlight Profile Photo Card */}
+          <div className="w-full sm:w-[340px] shrink-0 p-5 rounded-2xl bg-[#0f172a]/80 border border-slate-800 shadow-xl space-y-4">
+            
+            {/* Photo Showcase */}
+            <div className="relative aspect-[4/5] w-full rounded-xl overflow-hidden border border-slate-700 shadow-inner group">
+              <img
+                src="/assets/bagus-profile.jpg"
+                alt="Bagus Supriyanto Official Photo"
+                className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#090d16] via-transparent to-transparent opacity-60" />
+              
+              {/* Photo Overlay Badge */}
+              <div className="absolute bottom-3 left-3 right-3 p-3 rounded-lg bg-[#090d16]/90 backdrop-blur-md border border-slate-700 flex items-center justify-between">
+                <div>
+                  <div className="text-xs font-bold text-white">Bagus Supriyanto, S.Kom</div>
+                  <div className="text-[10px] text-blue-400">UTY IT Graduate • 2024</div>
+                </div>
+                <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" title="Open to hire" />
               </div>
             </div>
 
-            <div className="space-y-3 text-xs">
+            {/* Quick Details List */}
+            <div className="space-y-2.5 text-xs pt-1">
               <div className="flex items-center justify-between text-slate-300">
                 <span className="text-slate-400">Degree</span>
-                <span className="font-semibold text-white">S1 Information Technology</span>
+                <span className="font-medium text-white">S1 Information Technology</span>
               </div>
               <div className="flex items-center justify-between text-slate-300">
                 <span className="text-slate-400">Certification</span>
-                <span className="font-semibold text-blue-400">Microsoft Specialist</span>
+                <span className="font-medium text-blue-400">Microsoft Specialist</span>
               </div>
               <div className="flex items-center justify-between text-slate-300">
                 <span className="text-slate-400">Location</span>
-                <span className="font-semibold text-white">Kepulauan Riau, Indonesia</span>
-              </div>
-              <div className="flex items-center justify-between text-slate-300">
-                <span className="text-slate-400">Work Preferences</span>
-                <span className="font-semibold text-emerald-400">Fulltime / Remote</span>
+                <span className="font-medium text-white">Kepulauan Riau, Indonesia</span>
               </div>
             </div>
 
-            <div className="pt-2">
-              <div className="p-3 rounded-lg bg-slate-900/80 border border-slate-800 text-[11px] text-slate-400 leading-relaxed">
-                <span className="text-white font-medium">Domain Experience:</span> Web Development (Next.js/React), Instrument Control Systems, Industrial Operations, Generative AI Video Lab.
-              </div>
-            </div>
           </div>
 
         </div>
@@ -295,6 +310,39 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
           <div className="p-4 rounded-xl bg-[#0d1322] border border-slate-800/80 space-y-1">
             <div className="text-2xl font-bold text-purple-400">AI Video</div>
             <div className="text-xs text-slate-400">Google Veo & Content Lab</div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== ABOUT ME SECTION (WITH PHOTO) ===== */}
+      <section id="about" className="py-16 px-4 sm:px-8 max-w-6xl mx-auto border-t border-slate-800/80">
+        <div className="p-6 sm:p-10 rounded-2xl bg-gradient-to-br from-[#0d1322] via-[#0f172a] to-[#090d16] border border-slate-800 flex flex-col md:flex-row items-center gap-8">
+          
+          {/* Photo Showcase */}
+          <div className="w-36 h-36 sm:w-44 sm:h-44 rounded-2xl overflow-hidden border-2 border-blue-500/50 shadow-xl shrink-0">
+            <img
+              src="/assets/profile-photo.jpg"
+              alt="Bagus Supriyanto Portrait"
+              className="w-full h-full object-cover object-top"
+            />
+          </div>
+
+          {/* Biography Content */}
+          <div className="space-y-4 flex-1 text-center md:text-left">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-medium">
+              <GraduationCap className="w-3.5 h-3.5" /> S1 Teknologi Informatika — Universitas Teknologi Yogyakarta (2024)
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white">
+              Tentang Bagus Supriyanto
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              Saya adalah lulusan Sarjana Komputer dari Universitas Teknologi Yogyakarta yang berfokus pada pengembangan aplikasi web modern. Memiliki kombinasi keahlian pemrograman frontend/backend, pengalaman kerja disiplin industri manufaktur & instrumen kontrol, serta aktif bereksperimen dengan teknologi Generative AI Video terbaru.
+            </p>
+
+            <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-xs text-slate-400 pt-2">
+              <span className="flex items-center gap-1.5"><MapPin className="w-4 h-4 text-blue-400" /> Tanjung Uban, Kepulauan Riau</span>
+              <span className="flex items-center gap-1.5"><Award className="w-4 h-4 text-amber-400" /> Microsoft Specialist — Certiport</span>
+            </div>
           </div>
         </div>
       </section>
