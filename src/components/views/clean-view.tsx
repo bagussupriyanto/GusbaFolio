@@ -313,125 +313,228 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
         </div>
       </section>
 
-      {/* ===== 3. FEATURED CASE STUDIES (PRIMARY FOCUS - APPLE PRODUCT PAGE STYLE) ===== */}
+      {/* ===== 3. FEATURED CASE STUDIES (EDITORIAL ASYMMETRICAL LAYOUT WITH VISUAL RHYTHM) ===== */}
       <section id="work" className="py-28 bg-[#111111] text-[#FAF9F5]">
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 space-y-24">
+        <div className="max-w-7xl mx-auto px-6 sm:px-12 space-y-20">
           
           {/* Section Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-[#2B2B2B] pb-10 gap-6">
             <div className="space-y-3">
               <div className="text-xs font-mono font-bold tracking-[0.2em] text-[#C5A059] uppercase">
-                PRIMARY CASE STUDIES
+                FEATURED WORK
               </div>
               <h2 className="font-serif-editorial text-4xl sm:text-6xl font-bold text-[#FAF9F5]">
                 Proof of Impact: Selected Projects
               </h2>
             </div>
             <p className="text-xs font-mono tracking-widest text-[#888888] max-w-sm uppercase">
-              Full-Viewport Case Studies Demonstrating Challenge, Solution & Measurable Business ROI.
+              Asymmetrical Case Studies Demonstrating Business Challenge, Solution & Measurable ROI.
             </p>
           </div>
 
-          {/* Expansive Full-Viewport Style Case Study Cards */}
-          {CASE_STUDIES.map((cs, idx) => (
-            <div
-              key={cs.project.id}
-              onClick={() => onSelectProject(cs.project)}
-              className="group bg-[#181818] border border-[#2B2B2B] hover:border-[#555555] rounded-3xl overflow-hidden transition-all duration-500 p-6 sm:p-12 cursor-pointer shadow-2xl space-y-10"
-            >
-              {/* Header Bar */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#2A2A2A] pb-6">
-                <div className="space-y-1.5">
-                  <div className="inline-flex items-center gap-3">
+          {/* PROJECT 1: Asymmetrical Split 7:5 (Image Left | Content Right) */}
+          <div
+            onClick={() => onSelectProject(CASE_STUDIES[0].project)}
+            className="group bg-[#181818] border border-[#2B2B2B] hover:border-[#555555] rounded-3xl overflow-hidden transition-all duration-500 p-8 sm:p-12 cursor-pointer shadow-2xl"
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+              
+              {/* Image Left (7 Cols) */}
+              <div className="lg:col-span-7">
+                <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-[#0D0D0D] border border-[#2A2A2A]">
+                  <img
+                    src={CASE_STUDIES[0].project.mockupPath}
+                    alt={CASE_STUDIES[0].project.title}
+                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#181818] via-transparent to-transparent opacity-40" />
+                </div>
+              </div>
+
+              {/* Content Right (5 Cols) */}
+              <div className="lg:col-span-5 space-y-6">
+                
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between gap-2">
                     <span className="text-xs font-mono font-bold tracking-widest text-[#C5A059] uppercase">
-                      CASE STUDY 0{idx + 1}
+                      01 / SAAS POS PLATFORM
                     </span>
-                    <span className="w-1 h-1 rounded-full bg-[#555555]" />
-                    <span className="text-xs font-mono text-[#888888] uppercase tracking-wider">
-                      {cs.tagline}
+                    <span className="px-3 py-1 rounded-full bg-[#262626] border border-[#3A3A3A] text-amber-300 font-mono text-[10px] font-bold">
+                      {CASE_STUDIES[0].badge}
                     </span>
                   </div>
-                  <h3 className="font-serif-editorial text-3xl sm:text-5xl font-bold text-white group-hover:text-[#C5A059] transition-colors flex items-center gap-4">
-                    <span>{cs.project.title}</span>
-                    <ArrowUpRight className="w-7 h-7 opacity-0 group-hover:opacity-100 transition-opacity text-[#C5A059]" />
+                  <h3 className="font-serif-editorial text-3xl sm:text-4xl lg:text-5xl font-bold text-white group-hover:text-[#C5A059] transition-colors flex items-center gap-3">
+                    <span>{CASE_STUDIES[0].project.title}</span>
+                    <ArrowUpRight className="w-6 h-6 opacity-0 group-hover:opacity-100 transition-opacity text-[#C5A059]" />
                   </h3>
                 </div>
 
-                {/* Key Result Badge */}
-                <div className="px-4 py-2 rounded-full bg-[#262626] border border-[#3A3A3A] text-amber-300 font-mono text-xs font-bold tracking-wider shrink-0 flex items-center gap-2">
-                  <TrendingUp className="w-4 h-4 text-[#C5A059]" />
-                  <span>{cs.badge}</span>
-                </div>
-              </div>
-
-              {/* Large Photography Showcase */}
-              <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden bg-[#0D0D0D] border border-[#2A2A2A]">
-                <img
-                  src={cs.project.mockupPath}
-                  alt={cs.project.title}
-                  className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#181818] via-transparent to-transparent opacity-50" />
-              </div>
-
-              {/* 4 Structured Case Study Blocks (Challenge vs Solution vs Results vs Stack) */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-2">
-                
-                {/* 1. Challenge */}
-                <div className="p-6 rounded-2xl bg-[#212121] border border-[#333333] space-y-3">
-                  <div className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider flex items-center gap-2">
-                    <Target className="w-4 h-4" /> THE CHALLENGE
+                <div className="space-y-4 text-xs sm:text-sm text-[#CCCCCC] leading-relaxed">
+                  <div>
+                    <strong className="text-amber-400 font-mono uppercase text-[11px] block mb-1">THE CHALLENGE:</strong>
+                    <p>{CASE_STUDIES[0].challenge}</p>
                   </div>
-                  <p className="text-xs sm:text-sm text-[#CCCCCC] leading-relaxed">
-                    {cs.challenge}
-                  </p>
+                  <div>
+                    <strong className="text-blue-400 font-mono uppercase text-[11px] block mb-1">THE SOLUTION:</strong>
+                    <p>{CASE_STUDIES[0].solution}</p>
+                  </div>
                 </div>
 
-                {/* 2. Solution */}
-                <div className="p-6 rounded-2xl bg-[#212121] border border-[#333333] space-y-3">
-                  <div className="text-xs font-mono font-bold text-blue-400 uppercase tracking-wider flex items-center gap-2">
-                    <Code2 className="w-4 h-4" /> THE SOLUTION
-                  </div>
-                  <p className="text-xs sm:text-sm text-[#CCCCCC] leading-relaxed">
-                    {cs.solution}
-                  </p>
-                </div>
-
-                {/* 3. Results */}
-                <div className="p-6 rounded-2xl bg-[#212121] border border-[#333333] space-y-3">
-                  <div className="text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-2">
-                    <TrendingUp className="w-4 h-4" /> BUSINESS IMPACT
-                  </div>
-                  <p className="text-xs sm:text-sm text-[#CCCCCC] leading-relaxed">
-                    {cs.result}
-                  </p>
-                </div>
-
-                {/* 4. Architecture & Metrics */}
-                <div className="p-6 rounded-2xl bg-[#212121] border border-[#333333] space-y-4 flex flex-col justify-between">
-                  <div className="space-y-2">
-                    <div className="text-xs font-mono font-bold text-purple-400 uppercase tracking-wider flex items-center gap-2">
-                      <Layers className="w-4 h-4" /> ARCHITECTURE
-                    </div>
-                    <div className="flex flex-wrap gap-1.5 pt-1">
-                      {cs.project.techStack.map((tech) => (
-                        <span key={tech} className="px-2.5 py-1 rounded bg-[#2D2D2D] text-[#DDDDDD] text-xs font-mono">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
+                {/* Metrics & CTA */}
+                <div className="pt-4 border-t border-[#2A2A2A] flex items-center justify-between">
+                  <div className="flex gap-2">
+                    {CASE_STUDIES[0].project.techStack.slice(0, 3).map((tech) => (
+                      <span key={tech} className="px-2.5 py-1 rounded bg-[#2A2A2A] text-[#DDDDDD] text-xs font-mono">
+                        {tech}
+                      </span>
+                    ))}
                   </div>
 
-                  <div className="pt-3 border-t border-[#333333] flex items-center justify-between text-xs font-mono text-[#AAAAAA]">
-                    <span>EXPLORE DRAWER</span>
-                    <ArrowRight className="w-4 h-4 text-[#C5A059] group-hover:translate-x-1 transition-transform" />
-                  </div>
+                  <span className="text-xs font-mono font-bold text-[#C5A059] flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                    EXPLORE <ArrowRight className="w-4 h-4" />
+                  </span>
                 </div>
 
               </div>
 
             </div>
-          ))}
+          </div>
+
+          {/* PROJECT 2: Alternating Composition 5:7 (Content Left | Image Right) */}
+          <div
+            onClick={() => onSelectProject(CASE_STUDIES[1].project)}
+            className="group bg-[#181818] border border-[#2B2B2B] hover:border-[#555555] rounded-3xl overflow-hidden transition-all duration-500 p-8 sm:p-12 cursor-pointer shadow-2xl"
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+              
+              {/* Content Left (5 Cols) */}
+              <div className="lg:col-span-5 space-y-6 order-2 lg:order-1">
+                
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-xs font-mono font-bold tracking-widest text-[#C5A059] uppercase">
+                      02 / INDUSTRIAL ENTERPRISE
+                    </span>
+                    <span className="px-3 py-1 rounded-full bg-[#262626] border border-[#3A3A3A] text-amber-300 font-mono text-[10px] font-bold">
+                      {CASE_STUDIES[1].badge}
+                    </span>
+                  </div>
+                  <h3 className="font-serif-editorial text-3xl sm:text-4xl lg:text-5xl font-bold text-white group-hover:text-[#C5A059] transition-colors flex items-center gap-3">
+                    <span>{CASE_STUDIES[1].project.title}</span>
+                    <ArrowUpRight className="w-6 h-6 opacity-0 group-hover:opacity-100 transition-opacity text-[#C5A059]" />
+                  </h3>
+                </div>
+
+                <div className="space-y-4 text-xs sm:text-sm text-[#CCCCCC] leading-relaxed">
+                  <div>
+                    <strong className="text-amber-400 font-mono uppercase text-[11px] block mb-1">THE CHALLENGE:</strong>
+                    <p>{CASE_STUDIES[1].challenge}</p>
+                  </div>
+                  <div>
+                    <strong className="text-emerald-400 font-mono uppercase text-[11px] block mb-1">BUSINESS RESULT:</strong>
+                    <p>{CASE_STUDIES[1].result}</p>
+                  </div>
+                </div>
+
+                {/* Tech & CTA */}
+                <div className="pt-4 border-t border-[#2A2A2A] flex items-center justify-between">
+                  <div className="flex gap-2">
+                    {CASE_STUDIES[1].project.techStack.slice(0, 3).map((tech) => (
+                      <span key={tech} className="px-2.5 py-1 rounded bg-[#2A2A2A] text-[#DDDDDD] text-xs font-mono">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  <span className="text-xs font-mono font-bold text-[#C5A059] flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                    EXPLORE <ArrowRight className="w-4 h-4" />
+                  </span>
+                </div>
+
+              </div>
+
+              {/* Image Right (7 Cols) */}
+              <div className="lg:col-span-7 order-1 lg:order-2">
+                <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-[#0D0D0D] border border-[#2A2A2A]">
+                  <img
+                    src={CASE_STUDIES[1].project.mockupPath}
+                    alt={CASE_STUDIES[1].project.title}
+                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#181818] via-transparent to-transparent opacity-40" />
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          {/* PROJECT 3: Balanced Asymmetrical Showcase 6:6 (Image Left | Content Right) */}
+          <div
+            onClick={() => onSelectProject(CASE_STUDIES[2].project)}
+            className="group bg-[#181818] border border-[#2B2B2B] hover:border-[#555555] rounded-3xl overflow-hidden transition-all duration-500 p-8 sm:p-12 cursor-pointer shadow-2xl"
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+              
+              {/* Image Left (6 Cols) */}
+              <div className="lg:col-span-6">
+                <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-[#0D0D0D] border border-[#2A2A2A]">
+                  <img
+                    src={CASE_STUDIES[2].project.mockupPath}
+                    alt={CASE_STUDIES[2].project.title}
+                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#181818] via-transparent to-transparent opacity-40" />
+                </div>
+              </div>
+
+              {/* Content Right (6 Cols) */}
+              <div className="lg:col-span-6 space-y-6">
+                
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-xs font-mono font-bold tracking-widest text-[#C5A059] uppercase">
+                      03 / ENTERPRISE BILLING ENGINE
+                    </span>
+                    <span className="px-3 py-1 rounded-full bg-[#262626] border border-[#3A3A3A] text-amber-300 font-mono text-[10px] font-bold">
+                      {CASE_STUDIES[2].badge}
+                    </span>
+                  </div>
+                  <h3 className="font-serif-editorial text-3xl sm:text-4xl lg:text-5xl font-bold text-white group-hover:text-[#C5A059] transition-colors flex items-center gap-3">
+                    <span>{CASE_STUDIES[2].project.title}</span>
+                    <ArrowUpRight className="w-6 h-6 opacity-0 group-hover:opacity-100 transition-opacity text-[#C5A059]" />
+                  </h3>
+                </div>
+
+                <div className="space-y-4 text-xs sm:text-sm text-[#CCCCCC] leading-relaxed">
+                  <div>
+                    <strong className="text-amber-400 font-mono uppercase text-[11px] block mb-1">THE CHALLENGE:</strong>
+                    <p>{CASE_STUDIES[2].challenge}</p>
+                  </div>
+                  <div>
+                    <strong className="text-blue-400 font-mono uppercase text-[11px] block mb-1">THE SOLUTION:</strong>
+                    <p>{CASE_STUDIES[2].solution}</p>
+                  </div>
+                </div>
+
+                {/* Tech & CTA */}
+                <div className="pt-4 border-t border-[#2A2A2A] flex items-center justify-between">
+                  <div className="flex gap-2">
+                    {CASE_STUDIES[2].project.techStack.slice(0, 3).map((tech) => (
+                      <span key={tech} className="px-2.5 py-1 rounded bg-[#2A2A2A] text-[#DDDDDD] text-xs font-mono">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  <span className="text-xs font-mono font-bold text-[#C5A059] flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                    EXPLORE <ArrowRight className="w-4 h-4" />
+                  </span>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
 
         </div>
       </section>
