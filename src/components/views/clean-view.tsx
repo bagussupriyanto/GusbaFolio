@@ -324,146 +324,80 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
         </div>
       </section>
 
-      {/* ===== 3. FEATURED CASE STUDIES (INTERACTIVE HIGH-END CAROUSEL) ===== */}
-      <section id="work" className="py-28 bg-[#111111] text-[#FAF9F5]">
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 space-y-12">
+      {/* ===== 3. FEATURED CASE STUDIES (COMPACT, NEAT & SLEEK CARDS) ===== */}
+      <section id="work" className="py-20 bg-[#111111] text-[#FAF9F5]">
+        <div className="max-w-6xl mx-auto px-6 sm:px-12 space-y-12">
           
-          {/* Section Header with Carousel Navigation Controls */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-[#2B2B2B] pb-10 gap-6">
-            <div className="space-y-3">
-              <div className="text-xs font-mono font-bold tracking-[0.2em] text-[#C5A059] uppercase">
-                FEATURED CASE STUDIES
+          {/* Section Header */}
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-[#2B2B2B] pb-8 gap-4">
+            <div className="space-y-2">
+              <div className="text-[11px] font-mono font-bold tracking-[0.2em] text-[#C5A059] uppercase">
+                FEATURED PROJECTS
               </div>
-              <h2 className="font-serif-editorial text-4xl sm:text-6xl font-bold text-[#FAF9F5]">
-                Proof of Impact: Selected Projects
+              <h2 className="font-serif-editorial text-3xl sm:text-4xl font-bold text-[#FAF9F5]">
+                Proof of Impact: Case Studies
               </h2>
             </div>
-
-            {/* Sleek Carousel Controls */}
-            <div className="flex items-center gap-4">
-              <div className="text-xs font-mono text-[#888888] font-bold tracking-widest">
-                0{activeSlide + 1} / 0{CASE_STUDIES.length}
-              </div>
-
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={prevSlide}
-                  className="p-3 rounded-full bg-[#1C1C1C] border border-[#333333] text-white hover:bg-[#333333] hover:border-[#555555] transition-all cursor-pointer"
-                  title="Previous Case Study"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </button>
-
-                <button
-                  onClick={nextSlide}
-                  className="p-3 rounded-full bg-[#1C1C1C] border border-[#333333] text-white hover:bg-[#333333] hover:border-[#555555] transition-all cursor-pointer"
-                  title="Next Case Study"
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </button>
-              </div>
-            </div>
+            <p className="text-xs font-mono text-[#888888] uppercase tracking-wider">
+              Click any card for full system breakdown
+            </p>
           </div>
 
-          {/* Carousel Slide Container */}
-          <div className="relative min-h-[520px]">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeSlide}
-                initial={{ opacity: 0, x: 40 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -40 }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
-                onClick={() => onSelectProject(CASE_STUDIES[activeSlide].project)}
-                className="group bg-[#181818] border border-[#2B2B2B] hover:border-[#555555] rounded-3xl overflow-hidden p-8 sm:p-12 cursor-pointer shadow-2xl transition-all"
-              >
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-                  
-                  {/* Image Left (7 Cols) */}
-                  <div className="lg:col-span-7">
-                    <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-[#0D0D0D] border border-[#2A2A2A]">
-                      <img
-                        src={CASE_STUDIES[activeSlide].project.mockupPath}
-                        alt={CASE_STUDIES[activeSlide].project.title}
-                        className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#181818] via-transparent to-transparent opacity-40" />
-                    </div>
-                  </div>
-
-                  {/* Content Right (5 Cols) */}
-                  <div className="lg:col-span-5 space-y-6">
-                    
-                    <div className="space-y-2">
-                      <div className="flex items-center justify-between gap-2">
-                        <span className="text-xs font-mono font-bold tracking-widest text-[#C5A059] uppercase">
-                          {CASE_STUDIES[activeSlide].tagline}
-                        </span>
-                        <span className="px-3 py-1 rounded-full bg-[#262626] border border-[#3A3A3A] text-amber-300 font-mono text-[10px] font-bold">
-                          {CASE_STUDIES[activeSlide].badge}
-                        </span>
-                      </div>
-                      <h3 className="font-serif-editorial text-3xl sm:text-4xl lg:text-5xl font-bold text-white group-hover:text-[#C5A059] transition-colors flex items-center gap-3">
-                        <span>{CASE_STUDIES[activeSlide].project.title}</span>
-                        <ArrowUpRight className="w-6 h-6 opacity-0 group-hover:opacity-100 transition-opacity text-[#C5A059]" />
-                      </h3>
-                    </div>
-
-                    <div className="space-y-4 text-xs sm:text-sm text-[#CCCCCC] leading-relaxed">
-                      <div>
-                        <strong className="text-amber-400 font-mono uppercase text-[11px] block mb-1">THE CHALLENGE:</strong>
-                        <p>{CASE_STUDIES[activeSlide].challenge}</p>
-                      </div>
-                      <div>
-                        <strong className="text-blue-400 font-mono uppercase text-[11px] block mb-1">THE SOLUTION:</strong>
-                        <p>{CASE_STUDIES[activeSlide].solution}</p>
-                      </div>
-                      <div>
-                        <strong className="text-emerald-400 font-mono uppercase text-[11px] block mb-1">BUSINESS IMPACT:</strong>
-                        <p>{CASE_STUDIES[activeSlide].result}</p>
-                      </div>
-                    </div>
-
-                    {/* Metrics & CTA */}
-                    <div className="pt-4 border-t border-[#2A2A2A] flex items-center justify-between">
-                      <div className="flex gap-2">
-                        {CASE_STUDIES[activeSlide].project.techStack.slice(0, 3).map((tech) => (
-                          <span key={tech} className="px-2.5 py-1 rounded bg-[#2A2A2A] text-[#DDDDDD] text-xs font-mono">
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-
-                      <span className="text-xs font-mono font-bold text-[#C5A059] flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                        EXPLORE DRAWER <ArrowRight className="w-4 h-4" />
-                      </span>
-                    </div>
-
-                  </div>
-
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          {/* Carousel Slide Progress Bar Tabs */}
-          <div className="grid grid-cols-3 gap-4 pt-4">
+          {/* Compact 3-Card Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {CASE_STUDIES.map((cs, idx) => (
-              <button
+              <div
                 key={cs.project.id}
-                onClick={() => setActiveSlide(idx)}
-                className={`p-4 rounded-2xl border text-left transition-all cursor-pointer ${
-                  activeSlide === idx
-                    ? 'bg-[#1F1F1F] border-[#C5A059] text-white shadow-lg'
-                    : 'bg-[#141414] border-[#2B2B2B] text-[#777777] hover:border-[#444444] hover:text-[#CCCCCC]'
-                }`}
+                onClick={() => onSelectProject(cs.project)}
+                className="group bg-[#181818] border border-[#2A2A2A] hover:border-[#666666] rounded-2xl overflow-hidden transition-all duration-300 p-5 sm:p-6 cursor-pointer shadow-lg space-y-5 flex flex-col justify-between"
               >
-                <div className="text-[10px] font-mono font-bold uppercase tracking-wider mb-1 flex items-center justify-between">
-                  <span>0{idx + 1} — {cs.project.title}</span>
-                  {activeSlide === idx && <span className="w-2 h-2 rounded-full bg-[#C5A059]" />}
+                <div className="space-y-4">
+                  {/* Compact Header Image */}
+                  <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden bg-[#0A0A0A] border border-[#262626]">
+                    <img
+                      src={cs.project.mockupPath}
+                      alt={cs.project.title}
+                      className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute top-2.5 right-2.5 px-2.5 py-1 rounded-full bg-[#141414]/90 backdrop-blur-md border border-[#333333] text-amber-300 font-mono text-[10px] font-bold">
+                      {cs.badge}
+                    </div>
+                  </div>
+
+                  {/* Title & Tagline */}
+                  <div className="space-y-1">
+                    <span className="text-[10px] font-mono font-bold text-[#C5A059] uppercase tracking-wider">
+                      0{idx + 1} — {cs.tagline}
+                    </span>
+                    <h3 className="font-serif-editorial text-xl sm:text-2xl font-bold text-white group-hover:text-[#C5A059] transition-colors flex items-center justify-between">
+                      <span>{cs.project.title}</span>
+                      <ArrowUpRight className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity text-[#C5A059]" />
+                    </h3>
+                  </div>
+
+                  {/* Compact Challenge & Result Text */}
+                  <p className="text-xs text-[#CCCCCC] leading-relaxed line-clamp-3">
+                    {cs.challenge}
+                  </p>
                 </div>
-                <div className="text-xs font-medium truncate">{cs.badge}</div>
-              </button>
+
+                {/* Footer: Tech Pills & Action */}
+                <div className="pt-4 border-t border-[#262626] space-y-3">
+                  <div className="flex flex-wrap gap-1.5">
+                    {cs.project.techStack.slice(0, 3).map((tech) => (
+                      <span key={tech} className="px-2 py-0.5 rounded bg-[#242424] text-[#CCCCCC] text-[10px] font-mono">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="text-[11px] font-mono font-bold text-[#C5A059] flex items-center justify-between group-hover:translate-x-1 transition-transform pt-1">
+                    <span>VIEW CASE STUDY</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </div>
+                </div>
+
+              </div>
             ))}
           </div>
 
