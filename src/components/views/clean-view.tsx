@@ -1,9 +1,12 @@
 "use client";
 
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArrowRight,
   ArrowUpRight,
+  ChevronLeft,
+  ChevronRight,
   Download,
   Mail,
   Phone,
@@ -21,7 +24,6 @@ import {
   Cpu,
   Coffee,
   Sparkles,
-  ChevronRight,
   Menu,
   X,
   Copy,
@@ -130,6 +132,15 @@ const PROCESS_STAGES = [
 export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchToGameMode }) => {
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  const nextSlide = () => {
+    setActiveSlide((prev) => (prev + 1) % CASE_STUDIES.length);
+  };
+
+  const prevSlide = () => {
+    setActiveSlide((prev) => (prev - 1 + CASE_STUDIES.length) % CASE_STUDIES.length);
+  };
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(DEVELOPER_DATA.contact.email);
@@ -313,227 +324,147 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
         </div>
       </section>
 
-      {/* ===== 3. FEATURED CASE STUDIES (EDITORIAL ASYMMETRICAL LAYOUT WITH VISUAL RHYTHM) ===== */}
+      {/* ===== 3. FEATURED CASE STUDIES (INTERACTIVE HIGH-END CAROUSEL) ===== */}
       <section id="work" className="py-28 bg-[#111111] text-[#FAF9F5]">
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 space-y-20">
+        <div className="max-w-7xl mx-auto px-6 sm:px-12 space-y-12">
           
-          {/* Section Header */}
+          {/* Section Header with Carousel Navigation Controls */}
           <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-[#2B2B2B] pb-10 gap-6">
             <div className="space-y-3">
               <div className="text-xs font-mono font-bold tracking-[0.2em] text-[#C5A059] uppercase">
-                FEATURED WORK
+                FEATURED CASE STUDIES
               </div>
               <h2 className="font-serif-editorial text-4xl sm:text-6xl font-bold text-[#FAF9F5]">
                 Proof of Impact: Selected Projects
               </h2>
             </div>
-            <p className="text-xs font-mono tracking-widest text-[#888888] max-w-sm uppercase">
-              Asymmetrical Case Studies Demonstrating Business Challenge, Solution & Measurable ROI.
-            </p>
-          </div>
 
-          {/* PROJECT 1: Asymmetrical Split 7:5 (Image Left | Content Right) */}
-          <div
-            onClick={() => onSelectProject(CASE_STUDIES[0].project)}
-            className="group bg-[#181818] border border-[#2B2B2B] hover:border-[#555555] rounded-3xl overflow-hidden transition-all duration-500 p-8 sm:p-12 cursor-pointer shadow-2xl"
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-              
-              {/* Image Left (7 Cols) */}
-              <div className="lg:col-span-7">
-                <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-[#0D0D0D] border border-[#2A2A2A]">
-                  <img
-                    src={CASE_STUDIES[0].project.mockupPath}
-                    alt={CASE_STUDIES[0].project.title}
-                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#181818] via-transparent to-transparent opacity-40" />
-                </div>
+            {/* Sleek Carousel Controls */}
+            <div className="flex items-center gap-4">
+              <div className="text-xs font-mono text-[#888888] font-bold tracking-widest">
+                0{activeSlide + 1} / 0{CASE_STUDIES.length}
               </div>
 
-              {/* Content Right (5 Cols) */}
-              <div className="lg:col-span-5 space-y-6">
-                
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-xs font-mono font-bold tracking-widest text-[#C5A059] uppercase">
-                      01 / SAAS POS PLATFORM
-                    </span>
-                    <span className="px-3 py-1 rounded-full bg-[#262626] border border-[#3A3A3A] text-amber-300 font-mono text-[10px] font-bold">
-                      {CASE_STUDIES[0].badge}
-                    </span>
-                  </div>
-                  <h3 className="font-serif-editorial text-3xl sm:text-4xl lg:text-5xl font-bold text-white group-hover:text-[#C5A059] transition-colors flex items-center gap-3">
-                    <span>{CASE_STUDIES[0].project.title}</span>
-                    <ArrowUpRight className="w-6 h-6 opacity-0 group-hover:opacity-100 transition-opacity text-[#C5A059]" />
-                  </h3>
-                </div>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={prevSlide}
+                  className="p-3 rounded-full bg-[#1C1C1C] border border-[#333333] text-white hover:bg-[#333333] hover:border-[#555555] transition-all cursor-pointer"
+                  title="Previous Case Study"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
 
-                <div className="space-y-4 text-xs sm:text-sm text-[#CCCCCC] leading-relaxed">
-                  <div>
-                    <strong className="text-amber-400 font-mono uppercase text-[11px] block mb-1">THE CHALLENGE:</strong>
-                    <p>{CASE_STUDIES[0].challenge}</p>
-                  </div>
-                  <div>
-                    <strong className="text-blue-400 font-mono uppercase text-[11px] block mb-1">THE SOLUTION:</strong>
-                    <p>{CASE_STUDIES[0].solution}</p>
-                  </div>
-                </div>
-
-                {/* Metrics & CTA */}
-                <div className="pt-4 border-t border-[#2A2A2A] flex items-center justify-between">
-                  <div className="flex gap-2">
-                    {CASE_STUDIES[0].project.techStack.slice(0, 3).map((tech) => (
-                      <span key={tech} className="px-2.5 py-1 rounded bg-[#2A2A2A] text-[#DDDDDD] text-xs font-mono">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-
-                  <span className="text-xs font-mono font-bold text-[#C5A059] flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                    EXPLORE <ArrowRight className="w-4 h-4" />
-                  </span>
-                </div>
-
+                <button
+                  onClick={nextSlide}
+                  className="p-3 rounded-full bg-[#1C1C1C] border border-[#333333] text-white hover:bg-[#333333] hover:border-[#555555] transition-all cursor-pointer"
+                  title="Next Case Study"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
               </div>
-
             </div>
           </div>
 
-          {/* PROJECT 2: Alternating Composition 5:7 (Content Left | Image Right) */}
-          <div
-            onClick={() => onSelectProject(CASE_STUDIES[1].project)}
-            className="group bg-[#181818] border border-[#2B2B2B] hover:border-[#555555] rounded-3xl overflow-hidden transition-all duration-500 p-8 sm:p-12 cursor-pointer shadow-2xl"
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-              
-              {/* Content Left (5 Cols) */}
-              <div className="lg:col-span-5 space-y-6 order-2 lg:order-1">
-                
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-xs font-mono font-bold tracking-widest text-[#C5A059] uppercase">
-                      02 / INDUSTRIAL ENTERPRISE
-                    </span>
-                    <span className="px-3 py-1 rounded-full bg-[#262626] border border-[#3A3A3A] text-amber-300 font-mono text-[10px] font-bold">
-                      {CASE_STUDIES[1].badge}
-                    </span>
+          {/* Carousel Slide Container */}
+          <div className="relative min-h-[520px]">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeSlide}
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -40 }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                onClick={() => onSelectProject(CASE_STUDIES[activeSlide].project)}
+                className="group bg-[#181818] border border-[#2B2B2B] hover:border-[#555555] rounded-3xl overflow-hidden p-8 sm:p-12 cursor-pointer shadow-2xl transition-all"
+              >
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                  
+                  {/* Image Left (7 Cols) */}
+                  <div className="lg:col-span-7">
+                    <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-[#0D0D0D] border border-[#2A2A2A]">
+                      <img
+                        src={CASE_STUDIES[activeSlide].project.mockupPath}
+                        alt={CASE_STUDIES[activeSlide].project.title}
+                        className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#181818] via-transparent to-transparent opacity-40" />
+                    </div>
                   </div>
-                  <h3 className="font-serif-editorial text-3xl sm:text-4xl lg:text-5xl font-bold text-white group-hover:text-[#C5A059] transition-colors flex items-center gap-3">
-                    <span>{CASE_STUDIES[1].project.title}</span>
-                    <ArrowUpRight className="w-6 h-6 opacity-0 group-hover:opacity-100 transition-opacity text-[#C5A059]" />
-                  </h3>
-                </div>
 
-                <div className="space-y-4 text-xs sm:text-sm text-[#CCCCCC] leading-relaxed">
-                  <div>
-                    <strong className="text-amber-400 font-mono uppercase text-[11px] block mb-1">THE CHALLENGE:</strong>
-                    <p>{CASE_STUDIES[1].challenge}</p>
-                  </div>
-                  <div>
-                    <strong className="text-emerald-400 font-mono uppercase text-[11px] block mb-1">BUSINESS RESULT:</strong>
-                    <p>{CASE_STUDIES[1].result}</p>
-                  </div>
-                </div>
+                  {/* Content Right (5 Cols) */}
+                  <div className="lg:col-span-5 space-y-6">
+                    
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="text-xs font-mono font-bold tracking-widest text-[#C5A059] uppercase">
+                          {CASE_STUDIES[activeSlide].tagline}
+                        </span>
+                        <span className="px-3 py-1 rounded-full bg-[#262626] border border-[#3A3A3A] text-amber-300 font-mono text-[10px] font-bold">
+                          {CASE_STUDIES[activeSlide].badge}
+                        </span>
+                      </div>
+                      <h3 className="font-serif-editorial text-3xl sm:text-4xl lg:text-5xl font-bold text-white group-hover:text-[#C5A059] transition-colors flex items-center gap-3">
+                        <span>{CASE_STUDIES[activeSlide].project.title}</span>
+                        <ArrowUpRight className="w-6 h-6 opacity-0 group-hover:opacity-100 transition-opacity text-[#C5A059]" />
+                      </h3>
+                    </div>
 
-                {/* Tech & CTA */}
-                <div className="pt-4 border-t border-[#2A2A2A] flex items-center justify-between">
-                  <div className="flex gap-2">
-                    {CASE_STUDIES[1].project.techStack.slice(0, 3).map((tech) => (
-                      <span key={tech} className="px-2.5 py-1 rounded bg-[#2A2A2A] text-[#DDDDDD] text-xs font-mono">
-                        {tech}
+                    <div className="space-y-4 text-xs sm:text-sm text-[#CCCCCC] leading-relaxed">
+                      <div>
+                        <strong className="text-amber-400 font-mono uppercase text-[11px] block mb-1">THE CHALLENGE:</strong>
+                        <p>{CASE_STUDIES[activeSlide].challenge}</p>
+                      </div>
+                      <div>
+                        <strong className="text-blue-400 font-mono uppercase text-[11px] block mb-1">THE SOLUTION:</strong>
+                        <p>{CASE_STUDIES[activeSlide].solution}</p>
+                      </div>
+                      <div>
+                        <strong className="text-emerald-400 font-mono uppercase text-[11px] block mb-1">BUSINESS IMPACT:</strong>
+                        <p>{CASE_STUDIES[activeSlide].result}</p>
+                      </div>
+                    </div>
+
+                    {/* Metrics & CTA */}
+                    <div className="pt-4 border-t border-[#2A2A2A] flex items-center justify-between">
+                      <div className="flex gap-2">
+                        {CASE_STUDIES[activeSlide].project.techStack.slice(0, 3).map((tech) => (
+                          <span key={tech} className="px-2.5 py-1 rounded bg-[#2A2A2A] text-[#DDDDDD] text-xs font-mono">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+
+                      <span className="text-xs font-mono font-bold text-[#C5A059] flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                        EXPLORE DRAWER <ArrowRight className="w-4 h-4" />
                       </span>
-                    ))}
+                    </div>
+
                   </div>
 
-                  <span className="text-xs font-mono font-bold text-[#C5A059] flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                    EXPLORE <ArrowRight className="w-4 h-4" />
-                  </span>
                 </div>
-
-              </div>
-
-              {/* Image Right (7 Cols) */}
-              <div className="lg:col-span-7 order-1 lg:order-2">
-                <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-[#0D0D0D] border border-[#2A2A2A]">
-                  <img
-                    src={CASE_STUDIES[1].project.mockupPath}
-                    alt={CASE_STUDIES[1].project.title}
-                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#181818] via-transparent to-transparent opacity-40" />
-                </div>
-              </div>
-
-            </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
 
-          {/* PROJECT 3: Balanced Asymmetrical Showcase 6:6 (Image Left | Content Right) */}
-          <div
-            onClick={() => onSelectProject(CASE_STUDIES[2].project)}
-            className="group bg-[#181818] border border-[#2B2B2B] hover:border-[#555555] rounded-3xl overflow-hidden transition-all duration-500 p-8 sm:p-12 cursor-pointer shadow-2xl"
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-              
-              {/* Image Left (6 Cols) */}
-              <div className="lg:col-span-6">
-                <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-[#0D0D0D] border border-[#2A2A2A]">
-                  <img
-                    src={CASE_STUDIES[2].project.mockupPath}
-                    alt={CASE_STUDIES[2].project.title}
-                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#181818] via-transparent to-transparent opacity-40" />
+          {/* Carousel Slide Progress Bar Tabs */}
+          <div className="grid grid-cols-3 gap-4 pt-4">
+            {CASE_STUDIES.map((cs, idx) => (
+              <button
+                key={cs.project.id}
+                onClick={() => setActiveSlide(idx)}
+                className={`p-4 rounded-2xl border text-left transition-all cursor-pointer ${
+                  activeSlide === idx
+                    ? 'bg-[#1F1F1F] border-[#C5A059] text-white shadow-lg'
+                    : 'bg-[#141414] border-[#2B2B2B] text-[#777777] hover:border-[#444444] hover:text-[#CCCCCC]'
+                }`}
+              >
+                <div className="text-[10px] font-mono font-bold uppercase tracking-wider mb-1 flex items-center justify-between">
+                  <span>0{idx + 1} — {cs.project.title}</span>
+                  {activeSlide === idx && <span className="w-2 h-2 rounded-full bg-[#C5A059]" />}
                 </div>
-              </div>
-
-              {/* Content Right (6 Cols) */}
-              <div className="lg:col-span-6 space-y-6">
-                
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-xs font-mono font-bold tracking-widest text-[#C5A059] uppercase">
-                      03 / ENTERPRISE BILLING ENGINE
-                    </span>
-                    <span className="px-3 py-1 rounded-full bg-[#262626] border border-[#3A3A3A] text-amber-300 font-mono text-[10px] font-bold">
-                      {CASE_STUDIES[2].badge}
-                    </span>
-                  </div>
-                  <h3 className="font-serif-editorial text-3xl sm:text-4xl lg:text-5xl font-bold text-white group-hover:text-[#C5A059] transition-colors flex items-center gap-3">
-                    <span>{CASE_STUDIES[2].project.title}</span>
-                    <ArrowUpRight className="w-6 h-6 opacity-0 group-hover:opacity-100 transition-opacity text-[#C5A059]" />
-                  </h3>
-                </div>
-
-                <div className="space-y-4 text-xs sm:text-sm text-[#CCCCCC] leading-relaxed">
-                  <div>
-                    <strong className="text-amber-400 font-mono uppercase text-[11px] block mb-1">THE CHALLENGE:</strong>
-                    <p>{CASE_STUDIES[2].challenge}</p>
-                  </div>
-                  <div>
-                    <strong className="text-blue-400 font-mono uppercase text-[11px] block mb-1">THE SOLUTION:</strong>
-                    <p>{CASE_STUDIES[2].solution}</p>
-                  </div>
-                </div>
-
-                {/* Tech & CTA */}
-                <div className="pt-4 border-t border-[#2A2A2A] flex items-center justify-between">
-                  <div className="flex gap-2">
-                    {CASE_STUDIES[2].project.techStack.slice(0, 3).map((tech) => (
-                      <span key={tech} className="px-2.5 py-1 rounded bg-[#2A2A2A] text-[#DDDDDD] text-xs font-mono">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-
-                  <span className="text-xs font-mono font-bold text-[#C5A059] flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                    EXPLORE <ArrowRight className="w-4 h-4" />
-                  </span>
-                </div>
-
-              </div>
-
-            </div>
+                <div className="text-xs font-medium truncate">{cs.badge}</div>
+              </button>
+            ))}
           </div>
 
         </div>
