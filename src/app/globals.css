@@ -15,6 +15,8 @@
   --font-mono: var(--font-mono), 'JetBrains Mono', monospace;
   --font-pixel: var(--font-pixel), 'Press Start 2P', cursive, monospace;
   --font-silkscreen: var(--font-silkscreen), 'Silkscreen', monospace;
+  --font-serif: var(--font-serif), 'Playfair Display', Georgia, serif;
+  --font-signature: var(--font-signature), 'Caveat', cursive;
 }
 
 @keyframes pixelBobbing {
@@ -41,6 +43,14 @@
 
 .font-silkscreen {
   font-family: var(--font-silkscreen);
+}
+
+.font-serif-editorial {
+  font-family: var(--font-serif);
+}
+
+.font-signature {
+  font-family: var(--font-signature);
 }
 
 .text-shadow-pixel {

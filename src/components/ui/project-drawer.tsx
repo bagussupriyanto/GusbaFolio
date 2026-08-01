@@ -73,26 +73,26 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({
             transition={{ duration: 0.3 }}
             className={`relative w-full max-w-[1100px] max-h-[94vh] overflow-hidden z-10 my-auto flex flex-col ${
               isCleanMode
-                ? 'bg-white text-slate-900 rounded-2xl border border-slate-200 shadow-2xl shadow-slate-950/20'
+                ? 'bg-[#F6F5F2] text-[#1A1A1A] rounded-2xl border border-[#DCD8CF] shadow-2xl'
                 : 'bg-[#12182a] text-[#F8FAFC] border-2 sm:border-4 border-[#4ee6d8] shadow-[4px_4px_0px_#000] sm:shadow-[8px_8px_0px_#000]'
             }`}
           >
 
             {/* ── Row 1: Header Bar ── */}
-            <div className={`flex items-center justify-between px-3.5 sm:px-5 py-3 border-b ${
-              isCleanMode ? 'bg-slate-50 border-slate-200' : 'bg-[#0a0e17] border-b-2 border-[#4ee6d8]'
+            <div className={`flex items-center justify-between px-4 sm:px-6 py-3 border-b ${
+              isCleanMode ? 'bg-[#EFECE6] border-[#DCD8CF]' : 'bg-[#0a0e17] border-b-2 border-[#4ee6d8]'
             }`}>
               <div className="flex items-center gap-2 sm:gap-3 min-w-0">
                 <span className={`px-2.5 py-0.5 text-[10px] font-bold tracking-wide uppercase shrink-0 ${
                   isCleanMode
-                    ? 'rounded-md bg-blue-50 text-blue-700 border border-blue-200'
+                    ? 'rounded-full bg-[#DCD8CF] text-[#1A1A1A] font-mono'
                     : 'bg-[#4ee6d8] text-[#0a0e17]'
                 }`}>
                   PROJECT DETAIL
                 </span>
-                <span className={`w-2 h-2 rounded-full animate-pulse shrink-0 ${isCleanMode ? 'bg-blue-600' : 'bg-[#4ee6d8]'}`} />
+                <span className={`w-2 h-2 rounded-full animate-pulse shrink-0 ${isCleanMode ? 'bg-[#8C6D46]' : 'bg-[#4ee6d8]'}`} />
                 <span className={`text-xs font-semibold uppercase tracking-wider truncate max-w-[180px] sm:max-w-none ${
-                  isCleanMode ? 'text-slate-600 font-sans' : 'text-[#4ee6d8] font-mono'
+                  isCleanMode ? 'text-[#706C64] font-mono' : 'text-[#4ee6d8] font-mono'
                 }`}>
                   {project.category}
                 </span>
@@ -101,7 +101,7 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({
                 onClick={onClose}
                 className={`px-3 py-1.5 text-xs font-semibold flex items-center gap-1 cursor-pointer shrink-0 transition-all ${
                   isCleanMode
-                    ? 'rounded-lg bg-slate-100 border border-slate-200 text-slate-700 hover:bg-slate-200 font-sans'
+                    ? 'rounded-full bg-[#DCD8CF] hover:bg-[#C5C1B8] text-[#1A1A1A]'
                     : 'pixel-btn bg-red-600 border-red-400 text-white hover:bg-red-700 font-mono'
                 }`}
               >
@@ -111,11 +111,11 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({
             </div>
 
             {/* ── Row 2: Title + Visit Button ── */}
-            <div className={`flex items-center justify-between gap-2 sm:gap-4 px-3.5 sm:px-5 py-3 border-b ${
-              isCleanMode ? 'bg-white border-slate-200' : 'bg-[#0d1220] border-[#4ee6d8]/20'
+            <div className={`flex items-center justify-between gap-2 sm:gap-4 px-4 sm:px-6 py-3.5 border-b ${
+              isCleanMode ? 'bg-[#F6F5F2] border-[#DCD8CF]' : 'bg-[#0d1220] border-[#4ee6d8]/20'
             }`}>
-              <h2 className={`text-sm sm:text-lg tracking-tight truncate ${
-                isCleanMode ? 'font-sans font-bold text-slate-900' : 'font-pixel text-xs sm:text-base text-[#F8FAFC]'
+              <h2 className={`text-base sm:text-xl tracking-tight truncate ${
+                isCleanMode ? 'font-serif-editorial font-bold text-[#1A1A1A]' : 'font-pixel text-xs sm:text-base text-[#F8FAFC]'
               }`}>
                 {project.title}
               </h2>
@@ -124,9 +124,9 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`px-3.5 py-1.5 text-xs flex items-center gap-1.5 shrink-0 cursor-pointer font-semibold transition-all ${
+                  className={`px-4 py-2 text-xs flex items-center gap-1.5 shrink-0 cursor-pointer font-semibold transition-all ${
                     isCleanMode
-                      ? 'rounded-lg bg-blue-600 text-white hover:bg-blue-700 shadow-xs font-sans'
+                      ? 'rounded-full bg-[#1A1A1A] text-white hover:bg-[#333333] shadow-xs'
                       : 'pixel-btn font-mono'
                   }`}
                 >
@@ -134,7 +134,7 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({
                   <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               ) : (
-                <div className="px-2.5 py-1.5 rounded-lg text-xs bg-amber-50 border border-amber-200 text-amber-800 font-semibold flex items-center gap-1.5 shrink-0">
+                <div className="px-3 py-1.5 rounded-full text-xs bg-[#EFECE6] border border-[#DCD8CF] text-[#706C64] font-semibold flex items-center gap-1.5 shrink-0">
                   <Lock className="w-3.5 h-3.5" />
                   <span>INTERNAL SYSTEM (NDA)</span>
                 </div>

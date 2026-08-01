@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Outfit, Space_Grotesk, JetBrains_Mono, Silkscreen, Press_Start_2P } from 'next/font/google';
+import { Outfit, Space_Grotesk, JetBrains_Mono, Silkscreen, Press_Start_2P, Playfair_Display, Caveat } from 'next/font/google';
 import '@/app/globals.css';
 import { HeaderNav } from '@/components/layout/header-nav';
 import { LenisProvider } from '@/components/providers/lenis-provider';
@@ -35,6 +35,18 @@ const fontSilkscreen = Silkscreen({
   weight: ['400', '700'],
   subsets: ['latin'],
   variable: '--font-silkscreen',
+  display: 'swap',
+});
+
+const fontSerif = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-serif',
+  display: 'swap',
+});
+
+const fontSignature = Caveat({
+  subsets: ['latin'],
+  variable: '--font-signature',
   display: 'swap',
 });
 
@@ -85,7 +97,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="id" suppressHydrationWarning className={`${fontSans.variable} ${fontDisplay.variable} ${fontMono.variable} ${fontPixel.variable} ${fontSilkscreen.variable} scroll-smooth`}>
+    <html lang="id" suppressHydrationWarning className={`${fontSans.variable} ${fontDisplay.variable} ${fontMono.variable} ${fontPixel.variable} ${fontSilkscreen.variable} ${fontSerif.variable} ${fontSignature.variable} scroll-smooth`}>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
