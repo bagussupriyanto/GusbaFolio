@@ -71,51 +71,51 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.94, y: 20 }}
             transition={{ duration: 0.3 }}
-            className={`relative w-full max-w-[1100px] max-h-[94vh] overflow-hidden bg-[#12182a] z-10 my-auto text-[#F8FAFC] flex flex-col ${
+            className={`relative w-full max-w-[1100px] max-h-[94vh] overflow-hidden z-10 my-auto flex flex-col ${
               isCleanMode
-                ? 'rounded-2xl border border-slate-800 shadow-[0_25px_60px_rgba(0,0,0,0.8)]'
-                : 'border-2 sm:border-4 border-[#4ee6d8] shadow-[4px_4px_0px_#000] sm:shadow-[8px_8px_0px_#000]'
+                ? 'bg-white text-slate-900 rounded-2xl border border-slate-200 shadow-2xl shadow-slate-950/20'
+                : 'bg-[#12182a] text-[#F8FAFC] border-2 sm:border-4 border-[#4ee6d8] shadow-[4px_4px_0px_#000] sm:shadow-[8px_8px_0px_#000]'
             }`}
           >
 
             {/* ── Row 1: Header Bar ── */}
-            <div className={`flex items-center justify-between px-3 sm:px-4 py-2.5 sm:py-3 bg-[#0a0e17] border-b ${
-              isCleanMode ? 'border-slate-800' : 'border-b-2 border-[#4ee6d8]'
+            <div className={`flex items-center justify-between px-3.5 sm:px-5 py-3 border-b ${
+              isCleanMode ? 'bg-slate-50 border-slate-200' : 'bg-[#0a0e17] border-b-2 border-[#4ee6d8]'
             }`}>
               <div className="flex items-center gap-2 sm:gap-3 min-w-0">
-                <span className={`px-2 py-0.5 text-[9px] sm:text-[10px] font-black shrink-0 ${
+                <span className={`px-2.5 py-0.5 text-[10px] font-bold tracking-wide uppercase shrink-0 ${
                   isCleanMode
-                    ? 'rounded bg-[#4ee6d8]/10 text-[#4ee6d8] border border-[#4ee6d8]/30 font-mono'
+                    ? 'rounded-md bg-blue-50 text-blue-700 border border-blue-200'
                     : 'bg-[#4ee6d8] text-[#0a0e17]'
                 }`}>
                   PROJECT DETAIL
                 </span>
-                <span className="w-1.5 h-1.5 rounded-full bg-[#4ee6d8] animate-pulse shrink-0" />
-                <span className={`text-[9px] sm:text-[10px] text-[#4ee6d8] font-bold uppercase tracking-wider truncate max-w-[180px] sm:max-w-none ${
-                  isCleanMode ? 'font-mono' : 'font-mono'
+                <span className={`w-2 h-2 rounded-full animate-pulse shrink-0 ${isCleanMode ? 'bg-blue-600' : 'bg-[#4ee6d8]'}`} />
+                <span className={`text-xs font-semibold uppercase tracking-wider truncate max-w-[180px] sm:max-w-none ${
+                  isCleanMode ? 'text-slate-600 font-sans' : 'text-[#4ee6d8] font-mono'
                 }`}>
                   {project.category}
                 </span>
               </div>
               <button
                 onClick={onClose}
-                className={`px-2.5 py-1 sm:px-3 sm:py-1 text-[10px] sm:text-xs flex items-center gap-1 cursor-pointer shrink-0 transition-all ${
+                className={`px-3 py-1.5 text-xs font-semibold flex items-center gap-1 cursor-pointer shrink-0 transition-all ${
                   isCleanMode
-                    ? 'rounded-lg bg-red-500/10 border border-red-500/40 text-red-400 hover:bg-red-500/20 font-mono'
-                    : 'pixel-btn bg-red-600 border-red-400 text-white hover:bg-red-700'
+                    ? 'rounded-lg bg-slate-100 border border-slate-200 text-slate-700 hover:bg-slate-200 font-sans'
+                    : 'pixel-btn bg-red-600 border-red-400 text-white hover:bg-red-700 font-mono'
                 }`}
               >
-                <X className="w-3.5 h-3.5" />
+                <X className="w-4 h-4" />
                 CLOSE
               </button>
             </div>
 
             {/* ── Row 2: Title + Visit Button ── */}
-            <div className={`flex items-center justify-between gap-2 sm:gap-4 px-3 sm:px-4 py-2.5 sm:py-3 border-b bg-[#0d1220] ${
-              isCleanMode ? 'border-slate-800' : 'border-[#4ee6d8]/20'
+            <div className={`flex items-center justify-between gap-2 sm:gap-4 px-3.5 sm:px-5 py-3 border-b ${
+              isCleanMode ? 'bg-white border-slate-200' : 'bg-[#0d1220] border-[#4ee6d8]/20'
             }`}>
-              <h2 className={`text-sm sm:text-lg text-[#F8FAFC] tracking-wide truncate ${
-                isCleanMode ? 'font-display font-bold' : 'font-pixel text-xs sm:text-base'
+              <h2 className={`text-sm sm:text-lg tracking-tight truncate ${
+                isCleanMode ? 'font-sans font-bold text-slate-900' : 'font-pixel text-xs sm:text-base text-[#F8FAFC]'
               }`}>
                 {project.title}
               </h2>
@@ -124,17 +124,17 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`px-3 py-1.5 text-[10px] sm:text-xs flex items-center gap-1.5 shrink-0 cursor-pointer font-mono font-bold transition-all ${
+                  className={`px-3.5 py-1.5 text-xs flex items-center gap-1.5 shrink-0 cursor-pointer font-semibold transition-all ${
                     isCleanMode
-                      ? 'rounded-lg bg-[#4ee6d8] text-[#0a0e17] hover:bg-[#6efff0] shadow-[0_0_15px_rgba(78,230,216,0.3)]'
-                      : 'pixel-btn'
+                      ? 'rounded-lg bg-blue-600 text-white hover:bg-blue-700 shadow-xs font-sans'
+                      : 'pixel-btn font-mono'
                   }`}
                 >
                   VISIT WEBSITE
                   <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               ) : (
-                <div className="px-2.5 py-1.5 rounded-lg text-[9px] sm:text-[10px] bg-amber-500/10 border border-amber-500/40 text-amber-400 font-bold font-mono flex items-center gap-1.5 shrink-0">
+                <div className="px-2.5 py-1.5 rounded-lg text-xs bg-amber-50 border border-amber-200 text-amber-800 font-semibold flex items-center gap-1.5 shrink-0">
                   <Lock className="w-3.5 h-3.5" />
                   <span>INTERNAL SYSTEM (NDA)</span>
                 </div>
