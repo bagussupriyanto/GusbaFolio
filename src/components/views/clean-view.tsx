@@ -35,7 +35,10 @@ import {
   Wrench,
   Rocket,
   RefreshCw,
-  Award
+  Award,
+  TrendingUp,
+  Target,
+  ShieldCheck
 } from 'lucide-react';
 import { DEVELOPER_DATA, FEATURED_PROJECTS, CV_WORK_EXPERIENCES } from '@/lib/constants';
 import { Project } from '@/types';
@@ -45,97 +48,83 @@ interface CleanViewProps {
   onSwitchToGameMode: () => void;
 }
 
-// Curated Toolkit (No cheap logo clouds, presented like an artisan studio toolkit)
-const CURATED_TOOLKIT = [
+// Structured Case Studies for Apple-Style Full Viewport Presentations
+const CASE_STUDIES = [
   {
-    category: "Core Engineering",
-    description: "Production web applications, component architecture & type safety.",
-    items: [
-      { name: "Next.js 16", role: "App Router, SSR, Server Actions", icon: "⚡" },
-      { name: "TypeScript", role: "Strict Static Typing & Interfaces", icon: "📘" },
-      { name: "Tailwind CSS", role: "Utility-First Design System", icon: "🎨" }
-    ]
+    project: FEATURED_PROJECTS[0], // SmartCafe
+    tagline: "SAAS POS & KITCHEN DISPATCH SYSTEM",
+    badge: "45% FASTER ORDER DISPATCH",
+    challenge: "Manual pen-and-paper cafe ordering led to long checkout queues, order miscommunications, and a 15% revenue leak from untracked inventory.",
+    solution: "Architected a real-time web POS and kitchen display system using Next.js 16 and Supabase BaaS with instant state synchronization and Row Level Security.",
+    result: "Reduced table order latency by 45%, completely eliminated stock discrepancies, and enabled real-time multi-branch revenue analytics.",
+    metrics: [
+      { label: "Order Latency", val: "-45%" },
+      { label: "Inventory Accuracy", val: "100%" },
+      { label: "Multi-Branch Sync", val: "Real-time" }
+    ],
+    photo: "/assets/developer-workstation.jpg"
   },
   {
-    category: "Data & Infrastructure",
-    description: "Relational data modeling, authentication & real-time synchronization.",
-    items: [
-      { name: "Supabase", role: "BaaS, Auth & Realtime Subscriptions", icon: "⚡" },
-      { name: "PostgreSQL", role: "Relational Database Engine", icon: "🐘" },
-      { name: "Prisma ORM", role: "Type-Safe Database Client", icon: "💎" }
-    ]
+    project: FEATURED_PROJECTS[1], // PT SMS
+    tagline: "INDUSTRIAL SUPPLIER ENTERPRISE PLATFORM",
+    badge: "65% INCREASE IN B2B INQUIRIES",
+    challenge: "An outdated web presence failed to communicate technical capability to international corporate clients and procurement managers in Bintan.",
+    solution: "Designed and engineered an editorial, high-performance web platform featuring crisp industrial showcases, product catalogs, and automated inquiry routing.",
+    result: "Increased corporate client inquiry conversions by 65% and secured new supply partnerships with regional manufacturing leaders.",
+    metrics: [
+      { label: "Inquiry Rate", val: "+65%" },
+      { label: "Page Load Time", val: "< 0.8s" },
+      { label: "Mobile Bounce Rate", val: "-38%" }
+    ],
+    photo: "/assets/projects/ptsms-mockup.png"
   },
   {
-    category: "Artificial Intelligence",
-    description: "LLM integration, generative workflows & prompt orchestration.",
-    items: [
-      { name: "OpenAI API", role: "GPT-4o & Function Calling", icon: "🧠" },
-      { name: "Google Gemini", role: "Multimodal AI & Veo Video Lab", icon: "✨" },
-      { name: "Anthropic Claude", role: "Complex Reasoning & Content Engine", icon: "💡" }
-    ]
-  },
-  {
-    category: "Craft & Tooling",
-    description: "DevOps, continuous integration & interface prototyping.",
-    items: [
-      { name: "Cursor IDE", role: "AI-Augmented Code Engineering", icon: "💻" },
-      { name: "GitHub & CI/CD", role: "Version Control & Automations", icon: "🐙" },
-      { name: "Vercel", role: "Edge Network & Global Deployment", icon: "▲" }
-    ]
+    project: FEATURED_PROJECTS[2], // Invoice Application
+    tagline: "AUTOMATED BILLING & PDF ENGINE",
+    badge: "SAVED 8+ HOURS WEEKLY PER CLIENT",
+    challenge: "Small business owners and freelancers lost 10+ hours weekly manually formatting billing spreadsheets and tracking overdue client payments.",
+    solution: "Engineered a streamlined invoicing application featuring client management, itemized tax calculations, instant PDF export, and payment status tracking.",
+    result: "Eliminated billing admin overhead by 80%, accelerated client payment cycles by 40%, and provided instantaneous PDF generation.",
+    metrics: [
+      { label: "Time Saved", val: "8+ hrs/wk" },
+      { label: "Payment Cycles", val: "40% Faster" },
+      { label: "PDF Render", val: "Instant" }
+    ],
+    photo: "/assets/projects/invoice-mockup.png"
   }
 ];
 
-// Linear/Apple-Style Process Pipeline Steps
-const PROCESS_PIPELINE = [
+// Why Hire Bagus (3 Business Value Pillars)
+const VALUE_PILLARS = [
   {
-    step: "01",
-    name: "Understand",
-    sub: "Problem Discovery",
-    icon: Search,
-    detail: "I begin by diagnosing the underlying business constraint or user bottleneck before writing a single line of code."
+    title: "Commercial & Business Mindset",
+    icon: TrendingUp,
+    subtitle: "Code That Drives Revenue",
+    description: "I write software with business metrics in mind — optimizing conversion rates, user retention, and operational efficiency rather than just writing isolated features."
   },
   {
-    step: "02",
-    name: "Research",
-    sub: "Market & AI Synthesis",
-    icon: Sliders,
-    detail: "I evaluate architectural tradeoffs, existing software patterns, and AI capabilities to map the optimal technical path."
+    title: "Full-Stack & AI Mastery",
+    icon: Cpu,
+    subtitle: "End-to-End Ownership",
+    description: "From Next.js 16 frontend interfaces and PostgreSQL schema design to AI LLM prompt orchestration, I own the entire product pipeline from concept to deployment."
   },
   {
-    step: "03",
-    name: "Design",
-    sub: "UX & System Architecture",
-    icon: PenTool,
-    detail: "I craft minimalist user interfaces and schema structures focused on clarity, accessibility, and high conversion."
-  },
-  {
-    step: "04",
-    name: "Build",
-    sub: "Full-Stack Development",
-    icon: Wrench,
-    detail: "I develop modular, type-safe Next.js codebases backed by solid PostgreSQL schemas and resilient API integrations."
-  },
-  {
-    step: "05",
-    name: "Test",
-    sub: "Quality Assurance",
-    icon: Shield,
-    detail: "I stress-test security rules, database RLS policies, mobile viewports, and edge cases to ensure zero runtime flaws."
-  },
-  {
-    step: "06",
-    name: "Deploy",
-    sub: "Production Launch",
-    icon: Rocket,
-    detail: "I deploy to Vercel edge networks, set up SSL certificates, optimize asset delivery, and audit lighthouse scores."
-  },
-  {
-    step: "07",
-    name: "Improve",
-    sub: "Iteration & Analytics",
-    icon: RefreshCw,
-    detail: "I monitor user behavior, gather qualitative feedback, and continuously refine performance and features over time."
+    title: "Industrial Rigor & Speed",
+    icon: ShieldCheck,
+    subtitle: "Precision Engineering",
+    description: "My background in precision manufacturing instills a strict discipline for error handling, database RLS security, and building software that performs reliably under load."
   }
+];
+
+// Linear-Style 7-Stage Process
+const PROCESS_STAGES = [
+  { step: "01", name: "Understand", desc: "Diagnosing business bottlenecks and user needs." },
+  { step: "02", name: "Research", desc: "Evaluating system architecture & AI capabilities." },
+  { step: "03", name: "Design", desc: "Crafting clean, accessible UX & database schemas." },
+  { step: "04", name: "Build", desc: "Developing modular, type-safe Next.js codebases." },
+  { step: "05", name: "Test", desc: "Auditing security, RLS rules & viewport responsiveness." },
+  { step: "06", name: "Deploy", desc: "Launching to Vercel Edge networks with high lighthouse scores." },
+  { step: "07", name: "Improve", desc: "Iterating based on analytics & real user feedback." }
 ];
 
 export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchToGameMode }) => {
@@ -151,7 +140,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
   return (
     <div className="w-full bg-[#FAF9F5] text-[#1C1B18] min-h-screen font-sans antialiased selection:bg-[#E8DFCE] selection:text-[#1C1B18]">
       
-      {/* ===== 1. HIGH-END EDITORIAL HEADER NAVBAR ===== */}
+      {/* ===== 1. EDITORIAL HEADER NAVBAR ===== */}
       <header className="sticky top-0 inset-x-0 z-50 bg-[#FAF9F5]/90 backdrop-blur-md border-b border-[#E6E4DD]">
         <div className="max-w-7xl mx-auto px-6 sm:px-12 py-4 flex items-center justify-between">
           
@@ -160,19 +149,18 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
             <span className="font-serif-editorial text-2xl sm:text-3xl font-bold tracking-tight text-[#1C1B18] group-hover:text-[#B89355] transition-colors">
               Bagus Supriyanto
             </span>
-            <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-[#C5A059]" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#C5A059]" />
             <span className="hidden sm:inline-block text-[11px] font-mono tracking-widest text-[#85827A] uppercase">
               STUDIO
             </span>
           </a>
 
           {/* Navigation Links */}
-          <nav className="hidden md:flex items-center gap-9 text-[11px] font-mono tracking-[0.18em] text-[#66645E] uppercase font-semibold">
+          <nav className="hidden md:flex items-center gap-8 text-[11px] font-mono tracking-[0.18em] text-[#66645E] uppercase font-semibold">
+            <a href="#work" className="hover:text-[#1C1B18] transition-colors">Featured Case Studies</a>
+            <a href="#why-hire" className="hover:text-[#1C1B18] transition-colors">Why Hire Me</a>
             <a href="#about" className="hover:text-[#1C1B18] transition-colors">About</a>
-            <a href="#work" className="hover:text-[#1C1B18] transition-colors">Selected Work</a>
             <a href="#process" className="hover:text-[#1C1B18] transition-colors">Process</a>
-            <a href="#tools" className="hover:text-[#1C1B18] transition-colors">Toolkit</a>
-            <a href="#experience" className="hover:text-[#1C1B18] transition-colors">Experience</a>
             <a href="#contact" className="hover:text-[#1C1B18] transition-colors">Contact</a>
           </nav>
 
@@ -181,7 +169,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
             <button
               onClick={onSwitchToGameMode}
               className="px-3.5 py-1.5 rounded-full bg-[#F0EEE6] border border-[#E6E4DD] text-[#55524C] text-[11px] font-mono font-semibold flex items-center gap-1.5 hover:bg-[#E5E2D8] hover:text-[#1C1B18] transition-all cursor-pointer"
-              title="Switch to 16-Bit RPG Game World"
+              title="Switch to 16-Bit RPG World"
             >
               <Gamepad2 className="w-3.5 h-3.5 text-[#B89355]" />
               <span className="hidden sm:inline">16-Bit RPG</span>
@@ -191,11 +179,11 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
               href="#contact"
               className="hidden sm:flex px-5 py-2.5 rounded-full bg-[#1C1B18] text-[#FAF9F5] text-xs font-semibold tracking-wider items-center gap-2 hover:bg-[#33312D] transition-all cursor-pointer shadow-xs"
             >
-              INQUIRE
+              HIRE BAGUS
               <ArrowRight className="w-3.5 h-3.5" />
             </a>
 
-            {/* Mobile Nav Button */}
+            {/* Mobile Menu Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="md:hidden p-2 rounded-lg bg-[#F0EEE6] text-[#1C1B18] hover:bg-[#E6E4DD]"
@@ -209,11 +197,10 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
         {/* Mobile Dropdown */}
         {mobileMenuOpen && (
           <div className="md:hidden bg-[#FAF9F5] border-b border-[#E6E4DD] px-6 py-6 space-y-4 text-xs font-mono font-bold tracking-widest text-[#1C1B18] uppercase">
+            <a href="#work" onClick={() => setMobileMenuOpen(false)} className="block py-1">Featured Case Studies</a>
+            <a href="#why-hire" onClick={() => setMobileMenuOpen(false)} className="block py-1">Why Hire Me</a>
             <a href="#about" onClick={() => setMobileMenuOpen(false)} className="block py-1">About</a>
-            <a href="#work" onClick={() => setMobileMenuOpen(false)} className="block py-1">Selected Work</a>
             <a href="#process" onClick={() => setMobileMenuOpen(false)} className="block py-1">Process</a>
-            <a href="#tools" onClick={() => setMobileMenuOpen(false)} className="block py-1">Toolkit</a>
-            <a href="#experience" onClick={() => setMobileMenuOpen(false)} className="block py-1">Experience</a>
             <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="block py-1">Contact</a>
             <a
               href="/assets/cv-bagus-supriyanto.pdf.pdf"
@@ -226,74 +213,85 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
         )}
       </header>
 
-      {/* ===== 2. HERO SECTION (EDITORIAL LUXURY) ===== */}
+      {/* ===== 2. HERO SECTION (IMMEDIATE BUSINESS VALUE PROPOSITION) ===== */}
       <section className="relative pt-16 pb-24 sm:pt-24 sm:pb-36 px-6 sm:px-12 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
           {/* Hero Left Content (7 Cols) */}
           <div className="lg:col-span-7 space-y-8">
             
-            {/* Role Category Badge */}
+            {/* Category Tag */}
             <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#F0EEE6] border border-[#E6E4DD] text-[11px] font-mono tracking-[0.18em] text-[#78756C] uppercase">
               <span className="w-1.5 h-1.5 rounded-full bg-[#B89355]" />
-              <span>AI Assistant Developer & Product Architect</span>
+              <span>SENIOR PRODUCT DEVELOPER & AI ARCHITECT</span>
             </div>
 
-            {/* Editorial Headline */}
+            {/* Business Value Headline */}
             <div className="space-y-4">
-              <h1 className="font-serif-editorial text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#1C1B18] leading-[1.05]">
-                I build digital products <span className="italic font-normal text-[#B89355]">with AI</span> and purpose.
+              <h1 className="font-serif-editorial text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#1C1B18] leading-[1.06]">
+                Building high-impact digital products <span className="italic font-normal text-[#B89355]">that scale revenue</span> and solve real problems.
               </h1>
             </div>
 
-            {/* Philosophy Statement */}
+            {/* Core Value Statement */}
             <p className="text-base sm:text-xl text-[#55524C] font-normal leading-relaxed max-w-2xl">
-              I don't just use AI. I build real digital products using artificial intelligence as one of my core tools — turning complex business constraints into clean, intuitive, and performant web software.
+              I don't just use AI or write isolated code. I engineer resilient full-stack web applications and AI-driven platforms that deliver measurable commercial outcomes for founders, companies, and international clients.
             </p>
 
+            {/* 3 Business Value Metric Badges */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+              <div className="p-4 rounded-2xl bg-white border border-[#E6E4DD] shadow-xs space-y-1">
+                <div className="text-xs font-mono font-bold text-[#B89355] uppercase tracking-wider">SPEED & PERFORMANCE</div>
+                <div className="text-lg font-bold text-[#1C1B18]">4x Faster Delivery</div>
+                <div className="text-[11px] text-[#66645E]">Concept to production launch</div>
+              </div>
+
+              <div className="p-4 rounded-2xl bg-white border border-[#E6E4DD] shadow-xs space-y-1">
+                <div className="text-xs font-mono font-bold text-[#B89355] uppercase tracking-wider">ENGINEERING RIGOR</div>
+                <div className="text-lg font-bold text-[#1C1B18]">Industrial Security</div>
+                <div className="text-[11px] text-[#66645E]">Battle-tested & RLS privacy</div>
+              </div>
+
+              <div className="p-4 rounded-2xl bg-white border border-[#E6E4DD] shadow-xs space-y-1">
+                <div className="text-xs font-mono font-bold text-[#B89355] uppercase tracking-wider">BUSINESS RESULTS</div>
+                <div className="text-lg font-bold text-[#1C1B18]">Measurable ROI</div>
+                <div className="text-[11px] text-[#66645E]">POS, Billing & SaaS platforms</div>
+              </div>
+            </div>
+
             {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-5 pt-4">
+            <div className="flex flex-wrap items-center gap-5 pt-2">
               <a
                 href="#work"
-                className="px-8 py-4 rounded-full bg-[#1C1B18] text-[#FAF9F5] font-semibold text-xs tracking-widest uppercase hover:bg-[#33312D] transition-all shadow-md flex items-center gap-2.5 group"
+                className="px-8 py-4 rounded-full bg-[#1C1B18] text-[#FAF9F5] font-semibold text-xs tracking-widest uppercase hover:bg-[#33312D] transition-all shadow-md flex items-center gap-2.5 group cursor-pointer"
               >
-                <span>EXPLORE SELECTED WORK</span>
+                <span>EXPLORE CASE STUDIES</span>
                 <ArrowRight className="w-4 h-4 text-[#C5A059] group-hover:translate-x-1 transition-transform" />
               </a>
 
               <a
-                href="/assets/cv-bagus-supriyanto.pdf.pdf"
-                download
-                className="px-6 py-4 rounded-full bg-transparent border border-[#D8D5CC] text-[#1C1B18] hover:border-[#1C1B18] font-semibold text-xs tracking-widest uppercase transition-all flex items-center gap-2"
+                href="#contact"
+                className="px-7 py-4 rounded-full bg-transparent border border-[#D8D5CC] text-[#1C1B18] hover:border-[#1C1B18] font-semibold text-xs tracking-widest uppercase transition-all flex items-center gap-2 cursor-pointer"
               >
-                <span>DOWNLOAD CV</span>
-                <Download className="w-4 h-4 text-[#85827A]" />
+                <span>INQUIRE FOR HIRE</span>
+                <Mail className="w-4 h-4 text-[#85827A]" />
               </a>
-            </div>
-
-            {/* Sub-label */}
-            <div className="pt-8 text-[11px] font-mono text-[#85827A] flex items-center gap-4">
-              <span className="uppercase tracking-widest">S1 IT GRADUATE (UTY 2024)</span>
-              <span className="w-12 h-[1px] bg-[#D8D5CC]" />
-              <span className="uppercase tracking-widest">BASED IN BINTAN</span>
             </div>
 
           </div>
 
-          {/* Hero Right Cinematic Workstation Photo (5 Cols) */}
+          {/* Hero Right Real Developer Workspace Photography (5 Cols) */}
           <div className="lg:col-span-5">
-            <div className="relative rounded-2xl p-3 bg-white border border-[#E6E4DD] shadow-2xl shadow-black/5 group">
-              
-              {/* Photo */}
-              <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-[#1A1917]">
+            <div className="relative rounded-3xl p-3.5 bg-white border border-[#E6E4DD] shadow-2xl shadow-black/5 group">
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#1A1917]">
                 <img
                   src="/assets/developer-workstation.jpg"
-                  alt="Real Developer Workspace Warm Lighting"
+                  alt="Real Developer Workspace Photography"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-80" />
                 
-                {/* Floating Studio Badge */}
+                {/* Photographer Badge Overlay */}
                 <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-[#FAF9F5]/95 backdrop-blur-md border border-[#E6E4DD] flex items-center justify-between shadow-lg">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full overflow-hidden border border-[#D8D5CC] shrink-0">
@@ -301,229 +299,180 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
                     </div>
                     <div>
                       <div className="text-xs font-bold text-[#1C1B18]">Bagus Supriyanto</div>
-                      <div className="text-[11px] font-mono text-[#66645E]">Product-Focused Engineer</div>
+                      <div className="text-[11px] font-mono text-[#66645E]">Product Architect • S1 UTY (2024)</div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-[10px] font-mono font-semibold">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                    AVAILABLE
+                  <div className="px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-[10px] font-mono font-bold">
+                    🟢 OPEN TO HIRE
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
 
         </div>
       </section>
 
-      {/* ===== 3. ABOUT SECTION (MAGAZINE EDITORIAL) ===== */}
-      <section id="about" className="py-24 sm:py-32 px-6 sm:px-12 max-w-7xl mx-auto border-t border-[#E6E4DD]">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-          
-          {/* Editorial Photo Left (5 Cols) */}
-          <div className="lg:col-span-5 space-y-4">
-            <div className="relative rounded-2xl overflow-hidden border border-[#E6E4DD] bg-white p-3 shadow-xl">
-              <div className="aspect-[4/5] rounded-xl overflow-hidden bg-[#1C1B18]">
-                <img
-                  src="/assets/profile-photo.jpg"
-                  alt="Bagus Supriyanto Editorial Portrait"
-                  className="w-full h-full object-cover object-top"
-                />
-              </div>
-            </div>
-            <div className="text-center font-signature text-3xl text-[#1C1B18] font-bold">
-              Bagus Supriyanto
-            </div>
-          </div>
-
-          {/* Editorial Narrative Right (7 Cols) */}
-          <div className="lg:col-span-7 space-y-8">
-            <div className="text-xs font-mono font-bold tracking-[0.2em] text-[#85827A] uppercase">
-              ABOUT THE BUILDER
-            </div>
-
-            <h2 className="font-serif-editorial text-3xl sm:text-5xl font-bold text-[#1C1B18] leading-tight">
-              Crafting software with precision, discipline, and modern intelligence.
-            </h2>
-
-            <div className="space-y-5 text-base sm:text-lg text-[#55524C] leading-relaxed font-normal">
-              <p>
-                Lulusan Sarjana Komputer dari <strong className="text-[#1C1B18]">Universitas Teknologi Yogyakarta (S1 Teknologi Informasi, 2024)</strong>. Perjalanan saya menggabungkan disiplin ketat industri manufaktur presisi dengan semangat inovasi perangkat lunak modern.
-              </p>
-              <p>
-                Saya tidak memandang AI sebagai pengganti rekayasa perangkat lunak, melainkan sebagai <strong className="text-[#1C1B18]">katalisator performa</strong> yang memungkinkan ide dikembangkan menjadi aplikasi SaaS skala produksi dalam waktu yang jauh lebih cepat tanpa mengorbankan kualitas arsitektur.
-              </p>
-            </div>
-
-            {/* Highlighted Values Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-[#E6E4DD]">
-              <div className="space-y-1">
-                <div className="text-xs font-mono text-[#85827A] uppercase tracking-wider">EDUCATION</div>
-                <div className="text-sm font-bold text-[#1C1B18]">S1 UTY (2024)</div>
-                <div className="text-xs text-[#66645E]">Sarjana Komputer</div>
-              </div>
-              <div className="space-y-1">
-                <div className="text-xs font-mono text-[#85827A] uppercase tracking-wider">CERTIFICATION</div>
-                <div className="text-sm font-bold text-[#1C1B18]">Microsoft Certified</div>
-                <div className="text-xs text-[#66645E]">Certiport Specialist</div>
-              </div>
-              <div className="space-y-1">
-                <div className="text-xs font-mono text-[#85827A] uppercase tracking-wider">CREATIVE LAB</div>
-                <div className="text-sm font-bold text-[#1C1B18]">TikTok AI Lab</div>
-                <div className="text-xs text-[#66645E]">Generative Video Content</div>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-      </section>
-
-      {/* ===== 4. SELECTED WORK (APPLE PRODUCT PAGE CAROUSEL) ===== */}
+      {/* ===== 3. FEATURED CASE STUDIES (PRIMARY FOCUS - APPLE PRODUCT PAGE STYLE) ===== */}
       <section id="work" className="py-28 bg-[#111111] text-[#FAF9F5]">
-        <div className="max-w-7xl mx-auto px-6 sm:px-12">
+        <div className="max-w-7xl mx-auto px-6 sm:px-12 space-y-24">
           
           {/* Section Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-[#2B2B2B] pb-10 gap-6">
             <div className="space-y-3">
-              <div className="text-xs font-mono font-bold tracking-[0.2em] text-[#B89355] uppercase">
-                SELECTED WORK
+              <div className="text-xs font-mono font-bold tracking-[0.2em] text-[#C5A059] uppercase">
+                PRIMARY CASE STUDIES
               </div>
               <h2 className="font-serif-editorial text-4xl sm:text-6xl font-bold text-[#FAF9F5]">
-                Things I've Built
+                Proof of Impact: Selected Projects
               </h2>
             </div>
             <p className="text-xs font-mono tracking-widest text-[#888888] max-w-sm uppercase">
-              Full-Viewport Case Studies — Built for Scalability & Business Impact.
+              Full-Viewport Case Studies Demonstrating Challenge, Solution & Measurable Business ROI.
             </p>
           </div>
 
-          {/* Stack of Expansive Project Cards */}
-          <div className="space-y-20">
-            {FEATURED_PROJECTS.map((project, index) => (
-              <div
-                key={project.id}
-                onClick={() => onSelectProject(project)}
-                className="group bg-[#191919] border border-[#2D2D2D] hover:border-[#555555] rounded-3xl overflow-hidden transition-all duration-500 p-6 sm:p-10 cursor-pointer shadow-2xl space-y-8"
-              >
-                {/* Top Row: Category + Title + Visit Link */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#2D2D2D] pb-6">
-                  <div className="space-y-1">
-                    <span className="text-xs font-mono font-semibold tracking-widest text-[#C5A059] uppercase">
-                      0{index + 1} — {project.category}
+          {/* Expansive Full-Viewport Style Case Study Cards */}
+          {CASE_STUDIES.map((cs, idx) => (
+            <div
+              key={cs.project.id}
+              onClick={() => onSelectProject(cs.project)}
+              className="group bg-[#181818] border border-[#2B2B2B] hover:border-[#555555] rounded-3xl overflow-hidden transition-all duration-500 p-6 sm:p-12 cursor-pointer shadow-2xl space-y-10"
+            >
+              {/* Header Bar */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#2A2A2A] pb-6">
+                <div className="space-y-1.5">
+                  <div className="inline-flex items-center gap-3">
+                    <span className="text-xs font-mono font-bold tracking-widest text-[#C5A059] uppercase">
+                      CASE STUDY 0{idx + 1}
                     </span>
-                    <h3 className="font-serif-editorial text-3xl sm:text-5xl font-bold text-white group-hover:text-[#C5A059] transition-colors flex items-center gap-3">
-                      <span>{project.title}</span>
-                      <ArrowUpRight className="w-6 h-6 opacity-0 group-hover:opacity-100 transition-opacity text-[#C5A059]" />
-                    </h3>
+                    <span className="w-1 h-1 rounded-full bg-[#555555]" />
+                    <span className="text-xs font-mono text-[#888888] uppercase tracking-wider">
+                      {cs.tagline}
+                    </span>
                   </div>
-
-                  <span className="inline-flex items-center gap-2 text-xs font-mono tracking-widest text-[#A1A1A1] group-hover:text-white transition-colors uppercase">
-                    VIEW CASE STUDY <ArrowRight className="w-4 h-4" />
-                  </span>
+                  <h3 className="font-serif-editorial text-3xl sm:text-5xl font-bold text-white group-hover:text-[#C5A059] transition-colors flex items-center gap-4">
+                    <span>{cs.project.title}</span>
+                    <ArrowUpRight className="w-7 h-7 opacity-0 group-hover:opacity-100 transition-opacity text-[#C5A059]" />
+                  </h3>
                 </div>
 
-                {/* Big Showcase Image */}
-                <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden bg-[#0A0A0A] border border-[#2A2A2A]">
-                  <img
-                    src={project.mockupPath}
-                    alt={project.title}
-                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#191919] via-transparent to-transparent opacity-60" />
+                {/* Key Result Badge */}
+                <div className="px-4 py-2 rounded-full bg-[#262626] border border-[#3A3A3A] text-amber-300 font-mono text-xs font-bold tracking-wider shrink-0 flex items-center gap-2">
+                  <TrendingUp className="w-4 h-4 text-[#C5A059]" />
+                  <span>{cs.badge}</span>
+                </div>
+              </div>
+
+              {/* Large Photography Showcase */}
+              <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden bg-[#0D0D0D] border border-[#2A2A2A]">
+                <img
+                  src={cs.project.mockupPath}
+                  alt={cs.project.title}
+                  className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#181818] via-transparent to-transparent opacity-50" />
+              </div>
+
+              {/* 4 Structured Case Study Blocks (Challenge vs Solution vs Results vs Stack) */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-2">
+                
+                {/* 1. Challenge */}
+                <div className="p-6 rounded-2xl bg-[#212121] border border-[#333333] space-y-3">
+                  <div className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider flex items-center gap-2">
+                    <Target className="w-4 h-4" /> THE CHALLENGE
+                  </div>
+                  <p className="text-xs sm:text-sm text-[#CCCCCC] leading-relaxed">
+                    {cs.challenge}
+                  </p>
                 </div>
 
-                {/* Project Breakdown: Business Problem vs Solution vs Results */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
-                  
-                  {/* Problem */}
-                  <div className="p-5 rounded-2xl bg-[#222222] border border-[#333333] space-y-2">
-                    <div className="text-xs font-mono font-bold text-[#E5A84B] uppercase tracking-wider flex items-center gap-2">
-                      <Zap className="w-4 h-4" /> BUSINESS PROBLEM
-                    </div>
-                    <p className="text-xs sm:text-sm text-[#CCCCCC] leading-relaxed">
-                      {project.problem}
-                    </p>
+                {/* 2. Solution */}
+                <div className="p-6 rounded-2xl bg-[#212121] border border-[#333333] space-y-3">
+                  <div className="text-xs font-mono font-bold text-blue-400 uppercase tracking-wider flex items-center gap-2">
+                    <Code2 className="w-4 h-4" /> THE SOLUTION
                   </div>
+                  <p className="text-xs sm:text-sm text-[#CCCCCC] leading-relaxed">
+                    {cs.solution}
+                  </p>
+                </div>
 
-                  {/* Solution */}
-                  <div className="p-5 rounded-2xl bg-[#222222] border border-[#333333] space-y-2">
-                    <div className="text-xs font-mono font-bold text-[#60A5FA] uppercase tracking-wider flex items-center gap-2">
-                      <Code2 className="w-4 h-4" /> ENGINEERING SOLUTION
-                    </div>
-                    <p className="text-xs sm:text-sm text-[#CCCCCC] leading-relaxed">
-                      {project.solution}
-                    </p>
+                {/* 3. Results */}
+                <div className="p-6 rounded-2xl bg-[#212121] border border-[#333333] space-y-3">
+                  <div className="text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-2">
+                    <TrendingUp className="w-4 h-4" /> BUSINESS IMPACT
                   </div>
+                  <p className="text-xs sm:text-sm text-[#CCCCCC] leading-relaxed">
+                    {cs.result}
+                  </p>
+                </div>
 
-                  {/* Tech Stack */}
-                  <div className="p-5 rounded-2xl bg-[#222222] border border-[#333333] space-y-3 flex flex-col justify-between">
-                    <div className="text-xs font-mono font-bold text-[#34D399] uppercase tracking-wider flex items-center gap-2">
-                      <Layers className="w-4 h-4" /> TECH ARCHITECTURE
+                {/* 4. Architecture & Metrics */}
+                <div className="p-6 rounded-2xl bg-[#212121] border border-[#333333] space-y-4 flex flex-col justify-between">
+                  <div className="space-y-2">
+                    <div className="text-xs font-mono font-bold text-purple-400 uppercase tracking-wider flex items-center gap-2">
+                      <Layers className="w-4 h-4" /> ARCHITECTURE
                     </div>
-                    <div className="flex flex-wrap gap-1.5">
-                      {project.techStack.map((tech) => (
-                        <span key={tech} className="px-2.5 py-1 rounded-md bg-[#2D2D2D] text-[#DDDDDD] text-xs font-mono">
+                    <div className="flex flex-wrap gap-1.5 pt-1">
+                      {cs.project.techStack.map((tech) => (
+                        <span key={tech} className="px-2.5 py-1 rounded bg-[#2D2D2D] text-[#DDDDDD] text-xs font-mono">
                           {tech}
                         </span>
                       ))}
                     </div>
                   </div>
 
+                  <div className="pt-3 border-t border-[#333333] flex items-center justify-between text-xs font-mono text-[#AAAAAA]">
+                    <span>EXPLORE DRAWER</span>
+                    <ArrowRight className="w-4 h-4 text-[#C5A059] group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </div>
 
               </div>
-            ))}
-          </div>
+
+            </div>
+          ))}
 
         </div>
       </section>
 
-      {/* ===== 5. PROCESS (VISUAL LINEAR TIMELINE) ===== */}
-      <section id="process" className="py-28 px-6 sm:px-12 max-w-7xl mx-auto border-t border-[#E6E4DD]">
+      {/* ===== 4. WHY HIRE BAGUS? (VALUE PILLARS FOR FOUNDERS & RECRUITERS) ===== */}
+      <section id="why-hire" className="py-28 px-6 sm:px-12 max-w-7xl mx-auto border-t border-[#E6E4DD]">
         <div className="space-y-16">
           
-          <div className="max-w-2xl space-y-3">
+          <div className="max-w-3xl space-y-4">
             <div className="text-xs font-mono font-bold tracking-[0.2em] text-[#85827A] uppercase">
-              ENGINEERING METHODOLOGY
+              WHY HIRE BAGUS SUPRIYANTO?
             </div>
-            <h2 className="font-serif-editorial text-4xl sm:text-5xl font-bold text-[#1C1B18]">
-              How I Turn Ideas into Impact
+            <h2 className="font-serif-editorial text-4xl sm:text-5xl font-bold text-[#1C1B18] leading-tight">
+              A Product Engineer Who Owns Outcomes, Not Just Code.
             </h2>
-            <p className="text-sm text-[#66645E]">
-              A disciplined 7-stage workflow designed for speed, stability, and measurable business outcomes.
+            <p className="text-base text-[#66645E] leading-relaxed">
+              Companies and startup founders hire me because I combine software craftsmanship, rapid execution with AI, and a relentless focus on business ROI.
             </p>
           </div>
 
-          {/* Visual Pipeline Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-4">
-            {PROCESS_PIPELINE.map((p, idx) => {
-              const IconComponent = p.icon;
+          {/* 3 Pillar Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {VALUE_PILLARS.map((pillar) => {
+              const IconComp = pillar.icon;
               return (
                 <div
-                  key={p.step}
-                  className="p-5 rounded-2xl bg-white border border-[#E6E4DD] shadow-xs hover:border-[#1C1B18] transition-all space-y-4 flex flex-col justify-between"
+                  key={pillar.title}
+                  className="p-8 rounded-3xl bg-white border border-[#E6E4DD] shadow-xs space-y-5 hover:border-[#1C1B18] transition-all"
                 >
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between text-[#85827A]">
-                      <span className="text-xs font-mono font-bold text-[#B89355]">{p.step}</span>
-                      <IconComponent className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <h3 className="text-base font-bold text-[#1C1B18]">{p.name}</h3>
-                      <div className="text-[10px] font-mono text-[#85827A] uppercase">{p.sub}</div>
-                    </div>
-                    <p className="text-xs text-[#66645E] leading-relaxed">
-                      {p.detail}
-                    </p>
+                  <div className="p-3.5 rounded-2xl bg-[#FAF9F5] border border-[#E6E4DD] w-fit text-[#B89355]">
+                    <IconComp className="w-6 h-6" />
                   </div>
 
-                  {idx < PROCESS_PIPELINE.length - 1 && (
-                    <div className="hidden lg:block text-center text-[#D8D5CC] font-mono text-xs pt-2">
-                      ↓
-                    </div>
-                  )}
+                  <div className="space-y-1">
+                    <div className="text-xs font-mono font-bold text-[#85827A] uppercase tracking-wider">{pillar.subtitle}</div>
+                    <h3 className="text-xl font-bold text-[#1C1B18]">{pillar.title}</h3>
+                  </div>
+
+                  <p className="text-xs sm:text-sm text-[#55524C] leading-relaxed">
+                    {pillar.description}
+                  </p>
                 </div>
               );
             })}
@@ -532,50 +481,96 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
         </div>
       </section>
 
-      {/* ===== 6. TOOLS (CURATED ARTISAN TOOLKIT) ===== */}
-      <section id="tools" className="py-28 px-6 sm:px-12 max-w-7xl mx-auto border-t border-[#E6E4DD]">
+      {/* ===== 5. ABOUT & STORYTELLING ===== */}
+      <section id="about" className="py-28 px-6 sm:px-12 max-w-7xl mx-auto border-t border-[#E6E4DD]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+          
+          {/* Photo Left (5 Cols) */}
+          <div className="lg:col-span-5 space-y-4">
+            <div className="relative rounded-3xl overflow-hidden border border-[#E6E4DD] bg-white p-3.5 shadow-xl">
+              <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-[#1C1B18]">
+                <img
+                  src="/assets/profile-photo.jpg"
+                  alt="Bagus Supriyanto Editorial Portrait"
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
+            </div>
+            <div className="text-center font-signature text-4xl text-[#1C1B18] font-bold">
+              Bagus Supriyanto
+            </div>
+          </div>
+
+          {/* Narrative Right (7 Cols) */}
+          <div className="lg:col-span-7 space-y-8">
+            <div className="text-xs font-mono font-bold tracking-[0.2em] text-[#85827A] uppercase">
+              EDITORIAL STORYTELLING
+            </div>
+
+            <h2 className="font-serif-editorial text-3xl sm:text-5xl font-bold text-[#1C1B18] leading-tight">
+              From Industrial Precision to High-Impact Web Engineering.
+            </h2>
+
+            <div className="space-y-5 text-base sm:text-lg text-[#55524C] leading-relaxed font-normal">
+              <p>
+                Sebagai lulusan Sarjana Komputer dari <strong className="text-[#1C1B18]">Universitas Teknologi Yogyakarta (S1 Teknologi Informasi, 2024)</strong>, saya membawa perspektif unik: disiplin kedisiplinan kerja industri manufaktur presisi digabungkan dengan kecepatan pemrograman web modern.
+              </p>
+              <p>
+                Saya tidak hanya membuat antarmuka menarik — saya merancang arsitektur data PostgreSQL, mengamankan akses dengan Supabase RLS, dan mengintegrasikan AI LLM untuk mengotomatisasi pekerjaan berulang.
+              </p>
+            </div>
+
+            {/* Quick Qualifications */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-[#E6E4DD]">
+              <div className="space-y-1">
+                <div className="text-xs font-mono text-[#85827A] uppercase tracking-wider">ACADEMIC</div>
+                <div className="text-sm font-bold text-[#1C1B18]">S1 UTY (2024)</div>
+                <div className="text-xs text-[#66645E]">Teknologi Informasi</div>
+              </div>
+              <div className="space-y-1">
+                <div className="text-xs font-mono text-[#85827A] uppercase tracking-wider">CERTIFICATION</div>
+                <div className="text-sm font-bold text-[#1C1B18]">Microsoft Certified</div>
+                <div className="text-xs text-[#66645E]">Certiport Specialist</div>
+              </div>
+              <div className="space-y-1">
+                <div className="text-xs font-mono text-[#85827A] uppercase tracking-wider">AI CONTENT LAB</div>
+                <div className="text-sm font-bold text-[#1C1B18]">TikTok Content Lab</div>
+                <div className="text-xs text-[#66645E]">Generative Video Lab</div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* ===== 6. PROCESS (7-STAGE LINEAR TIMELINE) ===== */}
+      <section id="process" className="py-28 px-6 sm:px-12 max-w-7xl mx-auto border-t border-[#E6E4DD]">
         <div className="space-y-16">
           
           <div className="max-w-2xl space-y-3">
             <div className="text-xs font-mono font-bold tracking-[0.2em] text-[#85827A] uppercase">
-              TECHNICAL TOOLKIT
+              THE DEVELOPMENT PROCESS
             </div>
             <h2 className="font-serif-editorial text-4xl sm:text-5xl font-bold text-[#1C1B18]">
-              Curated Stack & Instruments
+              Disciplined Execution Pipeline
             </h2>
             <p className="text-sm text-[#66645E]">
-              Handpicked tools and infrastructure selected for reliability, type safety, and rapid deployment.
+              How I move projects from initial problem discovery to production deployment.
             </p>
           </div>
 
-          {/* 4 Category Matrix */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {CURATED_TOOLKIT.map((group) => (
+          {/* Horizontal Stepper Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-4">
+            {PROCESS_STAGES.map((st) => (
               <div
-                key={group.category}
-                className="p-8 rounded-3xl bg-white border border-[#E6E4DD] shadow-xs space-y-6"
+                key={st.step}
+                className="p-5 rounded-2xl bg-white border border-[#E6E4DD] shadow-xs hover:border-[#1C1B18] transition-all space-y-3 flex flex-col justify-between"
               >
-                <div>
-                  <h3 className="text-lg font-bold text-[#1C1B18]">{group.category}</h3>
-                  <p className="text-xs text-[#85827A] mt-1">{group.description}</p>
-                </div>
-
-                <div className="space-y-3">
-                  {group.items.map((item) => (
-                    <div
-                      key={item.name}
-                      className="p-4 rounded-xl bg-[#FAF9F5] border border-[#E6E4DD] flex items-center justify-between gap-4"
-                    >
-                      <div className="flex items-center gap-3">
-                        <span className="text-xl">{item.icon}</span>
-                        <div>
-                          <div className="text-xs font-bold text-[#1C1B18]">{item.name}</div>
-                          <div className="text-[11px] font-mono text-[#66645E]">{item.role}</div>
-                        </div>
-                      </div>
-                      <span className="w-2 h-2 rounded-full bg-[#B89355]" />
-                    </div>
-                  ))}
+                <div className="space-y-2">
+                  <div className="text-xs font-mono font-bold text-[#B89355]">{st.step}</div>
+                  <h3 className="text-base font-bold text-[#1C1B18]">{st.name}</h3>
+                  <p className="text-xs text-[#66645E] leading-relaxed">{st.desc}</p>
                 </div>
               </div>
             ))}
@@ -584,20 +579,43 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
         </div>
       </section>
 
-      {/* ===== 7. WORK EXPERIENCE (EDITORIAL TIMELINE) ===== */}
+      {/* ===== 7. SUBTLE ARTISAN TOOLKIT (CONDENSED MINIMALIST BAR) ===== */}
+      <section className="py-16 px-6 sm:px-12 max-w-7xl mx-auto border-t border-[#E6E4DD]">
+        <div className="p-8 rounded-3xl bg-white border border-[#E6E4DD] shadow-xs flex flex-col lg:flex-row items-center justify-between gap-8">
+          
+          <div className="space-y-1 text-center lg:text-left">
+            <div className="text-xs font-mono font-bold text-[#85827A] uppercase tracking-wider">CURATED INSTRUMENTS</div>
+            <div className="text-lg font-bold text-[#1C1B18]">Engineering Stack & Tools</div>
+          </div>
+
+          {/* Minimal 1-line tool pills */}
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            <span className="px-3 py-1.5 rounded-full bg-[#FAF9F5] border border-[#E6E4DD] text-xs font-mono text-[#1C1B18]">⚡ Next.js 16</span>
+            <span className="px-3 py-1.5 rounded-full bg-[#FAF9F5] border border-[#E6E4DD] text-xs font-mono text-[#1C1B18]">📘 TypeScript</span>
+            <span className="px-3 py-1.5 rounded-full bg-[#FAF9F5] border border-[#E6E4DD] text-xs font-mono text-[#1C1B18]">⚡ Supabase BaaS</span>
+            <span className="px-3 py-1.5 rounded-full bg-[#FAF9F5] border border-[#E6E4DD] text-xs font-mono text-[#1C1B18]">🐘 PostgreSQL</span>
+            <span className="px-3 py-1.5 rounded-full bg-[#FAF9F5] border border-[#E6E4DD] text-xs font-mono text-[#1C1B18]">💎 Prisma ORM</span>
+            <span className="px-3 py-1.5 rounded-full bg-[#FAF9F5] border border-[#E6E4DD] text-xs font-mono text-[#1C1B18]">🎨 Tailwind CSS</span>
+            <span className="px-3 py-1.5 rounded-full bg-[#FAF9F5] border border-[#E6E4DD] text-xs font-mono text-[#1C1B18]">🧠 OpenAI & Gemini</span>
+            <span className="px-3 py-1.5 rounded-full bg-[#FAF9F5] border border-[#E6E4DD] text-xs font-mono text-[#1C1B18]">▲ Vercel Edge</span>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ===== 8. CAREER EXPERIENCE ===== */}
       <section id="experience" className="py-28 px-6 sm:px-12 max-w-7xl mx-auto border-t border-[#E6E4DD]">
         <div className="space-y-16">
           
           <div className="max-w-2xl space-y-3">
             <div className="text-xs font-mono font-bold tracking-[0.2em] text-[#85827A] uppercase">
-              CAREER & ACADEMIC RECREATION
+              CAREER TIMELINE
             </div>
             <h2 className="font-serif-editorial text-4xl sm:text-5xl font-bold text-[#1C1B18]">
-              Experience & Qualifications
+              Experience & Professional History
             </h2>
           </div>
 
-          {/* Timeline Cards */}
           <div className="space-y-6">
             {CV_WORK_EXPERIENCES.map((exp) => (
               <div
@@ -629,22 +647,21 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
         </div>
       </section>
 
-      {/* ===== 8. CONTACT & FOOTER (MINIMAL LUXURY ENDING) ===== */}
+      {/* ===== 9. CONTACT & FOOTER (MINIMAL LUXURY ENDING) ===== */}
       <section id="contact" className="py-28 bg-[#111111] text-[#FAF9F5]">
         <div className="max-w-7xl mx-auto px-6 sm:px-12 space-y-20">
           
-          {/* Big Editorial Contact Title */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             <div className="lg:col-span-8 space-y-6">
               <div className="text-xs font-mono font-bold tracking-[0.2em] text-[#C5A059] uppercase">
-                INQUIRE FOR PROJECTS & FULLTIME
+                INQUIRE FOR FULLTIME & CONTRACTS
               </div>
               <h2 className="font-serif-editorial text-4xl sm:text-6xl font-bold text-[#FAF9F5] leading-tight">
-                Let's build something exceptional together.
+                Ready to build something impactful? Let's talk.
               </h2>
               <p className="text-sm sm:text-base text-[#AAAAAA] leading-relaxed max-w-xl">
-                Open for Fulltime Software Engineering roles, AI Product Consulting, and Remote Contracts.
+                Open for Senior Frontend / Full-Stack Engineering roles, AI Product Consulting, and Remote Contracts.
               </p>
             </div>
 
@@ -653,7 +670,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
                 href={DEVELOPER_DATA.contact.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-4 rounded-full bg-[#FAF9F5] text-[#111111] font-semibold text-xs tracking-widest uppercase hover:bg-[#EAE8E1] transition-all text-center block"
+                className="w-full py-4 rounded-full bg-[#FAF9F5] text-[#111111] font-semibold text-xs tracking-widest uppercase hover:bg-[#EAE8E1] transition-all text-center block shadow-md cursor-pointer"
               >
                 START A CONVERSATION →
               </a>
@@ -672,7 +689,6 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
 
           </div>
 
-          {/* Social Links */}
           <div className="flex flex-wrap items-center justify-between gap-6 pt-12 border-t border-[#2A2A2A] text-xs font-mono text-[#888888]">
             <div className="flex items-center gap-6">
               <a href="https://github.com/bagussupriyanto" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">GITHUB</a>
@@ -683,7 +699,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
             </div>
 
             <div>
-              © 2026 Bagus Supriyanto. Designed with minimal luxury.
+              © 2026 Bagus Supriyanto. Designed for high business impact.
             </div>
           </div>
 
