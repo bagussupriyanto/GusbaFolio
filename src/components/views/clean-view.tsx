@@ -186,49 +186,84 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
             </div>
           </div>
 
-          {/* Background Workstation Image with Dark Overlay */}
+          {/* Background Code Editor Matrix Image with Dark Overlay */}
           <div className="relative p-6 sm:p-12 lg:p-14 min-h-[500px] flex flex-col justify-between">
             <img
-              src="/assets/developer-workstation.jpg"
-              alt="Developer Workstation Studio Background"
-              className="absolute inset-0 w-full h-full object-cover object-center opacity-30"
+              src="/assets/code-editor-backdrop.jpg"
+              alt="High-Tech Code Editor Background"
+              className="absolute inset-0 w-full h-full object-cover object-center opacity-40"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#161616] via-[#161616]/90 to-[#161616]/40" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#161616] via-[#161616]/90 to-[#161616]/60" />
 
-            {/* Content Layer Inside Window */}
-            <div className="relative z-10 space-y-6 max-w-3xl">
+            {/* Content & Code Editor Terminal Container */}
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#2B2B2B]/80 backdrop-blur-md border border-[#444444] text-[11px] font-mono tracking-widest text-[#DDDDDD] uppercase">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                <span>AI PRODUCT ENGINEER • S1 IT GRADUATE</span>
+              {/* Left Column: Narrative Headline & CTAs (7 Cols) */}
+              <div className="lg:col-span-7 space-y-6 max-w-2xl">
+                
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#2B2B2B]/80 backdrop-blur-md border border-[#444444] text-[11px] font-mono tracking-widest text-[#DDDDDD] uppercase">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>AI PRODUCT ENGINEER • S1 IT GRADUATE</span>
+                </div>
+
+                <h1 className="font-serif-editorial text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.08]">
+                  Building digital products <br />
+                  <span className="italic font-normal text-[#C5A059]">that solve real problems.</span>
+                </h1>
+
+                <p className="text-xs sm:text-base text-[#DDDDDD] font-normal leading-relaxed max-w-xl">
+                  I engineer modern full-stack web applications and AI-powered platforms that simplify complex business operations, boost conversions, and deliver measurable ROI.
+                </p>
+
+                {/* Action Buttons */}
+                <div className="flex flex-wrap items-center gap-4 pt-2">
+                  <a
+                    href="#work"
+                    className="px-6 py-3 rounded-full bg-white text-[#161616] text-xs font-mono font-bold uppercase tracking-wider hover:bg-[#EAE8E1] transition-all cursor-pointer flex items-center gap-2 shadow-lg hover:scale-105"
+                  >
+                    <span>EXPLORE SELECTED WORK</span>
+                    <ArrowRight className="w-4 h-4 text-[#161616]" />
+                  </a>
+
+                  <a
+                    href="#about"
+                    className="px-6 py-3 rounded-full bg-black/40 border border-white/20 text-white text-xs font-mono font-semibold uppercase tracking-wider hover:bg-black/60 transition-all cursor-pointer flex items-center gap-2"
+                  >
+                    <span>ABOUT ME</span>
+                    <ArrowRight className="w-4 h-4 text-[#CCCCCC]" />
+                  </a>
+                </div>
+
               </div>
 
-              <h1 className="font-serif-editorial text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.08]">
-                Building digital products <br />
-                <span className="italic font-normal text-[#C5A059]">that solve real problems.</span>
-              </h1>
+              {/* Right Column: Live IDE Code Terminal (5 Cols) */}
+              <div className="hidden lg:block lg:col-span-5 relative">
+                <div className="rounded-2xl bg-[#0D1117]/95 border border-[#30363D] p-5 shadow-2xl space-y-3 font-mono text-[11px] text-[#C9D1D9] backdrop-blur-md">
+                  <div className="flex items-center justify-between border-b border-[#30363D] pb-3 text-[10px] text-[#8B949E]">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F]" />
+                      <span className="ml-1 text-[#C9D1D9] font-bold">engine.ts</span>
+                    </div>
+                    <span>TypeScript • Next.js 16</span>
+                  </div>
 
-              <p className="text-xs sm:text-base text-[#DDDDDD] font-normal leading-relaxed max-w-xl">
-                I engineer modern full-stack web applications and AI-powered platforms that simplify complex business operations, boost conversions, and deliver measurable ROI.
-              </p>
-
-              {/* Action Buttons */}
-              <div className="flex flex-wrap items-center gap-4 pt-2">
-                <a
-                  href="#work"
-                  className="px-6 py-3 rounded-full bg-white text-[#161616] text-xs font-mono font-bold uppercase tracking-wider hover:bg-[#EAE8E1] transition-all cursor-pointer flex items-center gap-2 shadow-lg hover:scale-105"
-                >
-                  <span>EXPLORE SELECTED WORK</span>
-                  <ArrowRight className="w-4 h-4 text-[#161616]" />
-                </a>
-
-                <a
-                  href="#about"
-                  className="px-6 py-3 rounded-full bg-black/40 border border-white/20 text-white text-xs font-mono font-semibold uppercase tracking-wider hover:bg-black/60 transition-all cursor-pointer flex items-center gap-2"
-                >
-                  <span>ABOUT ME</span>
-                  <ArrowRight className="w-4 h-4 text-[#CCCCCC]" />
-                </a>
+                  <div className="space-y-1 leading-relaxed">
+                    <div><span className="text-[#FF7B72]">import</span> &#123; createClient &#125; <span className="text-[#FF7B72]">from</span> <span className="text-[#A5D6FF]">'@supabase/supabase-js'</span>;</div>
+                    <div><span className="text-[#FF7B72]">import</span> &#123; OpenAI &#125; <span className="text-[#FF7B72]">from</span> <span className="text-[#A5D6FF]">'openai'</span>;</div>
+                    <br />
+                    <div><span className="text-[#FF7B72]">export async function</span> <span className="text-[#D2A8FF]">dispatchAiPipeline</span>() &#123;</div>
+                    <div className="pl-4 text-[#8B949E]">// Initialize real-time POS & AI engine</div>
+                    <div className="pl-4"><span className="text-[#FF7B72]">const</span> db = <span className="text-[#D2A8FF]">createClient</span>(process.env.SUPABASE_URL);</div>
+                    <div className="pl-4"><span className="text-[#FF7B72]">const</span> ai = <span className="text-[#FF7B72]">new</span> <span className="text-[#D2A8FF]">OpenAI</span>(&#123; model: <span className="text-[#A5D6FF]">'gpt-4o'</span> &#125;);</div>
+                    <div className="pl-4"><span className="text-[#FF7B72]">return await</span> db.<span className="text-[#D2A8FF]">orders</span>.<span className="text-[#D2A8FF]">dispatch</span>(&#123;</div>
+                    <div className="pl-8 text-[#79C0FF]">status: <span className="text-[#A5D6FF]">'DISPATCHED_REALTIME'</span>,</div>
+                    <div className="pl-8 text-[#79C0FF]">latency: <span className="text-[#79C0FF]">45</span> <span className="text-[#8B949E]">// seconds</span></div>
+                    <div className="pl-4">&#125;);</div>
+                    <div>&#125;</div>
+                  </div>
+                </div>
               </div>
 
             </div>
