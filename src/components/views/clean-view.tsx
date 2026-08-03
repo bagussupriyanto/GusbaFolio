@@ -17,6 +17,7 @@ import {
 import { DEVELOPER_DATA, FEATURED_PROJECTS, CV_WORK_EXPERIENCES } from '@/lib/constants';
 import { Project } from '@/types';
 import { CodeVideoBackdrop } from '@/components/ui/code-video-backdrop';
+import { TRANSLATIONS, Language } from '@/lib/translations';
 
 interface CleanViewProps {
   onSelectProject: (project: Project) => void;
@@ -106,6 +107,8 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeTool, setActiveTool] = useState<string | null>(null);
   const [selectedTechCategory, setSelectedTechCategory] = useState<string>('ALL');
+  const [lang, setLang] = useState<Language>('id');
+  const t = TRANSLATIONS[lang];
 
   return (
     <div className="w-full bg-[#FAF9F6] text-[#161616] min-h-screen font-sans antialiased selection:bg-[#E8DFCE] selection:text-[#161616]">
@@ -127,20 +130,38 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
 
             <div className="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#F0EEE6] border border-[#E6E4DD] text-[10px] font-mono font-semibold text-[#55524C] shrink-0">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span>TERSEDIA UNTUK BEKERJA</span>
+              <span>{t.availability}</span>
             </div>
           </div>
 
           {/* Notion-Style Floating Pill Navigation */}
           <nav className="hidden md:flex items-center gap-1 bg-[#F0EEE6]/80 p-1 rounded-full border border-[#E6E4DD]">
-            <a href="#about" className="px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs transition-all">Tentang</a>
-            <a href="#work" className="px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs transition-all">Proyek</a>
-            <a href="#experience" className="px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs transition-all">Pengalaman</a>
-            <a href="#contact" className="px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs transition-all">Kontak</a>
+            <a href="#about" className="px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs transition-all">{t.about}</a>
+            <a href="#work" className="px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs transition-all">{t.project}</a>
+            <a href="#experience" className="px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs transition-all">{t.experience}</a>
+            <a href="#contact" className="px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs transition-all">{t.contact}</a>
           </nav>
 
           {/* Right Action Items */}
           <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+            
+            {/* Multi-Language Switcher Toggle Pill: ID / ENG / CHN */}
+            <div className="flex items-center p-0.5 rounded-full bg-[#F0EEE6] border border-[#E6E4DD] text-[10px] font-mono font-bold">
+              {(['id', 'en', 'zh'] as Language[]).map((l) => (
+                <button
+                  key={l}
+                  onClick={() => setLang(l)}
+                  className={`px-2 py-1 rounded-full transition-all cursor-pointer uppercase ${
+                    lang === l
+                      ? 'bg-[#161616] text-[#FAF9F6] shadow-xs'
+                      : 'text-[#66645E] hover:text-[#161616]'
+                  }`}
+                >
+                  {l === 'id' ? 'ID' : l === 'en' ? 'ENG' : 'CHN'}
+                </button>
+              ))}
+            </div>
+
             <button
               onClick={onSwitchToGameMode}
               className="px-2.5 sm:px-3.5 py-1.5 rounded-full bg-[#F0EEE6] border border-[#E6E4DD] text-[#55524C] text-[11px] font-mono font-semibold flex items-center gap-1.5 hover:bg-[#E5E2D8] hover:text-[#161616] transition-all cursor-pointer"
@@ -155,7 +176,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
               download
               className="hidden sm:flex px-4 py-2 rounded-full bg-[#161616] text-[#FAF9F6] text-xs font-mono font-semibold items-center gap-1.5 hover:bg-[#33312D] transition-all cursor-pointer shadow-xs"
             >
-              <span>RESUME</span>
+              <span>{t.resume}</span>
               <Download className="w-3.5 h-3.5" />
             </a>
 
@@ -218,17 +239,17 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
                 
                 <div className="inline-flex items-center gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-[#2B2B2B]/80 backdrop-blur-md border border-[#444444] text-[9px] sm:text-[11px] font-mono tracking-widest text-[#DDDDDD] uppercase">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  <span>AI PRODUCT ENGINEER • LULUSAN S1 IT</span>
+                  <span>{t.badgeHero}</span>
                 </div>
 
                 <h1 className="font-serif-editorial text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1] sm:leading-[1.08]">
-                  Membangun produk digital{' '}
+                  {t.headlineMain}{' '}
                   <br className="hidden sm:block" />
-                  <span className="italic font-normal text-[#C5A059]">yang menyelesaikan masalah nyata.</span>
+                  <span className="italic font-normal text-[#C5A059]">{t.headlineSub}</span>
                 </h1>
 
                 <p className="text-[13px] sm:text-sm lg:text-base text-[#DDDDDD] font-normal leading-relaxed max-w-xl">
-                  Saya merancang aplikasi web full-stack modern dan platform berbasis AI yang menyederhanakan operasional bisnis, meningkatkan konversi, serta memberikan hasil nyata.
+                  {t.heroDesc}
                 </p>
 
                 {/* Action Buttons */}
@@ -237,7 +258,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
                     href="#work"
                     className="px-4 sm:px-6 py-2.5 sm:py-3 rounded-full bg-white text-[#161616] text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider hover:bg-[#EAE8E1] transition-all cursor-pointer flex items-center gap-2 shadow-lg hover:scale-105"
                   >
-                    <span>LIHAT PROYEK</span>
+                    <span>{t.exploreWork}</span>
                     <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#161616]" />
                   </a>
 
@@ -245,7 +266,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
                     href="#about"
                     className="px-4 sm:px-6 py-2.5 sm:py-3 rounded-full bg-black/40 border border-white/20 text-white text-[10px] sm:text-xs font-mono font-semibold uppercase tracking-wider hover:bg-black/60 transition-all cursor-pointer flex items-center gap-2"
                   >
-                    <span>TENTANG SAYA</span>
+                    <span>{t.aboutMe}</span>
                     <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#CCCCCC]" />
                   </a>
                 </div>
@@ -264,7 +285,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
                     </div>
                     <span className="text-emerald-400 font-bold flex items-center gap-1">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      SIAP BEKERJA
+                      {t.terminalStatus}
                     </span>
                   </div>
 
@@ -273,14 +294,14 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
                     <div><span className="text-[#FF7B72]">import</span> &#123; FullStackEngine &#125; <span className="text-[#FF7B72]">from</span> <span className="text-[#A5D6FF]">'@bagus/tech'</span>;</div>
                     <br />
                     <div><span className="text-[#FF7B72]">export async function</span> <span className="text-[#D2A8FF]">hireBagusSupriyanto</span>() &#123;</div>
-                    <div className="pl-4 text-[#8B949E]">// Sarjana Komputer & AI Product Engineer</div>
+                    <div className="pl-4 text-[#8B949E]">{t.terminalComment}</div>
                     <div className="pl-4"><span className="text-[#FF7B72]">const</span> engineer = <span className="text-[#FF7B72]">new</span> <span className="text-[#D2A8FF]">Candidate</span>(<span className="text-[#A5D6FF] font-bold">'Bagus Supriyanto'</span>);</div>
                     <br />
                     <div className="pl-4"><span className="text-[#FF7B72]">return await</span> engineer.<span className="text-[#D2A8FF]">hire</span>(&#123;</div>
-                    <div className="pl-8 text-[#79C0FF]">gelar: <span className="text-[#A5D6FF]">'S1 IT UTY (Sarjana Komputer)'</span>,</div>
+                    <div className="pl-8 text-[#79C0FF]">gelar: <span className="text-[#A5D6FF]">'{t.terminalDegree}'</span>,</div>
                     <div className="pl-8 text-[#79C0FF]">coreStack: [<span className="text-[#A5D6FF]">'Next.js 16'</span>, <span className="text-[#A5D6FF]">'TypeScript'</span>, <span className="text-[#A5D6FF]">'Supabase'</span>],</div>
-                    <div className="pl-8 text-[#79C0FF]">dampak: [<span className="text-[#A5D6FF]">'+65% Penjualan B2B'</span>, <span className="text-[#A5D6FF] font-bold">'45dtk Order POS'</span>],</div>
-                    <div className="pl-8 text-[#79C0FF]">status: <span className="text-[#7EE787] font-bold">'FULLTIME_ATAU_REMOTE'</span></div>
+                    <div className="pl-8 text-[#79C0FF]">dampak: [<span className="text-[#A5D6FF]">'{t.terminalImpact[0]}'</span>, <span className="text-[#A5D6FF] font-bold">'{t.terminalImpact[1]}'</span>],</div>
+                    <div className="pl-8 text-[#79C0FF]">status: <span className="text-[#7EE787] font-bold">'{t.terminalAvailability}'</span></div>
                     <div className="pl-4">&#125;);</div>
                     <div>&#125;</div>
                   </div>
@@ -346,38 +367,34 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
           <div className="lg:col-span-7 space-y-6">
             
             <div className="text-[10px] sm:text-[11px] font-mono font-bold tracking-[0.2em] text-[#85827A] uppercase">
-              TENTANG PENGEMBANG
+              {t.aboutLabel}
             </div>
 
             <h2 className="font-serif-editorial text-2xl sm:text-3xl lg:text-4xl font-bold text-[#161616] leading-tight">
-              Menggabungkan Presisi Manufaktur Industri dengan Rekayasa Perangkat Lunak Modern.
+              {t.aboutHeading}
             </h2>
 
             <div className="space-y-3 sm:space-y-4 text-[13px] sm:text-sm lg:text-base text-[#55524C] leading-relaxed font-normal">
-              <p>
-                Saya adalah lulusan Sarjana Komputer dari <strong className="text-[#161616]">Universitas Teknologi Yogyakarta (S1 Teknologi Informasi, 2024)</strong>. Latar belakang saya menggabungkan disiplin kerja industri manufaktur presisi (<strong className="text-[#161616]">PT Pertama Precision Indonesia</strong>) dengan kecepatan rekayasa perangkat lunak modern.
-              </p>
-              <p>
-                Saya tidak memandang AI sebagai pengganti rekayasa perangkat lunak, melainkan sebagai <strong className="text-[#161616]">katalisator produktivitas</strong> yang memungkinkan ide dikembangkan menjadi aplikasi SaaS skala produksi dalam waktu yang jauh lebih cepat, tanpa mengorbankan kualitas arsitektur data.
-              </p>
+              <p>{t.aboutBio1}</p>
+              <p>{t.aboutBio2}</p>
             </div>
 
             {/* 3 Academic & Certification Highlights */}
             <div className="grid grid-cols-3 gap-3 sm:gap-4 pt-4 border-t border-[#E6E4DD]">
               <div className="space-y-0.5 sm:space-y-1">
-                <div className="text-[9px] sm:text-[10px] font-mono text-[#85827A] uppercase tracking-wider">GELAR AKADEMIK</div>
-                <div className="text-[11px] sm:text-xs font-bold text-[#161616]">S1 IT UTY (2024)</div>
-                <div className="text-[10px] sm:text-[11px] text-[#66645E]">Sarjana Komputer</div>
+                <div className="text-[9px] sm:text-[10px] font-mono text-[#85827A] uppercase tracking-wider">{t.degreeLabel}</div>
+                <div className="text-[11px] sm:text-xs font-bold text-[#161616]">{t.degreeValue}</div>
+                <div className="text-[10px] sm:text-[11px] text-[#66645E]">{t.degreeSub}</div>
               </div>
               <div className="space-y-0.5 sm:space-y-1">
-                <div className="text-[9px] sm:text-[10px] font-mono text-[#85827A] uppercase tracking-wider">SERTIFIKASI</div>
-                <div className="text-[11px] sm:text-xs font-bold text-[#161616]">Microsoft Certified</div>
-                <div className="text-[10px] sm:text-[11px] text-[#66645E]">Certiport Specialist</div>
+                <div className="text-[9px] sm:text-[10px] font-mono text-[#85827A] uppercase tracking-wider">{t.certLabel}</div>
+                <div className="text-[11px] sm:text-xs font-bold text-[#161616]">{t.certValue}</div>
+                <div className="text-[10px] sm:text-[11px] text-[#66645E]">{t.certSub}</div>
               </div>
               <div className="space-y-0.5 sm:space-y-1">
-                <div className="text-[9px] sm:text-[10px] font-mono text-[#85827A] uppercase tracking-wider">LAB RISET AI</div>
-                <div className="text-[11px] sm:text-xs font-bold text-[#161616]">TikTok AI Content Lab</div>
-                <div className="text-[10px] sm:text-[11px] text-[#66645E]">Generative Video Lab</div>
+                <div className="text-[9px] sm:text-[10px] font-mono text-[#85827A] uppercase tracking-wider">{t.aiLabLabel}</div>
+                <div className="text-[11px] sm:text-xs font-bold text-[#161616]">{t.aiLabValue}</div>
+                <div className="text-[10px] sm:text-[11px] text-[#66645E]">{t.aiLabSub}</div>
               </div>
             </div>
 
@@ -396,14 +413,14 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
           <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-[#E6E4DD] pb-4 sm:pb-6 gap-3 sm:gap-4">
             <div className="space-y-1.5 sm:space-y-2">
               <div className="text-[10px] sm:text-[11px] font-mono font-bold tracking-[0.2em] text-[#85827A] uppercase">
-                PORTOFOLIO PILIHAN
+                {t.workLabel}
               </div>
               <h2 className="font-serif-editorial text-2xl sm:text-3xl lg:text-4xl font-bold text-[#161616]">
-                Studi Kasus & Produk Yang Telah Rilis
+                {t.workHeading}
               </h2>
             </div>
             <p className="text-[10px] sm:text-xs font-mono text-[#85827A] uppercase tracking-wider">
-              Klik kartu untuk melihat rincian studi kasus lengkap
+              {t.workHint}
             </p>
           </div>
 
@@ -451,7 +468,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
                     ))}
                   </div>
                   <span className="flex items-center gap-1 group-hover:translate-x-1 transition-transform shrink-0">
-                    LIHAT <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                    {t.viewBtn} <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                   </span>
                 </div>
 
@@ -473,10 +490,10 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
             <div className="space-y-1.5 sm:space-y-2">
               <div className="text-[10px] sm:text-[11px] font-mono font-bold tracking-[0.2em] text-[#85827A] uppercase flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-[#161616]" />
-                <span>LOG KARIR & RIWAYAT REKAYASA</span>
+                <span>{t.expLabel}</span>
               </div>
               <h2 className="font-serif-editorial text-2xl sm:text-3xl lg:text-4xl font-bold text-[#161616]">
-                Perjalanan Karir & Rekam Jejak Pengalaman
+                {t.expHeading}
               </h2>
             </div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#161616] text-[#FAF9F6] text-[10px] font-mono font-bold shrink-0 self-start sm:self-auto">
@@ -577,26 +594,26 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
           <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-[#E6E4DD] pb-4 sm:pb-6 gap-2 sm:gap-4">
             <div className="space-y-1.5 sm:space-y-2">
               <div className="text-[10px] sm:text-[11px] font-mono font-bold tracking-[0.2em] text-[#85827A] uppercase">
-                TEKNOLOGI & PERANGKAT
+                {t.techLabel}
               </div>
               <h2 className="font-serif-editorial text-2xl sm:text-3xl lg:text-4xl font-bold text-[#161616]">
-                Daftar Alat & Teknologi Yang Dikuasai
+                {t.techHeading}
               </h2>
             </div>
             <p className="text-[10px] sm:text-xs font-mono text-[#85827A] uppercase tracking-wider">
-              Arahkan kursor atau tekan icon untuk melihat fungsi teknisnya
+              {t.techHint}
             </p>
           </div>
 
           {/* Category Filter Pills Bar */}
           <div className="flex flex-wrap items-center gap-2 pt-2">
             {[
-              { key: 'ALL', label: 'SEMUA' },
-              { key: 'Frontend', label: 'FRONTEND' },
-              { key: 'Backend', label: 'BACKEND' },
-              { key: 'AI & Lab', label: 'AI & LAB' },
-              { key: 'DevOps', label: 'DEVOPS' },
-              { key: 'Industrial', label: 'INDUSTRI' }
+              { key: 'ALL', label: t.catAll },
+              { key: 'Frontend', label: t.catFrontend },
+              { key: 'Backend', label: t.catBackend },
+              { key: 'AI & Lab', label: t.catAi },
+              { key: 'DevOps', label: t.catDevops },
+              { key: 'Industrial', label: t.catIndustrial }
             ].map((cat) => {
               const isSelected = selectedTechCategory === cat.key;
               return (
@@ -689,13 +706,13 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
           
           <div className="space-y-2 sm:space-y-3 text-center md:text-left">
             <div className="inline-flex items-center gap-2 px-2.5 sm:px-3 py-1 rounded-full bg-[#2A2A2A] text-[10px] sm:text-xs font-mono text-[#C5A059] uppercase">
-              <span>HUBUNGI SAYA</span>
+              <span>{t.contactLabel}</span>
             </div>
             <h2 className="font-serif-editorial text-2xl sm:text-3xl lg:text-5xl font-bold text-white">
-              Mari bangun sesuatu yang luar biasa bersama.
+              {t.contactHeading}
             </h2>
             <p className="text-[11px] sm:text-xs lg:text-sm text-[#AAAAAA] max-w-md">
-              Tersedia untuk posisi Full-time Software Engineer, Konsultasi Produk AI, dan Kontrak Remote.
+              {t.contactDesc}
             </p>
           </div>
 
@@ -704,7 +721,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
               href={`mailto:${DEVELOPER_DATA.contact.email}`}
               className="w-full sm:w-auto px-5 sm:px-6 py-3 sm:py-3.5 rounded-full bg-[#FAF9F6] text-[#161616] text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider hover:bg-[#EAE8E1] transition-all cursor-pointer block text-center shadow-md hover:scale-105"
             >
-              KIRIM EMAIL →
+              {t.sendEmail}
             </a>
             <a
               href={DEVELOPER_DATA.contact.whatsapp}
@@ -712,7 +729,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
               rel="noopener noreferrer"
               className="w-full sm:w-auto px-5 sm:px-6 py-3 sm:py-3.5 rounded-full bg-[#262626] border border-[#3A3A3A] text-white text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider hover:bg-[#333333] transition-all cursor-pointer block text-center"
             >
-              WHATSAPP
+              {t.whatsapp}
             </a>
           </div>
 
@@ -722,7 +739,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
       {/* Footer */}
       <footer className="py-6 sm:py-8 px-4 sm:px-6 max-w-6xl mx-auto border-t border-[#E6E4DD] text-[10px] sm:text-xs font-mono text-[#85827A] flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
         <div className="text-center sm:text-left">
-          © 2026 Bagus Supriyanto. Dirancang dengan presisi & dedikasi.
+          {t.footerText}
         </div>
         <div className="flex items-center gap-4">
           <a href="https://github.com/bagussupriyanto" target="_blank" rel="noopener noreferrer" className="hover:text-[#161616] transition-colors">GitHub</a>
