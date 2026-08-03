@@ -167,8 +167,8 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
           
           {/* Logo Notion Style: Icon + Name */}
           <a href="#" className="flex items-center gap-2.5 group">
-            <div className="w-7 h-7 rounded-lg bg-[#050505] text-white flex items-center justify-center text-xs font-mono font-bold">
-              N
+            <div className="w-8 h-7 rounded-lg bg-[#050505] text-white flex items-center justify-center text-[11px] font-mono font-bold tracking-tight">
+              BS
             </div>
             <span className="font-bold text-base tracking-tight text-[#050505] group-hover:text-[#555555] transition-colors">
               Bagus Supriyanto <span className="font-normal text-xs text-[#777777] ml-1">/ AI Product Engineer</span>
@@ -237,84 +237,105 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
         )}
       </header>
 
-      {/* ===== 2. NOTION HERO SECTION ===== */}
-      <section className="pt-12 pb-16 sm:pt-16 sm:pb-24 px-6 max-w-6xl mx-auto space-y-8">
+      {/* ===== 2. INTEGRATED NOTION HERO SECTION ===== */}
+      <section className="pt-8 pb-16 sm:pt-12 sm:pb-24 px-6 max-w-6xl mx-auto">
         
-        {/* Notion Page Cover / Breadcrumb Header */}
-        <div className="space-y-4">
+        {/* Unified Notion Window Container */}
+        <div className="rounded-3xl border border-[#E6E6E4] bg-[#050505] text-white overflow-hidden shadow-2xl relative">
           
-          {/* Page Icon & Category Badge */}
-          <div className="flex items-center gap-3">
-            <span className="text-4xl sm:text-5xl">⚡</span>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F7F6F3] border border-[#E6E6E4] text-xs font-mono text-[#555555]">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span>bagus-supriyanto / ai-product-engineer</span>
-            </div>
-          </div>
-
-          {/* Notion Page Main Title */}
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#050505] leading-[1.1]">
-            Building software products <br />
-            that solve real business problems.
-          </h1>
-
-        </div>
-
-        {/* Notion Callout Box (Signature Notion UI Element) */}
-        <div className="p-5 sm:p-6 rounded-2xl bg-[#F7F6F3] border border-[#E6E6E4] shadow-2xs space-y-4 max-w-3xl">
-          <div className="flex items-start gap-3">
-            <span className="text-xl shrink-0 mt-0.5">💡</span>
-            <div className="space-y-2 text-xs sm:text-sm text-[#333333] leading-relaxed">
-              <p className="font-semibold text-[#050505]">
-                AI Product Engineer • S1 IT Graduate UTY (2024)
-              </p>
-              <p>
-                Saya membangun aplikasi web skala produksi dan sistem AI yang menyederhanakan operasional bisnis, meningkatkan konversi, dan memberikan dampak ROI terukur. AI adalah salah satu alat rekayasa saya untuk membangun perangkat lunak lebih cepat, bersih, dan andal.
-              </p>
-            </div>
-          </div>
-
-          {/* Quick Academic & Certification Chips */}
-          <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-[#E6E6E4] text-xs text-[#555555]">
-            <span className="px-2.5 py-1 rounded-md bg-white border border-[#E6E6E4] font-medium flex items-center gap-1.5">
-              🎓 S1 Teknologi Informasi UTY (2024)
-            </span>
-            <span className="px-2.5 py-1 rounded-md bg-white border border-[#E6E6E4] font-medium flex items-center gap-1.5">
-              🏆 Microsoft Certified Specialist
-            </span>
-            <span className="px-2.5 py-1 rounded-md bg-white border border-[#E6E6E4] font-medium flex items-center gap-1.5">
-              🎬 TikTok AI Content Lab
-            </span>
-          </div>
-        </div>
-
-        {/* Notion Workspace Desktop Showcase Frame */}
-        <div className="rounded-2xl border border-[#E6E6E4] bg-white p-3 shadow-xl space-y-2">
           {/* Notion Window Top Bar */}
-          <div className="flex items-center justify-between px-3 py-1.5 bg-[#F7F6F3] rounded-xl border border-[#E6E6E4] text-[11px] font-mono text-[#666666]">
-            <div className="flex items-center gap-2">
+          <div className="flex items-center justify-between px-5 py-3 bg-[#161616] border-b border-[#2A2A2A] text-xs font-mono text-[#A0A0A0] relative z-10">
+            <div className="flex items-center gap-2.5">
               <div className="flex gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]" />
-                <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
-                <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F]" />
+                <span className="w-3 h-3 rounded-full bg-[#FF5F56]" />
+                <span className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
+                <span className="w-3 h-3 rounded-full bg-[#27C93F]" />
               </div>
-              <span className="ml-2 font-medium text-[#050505]">bagus-workspace / studio-workstation</span>
+              <span className="ml-2 font-medium text-white">bagus-workspace / studio-hero</span>
             </div>
-            <div className="hidden sm:flex items-center gap-3">
+            <div className="hidden sm:flex items-center gap-4 text-[11px]">
               <span>Share</span>
               <span>•</span>
-              <span>Export PDF</span>
+              <a href="/assets/cv-bagus-supriyanto.pdf.pdf" download className="hover:text-white transition-colors">Export PDF ↓</a>
             </div>
           </div>
 
-          {/* Large Real Photography inside Notion Frame */}
-          <div className="relative aspect-[16/9] w-full rounded-xl overflow-hidden bg-[#111111]">
+          {/* Background Workstation Image with Dark Overlay */}
+          <div className="relative p-6 sm:p-12 lg:p-14 min-h-[520px] flex flex-col justify-between">
             <img
               src="/assets/developer-workstation.jpg"
-              alt="Developer Workstation Photography"
-              className="w-full h-full object-cover"
+              alt="Developer Workstation Studio Background"
+              className="absolute inset-0 w-full h-full object-cover object-center opacity-30"
             />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/90 to-[#050505]/40" />
+
+            {/* Content Layer Inside Window */}
+            <div className="relative z-10 space-y-6 max-w-3xl">
+              
+              <div className="flex items-center gap-3">
+                <span className="text-3xl sm:text-4xl">⚡</span>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#222222]/80 backdrop-blur-md border border-[#333333] text-xs font-mono text-[#DDDDDD]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>bagus-supriyanto / ai-product-engineer</span>
+                </div>
+              </div>
+
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.1]">
+                Building software products <br />
+                that solve real business problems.
+              </h1>
+
+              {/* Notion Callout Box Glassmorphism */}
+              <div className="p-5 sm:p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 space-y-3">
+                <div className="flex items-start gap-3">
+                  <span className="text-xl shrink-0 mt-0.5">💡</span>
+                  <div className="space-y-1.5 text-xs sm:text-sm text-[#EEEEEE] leading-relaxed">
+                    <p className="font-bold text-white">
+                      AI Product Engineer • S1 IT Graduate UTY (2024)
+                    </p>
+                    <p>
+                      Saya membangun aplikasi web skala produksi dan sistem AI yang menyederhanakan operasional bisnis, meningkatkan konversi, dan memberikan dampak ROI terukur.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-white/10 text-xs text-[#DDDDDD]">
+                  <span className="px-2.5 py-1 rounded-md bg-black/40 border border-white/10 font-medium">
+                    🎓 S1 Teknologi Informasi UTY (2024)
+                  </span>
+                  <span className="px-2.5 py-1 rounded-md bg-black/40 border border-white/10 font-medium">
+                    🏆 Microsoft Certified Specialist
+                  </span>
+                  <span className="px-2.5 py-1 rounded-md bg-black/40 border border-white/10 font-medium">
+                    🎬 TikTok AI Content Lab
+                  </span>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex flex-wrap items-center gap-4 pt-2">
+                <a
+                  href="#work"
+                  className="px-6 py-3 rounded-xl bg-white text-[#050505] text-xs font-bold hover:bg-[#EAE8E1] transition-all cursor-pointer flex items-center gap-2 shadow-lg"
+                >
+                  <span>Explore Projects Database</span>
+                  <ArrowRight className="w-4 h-4 text-[#050505]" />
+                </a>
+
+                <a
+                  href="/assets/cv-bagus-supriyanto.pdf.pdf"
+                  download
+                  className="px-5 py-3 rounded-xl bg-black/50 border border-white/20 text-white text-xs font-semibold hover:bg-black/70 transition-all cursor-pointer flex items-center gap-2"
+                >
+                  <span>Download Resume</span>
+                  <Download className="w-4 h-4 text-[#CCCCCC]" />
+                </a>
+              </div>
+
+            </div>
+
           </div>
+
         </div>
 
       </section>
@@ -592,8 +613,8 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
       {/* ===== 8. NOTION FOOTER BAR ===== */}
       <footer className="py-8 px-6 max-w-6xl mx-auto border-t border-[#E6E6E4] text-xs font-mono text-[#777777] flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-2">
-          <div className="w-5 h-5 rounded bg-[#050505] text-white flex items-center justify-center text-[10px] font-bold">
-            N
+          <div className="w-6 h-5 rounded bg-[#050505] text-white flex items-center justify-center text-[9px] font-bold tracking-tight">
+            BS
           </div>
           <span>Bagus Supriyanto Workspace © 2026. Built with Notion UI Philosophy.</span>
         </div>
