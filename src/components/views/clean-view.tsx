@@ -46,20 +46,16 @@ interface CleanViewProps {
   onSwitchToGameMode: () => void;
 }
 
-// Complete Projects formatted as Notion Database Entries
-const NOTION_PROJECTS = [
+// 4 Real Projects Data
+const SELECTED_PROJECTS = [
   {
     project: FEATURED_PROJECTS[0], // SmartCafe
     id: "proj-1",
     title: "SmartCafe POS & Kitchen Dispatch SaaS",
-    icon: "☕",
     category: "SaaS Platform",
-    status: "Production Live",
     year: "2026",
-    impact: "⚡ 45% Faster Dispatch",
+    impact: "45% Faster Order Dispatch",
     summary: "All-in-one cafe management platform for real-time POS checkout, kitchen display dispatch, inventory tracking, and multi-branch revenue analytics.",
-    problem: "Manual pen-and-paper cafe ordering caused long checkout queues, kitchen order miscommunication, and a 15% revenue leak from untracked inventory.",
-    solution: "Architected a real-time web POS & kitchen dispatch system with instant Supabase state synchronization and Row Level Security (RLS).",
     mockup: "/assets/developer-workstation.jpg",
     tags: ["Next.js 16", "Supabase BaaS", "PostgreSQL", "Prisma ORM", "Tailwind CSS"]
   },
@@ -67,14 +63,10 @@ const NOTION_PROJECTS = [
     project: FEATURED_PROJECTS[1], // PT SMS
     id: "proj-2",
     title: "PT Surya Mitra Service Industrial Portal",
-    icon: "🏭",
     category: "Enterprise Web",
-    status: "Production Live",
     year: "2025",
-    impact: "📈 +65% B2B Inquiries",
+    impact: "+65% B2B Inquiry Conversions",
     summary: "High-performance enterprise portal and product catalog for an industrial equipment, marine logistics & supply partner in Bintan.",
-    problem: "An outdated online presence failed to communicate technical capability to international corporate procurement managers in Bintan.",
-    solution: "Engineered an editorial web platform featuring crisp industrial showcases, product catalogs, and automated inquiry routing.",
     mockup: "/assets/projects/ptsms-mockup.png",
     tags: ["Next.js", "Prisma ORM", "PostgreSQL", "Tailwind CSS"]
   },
@@ -82,57 +74,46 @@ const NOTION_PROJECTS = [
     project: FEATURED_PROJECTS[2], // Invoice Application
     id: "proj-3",
     title: "Automated Billing & PDF Invoicing System",
-    icon: "📄",
     category: "Automation System",
-    status: "Production Live",
     year: "2024",
-    impact: "⏱️ 8+ Hours Saved/Wk",
+    impact: "8+ Hours Saved Weekly",
     summary: "Streamlined billing software featuring instant client management, itemized tax calculations, instant PDF export, and payment tracking.",
-    problem: "Small business owners lost 10+ hours weekly manually formatting billing spreadsheets and tracking overdue payments.",
-    solution: "Built a streamlined billing engine with automated client tracking, instant PDF rendering, and overdue payment alerts.",
     mockup: "/assets/projects/invoice-mockup.png",
-    tags: ["Next.js", "PostgreSQL", "Prisma ORM", "PDF Kit"]
+    tags: ["Next.js", "PostgreSQL", "Prisma ORM", "PDF Engine"]
   },
   {
     project: FEATURED_PROJECTS[3], // AI Automation Lab
     id: "proj-4",
     title: "Generative AI Video & Content Automation Lab",
-    icon: "🎬",
     category: "AI Automation",
-    status: "Active Research",
     year: "2025",
-    impact: "🤖 10x Content Production",
+    impact: "10x Video Production Speed",
     summary: "Automated video script generation and AI video processing pipeline for TikTok & social content channels.",
-    problem: "Manual video scriptwriting and video editing required 5+ hours per short video asset.",
-    solution: "Integrated Google Gemini Veo & OpenAI API with automated prompt orchestration and video rendering scripts.",
     mockup: "/assets/profile-photo.jpg",
     tags: ["OpenAI API", "Google Gemini", "Python", "Automation"]
   }
 ];
 
-// Notion Curated Instruments Matrix
-const NOTION_INSTRUMENTS = [
+// Curated Instruments Matrix
+const INSTRUMENTS_MATRIX = [
   {
     category: "Core Engineering",
-    icon: "⚡",
     items: [
       { name: "Next.js 16", role: "App Router, SSR & Server Actions" },
-      { name: "TypeScript", role: "Strict Static Type Safety" },
+      { name: "TypeScript", role: "Strict Type Safety & Interfaces" },
       { name: "Tailwind CSS", role: "Utility Design System" }
     ]
   },
   {
     category: "Data & Infrastructure",
-    icon: "🐘",
     items: [
       { name: "Supabase", role: "BaaS, Auth & Realtime RLS" },
       { name: "PostgreSQL", role: "Relational Database Engine" },
-      { name: "Prisma ORM", role: "Type-Safe Client & Migration" }
+      { name: "Prisma ORM", role: "Type-Safe Client & Migrations" }
     ]
   },
   {
     category: "Artificial Intelligence",
-    icon: "🧠",
     items: [
       { name: "OpenAI API", role: "GPT-4o & Function Calling" },
       { name: "Google Gemini", role: "Multimodal AI & Veo Video Lab" },
@@ -140,12 +121,11 @@ const NOTION_INSTRUMENTS = [
     ]
   },
   {
-    category: "DevOps & Prototyping",
-    icon: "▲",
+    category: "DevOps & Tooling",
     items: [
       { name: "Cursor IDE", role: "AI-Augmented Software Dev" },
       { name: "GitHub & CI/CD", role: "Version Control & Automations" },
-      { name: "Vercel", role: "Global Edge Network & Deployment" }
+      { name: "Vercel", role: "Global Edge Network Deployment" }
     ]
   }
 ];
@@ -155,51 +135,41 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
   const filteredProjects = selectedCategory === "All"
-    ? NOTION_PROJECTS
-    : NOTION_PROJECTS.filter(p => p.category === selectedCategory);
+    ? SELECTED_PROJECTS
+    : SELECTED_PROJECTS.filter(p => p.category === selectedCategory);
 
   return (
-    <div className="w-full bg-[#FFFFFF] text-[#050505] min-h-screen font-sans antialiased selection:bg-[#EAE8E1] selection:text-[#050505]">
+    <div className="w-full bg-[#FAF9F6] text-[#161616] min-h-screen font-sans antialiased selection:bg-[#E8DFCE] selection:text-[#161616]">
       
-      {/* ===== 1. NOTION BRAND HEADER NAVBAR ===== */}
-      <header className="sticky top-0 inset-x-0 z-50 bg-[#FFFFFF]/90 backdrop-blur-md border-b border-[#E6E6E4]">
-        <div className="max-w-6xl mx-auto px-6 py-3.5 flex items-center justify-between">
+      {/* ===== 1. HEADER NAVBAR ===== */}
+      <header className="sticky top-0 inset-x-0 z-50 bg-[#FAF9F6]/90 backdrop-blur-md border-b border-[#E6E4DD]">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           
-          {/* Logo Notion Style: Icon + Name */}
+          {/* Logo BS */}
           <a href="#" className="flex items-center gap-2.5 group">
-            <div className="w-8 h-7 rounded-lg bg-[#050505] text-white flex items-center justify-center text-[11px] font-mono font-bold tracking-tight">
+            <div className="w-8 h-8 rounded-lg bg-[#161616] text-white flex items-center justify-center text-xs font-mono font-bold tracking-wider">
               BS
             </div>
-            <span className="font-bold text-base tracking-tight text-[#050505] group-hover:text-[#555555] transition-colors">
-              Bagus Supriyanto <span className="font-normal text-xs text-[#777777] ml-1">/ AI Product Engineer</span>
+            <span className="font-serif-editorial font-bold text-lg text-[#161616] group-hover:text-[#B89355] transition-colors">
+              Bagus Supriyanto
             </span>
           </a>
 
-          {/* Navigation Links Notion Style */}
-          <nav className="hidden md:flex items-center gap-7 text-xs font-medium text-[#444444]">
-            <a href="#work" className="hover:text-[#050505] transition-colors flex items-center gap-1.5">
-              <span>📁</span> Projects
-            </a>
-            <a href="#experience" className="hover:text-[#050505] transition-colors flex items-center gap-1.5">
-              <span>💼</span> Experience
-            </a>
-            <a href="#thinking" className="hover:text-[#050505] transition-colors flex items-center gap-1.5">
-              <span>💡</span> Approach
-            </a>
-            <a href="#instruments" className="hover:text-[#050505] transition-colors flex items-center gap-1.5">
-              <span>🛠️</span> Instruments
-            </a>
-            <a href="#contact" className="hover:text-[#050505] transition-colors flex items-center gap-1.5">
-              <span>✉️</span> Contact
-            </a>
+          {/* Navigation Links */}
+          <nav className="hidden md:flex items-center gap-8 text-xs font-mono tracking-widest text-[#66645E] uppercase font-semibold">
+            <a href="#about" className="hover:text-[#161616] transition-colors">About</a>
+            <a href="#work" className="hover:text-[#161616] transition-colors">Selected Work</a>
+            <a href="#experience" className="hover:text-[#161616] transition-colors">Experience</a>
+            <a href="#instruments" className="hover:text-[#161616] transition-colors">Instruments</a>
+            <a href="#contact" className="hover:text-[#161616] transition-colors">Contact</a>
           </nav>
 
-          {/* Right Controls: Pill Action Buttons */}
+          {/* Right Action Items */}
           <div className="flex items-center gap-3">
             <button
               onClick={onSwitchToGameMode}
-              className="px-3 py-1.5 rounded-lg bg-[#F7F6F3] border border-[#E6E6E4] text-[#444444] text-xs font-medium flex items-center gap-1.5 hover:bg-[#EAE8E1] hover:text-[#050505] transition-all cursor-pointer"
-              title="Switch to 16-Bit RPG Game World"
+              className="px-3.5 py-1.5 rounded-full bg-[#F0EEE6] border border-[#E6E4DD] text-[#55524C] text-[11px] font-mono font-semibold flex items-center gap-1.5 hover:bg-[#E5E2D8] hover:text-[#161616] transition-all cursor-pointer"
+              title="Switch to 16-Bit RPG World"
             >
               <Gamepad2 className="w-3.5 h-3.5 text-[#B89355]" />
               <span className="hidden sm:inline">16-Bit RPG</span>
@@ -208,16 +178,16 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
             <a
               href="/assets/cv-bagus-supriyanto.pdf.pdf"
               download
-              className="px-3.5 py-1.5 rounded-lg bg-[#050505] text-white text-xs font-medium flex items-center gap-1.5 hover:bg-[#222222] transition-all cursor-pointer shadow-2xs"
+              className="px-4 py-2 rounded-full bg-[#161616] text-[#FAF9F6] text-xs font-mono font-semibold flex items-center gap-1.5 hover:bg-[#33312D] transition-all cursor-pointer shadow-xs"
             >
-              <span>Get Resume</span>
+              <span>RESUME</span>
               <Download className="w-3.5 h-3.5" />
             </a>
 
-            {/* Mobile Nav Button */}
+            {/* Mobile Nav Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-lg bg-[#F7F6F3] text-[#050505] hover:bg-[#E6E6E4]"
+              className="md:hidden p-2 rounded-lg bg-[#F0EEE6] text-[#161616] hover:bg-[#E6E4DD]"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -225,26 +195,26 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
 
         </div>
 
-        {/* Mobile Dropdown */}
+        {/* Mobile Dropdown Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden bg-[#FFFFFF] border-b border-[#E6E6E4] px-6 py-5 space-y-3 text-xs font-medium text-[#050505]">
-            <a href="#work" onClick={() => setMobileMenuOpen(false)} className="block py-1">📁 Projects Database</a>
-            <a href="#experience" onClick={() => setMobileMenuOpen(false)} className="block py-1">💼 Career Experience</a>
-            <a href="#thinking" onClick={() => setMobileMenuOpen(false)} className="block py-1">💡 Engineering Approach</a>
-            <a href="#instruments" onClick={() => setMobileMenuOpen(false)} className="block py-1">🛠️ Technical Stack</a>
-            <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="block py-1">✉️ Contact Page</a>
+          <div className="md:hidden bg-[#FAF9F6] border-b border-[#E6E4DD] px-6 py-6 space-y-3 text-xs font-mono font-bold tracking-widest text-[#161616] uppercase">
+            <a href="#about" onClick={() => setMobileMenuOpen(false)} className="block py-1">About Me</a>
+            <a href="#work" onClick={() => setMobileMenuOpen(false)} className="block py-1">Selected Work</a>
+            <a href="#experience" onClick={() => setMobileMenuOpen(false)} className="block py-1">Career Experience</a>
+            <a href="#instruments" onClick={() => setMobileMenuOpen(false)} className="block py-1">Instruments</a>
+            <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="block py-1">Contact</a>
           </div>
         )}
       </header>
 
-      {/* ===== 2. INTEGRATED NOTION HERO SECTION ===== */}
-      <section className="pt-8 pb-16 sm:pt-12 sm:pb-24 px-6 max-w-6xl mx-auto">
+      {/* ===== 2. HERO SECTION ===== */}
+      <section className="pt-10 pb-16 sm:pt-14 sm:pb-20 px-6 max-w-6xl mx-auto">
         
-        {/* Unified Notion Window Container */}
-        <div className="rounded-3xl border border-[#E6E6E4] bg-[#050505] text-white overflow-hidden shadow-2xl relative">
+        {/* Workstation Frame */}
+        <div className="rounded-3xl border border-[#E6E4DD] bg-[#161616] text-white overflow-hidden shadow-2xl relative">
           
-          {/* Notion Window Top Bar */}
-          <div className="flex items-center justify-between px-5 py-3 bg-[#161616] border-b border-[#2A2A2A] text-xs font-mono text-[#A0A0A0] relative z-10">
+          {/* Top Bar */}
+          <div className="flex items-center justify-between px-5 py-3 bg-[#222222] border-b border-[#333333] text-xs font-mono text-[#AAAAAA] relative z-10">
             <div className="flex items-center gap-2.5">
               <div className="flex gap-1.5">
                 <span className="w-3 h-3 rounded-full bg-[#FF5F56]" />
@@ -254,81 +224,54 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
               <span className="ml-2 font-medium text-white">bagus-workspace / studio-hero</span>
             </div>
             <div className="hidden sm:flex items-center gap-4 text-[11px]">
-              <span>Share</span>
+              <span>BINTAN, INDONESIA</span>
               <span>•</span>
-              <a href="/assets/cv-bagus-supriyanto.pdf.pdf" download className="hover:text-white transition-colors">Export PDF ↓</a>
+              <a href="/assets/cv-bagus-supriyanto.pdf.pdf" download className="hover:text-white transition-colors">PDF RESUME ↓</a>
             </div>
           </div>
 
           {/* Background Workstation Image with Dark Overlay */}
-          <div className="relative p-6 sm:p-12 lg:p-14 min-h-[520px] flex flex-col justify-between">
+          <div className="relative p-6 sm:p-12 lg:p-14 min-h-[500px] flex flex-col justify-between">
             <img
               src="/assets/developer-workstation.jpg"
               alt="Developer Workstation Studio Background"
               className="absolute inset-0 w-full h-full object-cover object-center opacity-30"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/90 to-[#050505]/40" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#161616] via-[#161616]/90 to-[#161616]/40" />
 
             {/* Content Layer Inside Window */}
             <div className="relative z-10 space-y-6 max-w-3xl">
               
-              <div className="flex items-center gap-3">
-                <span className="text-3xl sm:text-4xl">⚡</span>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#222222]/80 backdrop-blur-md border border-[#333333] text-xs font-mono text-[#DDDDDD]">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  <span>bagus-supriyanto / ai-product-engineer</span>
-                </div>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#2B2B2B]/80 backdrop-blur-md border border-[#444444] text-[11px] font-mono tracking-widest text-[#DDDDDD] uppercase">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span>AI PRODUCT ENGINEER • S1 IT GRADUATE</span>
               </div>
 
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.1]">
-                Building software products <br />
-                that solve real business problems.
+              <h1 className="font-serif-editorial text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.08]">
+                Building digital products <br />
+                <span className="italic font-normal text-[#C5A059]">that solve real problems.</span>
               </h1>
 
-              {/* Notion Callout Box Glassmorphism */}
-              <div className="p-5 sm:p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 space-y-3">
-                <div className="flex items-start gap-3">
-                  <span className="text-xl shrink-0 mt-0.5">💡</span>
-                  <div className="space-y-1.5 text-xs sm:text-sm text-[#EEEEEE] leading-relaxed">
-                    <p className="font-bold text-white">
-                      AI Product Engineer • S1 IT Graduate UTY (2024)
-                    </p>
-                    <p>
-                      Saya membangun aplikasi web skala produksi dan sistem AI yang menyederhanakan operasional bisnis, meningkatkan konversi, dan memberikan dampak ROI terukur.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-white/10 text-xs text-[#DDDDDD]">
-                  <span className="px-2.5 py-1 rounded-md bg-black/40 border border-white/10 font-medium">
-                    🎓 S1 Teknologi Informasi UTY (2024)
-                  </span>
-                  <span className="px-2.5 py-1 rounded-md bg-black/40 border border-white/10 font-medium">
-                    🏆 Microsoft Certified Specialist
-                  </span>
-                  <span className="px-2.5 py-1 rounded-md bg-black/40 border border-white/10 font-medium">
-                    🎬 TikTok AI Content Lab
-                  </span>
-                </div>
-              </div>
+              <p className="text-xs sm:text-base text-[#DDDDDD] font-normal leading-relaxed max-w-xl">
+                I engineer modern full-stack web applications and AI-powered platforms that simplify complex business operations, boost conversions, and deliver measurable ROI.
+              </p>
 
               {/* Action Buttons */}
               <div className="flex flex-wrap items-center gap-4 pt-2">
                 <a
                   href="#work"
-                  className="px-6 py-3 rounded-xl bg-white text-[#050505] text-xs font-bold hover:bg-[#EAE8E1] transition-all cursor-pointer flex items-center gap-2 shadow-lg"
+                  className="px-6 py-3 rounded-full bg-white text-[#161616] text-xs font-mono font-bold uppercase tracking-wider hover:bg-[#EAE8E1] transition-all cursor-pointer flex items-center gap-2 shadow-lg"
                 >
-                  <span>Explore Projects Database</span>
-                  <ArrowRight className="w-4 h-4 text-[#050505]" />
+                  <span>EXPLORE SELECTED WORK</span>
+                  <ArrowRight className="w-4 h-4 text-[#161616]" />
                 </a>
 
                 <a
-                  href="/assets/cv-bagus-supriyanto.pdf.pdf"
-                  download
-                  className="px-5 py-3 rounded-xl bg-black/50 border border-white/20 text-white text-xs font-semibold hover:bg-black/70 transition-all cursor-pointer flex items-center gap-2"
+                  href="#about"
+                  className="px-6 py-3 rounded-full bg-black/40 border border-white/20 text-white text-xs font-mono font-semibold uppercase tracking-wider hover:bg-black/60 transition-all cursor-pointer flex items-center gap-2"
                 >
-                  <span>Download Resume</span>
-                  <Download className="w-4 h-4 text-[#CCCCCC]" />
+                  <span>ABOUT ME</span>
+                  <ArrowRight className="w-4 h-4 text-[#CCCCCC]" />
                 </a>
               </div>
 
@@ -340,288 +283,271 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
 
       </section>
 
-      {/* ===== 3. NOTION DATABASE SECTION: SELECTED WORK ===== */}
-      <section id="work" className="py-16 px-6 max-w-6xl mx-auto space-y-8 border-t border-[#E6E6E4]">
-        
-        {/* Notion Database Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E6E6E4] pb-4">
-          <div className="flex items-center gap-2.5">
-            <span className="text-2xl">📁</span>
-            <div>
-              <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-[#050505]">
-                Projects Database
-              </h2>
-              <p className="text-xs text-[#666666]">
-                Case studies demonstrating business challenge, solution, and measurable ROI.
+      {/* ===== 3. ABOUT ME SECTION (ELEGANT & AUTHENTIC) ===== */}
+      <section id="about" className="py-20 px-6 max-w-6xl mx-auto border-t border-[#E6E4DD]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          
+          {/* Portrait Photo Left (5 Cols) */}
+          <div className="lg:col-span-5 space-y-4">
+            <div className="relative rounded-3xl overflow-hidden border border-[#E6E4DD] bg-white p-3.5 shadow-xl">
+              <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-[#161616]">
+                <img
+                  src="/assets/profile-photo.jpg"
+                  alt="Bagus Supriyanto Portrait"
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
+            </div>
+            <div className="text-center font-signature text-3xl text-[#161616] font-bold">
+              Bagus Supriyanto
+            </div>
+          </div>
+
+          {/* Narrative Bio Right (7 Cols) */}
+          <div className="lg:col-span-7 space-y-6">
+            
+            <div className="text-[11px] font-mono font-bold tracking-[0.2em] text-[#85827A] uppercase">
+              ABOUT THE BUILDER
+            </div>
+
+            <h2 className="font-serif-editorial text-3xl sm:text-4xl font-bold text-[#161616] leading-tight">
+              Combining Industrial Precision with Modern Full-Stack Software Engineering.
+            </h2>
+
+            <div className="space-y-4 text-xs sm:text-base text-[#55524C] leading-relaxed font-normal">
+              <p>
+                Saya adalah lulusan Sarjana Komputer dari <strong className="text-[#161616]">Universitas Teknologi Yogyakarta (S1 Teknologi Informasi, 2024)</strong>. Latar belakang saya menggabungkan disiplin kerja industri manufaktur presisi (<strong className="text-[#161616]">PT Pertama Precision Indonesia</strong>) dengan kecepatan rekayasa perangkat lunak modern.
+              </p>
+              <p>
+                Saya tidak memandang AI sebagai pengganti rekayasa perangkat lunak, melainkan sebagai <strong className="text-[#161616]">katalisator produktivitas</strong> yang memungkinkan ide dikembangkan menjadi aplikasi SaaS skala produksi dalam waktu yang jauh lebih cepat, tanpa mengorbankan kualitas arsitektur data.
               </p>
             </div>
+
+            {/* 3 Academic & Certification Highlights */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-[#E6E4DD]">
+              <div className="space-y-1">
+                <div className="text-[10px] font-mono text-[#85827A] uppercase tracking-wider">ACADEMIC DEGREE</div>
+                <div className="text-xs font-bold text-[#161616]">S1 IT UTY (2024)</div>
+                <div className="text-[11px] text-[#66645E]">Sarjana Komputer</div>
+              </div>
+              <div className="space-y-1">
+                <div className="text-[10px] font-mono text-[#85827A] uppercase tracking-wider">CERTIFICATION</div>
+                <div className="text-xs font-bold text-[#161616]">Microsoft Certified</div>
+                <div className="text-[11px] text-[#66645E]">Certiport Specialist</div>
+              </div>
+              <div className="space-y-1">
+                <div className="text-[10px] font-mono text-[#85827A] uppercase tracking-wider">AI RESEARCH LAB</div>
+                <div className="text-xs font-bold text-[#161616]">TikTok AI Content Lab</div>
+                <div className="text-[11px] text-[#66645E]">Generative Video Lab</div>
+              </div>
+            </div>
+
           </div>
 
-          {/* Notion Filter Bar */}
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-2 sm:pb-0">
-            {["All", "SaaS Platform", "Enterprise Web", "Automation System", "AI Automation"].map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-3 py-1 rounded-lg text-xs font-medium cursor-pointer transition-all ${
-                  selectedCategory === cat
-                    ? 'bg-[#050505] text-white shadow-2xs'
-                    : 'bg-[#F7F6F3] text-[#555555] hover:bg-[#EAE8E1] hover:text-[#050505]'
-                }`}
+        </div>
+      </section>
+
+      {/* ===== 4. SELECTED WORK ===== */}
+      <section id="work" className="py-20 px-6 max-w-6xl mx-auto border-t border-[#E6E4DD]">
+        <div className="space-y-10">
+          
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-[#E6E4DD] pb-6 gap-4">
+            <div className="space-y-2">
+              <div className="text-[11px] font-mono font-bold tracking-[0.2em] text-[#85827A] uppercase">
+                SELECTED WORK
+              </div>
+              <h2 className="font-serif-editorial text-3xl sm:text-4xl font-bold text-[#161616]">
+                Case Studies & Delivered Products
+              </h2>
+            </div>
+            <p className="text-xs font-mono text-[#85827A] uppercase tracking-wider">
+              Click any project card to view full drawer breakdown
+            </p>
+          </div>
+
+          {/* Projects Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {SELECTED_PROJECTS.map((item) => (
+              <div
+                key={item.id}
+                onClick={() => onSelectProject(item.project)}
+                className="group bg-white border border-[#E6E4DD] hover:border-[#161616] rounded-2xl overflow-hidden transition-all duration-300 p-5 cursor-pointer shadow-xs hover:shadow-md space-y-4 flex flex-col justify-between"
               >
-                {cat}
-              </button>
+                <div className="space-y-3">
+                  <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden bg-[#F0EEE6] border border-[#E6E4DD]">
+                    <img
+                      src={item.mockup}
+                      alt={item.title}
+                      className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-md bg-[#161616] text-white font-mono text-[9px] font-bold">
+                      {item.impact}
+                    </div>
+                  </div>
+
+                  <div className="space-y-1">
+                    <div className="text-[10px] font-mono text-[#85827A]">
+                      {item.category} • {item.year}
+                    </div>
+                    <h3 className="font-serif-editorial text-lg font-bold text-[#161616] group-hover:text-[#B89355] transition-colors flex items-center justify-between">
+                      <span>{item.title}</span>
+                      <ArrowUpRight className="w-4 h-4 text-[#85827A] group-hover:text-[#B89355]" />
+                    </h3>
+                  </div>
+
+                  <p className="text-xs text-[#66645E] leading-relaxed line-clamp-3">
+                    {item.summary}
+                  </p>
+                </div>
+
+                <div className="pt-3 border-t border-[#E6E4DD] flex items-center justify-between text-xs font-mono font-bold text-[#161616]">
+                  <div className="flex flex-wrap gap-1">
+                    {item.tags.slice(0, 2).map((t) => (
+                      <span key={t} className="px-2 py-0.5 rounded bg-[#F0EEE6] text-[#55524C] text-[10px]">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                  <span className="flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                    VIEW <ArrowRight className="w-3.5 h-3.5" />
+                  </span>
+                </div>
+
+              </div>
             ))}
           </div>
+
         </div>
+      </section>
 
-        {/* Notion Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {filteredProjects.map((item) => (
-            <div
-              key={item.id}
-              onClick={() => onSelectProject(item.project)}
-              className="group bg-white border border-[#E6E6E4] hover:border-[#A0A0A0] hover:shadow-md rounded-2xl overflow-hidden transition-all duration-300 p-5 cursor-pointer space-y-4 flex flex-col justify-between"
-            >
-              <div className="space-y-3">
-                {/* Mockup Header */}
-                <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden bg-[#F7F6F3] border border-[#E6E6E4]">
-                  <img
-                    src={item.mockup}
-                    alt={item.title}
-                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute top-2.5 right-2.5 px-2.5 py-0.5 rounded-md bg-[#050505]/90 text-white font-mono text-[10px] font-semibold">
-                    {item.impact}
-                  </div>
-                </div>
+      {/* ===== 5. CAREER EXPERIENCE ===== */}
+      <section id="experience" className="py-20 px-6 max-w-6xl mx-auto border-t border-[#E6E4DD]">
+        <div className="space-y-10">
+          
+          <div className="space-y-2 border-b border-[#E6E4DD] pb-6">
+            <div className="text-[11px] font-mono font-bold tracking-[0.2em] text-[#85827A] uppercase">
+              CAREER TIMELINE
+            </div>
+            <h2 className="font-serif-editorial text-3xl sm:text-4xl font-bold text-[#161616]">
+              Professional Experience & History
+            </h2>
+          </div>
 
-                {/* Card Title & Icon */}
-                <div className="space-y-1">
-                  <div className="flex items-center gap-2 text-xs font-mono text-[#777777]">
-                    <span>{item.icon}</span>
-                    <span>{item.category}</span>
-                    <span>•</span>
-                    <span>{item.year}</span>
-                  </div>
-                  <h3 className="text-base font-bold text-[#050505] group-hover:text-[#0055FF] transition-colors flex items-center justify-between">
-                    <span>{item.title}</span>
-                    <ArrowUpRight className="w-4 h-4 text-[#777777] group-hover:text-[#0055FF]" />
-                  </h3>
-                </div>
-
-                {/* Summary */}
-                <p className="text-xs text-[#555555] leading-relaxed line-clamp-3">
-                  {item.summary}
-                </p>
-              </div>
-
-              {/* Tech Stack Pills & Action */}
-              <div className="pt-3 border-t border-[#E6E6E4] space-y-2.5">
-                <div className="flex flex-wrap gap-1">
-                  {item.tags.slice(0, 3).map((t) => (
-                    <span key={t} className="px-2 py-0.5 rounded bg-[#F7F6F3] border border-[#E6E6E4] text-[#444444] text-[10px] font-mono">
-                      {t}
+          <div className="space-y-4">
+            {CV_WORK_EXPERIENCES.map((exp) => (
+              <div
+                key={exp.step}
+                className="p-6 rounded-2xl bg-white border border-[#E6E4DD] shadow-xs space-y-4 hover:border-[#161616] transition-all"
+              >
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#E6E4DD] pb-3">
+                  <div className="flex items-center gap-3">
+                    <span className="px-2.5 py-0.5 rounded-full bg-[#F0EEE6] border border-[#E6E4DD] text-[10px] font-mono font-bold text-[#161616]">
+                      FASE 0{exp.step}
                     </span>
+                    <h3 className="text-base font-bold text-[#161616]">{exp.company}</h3>
+                  </div>
+
+                  <div className="flex items-center gap-3 text-xs font-mono text-[#66645E]">
+                    <span className="font-semibold text-[#161616]">{exp.role}</span>
+                    <span>•</span>
+                    <span>{exp.period}</span>
+                  </div>
+                </div>
+
+                <ul className="space-y-2 text-xs text-[#55524C] leading-relaxed">
+                  {exp.points.map((pt, idx) => (
+                    <li key={idx} className="flex items-start gap-2.5">
+                      <span className="text-[#B89355] font-bold shrink-0 mt-0.5">•</span>
+                      <span>{pt}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* ===== 6. TECHNICAL INSTRUMENTS MATRIX ===== */}
+      <section id="instruments" className="py-20 px-6 max-w-6xl mx-auto border-t border-[#E6E4DD]">
+        <div className="space-y-10">
+          
+          <div className="space-y-2 border-b border-[#E6E4DD] pb-6">
+            <div className="text-[11px] font-mono font-bold tracking-[0.2em] text-[#85827A] uppercase">
+              TECHNICAL INSTRUMENTS
+            </div>
+            <h2 className="font-serif-editorial text-3xl sm:text-4xl font-bold text-[#161616]">
+              Curated Stack & Instruments
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {INSTRUMENTS_MATRIX.map((group) => (
+              <div key={group.category} className="p-6 rounded-2xl bg-white border border-[#E6E4DD] space-y-4 shadow-xs">
+                <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-[#161616] border-b border-[#E6E4DD] pb-2">
+                  {group.category}
+                </h3>
+
+                <div className="space-y-3">
+                  {group.items.map((item) => (
+                    <div key={item.name} className="space-y-0.5">
+                      <div className="text-xs font-bold text-[#161616]">{item.name}</div>
+                      <div className="text-[11px] font-mono text-[#66645E]">{item.role}</div>
+                    </div>
                   ))}
                 </div>
-
-                <div className="text-xs font-semibold text-[#050505] flex items-center justify-between group-hover:translate-x-1 transition-transform">
-                  <span>Open Case Study</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-[#555555]" />
-                </div>
               </div>
+            ))}
+          </div>
 
-            </div>
-          ))}
         </div>
-
       </section>
 
-      {/* ===== 4. WORK EXPERIENCE / CAREER DATABASE ===== */}
-      <section id="experience" className="py-16 px-6 max-w-6xl mx-auto space-y-8 border-t border-[#E6E6E4]">
-        
-        <div className="flex items-center gap-2.5 border-b border-[#E6E6E4] pb-4">
-          <span className="text-2xl">💼</span>
-          <div>
-            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-[#050505]">
-              Career & Experience Database
+      {/* ===== 7. CONTACT SECTION & FOOTER ===== */}
+      <section id="contact" className="py-20 px-6 max-w-6xl mx-auto border-t border-[#E6E4DD]">
+        <div className="p-8 sm:p-12 rounded-3xl bg-[#161616] text-[#FAF9F6] shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8">
+          
+          <div className="space-y-3 text-center md:text-left">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#2A2A2A] text-xs font-mono text-[#C5A059] uppercase">
+              <span>GET IN TOUCH</span>
+            </div>
+            <h2 className="font-serif-editorial text-3xl sm:text-5xl font-bold text-white">
+              Let's build something exceptional.
             </h2>
-            <p className="text-xs text-[#666666]">
-              Milestones, technical roles, precision background, and products delivered.
-            </p>
-          </div>
-        </div>
-
-        {/* Experience Timeline Cards */}
-        <div className="space-y-4">
-          {CV_WORK_EXPERIENCES.map((exp) => (
-            <div
-              key={exp.step}
-              className="p-6 rounded-2xl bg-white border border-[#E6E6E4] shadow-2xs space-y-4 hover:border-[#A0A0A0] transition-all"
-            >
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#E6E6E4] pb-3">
-                <div className="flex items-center gap-3">
-                  <span className="px-2.5 py-0.5 rounded bg-[#F7F6F3] border border-[#E6E6E4] text-xs font-mono font-bold text-[#050505]">
-                    FASE 0{exp.step}
-                  </span>
-                  <h3 className="text-base font-bold text-[#050505]">{exp.company}</h3>
-                </div>
-
-                <div className="flex items-center gap-3 text-xs font-mono text-[#666666]">
-                  <span className="font-semibold text-[#050505]">{exp.role}</span>
-                  <span>•</span>
-                  <span>{exp.period}</span>
-                </div>
-              </div>
-
-              <ul className="space-y-2 text-xs text-[#444444] leading-relaxed">
-                {exp.points.map((pt, idx) => (
-                  <li key={idx} className="flex items-start gap-2.5">
-                    <span className="text-[#B89355] font-bold shrink-0 mt-0.5">•</span>
-                    <span>{pt}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-
-      </section>
-
-      {/* ===== 5. NOTION CALLOUT PAGE BLOCK: ENGINEERING APPROACH ===== */}
-      <section id="thinking" className="py-16 px-6 max-w-6xl mx-auto space-y-6 border-t border-[#E6E6E4]">
-        
-        <div className="flex items-center gap-2.5 border-b border-[#E6E6E4] pb-4">
-          <span className="text-2xl">💡</span>
-          <div>
-            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-[#050505]">
-              Engineering Approach
-            </h2>
-            <p className="text-xs text-[#666666]">
-              Core product philosophy & how I solve complex software problems.
-            </p>
-          </div>
-        </div>
-
-        {/* 3 Notion Callout Blocks */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="p-5 rounded-2xl bg-[#F7F6F3] border border-[#E6E6E4] space-y-3">
-            <div className="flex items-center gap-2 text-sm font-bold text-[#050505]">
-              <span>🎯</span> Product-First Focus
-            </div>
-            <p className="text-xs text-[#555555] leading-relaxed">
-              Perangkat lunak harus menghilangkan hambatan operasional bisnis. Saya mendiagnosis masalah bisnis sebelum menulis kode untuk memastikan setiap fitur memberikan ROI terukur.
+            <p className="text-xs sm:text-sm text-[#AAAAAA] max-w-md">
+              Available for Full-time Software Engineering roles, AI Product Consulting, and Remote Contracts.
             </p>
           </div>
 
-          <div className="p-5 rounded-2xl bg-[#F7F6F3] border border-[#E6E6E4] space-y-3">
-            <div className="flex items-center gap-2 text-sm font-bold text-[#050505]">
-              <span>🛡️</span> Precision & Reliability
-            </div>
-            <p className="text-xs text-[#555555] leading-relaxed">
-              Latar belakang manufaktur presisi menanamkan kedisiplinan ketat untuk keandalan data, tipe data TypeScript, keamanan Supabase Row Level Security (RLS), dan pencegahan error.
-            </p>
-          </div>
-
-          <div className="p-5 rounded-2xl bg-[#F7F6F3] border border-[#E6E6E4] space-y-3">
-            <div className="flex items-center gap-2 text-sm font-bold text-[#050505]">
-              <span>⚡</span> AI Velocity Multiplier
-            </div>
-            <p className="text-xs text-[#555555] leading-relaxed">
-              Saya memanfaatkan AI LLM, otomasi script, dan alat modern sebagai pengganda produktivitas untuk merilis aplikasi web skala produksi dalam siklus yang jauh lebih cepat.
-            </p>
-          </div>
-        </div>
-
-      </section>
-
-      {/* ===== 6. NOTION INSTRUMENTS MATRIX ===== */}
-      <section id="instruments" className="py-16 px-6 max-w-6xl mx-auto space-y-6 border-t border-[#E6E6E4]">
-        
-        <div className="flex items-center gap-2.5 border-b border-[#E6E6E4] pb-4">
-          <span className="text-2xl">🛠️</span>
-          <div>
-            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-[#050505]">
-              Technical Stack & Instruments
-            </h2>
-            <p className="text-xs text-[#666666]">
-              Handpicked tools and infrastructure selected for reliability and rapid deployment.
-            </p>
-          </div>
-        </div>
-
-        {/* 4 Category Matrix */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {NOTION_INSTRUMENTS.map((group) => (
-            <div key={group.category} className="p-5 rounded-2xl bg-white border border-[#E6E6E4] space-y-4 shadow-2xs">
-              <div className="flex items-center gap-2 border-b border-[#E6E6E4] pb-2.5">
-                <span className="text-lg">{group.icon}</span>
-                <h3 className="text-xs font-bold uppercase tracking-wider text-[#050505]">{group.category}</h3>
-              </div>
-
-              <div className="space-y-3">
-                {group.items.map((item) => (
-                  <div key={item.name} className="space-y-0.5">
-                    <div className="text-xs font-bold text-[#050505]">{item.name}</div>
-                    <div className="text-[11px] font-mono text-[#666666]">{item.role}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-
-      </section>
-
-      {/* ===== 7. NOTION CONTACT PAGE & FOOTER ===== */}
-      <section id="contact" className="py-16 px-6 max-w-6xl mx-auto space-y-8 border-t border-[#E6E6E4]">
-        
-        <div className="p-6 sm:p-8 rounded-2xl bg-[#050505] text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
-          <div className="space-y-2 text-center md:text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#222222] text-xs font-mono text-[#CCCCCC]">
-              <span>✉️</span> Get in Touch
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
-              Let's discuss your next software product.
-            </h2>
-            <p className="text-xs text-[#AAAAAA] max-w-md">
-              Available for Full-time AI Product Engineer roles, Startup Contracts, and Technical Consulting.
-            </p>
-          </div>
-
-          <div className="flex flex-col sm:flex-row items-center gap-3">
+          <div className="flex flex-col sm:flex-row items-center gap-4">
             <a
               href={`mailto:${DEVELOPER_DATA.contact.email}`}
-              className="px-5 py-2.5 rounded-lg bg-white text-[#050505] text-xs font-semibold hover:bg-[#EAE8E1] transition-all cursor-pointer block text-center"
+              className="px-6 py-3.5 rounded-full bg-[#FAF9F6] text-[#161616] text-xs font-mono font-bold uppercase tracking-wider hover:bg-[#EAE8E1] transition-all cursor-pointer block text-center shadow-md"
             >
-              Send Email →
+              SEND AN EMAIL →
             </a>
             <a
               href={DEVELOPER_DATA.contact.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-5 py-2.5 rounded-lg bg-[#222222] border border-[#333333] text-white text-xs font-semibold hover:bg-[#333333] transition-all cursor-pointer block text-center"
+              className="px-6 py-3.5 rounded-full bg-[#262626] border border-[#3A3A3A] text-white text-xs font-mono font-bold uppercase tracking-wider hover:bg-[#333333] transition-all cursor-pointer block text-center"
             >
-              WhatsApp
+              WHATSAPP
             </a>
           </div>
-        </div>
 
+        </div>
       </section>
 
-      {/* ===== 8. NOTION FOOTER BAR ===== */}
-      <footer className="py-8 px-6 max-w-6xl mx-auto border-t border-[#E6E6E4] text-xs font-mono text-[#777777] flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div className="flex items-center gap-2">
-          <div className="w-6 h-5 rounded bg-[#050505] text-white flex items-center justify-center text-[9px] font-bold tracking-tight">
-            BS
-          </div>
-          <span>Bagus Supriyanto Workspace © 2026. Built with Notion UI Philosophy.</span>
+      {/* Footer */}
+      <footer className="py-8 px-6 max-w-6xl mx-auto border-t border-[#E6E4DD] text-xs font-mono text-[#85827A] flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          © 2026 Bagus Supriyanto. Designed with precision & craftsmanship.
         </div>
-
         <div className="flex items-center gap-4">
-          <a href="https://github.com/bagussupriyanto" target="_blank" rel="noopener noreferrer" className="hover:text-[#050505]">GitHub</a>
-          <a href="https://linkedin.com/in/bagussupriyanto" target="_blank" rel="noopener noreferrer" className="hover:text-[#050505]">LinkedIn</a>
+          <a href="https://github.com/bagussupriyanto" target="_blank" rel="noopener noreferrer" className="hover:text-[#161616]">GitHub</a>
+          <a href="https://linkedin.com/in/bagussupriyanto" target="_blank" rel="noopener noreferrer" className="hover:text-[#161616]">LinkedIn</a>
         </div>
       </footer>
 
