@@ -1,42 +1,18 @@
 "use client";
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
   ArrowRight,
   ArrowUpRight,
   Download,
   Mail,
-  Phone,
   MapPin,
   Github,
   Linkedin,
-  Lock,
-  ExternalLink,
   Gamepad2,
   Menu,
-  X,
-  Copy,
-  Check,
-  Zap,
-  Globe,
-  TrendingUp,
-  Target,
-  ShieldCheck,
-  UserCheck,
-  FileText,
-  Folder,
-  Database,
-  Sparkles,
-  ChevronRight,
-  Search,
-  Sliders,
-  Code2,
-  Laptop,
-  CheckSquare,
-  Award,
-  Briefcase,
-  GraduationCap
+  X
 } from 'lucide-react';
 import { DEVELOPER_DATA, FEATURED_PROJECTS, CV_WORK_EXPERIENCES } from '@/lib/constants';
 import { Project } from '@/types';
@@ -45,20 +21,6 @@ interface CleanViewProps {
   onSelectProject: (project: Project) => void;
   onSwitchToGameMode: () => void;
 }
-
-// Reusable Scroll Animation Variants
-const fadeInUp = {
-  initial: { opacity: 0, y: 35 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-60px" },
-  transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }
-};
-
-const staggerContainer = {
-  initial: {},
-  whileInView: { transition: { staggerChildren: 0.12 } },
-  viewport: { once: true, margin: "-60px" }
-};
 
 // 4 Real Projects Data
 const SELECTED_PROJECTS = [
@@ -108,55 +70,27 @@ const SELECTED_PROJECTS = [
   }
 ];
 
-// Curated Instruments Matrix with Notion-Style Aesthetic Icons
-const INSTRUMENTS_MATRIX = [
-  {
-    category: "Core Engineering",
-    icon: Code2,
-    emoji: "⚡",
-    items: [
-      { name: "Next.js 16", role: "App Router, SSR & Server Actions" },
-      { name: "TypeScript", role: "Strict Type Safety & Interfaces" },
-      { name: "Tailwind CSS", role: "Utility Design System" }
-    ]
-  },
-  {
-    category: "Data & Infrastructure",
-    icon: Database,
-    emoji: "🐘",
-    items: [
-      { name: "Supabase", role: "BaaS, Auth & Realtime RLS" },
-      { name: "PostgreSQL", role: "Relational Database Engine" },
-      { name: "Prisma ORM", role: "Type-Safe Client & Migrations" }
-    ]
-  },
-  {
-    category: "Artificial Intelligence",
-    icon: Sparkles,
-    emoji: "🧠",
-    items: [
-      { name: "OpenAI API", role: "GPT-4o & Function Calling" },
-      { name: "Google Gemini", role: "Multimodal AI & Veo Video Lab" },
-      { name: "Anthropic Claude", role: "Reasoning & Content Automation" }
-    ]
-  },
-  {
-    category: "DevOps & Tooling",
-    icon: Laptop,
-    emoji: "🛠️",
-    items: [
-      { name: "Cursor IDE", role: "AI-Augmented Software Dev" },
-      { name: "GitHub & CI/CD", role: "Version Control & Automations" },
-      { name: "Vercel", role: "Global Edge Network Deployment" }
-    ]
-  }
+// Individual Notion-Style Tech Instrument Cards (1 per tool)
+const INDIVIDUAL_INSTRUMENTS = [
+  { name: "Next.js 16", category: "Framework", icon: "⚡", role: "App Router, SSR & Server Actions" },
+  { name: "TypeScript", category: "Language", icon: "📘", role: "Strict Type Safety & Interfaces" },
+  { name: "Tailwind CSS", category: "Styling", icon: "🎨", role: "Utility Design System" },
+  { name: "Supabase", category: "Database", icon: "🟩", role: "BaaS, Auth & Realtime RLS" },
+  { name: "PostgreSQL", category: "Database", icon: "🐘", role: "Relational Database Engine" },
+  { name: "Prisma ORM", category: "Database", icon: "💎", role: "Type-Safe Client & Migrations" },
+  { name: "OpenAI API", category: "AI Intelligence", icon: "🤖", role: "GPT-4o & Function Calling" },
+  { name: "Google Gemini", category: "AI Intelligence", icon: "✨", role: "Multimodal AI & Veo Video Lab" },
+  { name: "Anthropic Claude", category: "AI Intelligence", icon: "🧠", role: "Reasoning & Content Automation" },
+  { name: "Cursor IDE", category: "Developer Tool", icon: "💻", role: "AI-Augmented Software Studio" },
+  { name: "GitHub & CI/CD", category: "DevOps", icon: "🐙", role: "Version Control & Automations" },
+  { name: "Vercel", category: "DevOps", icon: "▲", role: "Global Edge Network Deployment" }
 ];
 
 export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchToGameMode }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <div className="w-full bg-[#FAF9F6] text-[#161616] min-h-screen font-sans antialiased selection:bg-[#E8DFCE] selection:text-[#161616] scroll-smooth">
+    <div className="w-full bg-[#FAF9F6] text-[#161616] min-h-screen font-sans antialiased selection:bg-[#E8DFCE] selection:text-[#161616]">
       
       {/* ===== 1. HEADER NAVBAR ===== */}
       <header className="sticky top-0 inset-x-0 z-50 bg-[#FAF9F6]/90 backdrop-blur-md border-b border-[#E6E4DD]">
@@ -224,13 +158,8 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
         )}
       </header>
 
-      {/* ===== 2. HERO SECTION WITH SCROLL REVEAL ===== */}
-      <motion.section
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-        className="pt-10 pb-16 sm:pt-14 sm:pb-20 px-6 max-w-6xl mx-auto"
-      >
+      {/* ===== 2. HERO SECTION ===== */}
+      <section className="pt-10 pb-16 sm:pt-14 sm:pb-20 px-6 max-w-6xl mx-auto">
         
         {/* Workstation Frame Container */}
         <div className="rounded-3xl border border-[#E6E4DD] bg-[#161616] text-white overflow-hidden shadow-2xl relative">
@@ -264,42 +193,22 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
             {/* Content Layer Inside Window */}
             <div className="relative z-10 space-y-6 max-w-3xl">
               
-              <motion.div
-                initial={{ opacity: 0, x: -15 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#2B2B2B]/80 backdrop-blur-md border border-[#444444] text-[11px] font-mono tracking-widest text-[#DDDDDD] uppercase"
-              >
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#2B2B2B]/80 backdrop-blur-md border border-[#444444] text-[11px] font-mono tracking-widest text-[#DDDDDD] uppercase">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                 <span>AI PRODUCT ENGINEER • S1 IT GRADUATE</span>
-              </motion.div>
+              </div>
 
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.3 }}
-                className="font-serif-editorial text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.08]"
-              >
+              <h1 className="font-serif-editorial text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.08]">
                 Building digital products <br />
                 <span className="italic font-normal text-[#C5A059]">that solve real problems.</span>
-              </motion.h1>
+              </h1>
 
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.4 }}
-                className="text-xs sm:text-base text-[#DDDDDD] font-normal leading-relaxed max-w-xl"
-              >
+              <p className="text-xs sm:text-base text-[#DDDDDD] font-normal leading-relaxed max-w-xl">
                 I engineer modern full-stack web applications and AI-powered platforms that simplify complex business operations, boost conversions, and deliver measurable ROI.
-              </motion.p>
+              </p>
 
               {/* Action Buttons */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.5 }}
-                className="flex flex-wrap items-center gap-4 pt-2"
-              >
+              <div className="flex flex-wrap items-center gap-4 pt-2">
                 <a
                   href="#work"
                   className="px-6 py-3 rounded-full bg-white text-[#161616] text-xs font-mono font-bold uppercase tracking-wider hover:bg-[#EAE8E1] transition-all cursor-pointer flex items-center gap-2 shadow-lg hover:scale-105"
@@ -315,7 +224,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
                   <span>ABOUT ME</span>
                   <ArrowRight className="w-4 h-4 text-[#CCCCCC]" />
                 </a>
-              </motion.div>
+              </div>
 
             </div>
 
@@ -323,12 +232,11 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
 
         </div>
 
-      </motion.section>
+      </section>
 
-      {/* ===== 3. ABOUT ME SECTION WITH SCROLL REVEAL ===== */}
-      <motion.section
+      {/* ===== 3. ABOUT ME SECTION ===== */}
+      <section
         id="about"
-        {...fadeInUp}
         className="py-20 px-6 max-w-6xl mx-auto border-t border-[#E6E4DD]"
       >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
@@ -391,12 +299,11 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
           </div>
 
         </div>
-      </motion.section>
+      </section>
 
-      {/* ===== 4. SELECTED WORK WITH STAGGERED SCROLL REVEAL ===== */}
-      <motion.section
+      {/* ===== 4. SELECTED WORK ===== */}
+      <section
         id="work"
-        {...fadeInUp}
         className="py-20 px-6 max-w-6xl mx-auto border-t border-[#E6E4DD]"
       >
         <div className="space-y-10">
@@ -417,13 +324,9 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
 
           {/* Projects Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {SELECTED_PROJECTS.map((item, idx) => (
-              <motion.div
+            {SELECTED_PROJECTS.map((item) => (
+              <div
                 key={item.id}
-                initial={{ opacity: 0, y: 35 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.6, delay: idx * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
                 onClick={() => onSelectProject(item.project)}
                 className="group bg-white border border-[#E6E4DD] hover:border-[#161616] rounded-2xl overflow-hidden transition-all duration-300 p-5 cursor-pointer shadow-xs hover:shadow-xl hover:-translate-y-1.5 space-y-4 flex flex-col justify-between"
               >
@@ -467,17 +370,16 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
                   </span>
                 </div>
 
-              </motion.div>
+              </div>
             ))}
           </div>
 
         </div>
-      </motion.section>
+      </section>
 
-      {/* ===== 5. CAREER EXPERIENCE WITH SCROLL REVEAL ===== */}
-      <motion.section
+      {/* ===== 5. CAREER EXPERIENCE ===== */}
+      <section
         id="experience"
-        {...fadeInUp}
         className="py-20 px-6 max-w-6xl mx-auto border-t border-[#E6E4DD]"
       >
         <div className="space-y-10">
@@ -492,13 +394,9 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
           </div>
 
           <div className="space-y-4">
-            {CV_WORK_EXPERIENCES.map((exp, idx) => (
-              <motion.div
+            {CV_WORK_EXPERIENCES.map((exp) => (
+              <div
                 key={exp.step}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
                 className="p-6 rounded-2xl bg-white border border-[#E6E4DD] shadow-xs space-y-4 hover:border-[#161616] hover:shadow-md transition-all"
               >
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#E6E4DD] pb-3">
@@ -524,17 +422,16 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
                     </li>
                   ))}
                 </ul>
-              </motion.div>
+              </div>
             ))}
           </div>
 
         </div>
-      </motion.section>
+      </section>
 
-      {/* ===== 6. TECHNICAL INSTRUMENTS MATRIX WITH SCROLL REVEAL ===== */}
-      <motion.section
+      {/* ===== 6. TECHNICAL INSTRUMENTS INDIVIDUAL GRID (1 PER TOOL) ===== */}
+      <section
         id="instruments"
-        {...fadeInUp}
         className="py-20 px-6 max-w-6xl mx-auto border-t border-[#E6E4DD]"
       >
         <div className="space-y-10">
@@ -544,48 +441,44 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
               TECHNICAL INSTRUMENTS
             </div>
             <h2 className="font-serif-editorial text-3xl sm:text-4xl font-bold text-[#161616]">
-              Curated Stack & Instruments
+              Curated Stack & Software Tools
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {INSTRUMENTS_MATRIX.map((group, idx) => (
-              <motion.div
-                key={group.category}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
-                className="p-6 rounded-2xl bg-white border border-[#E6E4DD] space-y-4 shadow-xs hover:border-[#161616] hover:shadow-md transition-all"
+          {/* Individual Tools Grid (1 Tool per Card - Notion Aesthetic) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {INDIVIDUAL_INSTRUMENTS.map((tool) => (
+              <div
+                key={tool.name}
+                className="flex items-center gap-3.5 p-4 rounded-2xl bg-white border border-[#E6E4DD] hover:border-[#161616] hover:shadow-md transition-all group"
               >
-                <div className="flex items-center gap-2.5 border-b border-[#E6E4DD] pb-3">
-                  <div className="w-7 h-7 rounded-lg bg-[#F0EEE6] border border-[#E6E4DD] flex items-center justify-center text-xs font-mono font-bold text-[#161616]">
-                    {group.emoji}
-                  </div>
-                  <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-[#161616]">
-                    {group.category}
-                  </h3>
+                <div className="w-10 h-10 rounded-xl bg-[#F0EEE6] border border-[#E6E4DD] flex items-center justify-center text-lg shrink-0 group-hover:bg-[#161616] group-hover:text-white transition-colors">
+                  {tool.icon}
                 </div>
 
-                <div className="space-y-3">
-                  {group.items.map((item) => (
-                    <div key={item.name} className="space-y-0.5">
-                      <div className="text-xs font-bold text-[#161616]">{item.name}</div>
-                      <div className="text-[11px] font-mono text-[#66645E]">{item.role}</div>
-                    </div>
-                  ))}
+                <div className="space-y-0.5">
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-xs font-bold text-[#161616] group-hover:text-[#B89355] transition-colors">
+                      {tool.name}
+                    </h3>
+                    <span className="px-1.5 py-0.2 rounded bg-[#F0EEE6] text-[#66645E] text-[9px] font-mono">
+                      {tool.category}
+                    </span>
+                  </div>
+                  <p className="text-[11px] font-mono text-[#66645E] leading-tight">
+                    {tool.role}
+                  </p>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
 
         </div>
-      </motion.section>
+      </section>
 
-      {/* ===== 7. CONTACT SECTION WITH SCROLL REVEAL ===== */}
-      <motion.section
+      {/* ===== 7. CONTACT SECTION ===== */}
+      <section
         id="contact"
-        {...fadeInUp}
         className="py-20 px-6 max-w-6xl mx-auto border-t border-[#E6E4DD]"
       >
         <div className="p-8 sm:p-12 rounded-3xl bg-[#161616] text-[#FAF9F6] shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8">
@@ -620,7 +513,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
           </div>
 
         </div>
-      </motion.section>
+      </section>
 
       {/* Footer */}
       <footer className="py-8 px-6 max-w-6xl mx-auto border-t border-[#E6E4DD] text-xs font-mono text-[#85827A] flex flex-col sm:flex-row items-center justify-between gap-4">
