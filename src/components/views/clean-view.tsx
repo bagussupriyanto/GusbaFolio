@@ -89,6 +89,7 @@ const INDIVIDUAL_INSTRUMENTS = [
 
 export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchToGameMode }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeTool, setActiveTool] = useState<string | null>(null);
 
   return (
     <div className="w-full bg-[#FAF9F6] text-[#161616] min-h-screen font-sans antialiased selection:bg-[#E8DFCE] selection:text-[#161616]">
@@ -550,48 +551,85 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
         </div>
       </section>
 
-      {/* ===== 6. TECHNICAL INSTRUMENTS INDIVIDUAL GRID (1 PER TOOL) ===== */}
+      {/* ===== 6. TECHNICAL INSTRUMENTS NOTION ICON GRID WITH POPOVER DETAILS ===== */}
       <section
         id="instruments"
         className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 max-w-6xl mx-auto border-t border-[#E6E4DD]"
       >
         <div className="space-y-6 sm:space-y-10">
           
-          <div className="space-y-1.5 sm:space-y-2 border-b border-[#E6E4DD] pb-4 sm:pb-6">
-            <div className="text-[10px] sm:text-[11px] font-mono font-bold tracking-[0.2em] text-[#85827A] uppercase">
-              TECH STACK
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-[#E6E4DD] pb-4 sm:pb-6 gap-2 sm:gap-4">
+            <div className="space-y-1.5 sm:space-y-2">
+              <div className="text-[10px] sm:text-[11px] font-mono font-bold tracking-[0.2em] text-[#85827A] uppercase">
+                TECH STACK
+              </div>
+              <h2 className="font-serif-editorial text-2xl sm:text-3xl lg:text-4xl font-bold text-[#161616]">
+                Curated Stack & Software Tools
+              </h2>
             </div>
-            <h2 className="font-serif-editorial text-2xl sm:text-3xl lg:text-4xl font-bold text-[#161616]">
-              Curated Stack & Software Tools
-            </h2>
+            <p className="text-[10px] sm:text-xs font-mono text-[#85827A] uppercase tracking-wider">
+              Hover or tap any icon to reveal tool architecture & role
+            </p>
           </div>
 
-          {/* Individual Tools Grid (1 Tool per Card - Notion Aesthetic) */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
-            {INDIVIDUAL_INSTRUMENTS.map((tool) => (
-              <div
-                key={tool.name}
-                className="flex items-center gap-2.5 sm:gap-3.5 p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white border border-[#E6E4DD] hover:border-[#161616] hover:shadow-md transition-all group"
-              >
-                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-[#F0EEE6] border border-[#E6E4DD] flex items-center justify-center text-base sm:text-lg shrink-0 group-hover:bg-[#161616] group-hover:text-white transition-colors">
-                  {tool.icon}
-                </div>
+          {/* Clean Notion Icon Cards Grid (Ultra Neat Layout) */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
+            {INDIVIDUAL_INSTRUMENTS.map((tool) => {
+              const isActive = activeTool === tool.name;
 
-                <div className="space-y-0 sm:space-y-0.5 min-w-0">
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-2">
-                    <h3 className="text-[11px] sm:text-xs font-bold text-[#161616] group-hover:text-[#B89355] transition-colors truncate">
+              return (
+                <div
+                  key={tool.name}
+                  onClick={() => setActiveTool(isActive ? null : tool.name)}
+                  onMouseEnter={() => setActiveTool(tool.name)}
+                  onMouseLeave={() => setActiveTool(null)}
+                  className={`relative flex items-center gap-2.5 p-3 rounded-xl bg-white border cursor-pointer transition-all duration-200 select-none ${
+                    isActive
+                      ? 'border-[#161616] shadow-lg scale-105 bg-[#FAF9F6] ring-2 ring-[#161616]/10 z-30'
+                      : 'border-[#E6E4DD] hover:border-[#161616] hover:shadow-md'
+                  }`}
+                >
+                  {/* Notion Emoji Box */}
+                  <div className={`w-9 h-9 rounded-lg border flex items-center justify-center text-lg shrink-0 transition-colors ${
+                    isActive ? 'bg-[#161616] border-[#161616] text-white' : 'bg-[#F0EEE6] border-[#E6E4DD] text-[#161616]'
+                  }`}>
+                    {tool.icon}
+                  </div>
+
+                  <div className="space-y-0.5 min-w-0">
+                    <h3 className="text-xs font-bold text-[#161616] truncate">
                       {tool.name}
                     </h3>
-                    <span className="hidden sm:inline px-1.5 py-0.5 rounded bg-[#F0EEE6] text-[#66645E] text-[9px] font-mono shrink-0">
+                    <span className="inline-block px-1.5 py-0.2 rounded bg-[#F0EEE6] text-[#66645E] text-[9px] font-mono font-semibold">
                       {tool.category}
                     </span>
                   </div>
-                  <p className="text-[9px] sm:text-[11px] font-mono text-[#66645E] leading-tight truncate">
-                    {tool.role}
-                  </p>
+
+                  {/* Notion Hover Popover Tooltip */}
+                  {isActive && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 8, scale: 0.95 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2.5 w-60 sm:w-64 p-3 rounded-xl bg-[#161616] text-[#FAF9F6] shadow-2xl border border-[#333333] z-50 pointer-events-none space-y-1.5"
+                    >
+                      <div className="flex items-center justify-between text-[10px] font-mono border-b border-[#333333] pb-1.5 text-[#AAAAAA]">
+                        <span className="text-[#C5A059] font-bold flex items-center gap-1.5">
+                          <span>{tool.icon}</span>
+                          <span>{tool.name}</span>
+                        </span>
+                        <span className="uppercase">{tool.category}</span>
+                      </div>
+                      <p className="text-[11px] font-mono text-[#DDDDDD] leading-relaxed">
+                        {tool.role}
+                      </p>
+                      <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-[#161616]" />
+                    </motion.div>
+                  )}
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
         </div>
