@@ -8,15 +8,17 @@ export const PreloaderScreen: React.FC = () => {
   const [isDone, setIsDone] = useState(false);
 
   useEffect(() => {
-    // Fast, smooth counter animation
+    // Relaxed, cinematic counter animation (~2.2 seconds total duration)
     let current = 0;
     const interval = setInterval(() => {
-      current += Math.floor(Math.random() * 12) + 6;
+      const step = Math.floor(Math.random() * 3) + 2; // Increments smoothly by 2-4%
+      current += step;
       if (current >= 100) {
         current = 100;
         setProgress(100);
         clearInterval(interval);
-        setTimeout(() => setIsDone(true), 400);
+        // Relaxed pause at 100% before opening the curtain
+        setTimeout(() => setIsDone(true), 600);
       } else {
         setProgress(current);
       }
@@ -32,7 +34,7 @@ export const PreloaderScreen: React.FC = () => {
           key="preloader"
           initial={{ y: "0%" }}
           exit={{ y: "-100%" }}
-          transition={{ duration: 0.85, ease: [0.76, 0, 0.24, 1] }}
+          transition={{ duration: 1.1, ease: [0.76, 0, 0.24, 1] }}
           className="fixed inset-0 z-[9999] bg-[#161616] text-[#FAF9F6] flex flex-col justify-between p-8 sm:p-14 select-none font-sans overflow-hidden"
         >
           {/* Top Bar Info */}
@@ -47,18 +49,18 @@ export const PreloaderScreen: React.FC = () => {
           {/* Center Monogram & Brand Statement */}
           <div className="my-auto space-y-6 max-w-xl">
             <motion.div
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="font-serif-editorial text-5xl sm:text-7xl font-bold tracking-tight text-white"
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+              className="font-serif-editorial text-6xl sm:text-8xl font-bold tracking-tight text-white"
             >
               BS<span className="text-[#B89355]">.</span>
             </motion.div>
 
             <motion.p
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
               className="text-xs sm:text-sm font-mono text-[#AAAAAA] uppercase tracking-widest leading-relaxed"
             >
               Building modern web applications <br />
@@ -69,7 +71,7 @@ export const PreloaderScreen: React.FC = () => {
           {/* Bottom Counter & Progress Bar */}
           <div className="space-y-4">
             <div className="flex items-end justify-between">
-              <div className="text-[10px] font-mono text-[#666666] tracking-widest uppercase">
+              <div className="text-[10px] font-mono text-[#777777] tracking-widest uppercase">
                 INITIALIZING WORKSPACE
               </div>
               <div className="font-mono text-4xl sm:text-6xl font-bold text-white tracking-tighter">
@@ -78,7 +80,7 @@ export const PreloaderScreen: React.FC = () => {
             </div>
 
             {/* Hairline Progress Bar */}
-            <div className="w-full h-[2px] bg-[#333333] rounded-full overflow-hidden">
+            <div className="w-full h-[2px] bg-[#2A2A2A] rounded-full overflow-hidden">
               <motion.div
                 className="h-full bg-[#B89355]"
                 style={{ width: `${progress}%` }}
