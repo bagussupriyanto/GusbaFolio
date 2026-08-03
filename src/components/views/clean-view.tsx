@@ -14,10 +14,10 @@ import {
   Menu,
   X
 } from 'lucide-react';
-import { DEVELOPER_DATA, FEATURED_PROJECTS, CV_WORK_EXPERIENCES } from '@/lib/constants';
+import { DEVELOPER_DATA, FEATURED_PROJECTS } from '@/lib/constants';
 import { Project } from '@/types';
 import { CodeVideoBackdrop } from '@/components/ui/code-video-backdrop';
-import { TRANSLATIONS, Language } from '@/lib/translations';
+import { TRANSLATIONS, Language, getWorkExperiences, getSelectedProjects } from '@/lib/translations';
 
 interface CleanViewProps {
   onSelectProject: (project: Project) => void;
@@ -109,6 +109,8 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
   const [selectedTechCategory, setSelectedTechCategory] = useState<string>('ALL');
   const [lang, setLang] = useState<Language>('id');
   const t = TRANSLATIONS[lang];
+  const selectedProjects = getSelectedProjects(lang);
+  const workExperiences = getWorkExperiences(lang);
 
   return (
     <div className="w-full bg-[#FAF9F6] text-[#161616] min-h-screen font-sans antialiased selection:bg-[#E8DFCE] selection:text-[#161616]">
@@ -426,10 +428,13 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
 
           {/* Projects Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            {SELECTED_PROJECTS.map((item) => (
+            {selectedProjects.map((item) => (
               <div
                 key={item.id}
-                onClick={() => onSelectProject(item.project)}
+                onClick={() => {
+                  const proj = FEATURED_PROJECTS.find(p => p.id === item.id) || FEATURED_PROJECTS[0];
+                  onSelectProject(proj);
+                }}
                 className="group bg-white border border-[#E6E4DD] hover:border-[#161616] rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-300 p-3.5 sm:p-5 cursor-pointer shadow-xs hover:shadow-xl hover:-translate-y-1 sm:hover:-translate-y-1.5 space-y-3 sm:space-y-4 flex flex-col justify-between"
               >
                 <div className="space-y-2.5 sm:space-y-3">
@@ -503,7 +508,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
 
           {/* Interactive Git Commit Tree Container */}
           <div className="relative space-y-6 sm:space-y-8 pl-4 sm:pl-8 border-l-2 border-[#E6E4DD] ml-2 sm:ml-4">
-            {CV_WORK_EXPERIENCES.map((exp, idx) => {
+            {workExperiences.map((exp, idx) => {
               const gitMeta = [
                 { hash: "commit v1.0.0-wvc", branch: "origin/manufacturing-core", badge: "HARDWARE ASSEMBLY", isCurrent: false },
                 { hash: "commit v2.0.0-s1-it", branch: "origin/academic-degree", badge: "DES CRYPTOGRAPHY • CERTIPORT", isCurrent: false },
