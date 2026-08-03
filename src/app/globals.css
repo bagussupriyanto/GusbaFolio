@@ -2,6 +2,10 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+html {
+  scroll-behavior: smooth;
+}
+
 @theme {
   --color-bg-base: #0a0e17;
   --color-bg-surface-1: #12182a;
