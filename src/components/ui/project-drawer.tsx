@@ -55,7 +55,7 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className={`fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-5 ${isCleanMode ? 'font-sans' : 'font-silkscreen'}`}>
+        <div className={`fixed inset-0 z-[999] flex items-center justify-center p-3 sm:p-6 ${isCleanMode ? 'font-sans' : 'font-silkscreen'}`}>
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}

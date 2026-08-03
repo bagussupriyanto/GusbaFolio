@@ -93,7 +93,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
     <div className="w-full bg-[#FAF9F6] text-[#161616] min-h-screen font-sans antialiased selection:bg-[#E8DFCE] selection:text-[#161616]">
       
       {/* ===== 1. HEADER NAVBAR ===== */}
-      <header className="sticky top-0 inset-x-0 z-50 bg-[#FAF9F6]/90 backdrop-blur-md border-b border-[#E6E4DD]">
+      <header className="sticky top-0 inset-x-0 z-40 bg-[#FAF9F6]/90 backdrop-blur-md border-b border-[#E6E4DD]">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           
           {/* Logo BS */}
