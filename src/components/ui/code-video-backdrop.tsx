@@ -40,11 +40,12 @@ export const CodeVideoBackdrop: React.FC = () => {
       'const status = "AVAILABLE_FOR_HIRING";'
     ];
 
-    const fontSize = 13;
-    const columns = Math.floor(canvas.width / 240);
+    const isMobile = canvas.width < 640;
+    const fontSize = isMobile ? 10 : 13;
+    const dropCount = isMobile ? 8 : 14;
     const drops: { x: number; y: number; text: string; speed: number; opacity: number }[] = [];
 
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < dropCount; i++) {
       drops.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
