@@ -445,53 +445,106 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
         </div>
       </section>
 
-      {/* ===== 5. CAREER EXPERIENCE ===== */}
+      {/* ===== 5. CAREER EXPERIENCE (GIT COMMIT ARCHITECTURE TIMELINE) ===== */}
       <section
         id="experience"
         className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 max-w-6xl mx-auto border-t border-[#E6E4DD]"
       >
         <div className="space-y-6 sm:space-y-10">
           
-          <div className="space-y-1.5 sm:space-y-2 border-b border-[#E6E4DD] pb-4 sm:pb-6">
-            <div className="text-[10px] sm:text-[11px] font-mono font-bold tracking-[0.2em] text-[#85827A] uppercase">
-              CAREER TIMELINE
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-[#E6E4DD] pb-4 sm:pb-6 gap-3 sm:gap-4">
+            <div className="space-y-1.5 sm:space-y-2">
+              <div className="text-[10px] sm:text-[11px] font-mono font-bold tracking-[0.2em] text-[#85827A] uppercase flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-[#161616]" />
+                <span>VERSION CONTROL // CAREER CHANGELOG</span>
+              </div>
+              <h2 className="font-serif-editorial text-2xl sm:text-3xl lg:text-4xl font-bold text-[#161616]">
+                Engineering Milestones & Career Path
+              </h2>
             </div>
-            <h2 className="font-serif-editorial text-2xl sm:text-3xl lg:text-4xl font-bold text-[#161616]">
-              Professional Experience & History
-            </h2>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#161616] text-[#FAF9F6] text-[10px] font-mono font-bold shrink-0 self-start sm:self-auto">
+              <span>git log --graph --oneline</span>
+            </div>
           </div>
 
-          <div className="space-y-4">
-            {CV_WORK_EXPERIENCES.map((exp) => (
-              <div
-                key={exp.step}
-                className="p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white border border-[#E6E4DD] shadow-xs space-y-3 sm:space-y-4 hover:border-[#161616] hover:shadow-md transition-all"
-              >
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-2 border-b border-[#E6E4DD] pb-2.5 sm:pb-3">
-                  <div className="flex items-center gap-2 sm:gap-3">
-                    <span className="px-2 sm:px-2.5 py-0.5 rounded-full bg-[#F0EEE6] border border-[#E6E4DD] text-[9px] sm:text-[10px] font-mono font-bold text-[#161616] shrink-0">
-                      FASE 0{exp.step}
-                    </span>
-                    <h3 className="text-sm sm:text-base font-bold text-[#161616]">{exp.company}</h3>
+          {/* Interactive Git Commit Tree Container */}
+          <div className="relative space-y-6 sm:space-y-8 pl-4 sm:pl-8 border-l-2 border-[#E6E4DD] ml-2 sm:ml-4">
+            {CV_WORK_EXPERIENCES.map((exp, idx) => {
+              const gitMeta = [
+                { hash: "commit v1.0.0-wvc", branch: "origin/manufacturing-core", badge: "HARDWARE ASSEMBLY", isCurrent: false },
+                { hash: "commit v2.0.0-s1-it", branch: "origin/academic-degree", badge: "DES CRYPTOGRAPHY • CERTIPORT", isCurrent: false },
+                { hash: "commit v3.0.0-singapore", branch: "origin/maritime-ops", badge: "MARITIME LOGISTICS", isCurrent: false },
+                { hash: "commit v4.0.0-instrumentation", branch: "origin/industrial-control", badge: "P&ID DIAGRAMS • SENSORS", isCurrent: false },
+                { hash: "commit v5.0.0-production", branch: "main [ACTIVE]", badge: "NEXT.JS 16 • SUPABASE RLS", isCurrent: true }
+              ][idx] || { hash: `commit v${exp.step}.0`, branch: "main", badge: "ENGINEERING", isCurrent: false };
+
+              return (
+                <div key={exp.step} className="relative group">
+                  {/* Git Commit Node Circle */}
+                  <div className={`absolute -left-[25px] sm:-left-[41px] top-4 w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 bg-white flex items-center justify-center transition-all duration-300 group-hover:scale-125 ${
+                    gitMeta.isCurrent 
+                      ? 'border-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.5)]' 
+                      : 'border-[#161616] group-hover:border-[#B89355]'
+                  }`}>
+                    <div className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full ${gitMeta.isCurrent ? 'bg-emerald-500 animate-pulse' : 'bg-[#161616]'}`} />
                   </div>
 
-                  <div className="flex items-center gap-2 sm:gap-3 text-[10px] sm:text-xs font-mono text-[#66645E]">
-                    <span className="font-semibold text-[#161616]">{exp.role}</span>
-                    <span>•</span>
-                    <span>{exp.period}</span>
+                  {/* Terminal Card */}
+                  <div className={`p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white border transition-all duration-300 space-y-3.5 ${
+                    gitMeta.isCurrent 
+                      ? 'border-[#161616] shadow-md ring-1 ring-[#161616]/10' 
+                      : 'border-[#E6E4DD] shadow-xs hover:border-[#161616] hover:shadow-md'
+                  }`}>
+                    
+                    {/* Terminal Header Bar */}
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#E6E4DD] pb-3 text-xs font-mono">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="px-2 py-0.5 rounded bg-[#161616] text-[#FAF9F6] text-[9px] font-bold">
+                          {gitMeta.hash}
+                        </span>
+                        <span className="text-[#85827A] text-[10px]">
+                          {gitMeta.branch}
+                        </span>
+                        <span className="hidden sm:inline px-2 py-0.5 rounded bg-[#F0EEE6] text-[#55524C] text-[9px] font-semibold">
+                          {gitMeta.badge}
+                        </span>
+                      </div>
+
+                      <div className="flex items-center gap-2 text-[10px] text-[#66645E]">
+                        <span className="font-bold text-[#161616]">{exp.period}</span>
+                        {gitMeta.isCurrent && (
+                          <span className="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[9px] font-bold flex items-center gap-1">
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                            ACTIVE
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Company & Role Headline */}
+                    <div className="space-y-0.5">
+                      <div className="text-[10px] font-mono font-bold tracking-widest text-[#B89355] uppercase">
+                        FASE 0{exp.step} // {exp.role}
+                      </div>
+                      <h3 className="text-base sm:text-lg font-bold text-[#161616]">
+                        {exp.company}
+                      </h3>
+                    </div>
+
+                    {/* Bullet Points with CLI Shell Prompt > Indicator */}
+                    <ul className="space-y-2 text-xs sm:text-sm text-[#44423D] leading-relaxed font-sans">
+                      {exp.points.map((pt, i) => (
+                        <li key={i} className="flex items-start gap-2.5">
+                          <span className="font-mono text-[#B89355] font-bold shrink-0 mt-0.5">❯</span>
+                          <span>{pt}</span>
+                        </li>
+                      ))}
+                    </ul>
+
                   </div>
                 </div>
-
-                <ul className="space-y-1.5 sm:space-y-2 text-[11px] sm:text-xs text-[#55524C] leading-relaxed">
-                  {exp.points.map((pt, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <span className="text-[#B89355] font-bold shrink-0 mt-0.5">•</span>
-                      <span>{pt}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
         </div>
