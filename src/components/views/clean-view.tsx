@@ -34,7 +34,7 @@ const SELECTED_PROJECTS = [
     impact: "45% Faster Order Dispatch",
     summary: "All-in-one cafe management platform for real-time POS checkout, kitchen display dispatch, inventory tracking, and multi-branch revenue analytics.",
     mockup: "/assets/projects/smartcafe/landing.png",
-    tags: ["Next.js 16", "Supabase BaaS", "PostgreSQL", "Prisma ORM", "Tailwind CSS"]
+    tags: ["Next.js 16", "Supabase", "PostgreSQL", "Prisma ORM", "Tailwind CSS"]
   },
   {
     project: FEATURED_PROJECTS[1], // PT SMS

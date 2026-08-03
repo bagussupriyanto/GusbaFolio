@@ -36,7 +36,7 @@ export const SkillsTreeModal: React.FC<SkillsTreeModalProps> = ({ isOpen, onClos
       category: 'WORLD 3 // BACKEND NODE',
       level: 'LV.85 • ADVANCED',
       icon: <Cpu className="w-6 h-6 text-[#45D3B2]" />,
-      skills: ['Node.js & Express', 'Supabase BaaS', 'RESTful API Architecture', 'Authentication & JWT', 'Server Actions'],
+      skills: ['Node.js & Express', 'Supabase', 'RESTful API Architecture', 'Authentication & JWT', 'Server Actions'],
       description: 'Building secure server infrastructure, serverless functions, authentication pipelines, and fast API integration.'
     },
     {
