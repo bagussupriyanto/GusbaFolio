@@ -71,25 +71,41 @@ const SELECTED_PROJECTS = [
   }
 ];
 
-// Individual Notion-Style Tech Instrument Cards (1 per tool)
+// Individual Notion-Style Tech Instrument Cards (Comprehensive 18-Tool Array)
 const INDIVIDUAL_INSTRUMENTS = [
-  { name: "Next.js 16", category: "Framework", icon: "⚡", role: "App Router, SSR & Server Actions" },
-  { name: "TypeScript", category: "Language", icon: "📘", role: "Strict Type Safety & Interfaces" },
-  { name: "Tailwind CSS", category: "Styling", icon: "🎨", role: "Utility Design System" },
-  { name: "Supabase", category: "Database", icon: "🟩", role: "BaaS, Auth & Realtime RLS" },
-  { name: "PostgreSQL", category: "Database", icon: "🐘", role: "Relational Database Engine" },
-  { name: "Prisma ORM", category: "Database", icon: "💎", role: "Type-Safe Client & Migrations" },
-  { name: "OpenAI API", category: "AI Intelligence", icon: "🤖", role: "GPT-4o & Function Calling" },
-  { name: "Google Gemini", category: "AI Intelligence", icon: "✨", role: "Multimodal AI & Veo Video Lab" },
-  { name: "Anthropic Claude", category: "AI Intelligence", icon: "🧠", role: "Reasoning & Content Automation" },
-  { name: "Cursor IDE", category: "Developer Tool", icon: "💻", role: "AI-Augmented Software Studio" },
-  { name: "GitHub & CI/CD", category: "DevOps", icon: "🐙", role: "Version Control & Automations" },
-  { name: "Vercel", category: "DevOps", icon: "▲", role: "Global Edge Network Deployment" }
+  // Frontend
+  { name: "Next.js 16", category: "Frontend", icon: "⚡", role: "App Router, SSR, Turbopack & Server Actions" },
+  { name: "TypeScript", category: "Frontend", icon: "📘", role: "Strict Type Safety, Generics & Interfaces" },
+  { name: "React 19", category: "Frontend", icon: "⚛️", role: "Component Driven UI & Reactive State Engine" },
+  { name: "Tailwind CSS", category: "Frontend", icon: "🎨", role: "Utility Design System & Modern Aesthetics" },
+  
+  // Backend & DB
+  { name: "Supabase", category: "Backend", icon: "🟩", role: "PostgreSQL BaaS, Auth & Realtime RLS" },
+  { name: "PostgreSQL", category: "Backend", icon: "🐘", role: "Relational Schema & Query Optimization" },
+  { name: "Prisma ORM", category: "Backend", icon: "💎", role: "Type-Safe DB Client & Schema Migrations" },
+  { name: "Node.js & REST", category: "Backend", icon: "🟢", role: "Server-side APIs & Asynchronous Processing" },
+
+  // AI & Intelligence
+  { name: "OpenAI API", category: "AI & Lab", icon: "🤖", role: "GPT-4o Integration & Function Calling" },
+  { name: "Google Gemini", category: "AI & Lab", icon: "✨", role: "Multimodal AI & Veo Video Automation" },
+  { name: "Claude API", category: "AI & Lab", icon: "🧠", role: "Advanced Reasoning & Content Pipelines" },
+  { name: "Cursor AI IDE", category: "AI & Lab", icon: "💻", role: "AI-Augmented Software Engineering Studio" },
+  { name: "Python", category: "AI & Lab", icon: "🐍", role: "AI Automation Scripts & Data Pipelines" },
+
+  // DevOps & Security
+  { name: "GitHub & CI/CD", category: "DevOps", icon: "🐙", role: "Version Control, Actions & Automations" },
+  { name: "Vercel", category: "DevOps", icon: "▲", role: "Global Edge Network & Serverless Hosting" },
+  { name: "DES Cryptography", category: "Security", icon: "🔒", role: "S1 Thesis: Data Encryption Standard" },
+
+  // Industrial & Control
+  { name: "Instrument Control", category: "Industrial", icon: "🔧", role: "Process Calibration, Sensors & Transmitters" },
+  { name: "Wiring & P&ID", category: "Industrial", icon: "📐", role: "Piping & Instrumentation Diagram Specs" },
 ];
 
 export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchToGameMode }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeTool, setActiveTool] = useState<string | null>(null);
+  const [selectedTechCategory, setSelectedTechCategory] = useState<string>('ALL');
 
   return (
     <div className="w-full bg-[#FAF9F6] text-[#161616] min-h-screen font-sans antialiased selection:bg-[#E8DFCE] selection:text-[#161616]">
@@ -572,64 +588,86 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
             </p>
           </div>
 
-          {/* Clean Notion Icon Cards Grid (Ultra Neat Layout) */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
-            {INDIVIDUAL_INSTRUMENTS.map((tool) => {
-              const isActive = activeTool === tool.name;
-
+          {/* Category Filter Pills Bar */}
+          <div className="flex flex-wrap items-center gap-2 pt-2">
+            {['ALL', 'Frontend', 'Backend', 'AI & Lab', 'DevOps', 'Industrial'].map((cat) => {
+              const isSelected = selectedTechCategory === cat;
               return (
-                <div
-                  key={tool.name}
-                  onClick={() => setActiveTool(isActive ? null : tool.name)}
-                  onMouseEnter={() => setActiveTool(tool.name)}
-                  onMouseLeave={() => setActiveTool(null)}
-                  className={`relative flex items-center gap-2.5 p-3 rounded-xl bg-white border cursor-pointer transition-all duration-200 select-none ${
-                    isActive
-                      ? 'border-[#161616] shadow-lg scale-105 bg-[#FAF9F6] ring-2 ring-[#161616]/10 z-30'
-                      : 'border-[#E6E4DD] hover:border-[#161616] hover:shadow-md'
+                <button
+                  key={cat}
+                  onClick={() => setSelectedTechCategory(cat)}
+                  className={`px-3 py-1.5 rounded-full text-xs font-mono font-bold transition-all cursor-pointer select-none ${
+                    isSelected
+                      ? 'bg-[#161616] text-white shadow-sm'
+                      : 'bg-[#F0EEE6] text-[#55524C] border border-[#E6E4DD] hover:bg-[#E5E2D8] hover:text-[#161616]'
                   }`}
                 >
-                  {/* Notion Emoji Box */}
-                  <div className={`w-9 h-9 rounded-lg border flex items-center justify-center text-lg shrink-0 transition-colors ${
-                    isActive ? 'bg-[#161616] border-[#161616] text-white' : 'bg-[#F0EEE6] border-[#E6E4DD] text-[#161616]'
-                  }`}>
-                    {tool.icon}
-                  </div>
-
-                  <div className="space-y-0.5 min-w-0">
-                    <h3 className="text-xs font-bold text-[#161616] truncate">
-                      {tool.name}
-                    </h3>
-                    <span className="inline-block px-1.5 py-0.2 rounded bg-[#F0EEE6] text-[#66645E] text-[9px] font-mono font-semibold">
-                      {tool.category}
-                    </span>
-                  </div>
-
-                  {/* Notion Hover Popover Tooltip */}
-                  {isActive && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 8, scale: 0.95 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 8, scale: 0.95 }}
-                      transition={{ duration: 0.15 }}
-                      className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2.5 w-60 sm:w-64 p-3 rounded-xl bg-[#161616] text-[#FAF9F6] shadow-2xl border border-[#333333] z-50 pointer-events-none space-y-1.5"
-                    >
-                      <div className="flex items-center justify-between text-[10px] font-mono border-b border-[#333333] pb-1.5 text-[#AAAAAA]">
-                        <span className="text-[#C5A059] font-bold flex items-center gap-1.5">
-                          <span>{tool.icon}</span>
-                          <span>{tool.name}</span>
-                        </span>
-                        <span className="uppercase">{tool.category}</span>
-                      </div>
-                      <p className="text-[11px] font-mono text-[#DDDDDD] leading-relaxed">
-                        {tool.role}
-                      </p>
-                      <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-[#161616]" />
-                    </motion.div>
-                  )}
-                </div>
+                  {cat.toUpperCase()} {cat === 'ALL' ? `(${INDIVIDUAL_INSTRUMENTS.length})` : ''}
+                </button>
               );
             })}
+          </div>
+
+          {/* Clean Notion Icon Cards Grid (Filtered Array) */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
+            {INDIVIDUAL_INSTRUMENTS
+              .filter(t => selectedTechCategory === 'ALL' || t.category === selectedTechCategory)
+              .map((tool) => {
+                const isActive = activeTool === tool.name;
+
+                return (
+                  <div
+                    key={tool.name}
+                    onClick={() => setActiveTool(isActive ? null : tool.name)}
+                    onMouseEnter={() => setActiveTool(tool.name)}
+                    onMouseLeave={() => setActiveTool(null)}
+                    className={`relative flex items-center gap-2.5 p-3 rounded-xl bg-white border cursor-pointer transition-all duration-200 select-none ${
+                      isActive
+                        ? 'border-[#161616] shadow-lg scale-105 bg-[#FAF9F6] ring-2 ring-[#161616]/10 z-30'
+                        : 'border-[#E6E4DD] hover:border-[#161616] hover:shadow-md'
+                    }`}
+                  >
+                    {/* Notion Emoji Box */}
+                    <div className={`w-9 h-9 rounded-lg border flex items-center justify-center text-lg shrink-0 transition-colors ${
+                      isActive ? 'bg-[#161616] border-[#161616] text-white' : 'bg-[#F0EEE6] border-[#E6E4DD] text-[#161616]'
+                    }`}>
+                      {tool.icon}
+                    </div>
+
+                    <div className="space-y-0.5 min-w-0">
+                      <h3 className="text-xs font-bold text-[#161616] truncate">
+                        {tool.name}
+                      </h3>
+                      <span className="inline-block px-1.5 py-0.2 rounded bg-[#F0EEE6] text-[#66645E] text-[9px] font-mono font-semibold">
+                        {tool.category}
+                      </span>
+                    </div>
+
+                    {/* Notion Hover Popover Tooltip */}
+                    {isActive && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 8, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 8, scale: 0.95 }}
+                        transition={{ duration: 0.15 }}
+                        className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2.5 w-60 sm:w-64 p-3 rounded-xl bg-[#161616] text-[#FAF9F6] shadow-2xl border border-[#333333] z-50 pointer-events-none space-y-1.5"
+                      >
+                        <div className="flex items-center justify-between text-[10px] font-mono border-b border-[#333333] pb-1.5 text-[#AAAAAA]">
+                          <span className="text-[#C5A059] font-bold flex items-center gap-1.5">
+                            <span>{tool.icon}</span>
+                            <span>{tool.name}</span>
+                          </span>
+                          <span className="uppercase">{tool.category}</span>
+                        </div>
+                        <p className="text-[11px] font-mono text-[#DDDDDD] leading-relaxed">
+                          {tool.role}
+                        </p>
+                        <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-[#161616]" />
+                      </motion.div>
+                    )}
+                  </div>
+                );
+              })}
           </div>
 
         </div>
