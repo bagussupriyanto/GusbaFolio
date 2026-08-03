@@ -116,9 +116,8 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
           {/* Notion-Style Floating Pill Navigation */}
           <nav className="hidden md:flex items-center gap-1 bg-[#F0EEE6]/80 p-1 rounded-full border border-[#E6E4DD]">
             <a href="#about" className="px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs transition-all">About</a>
-            <a href="#work" className="px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs transition-all">Selected Work</a>
+            <a href="#work" className="px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs transition-all">Project</a>
             <a href="#experience" className="px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs transition-all">Experience</a>
-            <a href="#instruments" className="px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs transition-all">Instruments</a>
             <a href="#contact" className="px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs transition-all">Contact</a>
           </nav>
 
@@ -156,10 +155,9 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
         {/* Mobile Dropdown Menu */}
         {mobileMenuOpen && (
           <div className="md:hidden bg-[#FAF9F6] border-b border-[#E6E4DD] px-6 py-6 space-y-3 text-xs font-mono font-bold tracking-widest text-[#161616] uppercase">
-            <a href="#about" onClick={() => setMobileMenuOpen(false)} className="block py-1">About Me</a>
-            <a href="#work" onClick={() => setMobileMenuOpen(false)} className="block py-1">Selected Work</a>
-            <a href="#experience" onClick={() => setMobileMenuOpen(false)} className="block py-1">Career Experience</a>
-            <a href="#instruments" onClick={() => setMobileMenuOpen(false)} className="block py-1">Instruments</a>
+            <a href="#about" onClick={() => setMobileMenuOpen(false)} className="block py-1">About</a>
+            <a href="#work" onClick={() => setMobileMenuOpen(false)} className="block py-1">Project</a>
+            <a href="#experience" onClick={() => setMobileMenuOpen(false)} className="block py-1">Experience</a>
             <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="block py-1">Contact</a>
           </div>
         )}
@@ -445,7 +443,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
           
           <div className="space-y-2 border-b border-[#E6E4DD] pb-6">
             <div className="text-[11px] font-mono font-bold tracking-[0.2em] text-[#85827A] uppercase">
-              TECHNICAL INSTRUMENTS
+              TECH STACK
             </div>
             <h2 className="font-serif-editorial text-3xl sm:text-4xl font-bold text-[#161616]">
               Curated Stack & Software Tools
