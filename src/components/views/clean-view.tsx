@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { DEVELOPER_DATA, FEATURED_PROJECTS, CV_WORK_EXPERIENCES } from '@/lib/constants';
 import { Project } from '@/types';
+import { CodeVideoBackdrop } from '@/components/ui/code-video-backdrop';
 
 interface CleanViewProps {
   onSelectProject: (project: Project) => void;
@@ -186,14 +187,10 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
             </div>
           </div>
 
-          {/* Background Code Editor Matrix Image with Dark Overlay */}
-          <div className="relative p-6 sm:p-12 lg:p-14 min-h-[500px] flex flex-col justify-between">
-            <img
-              src="/assets/code-editor-backdrop.jpg"
-              alt="High-Tech Code Editor Background"
-              className="absolute inset-0 w-full h-full object-cover object-center opacity-40"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#161616] via-[#161616]/90 to-[#161616]/60" />
+          {/* Background Code Video & Matrix Canvas Backdrop */}
+          <div className="relative p-6 sm:p-12 lg:p-14 min-h-[500px] flex flex-col justify-between overflow-hidden">
+            <CodeVideoBackdrop />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#161616] via-[#161616]/90 to-[#161616]/60 z-[1]" />
 
             {/* Content & Code Editor Terminal Container */}
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
