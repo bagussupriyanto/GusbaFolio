@@ -70,7 +70,7 @@ const SELECTED_PROJECTS = [
     year: "2026",
     impact: "45% Faster Order Dispatch",
     summary: "All-in-one cafe management platform for real-time POS checkout, kitchen display dispatch, inventory tracking, and multi-branch revenue analytics.",
-    mockup: "/assets/developer-workstation.jpg",
+    mockup: "/assets/projects/smartcafe/landing.png",
     tags: ["Next.js 16", "Supabase BaaS", "PostgreSQL", "Prisma ORM", "Tailwind CSS"]
   },
   {
@@ -81,7 +81,7 @@ const SELECTED_PROJECTS = [
     year: "2025",
     impact: "+65% B2B Inquiry Conversions",
     summary: "High-performance enterprise portal and product catalog for an industrial equipment, marine logistics & supply partner in Bintan.",
-    mockup: "/assets/projects/ptsms-mockup.png",
+    mockup: "/assets/projects/sms-hero.png",
     tags: ["Next.js", "Prisma ORM", "PostgreSQL", "Tailwind CSS"]
   },
   {
@@ -92,7 +92,7 @@ const SELECTED_PROJECTS = [
     year: "2024",
     impact: "8+ Hours Saved Weekly",
     summary: "Streamlined billing software featuring instant client management, itemized tax calculations, instant PDF export, and payment tracking.",
-    mockup: "/assets/projects/invoice-mockup.png",
+    mockup: "/assets/projects/invoice/login.png",
     tags: ["Next.js", "PostgreSQL", "Prisma ORM", "PDF Engine"]
   },
   {
@@ -103,15 +103,17 @@ const SELECTED_PROJECTS = [
     year: "2025",
     impact: "10x Video Production Speed",
     summary: "Automated video script generation and AI video processing pipeline for TikTok & social content channels.",
-    mockup: "/assets/profile-photo.jpg",
+    mockup: "/assets/developer-workstation.jpg",
     tags: ["OpenAI API", "Google Gemini", "Python", "Automation"]
   }
 ];
 
-// Curated Instruments Matrix
+// Curated Instruments Matrix with Notion-Style Aesthetic Icons
 const INSTRUMENTS_MATRIX = [
   {
     category: "Core Engineering",
+    icon: Code2,
+    emoji: "⚡",
     items: [
       { name: "Next.js 16", role: "App Router, SSR & Server Actions" },
       { name: "TypeScript", role: "Strict Type Safety & Interfaces" },
@@ -120,6 +122,8 @@ const INSTRUMENTS_MATRIX = [
   },
   {
     category: "Data & Infrastructure",
+    icon: Database,
+    emoji: "🐘",
     items: [
       { name: "Supabase", role: "BaaS, Auth & Realtime RLS" },
       { name: "PostgreSQL", role: "Relational Database Engine" },
@@ -128,6 +132,8 @@ const INSTRUMENTS_MATRIX = [
   },
   {
     category: "Artificial Intelligence",
+    icon: Sparkles,
+    emoji: "🧠",
     items: [
       { name: "OpenAI API", role: "GPT-4o & Function Calling" },
       { name: "Google Gemini", role: "Multimodal AI & Veo Video Lab" },
@@ -136,6 +142,8 @@ const INSTRUMENTS_MATRIX = [
   },
   {
     category: "DevOps & Tooling",
+    icon: Laptop,
+    emoji: "🛠️",
     items: [
       { name: "Cursor IDE", role: "AI-Augmented Software Dev" },
       { name: "GitHub & CI/CD", role: "Version Control & Automations" },
@@ -550,9 +558,14 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
                 className="p-6 rounded-2xl bg-white border border-[#E6E4DD] space-y-4 shadow-xs hover:border-[#161616] hover:shadow-md transition-all"
               >
-                <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-[#161616] border-b border-[#E6E4DD] pb-2">
-                  {group.category}
-                </h3>
+                <div className="flex items-center gap-2.5 border-b border-[#E6E4DD] pb-3">
+                  <div className="w-7 h-7 rounded-lg bg-[#F0EEE6] border border-[#E6E4DD] flex items-center justify-center text-xs font-mono font-bold text-[#161616]">
+                    {group.emoji}
+                  </div>
+                  <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-[#161616]">
+                    {group.category}
+                  </h3>
+                </div>
 
                 <div className="space-y-3">
                   {group.items.map((item) => (
