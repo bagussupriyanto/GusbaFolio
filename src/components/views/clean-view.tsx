@@ -92,31 +92,38 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
   return (
     <div className="w-full bg-[#FAF9F6] text-[#161616] min-h-screen font-sans antialiased selection:bg-[#E8DFCE] selection:text-[#161616]">
       
-      {/* ===== 1. HEADER NAVBAR ===== */}
+      {/* ===== 1. HEADER NAVBAR (NOTION / LINEAR AESTHETIC) ===== */}
       <header className="sticky top-0 inset-x-0 z-40 bg-[#FAF9F6]/90 backdrop-blur-md border-b border-[#E6E4DD]">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-6 py-3.5 flex items-center justify-between">
           
-          {/* Logo BS */}
-          <a href="#" className="flex items-center gap-2.5 group">
-            <div className="w-8 h-8 rounded-lg bg-[#161616] text-white flex items-center justify-center text-xs font-mono font-bold tracking-wider">
-              BS
-            </div>
-            <span className="font-serif-editorial font-bold text-lg text-[#161616] group-hover:text-[#B89355] transition-colors">
-              Bagus Supriyanto
-            </span>
-          </a>
+          {/* Logo & Availability Status */}
+          <div className="flex items-center gap-3">
+            <a href="#" className="flex items-center gap-2.5 group">
+              <div className="w-8 h-8 rounded-lg bg-[#161616] text-white flex items-center justify-center text-xs font-mono font-bold tracking-wider group-hover:bg-[#B89355] transition-colors">
+                BS
+              </div>
+              <span className="font-serif-editorial font-bold text-lg text-[#161616] group-hover:text-[#B89355] transition-colors">
+                Bagus Supriyanto
+              </span>
+            </a>
 
-          {/* Navigation Links */}
-          <nav className="hidden md:flex items-center gap-8 text-xs font-mono tracking-widest text-[#66645E] uppercase font-semibold">
-            <a href="#about" className="hover:text-[#161616] transition-colors">About</a>
-            <a href="#work" className="hover:text-[#161616] transition-colors">Selected Work</a>
-            <a href="#experience" className="hover:text-[#161616] transition-colors">Experience</a>
-            <a href="#instruments" className="hover:text-[#161616] transition-colors">Instruments</a>
-            <a href="#contact" className="hover:text-[#161616] transition-colors">Contact</a>
+            <div className="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#F0EEE6] border border-[#E6E4DD] text-[10px] font-mono font-semibold text-[#55524C]">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span>AVAILABLE FOR ROLES</span>
+            </div>
+          </div>
+
+          {/* Notion-Style Floating Pill Navigation */}
+          <nav className="hidden md:flex items-center gap-1 bg-[#F0EEE6]/80 p-1 rounded-full border border-[#E6E4DD]">
+            <a href="#about" className="px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs transition-all">About</a>
+            <a href="#work" className="px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs transition-all">Selected Work</a>
+            <a href="#experience" className="px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs transition-all">Experience</a>
+            <a href="#instruments" className="px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs transition-all">Instruments</a>
+            <a href="#contact" className="px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs transition-all">Contact</a>
           </nav>
 
           {/* Right Action Items */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2.5">
             <button
               onClick={onSwitchToGameMode}
               className="px-3.5 py-1.5 rounded-full bg-[#F0EEE6] border border-[#E6E4DD] text-[#55524C] text-[11px] font-mono font-semibold flex items-center gap-1.5 hover:bg-[#E5E2D8] hover:text-[#161616] transition-all cursor-pointer"
