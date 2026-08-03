@@ -33,9 +33,12 @@ import {
   Sliders,
   Code2,
   Laptop,
-  CheckSquare
+  CheckSquare,
+  Award,
+  Briefcase,
+  GraduationCap
 } from 'lucide-react';
-import { DEVELOPER_DATA, FEATURED_PROJECTS } from '@/lib/constants';
+import { DEVELOPER_DATA, FEATURED_PROJECTS, CV_WORK_EXPERIENCES } from '@/lib/constants';
 import { Project } from '@/types';
 
 interface CleanViewProps {
@@ -43,20 +46,22 @@ interface CleanViewProps {
   onSwitchToGameMode: () => void;
 }
 
-// 3 Core Projects formatted as Notion Database Entries
+// Complete Projects formatted as Notion Database Entries
 const NOTION_PROJECTS = [
   {
     project: FEATURED_PROJECTS[0], // SmartCafe
     id: "proj-1",
-    title: "SmartCafe POS & Operations SaaS",
+    title: "SmartCafe POS & Kitchen Dispatch SaaS",
     icon: "☕",
     category: "SaaS Platform",
     status: "Production Live",
     year: "2026",
-    impact: "45% Faster Dispatch",
-    summary: "All-in-one cafe management system for POS, kitchen dispatch, inventory tracking, and real-time revenue analytics.",
+    impact: "⚡ 45% Faster Dispatch",
+    summary: "All-in-one cafe management platform for real-time POS checkout, kitchen display dispatch, inventory tracking, and multi-branch revenue analytics.",
+    problem: "Manual pen-and-paper cafe ordering caused long checkout queues, kitchen order miscommunication, and a 15% revenue leak from untracked inventory.",
+    solution: "Architected a real-time web POS & kitchen dispatch system with instant Supabase state synchronization and Row Level Security (RLS).",
     mockup: "/assets/developer-workstation.jpg",
-    tags: ["Next.js 16", "Supabase", "PostgreSQL", "Tailwind"]
+    tags: ["Next.js 16", "Supabase BaaS", "PostgreSQL", "Prisma ORM", "Tailwind CSS"]
   },
   {
     project: FEATURED_PROJECTS[1], // PT SMS
@@ -66,10 +71,12 @@ const NOTION_PROJECTS = [
     category: "Enterprise Web",
     status: "Production Live",
     year: "2025",
-    impact: "+65% B2B Inquiries",
-    summary: "Corporate web portal and product catalog for an industrial equipment & logistics supplier in Bintan.",
+    impact: "📈 +65% B2B Inquiries",
+    summary: "High-performance enterprise portal and product catalog for an industrial equipment, marine logistics & supply partner in Bintan.",
+    problem: "An outdated online presence failed to communicate technical capability to international corporate procurement managers in Bintan.",
+    solution: "Engineered an editorial web platform featuring crisp industrial showcases, product catalogs, and automated inquiry routing.",
     mockup: "/assets/projects/ptsms-mockup.png",
-    tags: ["Next.js", "Prisma", "PostgreSQL", "Tailwind"]
+    tags: ["Next.js", "Prisma ORM", "PostgreSQL", "Tailwind CSS"]
   },
   {
     project: FEATURED_PROJECTS[2], // Invoice Application
@@ -79,21 +86,68 @@ const NOTION_PROJECTS = [
     category: "Automation System",
     status: "Production Live",
     year: "2024",
-    impact: "8+ Hours Saved/Wk",
-    summary: "Streamlined billing software featuring instant PDF export, itemized tax calculations, and overdue payment tracking.",
+    impact: "⏱️ 8+ Hours Saved/Wk",
+    summary: "Streamlined billing software featuring instant client management, itemized tax calculations, instant PDF export, and payment tracking.",
+    problem: "Small business owners lost 10+ hours weekly manually formatting billing spreadsheets and tracking overdue payments.",
+    solution: "Built a streamlined billing engine with automated client tracking, instant PDF rendering, and overdue payment alerts.",
     mockup: "/assets/projects/invoice-mockup.png",
-    tags: ["Next.js", "PostgreSQL", "PDF Engine", "Prisma"]
+    tags: ["Next.js", "PostgreSQL", "Prisma ORM", "PDF Kit"]
+  },
+  {
+    project: FEATURED_PROJECTS[3], // AI Automation Lab
+    id: "proj-4",
+    title: "Generative AI Video & Content Automation Lab",
+    icon: "🎬",
+    category: "AI Automation",
+    status: "Active Research",
+    year: "2025",
+    impact: "🤖 10x Content Production",
+    summary: "Automated video script generation and AI video processing pipeline for TikTok & social content channels.",
+    problem: "Manual video scriptwriting and video editing required 5+ hours per short video asset.",
+    solution: "Integrated Google Gemini Veo & OpenAI API with automated prompt orchestration and video rendering scripts.",
+    mockup: "/assets/profile-photo.jpg",
+    tags: ["OpenAI API", "Google Gemini", "Python", "Automation"]
   }
 ];
 
-// Notion Timeline Database Entries
-const NOTION_TIMELINE = [
-  { year: "2021", event: "Started Web Development & Software Engineering", icon: "🌱" },
-  { year: "2022", event: "Freelance Full-Stack Projects for SMEs & Local Businesses", icon: "💻" },
-  { year: "2023", event: "Architecting Real-Time SaaS Applications & Database Systems", icon: "⚡" },
-  { year: "2024", event: "Graduated S1 IT UTY & Integrated Generative AI Workflows", icon: "🎓" },
-  { year: "2025", event: "Deploying Enterprise Supplier Portals & Automated SaaS", icon: "🚀" },
-  { year: "2026", event: "Building High-Impact Web Products as AI Product Engineer", icon: "🔥" }
+// Notion Curated Instruments Matrix
+const NOTION_INSTRUMENTS = [
+  {
+    category: "Core Engineering",
+    icon: "⚡",
+    items: [
+      { name: "Next.js 16", role: "App Router, SSR & Server Actions" },
+      { name: "TypeScript", role: "Strict Static Type Safety" },
+      { name: "Tailwind CSS", role: "Utility Design System" }
+    ]
+  },
+  {
+    category: "Data & Infrastructure",
+    icon: "🐘",
+    items: [
+      { name: "Supabase", role: "BaaS, Auth & Realtime RLS" },
+      { name: "PostgreSQL", role: "Relational Database Engine" },
+      { name: "Prisma ORM", role: "Type-Safe Client & Migration" }
+    ]
+  },
+  {
+    category: "Artificial Intelligence",
+    icon: "🧠",
+    items: [
+      { name: "OpenAI API", role: "GPT-4o & Function Calling" },
+      { name: "Google Gemini", role: "Multimodal AI & Veo Video Lab" },
+      { name: "Anthropic Claude", role: "Reasoning & Content Automation" }
+    ]
+  },
+  {
+    category: "DevOps & Prototyping",
+    icon: "▲",
+    items: [
+      { name: "Cursor IDE", role: "AI-Augmented Software Dev" },
+      { name: "GitHub & CI/CD", role: "Version Control & Automations" },
+      { name: "Vercel", role: "Global Edge Network & Deployment" }
+    ]
+  }
 ];
 
 export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchToGameMode }) => {
@@ -117,7 +171,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
               N
             </div>
             <span className="font-bold text-base tracking-tight text-[#050505] group-hover:text-[#555555] transition-colors">
-              Bagus Supriyanto <span className="font-normal text-xs text-[#777777] ml-1">/ Workspace</span>
+              Bagus Supriyanto <span className="font-normal text-xs text-[#777777] ml-1">/ AI Product Engineer</span>
             </span>
           </a>
 
@@ -126,11 +180,14 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
             <a href="#work" className="hover:text-[#050505] transition-colors flex items-center gap-1.5">
               <span>📁</span> Projects
             </a>
-            <a href="#thinking" className="hover:text-[#050505] transition-colors flex items-center gap-1.5">
-              <span>💡</span> Thinking
+            <a href="#experience" className="hover:text-[#050505] transition-colors flex items-center gap-1.5">
+              <span>💼</span> Experience
             </a>
-            <a href="#journey" className="hover:text-[#050505] transition-colors flex items-center gap-1.5">
-              <span>📅</span> Timeline
+            <a href="#thinking" className="hover:text-[#050505] transition-colors flex items-center gap-1.5">
+              <span>💡</span> Approach
+            </a>
+            <a href="#instruments" className="hover:text-[#050505] transition-colors flex items-center gap-1.5">
+              <span>🛠️</span> Instruments
             </a>
             <a href="#contact" className="hover:text-[#050505] transition-colors flex items-center gap-1.5">
               <span>✉️</span> Contact
@@ -172,8 +229,9 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
         {mobileMenuOpen && (
           <div className="md:hidden bg-[#FFFFFF] border-b border-[#E6E6E4] px-6 py-5 space-y-3 text-xs font-medium text-[#050505]">
             <a href="#work" onClick={() => setMobileMenuOpen(false)} className="block py-1">📁 Projects Database</a>
-            <a href="#thinking" onClick={() => setMobileMenuOpen(false)} className="block py-1">💡 Engineering Thinking</a>
-            <a href="#journey" onClick={() => setMobileMenuOpen(false)} className="block py-1">📅 Timeline Database</a>
+            <a href="#experience" onClick={() => setMobileMenuOpen(false)} className="block py-1">💼 Career Experience</a>
+            <a href="#thinking" onClick={() => setMobileMenuOpen(false)} className="block py-1">💡 Engineering Approach</a>
+            <a href="#instruments" onClick={() => setMobileMenuOpen(false)} className="block py-1">🛠️ Technical Stack</a>
             <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="block py-1">✉️ Contact Page</a>
           </div>
         )}
@@ -183,7 +241,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
       <section className="pt-12 pb-16 sm:pt-16 sm:pb-24 px-6 max-w-6xl mx-auto space-y-8">
         
         {/* Notion Page Cover / Breadcrumb Header */}
-        <div className="space-y-3">
+        <div className="space-y-4">
           
           {/* Page Icon & Category Badge */}
           <div className="flex items-center gap-3">
@@ -203,7 +261,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
         </div>
 
         {/* Notion Callout Box (Signature Notion UI Element) */}
-        <div className="p-5 sm:p-6 rounded-2xl bg-[#F7F6F3] border border-[#E6E6E4] shadow-2xs space-y-3 max-w-3xl">
+        <div className="p-5 sm:p-6 rounded-2xl bg-[#F7F6F3] border border-[#E6E6E4] shadow-2xs space-y-4 max-w-3xl">
           <div className="flex items-start gap-3">
             <span className="text-xl shrink-0 mt-0.5">💡</span>
             <div className="space-y-2 text-xs sm:text-sm text-[#333333] leading-relaxed">
@@ -211,9 +269,22 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
                 AI Product Engineer • S1 IT Graduate UTY (2024)
               </p>
               <p>
-                I engineer modern full-stack web applications and AI-powered systems that simplify operations, increase conversions, and deliver measurable commercial ROI. AI is one of my core development tools to build faster, cleaner, and more reliably.
+                Saya membangun aplikasi web skala produksi dan sistem AI yang menyederhanakan operasional bisnis, meningkatkan konversi, dan memberikan dampak ROI terukur. AI adalah salah satu alat rekayasa saya untuk membangun perangkat lunak lebih cepat, bersih, dan andal.
               </p>
             </div>
+          </div>
+
+          {/* Quick Academic & Certification Chips */}
+          <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-[#E6E6E4] text-xs text-[#555555]">
+            <span className="px-2.5 py-1 rounded-md bg-white border border-[#E6E6E4] font-medium flex items-center gap-1.5">
+              🎓 S1 Teknologi Informasi UTY (2024)
+            </span>
+            <span className="px-2.5 py-1 rounded-md bg-white border border-[#E6E6E4] font-medium flex items-center gap-1.5">
+              🏆 Microsoft Certified Specialist
+            </span>
+            <span className="px-2.5 py-1 rounded-md bg-white border border-[#E6E6E4] font-medium flex items-center gap-1.5">
+              🎬 TikTok AI Content Lab
+            </span>
           </div>
         </div>
 
@@ -227,7 +298,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
                 <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
                 <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F]" />
               </div>
-              <span className="ml-2 font-medium text-[#050505]">bagus-workspace / main-dashboard</span>
+              <span className="ml-2 font-medium text-[#050505]">bagus-workspace / studio-workstation</span>
             </div>
             <div className="hidden sm:flex items-center gap-3">
               <span>Share</span>
@@ -267,7 +338,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
 
           {/* Notion Filter Bar */}
           <div className="flex items-center gap-1.5 overflow-x-auto pb-2 sm:pb-0">
-            {["All", "SaaS Platform", "Enterprise Web", "Automation System"].map((cat) => (
+            {["All", "SaaS Platform", "Enterprise Web", "Automation System", "AI Automation"].map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
@@ -284,7 +355,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
         </div>
 
         {/* Notion Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {filteredProjects.map((item) => (
             <div
               key={item.id}
@@ -327,7 +398,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
               {/* Tech Stack Pills & Action */}
               <div className="pt-3 border-t border-[#E6E6E4] space-y-2.5">
                 <div className="flex flex-wrap gap-1">
-                  {item.tags.map((t) => (
+                  {item.tags.slice(0, 3).map((t) => (
                     <span key={t} className="px-2 py-0.5 rounded bg-[#F7F6F3] border border-[#E6E6E4] text-[#444444] text-[10px] font-mono">
                       {t}
                     </span>
@@ -346,17 +417,68 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
 
       </section>
 
-      {/* ===== 4. NOTION CALLOUT PAGE BLOCK: ENGINEERING THINKING ===== */}
+      {/* ===== 4. WORK EXPERIENCE / CAREER DATABASE ===== */}
+      <section id="experience" className="py-16 px-6 max-w-6xl mx-auto space-y-8 border-t border-[#E6E6E4]">
+        
+        <div className="flex items-center gap-2.5 border-b border-[#E6E6E4] pb-4">
+          <span className="text-2xl">💼</span>
+          <div>
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-[#050505]">
+              Career & Experience Database
+            </h2>
+            <p className="text-xs text-[#666666]">
+              Milestones, technical roles, precision background, and products delivered.
+            </p>
+          </div>
+        </div>
+
+        {/* Experience Timeline Cards */}
+        <div className="space-y-4">
+          {CV_WORK_EXPERIENCES.map((exp) => (
+            <div
+              key={exp.step}
+              className="p-6 rounded-2xl bg-white border border-[#E6E6E4] shadow-2xs space-y-4 hover:border-[#A0A0A0] transition-all"
+            >
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#E6E6E4] pb-3">
+                <div className="flex items-center gap-3">
+                  <span className="px-2.5 py-0.5 rounded bg-[#F7F6F3] border border-[#E6E6E4] text-xs font-mono font-bold text-[#050505]">
+                    FASE 0{exp.step}
+                  </span>
+                  <h3 className="text-base font-bold text-[#050505]">{exp.company}</h3>
+                </div>
+
+                <div className="flex items-center gap-3 text-xs font-mono text-[#666666]">
+                  <span className="font-semibold text-[#050505]">{exp.role}</span>
+                  <span>•</span>
+                  <span>{exp.period}</span>
+                </div>
+              </div>
+
+              <ul className="space-y-2 text-xs text-[#444444] leading-relaxed">
+                {exp.points.map((pt, idx) => (
+                  <li key={idx} className="flex items-start gap-2.5">
+                    <span className="text-[#B89355] font-bold shrink-0 mt-0.5">•</span>
+                    <span>{pt}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+      </section>
+
+      {/* ===== 5. NOTION CALLOUT PAGE BLOCK: ENGINEERING APPROACH ===== */}
       <section id="thinking" className="py-16 px-6 max-w-6xl mx-auto space-y-6 border-t border-[#E6E6E4]">
         
         <div className="flex items-center gap-2.5 border-b border-[#E6E6E4] pb-4">
           <span className="text-2xl">💡</span>
           <div>
             <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-[#050505]">
-              Engineering Thinking
+              Engineering Approach
             </h2>
             <p className="text-xs text-[#666666]">
-              Core product philosophy & how I approach web software development.
+              Core product philosophy & how I solve complex software problems.
             </p>
           </div>
         </div>
@@ -368,7 +490,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
               <span>🎯</span> Product-First Focus
             </div>
             <p className="text-xs text-[#555555] leading-relaxed">
-              Software should remove friction, not create it. I diagnose business bottlenecks before writing code to ensure every feature delivers commercial ROI.
+              Perangkat lunak harus menghilangkan hambatan operasional bisnis. Saya mendiagnosis masalah bisnis sebelum menulis kode untuk memastikan setiap fitur memberikan ROI terukur.
             </p>
           </div>
 
@@ -377,7 +499,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
               <span>🛡️</span> Precision & Reliability
             </div>
             <p className="text-xs text-[#555555] leading-relaxed">
-              My background in precision manufacturing instills strict discipline for type safety, database Row Level Security (RLS), and resilient error handling.
+              Latar belakang manufaktur presisi menanamkan kedisiplinan ketat untuk keandalan data, tipe data TypeScript, keamanan Supabase Row Level Security (RLS), dan pencegahan error.
             </p>
           </div>
 
@@ -386,46 +508,52 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
               <span>⚡</span> AI Velocity Multiplier
             </div>
             <p className="text-xs text-[#555555] leading-relaxed">
-              I leverage AI LLMs, prompt orchestration, and modern tools as productivity multipliers to ship production-grade SaaS in a fraction of traditional cycles.
+              Saya memanfaatkan AI LLM, otomasi script, dan alat modern sebagai pengganda produktivitas untuk merilis aplikasi web skala produksi dalam siklus yang jauh lebih cepat.
             </p>
           </div>
         </div>
 
       </section>
 
-      {/* ===== 5. NOTION TIMELINE VIEW: JOURNEY ===== */}
-      <section id="journey" className="py-16 px-6 max-w-6xl mx-auto space-y-6 border-t border-[#E6E6E4]">
+      {/* ===== 6. NOTION INSTRUMENTS MATRIX ===== */}
+      <section id="instruments" className="py-16 px-6 max-w-6xl mx-auto space-y-6 border-t border-[#E6E6E4]">
         
         <div className="flex items-center gap-2.5 border-b border-[#E6E6E4] pb-4">
-          <span className="text-2xl">📅</span>
+          <span className="text-2xl">🛠️</span>
           <div>
             <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-[#050505]">
-              Timeline Database
+              Technical Stack & Instruments
             </h2>
             <p className="text-xs text-[#666666]">
-              Professional milestones, degree education, and products delivered over time.
+              Handpicked tools and infrastructure selected for reliability and rapid deployment.
             </p>
           </div>
         </div>
 
-        {/* Notion List Database View */}
-        <div className="bg-white border border-[#E6E6E4] rounded-2xl divide-y divide-[#E6E6E4]">
-          {NOTION_TIMELINE.map((item) => (
-            <div key={item.year} className="p-4 sm:px-6 flex items-center justify-between gap-4 hover:bg-[#F7F6F3] transition-colors">
-              <div className="flex items-center gap-3">
-                <span className="text-lg">{item.icon}</span>
-                <span className="text-xs sm:text-sm font-medium text-[#050505]">{item.event}</span>
+        {/* 4 Category Matrix */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {NOTION_INSTRUMENTS.map((group) => (
+            <div key={group.category} className="p-5 rounded-2xl bg-white border border-[#E6E6E4] space-y-4 shadow-2xs">
+              <div className="flex items-center gap-2 border-b border-[#E6E6E4] pb-2.5">
+                <span className="text-lg">{group.icon}</span>
+                <h3 className="text-xs font-bold uppercase tracking-wider text-[#050505]">{group.category}</h3>
               </div>
-              <span className="px-2.5 py-1 rounded bg-[#F7F6F3] border border-[#E6E6E4] text-[11px] font-mono font-semibold text-[#555555] shrink-0">
-                {item.year}
-              </span>
+
+              <div className="space-y-3">
+                {group.items.map((item) => (
+                  <div key={item.name} className="space-y-0.5">
+                    <div className="text-xs font-bold text-[#050505]">{item.name}</div>
+                    <div className="text-[11px] font-mono text-[#666666]">{item.role}</div>
+                  </div>
+                ))}
+              </div>
             </div>
           ))}
         </div>
 
       </section>
 
-      {/* ===== 6. NOTION CONTACT PAGE & FOOTER ===== */}
+      {/* ===== 7. NOTION CONTACT PAGE & FOOTER ===== */}
       <section id="contact" className="py-16 px-6 max-w-6xl mx-auto space-y-8 border-t border-[#E6E6E4]">
         
         <div className="p-6 sm:p-8 rounded-2xl bg-[#050505] text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
@@ -461,7 +589,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
 
       </section>
 
-      {/* ===== 7. NOTION FOOTER BAR ===== */}
+      {/* ===== 8. NOTION FOOTER BAR ===== */}
       <footer className="py-8 px-6 max-w-6xl mx-auto border-t border-[#E6E6E4] text-xs font-mono text-[#777777] flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-2">
           <div className="w-5 h-5 rounded bg-[#050505] text-white flex items-center justify-center text-[10px] font-bold">
