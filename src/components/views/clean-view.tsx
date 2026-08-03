@@ -236,30 +236,35 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
 
               </div>
 
-              {/* Right Column: Live IDE Code Terminal (5 Cols) */}
+              {/* Right Column: Live IDE Code Terminal (hire-bagus.ts) */}
               <div className="hidden lg:block lg:col-span-5 relative">
-                <div className="rounded-2xl bg-[#0D1117]/95 border border-[#30363D] p-5 shadow-2xl space-y-3 font-mono text-[11px] text-[#C9D1D9] backdrop-blur-md">
+                <div className="rounded-2xl bg-[#0D1117]/95 border border-[#30363D] p-5 shadow-2xl space-y-3 font-mono text-[11px] text-[#C9D1D9] backdrop-blur-md hover:border-[#79C0FF] transition-all group">
                   <div className="flex items-center justify-between border-b border-[#30363D] pb-3 text-[10px] text-[#8B949E]">
                     <div className="flex items-center gap-2">
                       <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]" />
                       <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
                       <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F]" />
-                      <span className="ml-1 text-[#C9D1D9] font-bold">engine.ts</span>
+                      <span className="ml-1 text-[#79C0FF] font-bold">hire-bagus.ts</span>
                     </div>
-                    <span>TypeScript • Next.js 16</span>
+                    <span className="text-emerald-400 font-bold flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      AVAILABLE FOR HIRE
+                    </span>
                   </div>
 
                   <div className="space-y-1 leading-relaxed">
-                    <div><span className="text-[#FF7B72]">import</span> &#123; createClient &#125; <span className="text-[#FF7B72]">from</span> <span className="text-[#A5D6FF]">'@supabase/supabase-js'</span>;</div>
-                    <div><span className="text-[#FF7B72]">import</span> &#123; OpenAI &#125; <span className="text-[#FF7B72]">from</span> <span className="text-[#A5D6FF]">'openai'</span>;</div>
+                    <div><span className="text-[#FF7B72]">import</span> &#123; Candidate &#125; <span className="text-[#FF7B72]">from</span> <span className="text-[#A5D6FF]">'@uty/s1-komputer'</span>;</div>
+                    <div><span className="text-[#FF7B72]">import</span> &#123; FullStackEngine &#125; <span className="text-[#FF7B72]">from</span> <span className="text-[#A5D6FF]">'@bagus/tech'</span>;</div>
                     <br />
-                    <div><span className="text-[#FF7B72]">export async function</span> <span className="text-[#D2A8FF]">dispatchAiPipeline</span>() &#123;</div>
-                    <div className="pl-4 text-[#8B949E]">// Initialize real-time POS & AI engine</div>
-                    <div className="pl-4"><span className="text-[#FF7B72]">const</span> db = <span className="text-[#D2A8FF]">createClient</span>(process.env.SUPABASE_URL);</div>
-                    <div className="pl-4"><span className="text-[#FF7B72]">const</span> ai = <span className="text-[#FF7B72]">new</span> <span className="text-[#D2A8FF]">OpenAI</span>(&#123; model: <span className="text-[#A5D6FF]">'gpt-4o'</span> &#125;);</div>
-                    <div className="pl-4"><span className="text-[#FF7B72]">return await</span> db.<span className="text-[#D2A8FF]">orders</span>.<span className="text-[#D2A8FF]">dispatch</span>(&#123;</div>
-                    <div className="pl-8 text-[#79C0FF]">status: <span className="text-[#A5D6FF]">'DISPATCHED_REALTIME'</span>,</div>
-                    <div className="pl-8 text-[#79C0FF]">latency: <span className="text-[#79C0FF]">45</span> <span className="text-[#8B949E]">// seconds</span></div>
+                    <div><span className="text-[#FF7B72]">export async function</span> <span className="text-[#D2A8FF]">hireBagusSupriyanto</span>() &#123;</div>
+                    <div className="pl-4 text-[#8B949E]">// Fetch S1 IT Graduate & AI Product Engineer</div>
+                    <div className="pl-4"><span className="text-[#FF7B72]">const</span> engineer = <span className="text-[#FF7B72]">new</span> <span className="text-[#D2A8FF]">Candidate</span>(<span className="text-[#A5D6FF] font-bold">'Bagus Supriyanto'</span>);</div>
+                    <br />
+                    <div className="pl-4"><span className="text-[#FF7B72]">return await</span> engineer.<span className="text-[#D2A8FF]">hire</span>(&#123;</div>
+                    <div className="pl-8 text-[#79C0FF]">degree: <span className="text-[#A5D6FF]">'S1 IT UTY (Sarjana Komputer)'</span>,</div>
+                    <div className="pl-8 text-[#79C0FF]">coreStack: [<span className="text-[#A5D6FF]">'Next.js 16'</span>, <span className="text-[#A5D6FF]">'TypeScript'</span>, <span className="text-[#A5D6FF]">'Supabase'</span>],</div>
+                    <div className="pl-8 text-[#79C0FF]">impact: [<span className="text-[#A5D6FF]">'+65% B2B Sales'</span>, <span className="text-[#A5D6FF] font-bold">'45s Fast Dispatch'</span>],</div>
+                    <div className="pl-8 text-[#79C0FF]">availability: <span className="text-[#7EE787] font-bold">'FULLTIME_OR_REMOTE'</span></div>
                     <div className="pl-4">&#125;);</div>
                     <div>&#125;</div>
                   </div>
