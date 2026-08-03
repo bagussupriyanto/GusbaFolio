@@ -127,16 +127,16 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
 
             <div className="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#F0EEE6] border border-[#E6E4DD] text-[10px] font-mono font-semibold text-[#55524C] shrink-0">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span>AVAILABLE FOR ROLES</span>
+              <span>TERSEDIA UNTUK BEKERJA</span>
             </div>
           </div>
 
           {/* Notion-Style Floating Pill Navigation */}
           <nav className="hidden md:flex items-center gap-1 bg-[#F0EEE6]/80 p-1 rounded-full border border-[#E6E4DD]">
-            <a href="#about" className="px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs transition-all">About</a>
-            <a href="#work" className="px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs transition-all">Project</a>
-            <a href="#experience" className="px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs transition-all">Experience</a>
-            <a href="#contact" className="px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs transition-all">Contact</a>
+            <a href="#about" className="px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs transition-all">Tentang</a>
+            <a href="#work" className="px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs transition-all">Proyek</a>
+            <a href="#experience" className="px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs transition-all">Pengalaman</a>
+            <a href="#contact" className="px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs transition-all">Kontak</a>
           </nav>
 
           {/* Right Action Items */}
@@ -173,11 +173,11 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
         {/* Mobile Dropdown Menu */}
         {mobileMenuOpen && (
           <div className="md:hidden bg-[#FAF9F6] border-b border-[#E6E4DD] px-4 py-4 space-y-1 text-xs font-mono font-bold tracking-widest text-[#161616] uppercase">
-            <a href="#about" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors">About</a>
-            <a href="#work" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors">Project</a>
-            <a href="#experience" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors">Experience</a>
-            <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors">Contact</a>
-            <a href="/assets/cv-bagus-supriyanto.pdf.pdf" download className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors text-[#B89355]">Download Resume ↓</a>
+            <a href="#about" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors">Tentang</a>
+            <a href="#work" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors">Proyek</a>
+            <a href="#experience" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors">Pengalaman</a>
+            <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors">Kontak</a>
+            <a href="/assets/cv-bagus-supriyanto.pdf.pdf" download className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors text-[#B89355]">Unduh Resume / CV ↓</a>
           </div>
         )}
       </header>
@@ -218,17 +218,17 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
                 
                 <div className="inline-flex items-center gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-[#2B2B2B]/80 backdrop-blur-md border border-[#444444] text-[9px] sm:text-[11px] font-mono tracking-widest text-[#DDDDDD] uppercase">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  <span>AI PRODUCT ENGINEER • S1 IT GRADUATE</span>
+                  <span>AI PRODUCT ENGINEER • LULUSAN S1 IT</span>
                 </div>
 
                 <h1 className="font-serif-editorial text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1] sm:leading-[1.08]">
-                  Building digital products{' '}
+                  Membangun produk digital{' '}
                   <br className="hidden sm:block" />
-                  <span className="italic font-normal text-[#C5A059]">that solve real problems.</span>
+                  <span className="italic font-normal text-[#C5A059]">yang menyelesaikan masalah nyata.</span>
                 </h1>
 
                 <p className="text-[13px] sm:text-sm lg:text-base text-[#DDDDDD] font-normal leading-relaxed max-w-xl">
-                  I engineer modern full-stack web applications and AI-powered platforms that simplify complex business operations, boost conversions, and deliver measurable ROI.
+                  Saya merancang aplikasi web full-stack modern dan platform berbasis AI yang menyederhanakan operasional bisnis, meningkatkan konversi, serta memberikan hasil nyata.
                 </p>
 
                 {/* Action Buttons */}
@@ -237,7 +237,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
                     href="#work"
                     className="px-4 sm:px-6 py-2.5 sm:py-3 rounded-full bg-white text-[#161616] text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider hover:bg-[#EAE8E1] transition-all cursor-pointer flex items-center gap-2 shadow-lg hover:scale-105"
                   >
-                    <span>EXPLORE WORK</span>
+                    <span>LIHAT PROYEK</span>
                     <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#161616]" />
                   </a>
 
@@ -245,7 +245,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
                     href="#about"
                     className="px-4 sm:px-6 py-2.5 sm:py-3 rounded-full bg-black/40 border border-white/20 text-white text-[10px] sm:text-xs font-mono font-semibold uppercase tracking-wider hover:bg-black/60 transition-all cursor-pointer flex items-center gap-2"
                   >
-                    <span>ABOUT ME</span>
+                    <span>TENTANG SAYA</span>
                     <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#CCCCCC]" />
                   </a>
                 </div>
@@ -264,7 +264,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
                     </div>
                     <span className="text-emerald-400 font-bold flex items-center gap-1">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      AVAILABLE FOR HIRE
+                      SIAP BEKERJA
                     </span>
                   </div>
 
@@ -273,14 +273,14 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
                     <div><span className="text-[#FF7B72]">import</span> &#123; FullStackEngine &#125; <span className="text-[#FF7B72]">from</span> <span className="text-[#A5D6FF]">'@bagus/tech'</span>;</div>
                     <br />
                     <div><span className="text-[#FF7B72]">export async function</span> <span className="text-[#D2A8FF]">hireBagusSupriyanto</span>() &#123;</div>
-                    <div className="pl-4 text-[#8B949E]">// Fetch S1 IT Graduate & AI Product Engineer</div>
+                    <div className="pl-4 text-[#8B949E]">// Sarjana Komputer & AI Product Engineer</div>
                     <div className="pl-4"><span className="text-[#FF7B72]">const</span> engineer = <span className="text-[#FF7B72]">new</span> <span className="text-[#D2A8FF]">Candidate</span>(<span className="text-[#A5D6FF] font-bold">'Bagus Supriyanto'</span>);</div>
                     <br />
                     <div className="pl-4"><span className="text-[#FF7B72]">return await</span> engineer.<span className="text-[#D2A8FF]">hire</span>(&#123;</div>
-                    <div className="pl-8 text-[#79C0FF]">degree: <span className="text-[#A5D6FF]">'S1 IT UTY (Sarjana Komputer)'</span>,</div>
+                    <div className="pl-8 text-[#79C0FF]">gelar: <span className="text-[#A5D6FF]">'S1 IT UTY (Sarjana Komputer)'</span>,</div>
                     <div className="pl-8 text-[#79C0FF]">coreStack: [<span className="text-[#A5D6FF]">'Next.js 16'</span>, <span className="text-[#A5D6FF]">'TypeScript'</span>, <span className="text-[#A5D6FF]">'Supabase'</span>],</div>
-                    <div className="pl-8 text-[#79C0FF]">impact: [<span className="text-[#A5D6FF]">'+65% B2B Sales'</span>, <span className="text-[#A5D6FF] font-bold">'45s Fast Dispatch'</span>],</div>
-                    <div className="pl-8 text-[#79C0FF]">availability: <span className="text-[#7EE787] font-bold">'FULLTIME_OR_REMOTE'</span></div>
+                    <div className="pl-8 text-[#79C0FF]">dampak: [<span className="text-[#A5D6FF]">'+65% Penjualan B2B'</span>, <span className="text-[#A5D6FF] font-bold">'45dtk Order POS'</span>],</div>
+                    <div className="pl-8 text-[#79C0FF]">status: <span className="text-[#7EE787] font-bold">'FULLTIME_ATAU_REMOTE'</span></div>
                     <div className="pl-4">&#125;);</div>
                     <div>&#125;</div>
                   </div>
@@ -346,11 +346,11 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
           <div className="lg:col-span-7 space-y-6">
             
             <div className="text-[10px] sm:text-[11px] font-mono font-bold tracking-[0.2em] text-[#85827A] uppercase">
-              ABOUT THE BUILDER
+              TENTANG PENGEMBANG
             </div>
 
             <h2 className="font-serif-editorial text-2xl sm:text-3xl lg:text-4xl font-bold text-[#161616] leading-tight">
-              Combining Industrial Precision with Modern Full-Stack Software Engineering.
+              Menggabungkan Presisi Manufaktur Industri dengan Rekayasa Perangkat Lunak Modern.
             </h2>
 
             <div className="space-y-3 sm:space-y-4 text-[13px] sm:text-sm lg:text-base text-[#55524C] leading-relaxed font-normal">
@@ -365,17 +365,17 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
             {/* 3 Academic & Certification Highlights */}
             <div className="grid grid-cols-3 gap-3 sm:gap-4 pt-4 border-t border-[#E6E4DD]">
               <div className="space-y-0.5 sm:space-y-1">
-                <div className="text-[9px] sm:text-[10px] font-mono text-[#85827A] uppercase tracking-wider">ACADEMIC DEGREE</div>
+                <div className="text-[9px] sm:text-[10px] font-mono text-[#85827A] uppercase tracking-wider">GELAR AKADEMIK</div>
                 <div className="text-[11px] sm:text-xs font-bold text-[#161616]">S1 IT UTY (2024)</div>
                 <div className="text-[10px] sm:text-[11px] text-[#66645E]">Sarjana Komputer</div>
               </div>
               <div className="space-y-0.5 sm:space-y-1">
-                <div className="text-[9px] sm:text-[10px] font-mono text-[#85827A] uppercase tracking-wider">CERTIFICATION</div>
+                <div className="text-[9px] sm:text-[10px] font-mono text-[#85827A] uppercase tracking-wider">SERTIFIKASI</div>
                 <div className="text-[11px] sm:text-xs font-bold text-[#161616]">Microsoft Certified</div>
                 <div className="text-[10px] sm:text-[11px] text-[#66645E]">Certiport Specialist</div>
               </div>
               <div className="space-y-0.5 sm:space-y-1">
-                <div className="text-[9px] sm:text-[10px] font-mono text-[#85827A] uppercase tracking-wider">AI RESEARCH LAB</div>
+                <div className="text-[9px] sm:text-[10px] font-mono text-[#85827A] uppercase tracking-wider">LAB RISET AI</div>
                 <div className="text-[11px] sm:text-xs font-bold text-[#161616]">TikTok AI Content Lab</div>
                 <div className="text-[10px] sm:text-[11px] text-[#66645E]">Generative Video Lab</div>
               </div>
@@ -396,14 +396,14 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
           <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-[#E6E4DD] pb-4 sm:pb-6 gap-3 sm:gap-4">
             <div className="space-y-1.5 sm:space-y-2">
               <div className="text-[10px] sm:text-[11px] font-mono font-bold tracking-[0.2em] text-[#85827A] uppercase">
-                SELECTED WORK
+                PORTOFOLIO PILIHAN
               </div>
               <h2 className="font-serif-editorial text-2xl sm:text-3xl lg:text-4xl font-bold text-[#161616]">
-                Case Studies & Delivered Products
+                Studi Kasus & Produk Yang Telah Rilis
               </h2>
             </div>
             <p className="text-[10px] sm:text-xs font-mono text-[#85827A] uppercase tracking-wider">
-              Tap any card to view full breakdown
+              Klik kartu untuk melihat rincian studi kasus lengkap
             </p>
           </div>
 
@@ -451,7 +451,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
                     ))}
                   </div>
                   <span className="flex items-center gap-1 group-hover:translate-x-1 transition-transform shrink-0">
-                    VIEW <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                    LIHAT <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                   </span>
                 </div>
 
@@ -473,10 +473,10 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
             <div className="space-y-1.5 sm:space-y-2">
               <div className="text-[10px] sm:text-[11px] font-mono font-bold tracking-[0.2em] text-[#85827A] uppercase flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-[#161616]" />
-                <span>VERSION CONTROL // CAREER CHANGELOG</span>
+                <span>LOG KARIR & RIWAYAT REKAYASA</span>
               </div>
               <h2 className="font-serif-editorial text-2xl sm:text-3xl lg:text-4xl font-bold text-[#161616]">
-                Engineering Milestones & Career Path
+                Perjalanan Karir & Rekam Jejak Pengalaman
               </h2>
             </div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#161616] text-[#FAF9F6] text-[10px] font-mono font-bold shrink-0 self-start sm:self-auto">
@@ -532,7 +532,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
                         {gitMeta.isCurrent && (
                           <span className="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[9px] font-bold flex items-center gap-1">
                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                            ACTIVE
+                            AKTIF
                           </span>
                         )}
                       </div>
@@ -577,32 +577,39 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
           <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-[#E6E4DD] pb-4 sm:pb-6 gap-2 sm:gap-4">
             <div className="space-y-1.5 sm:space-y-2">
               <div className="text-[10px] sm:text-[11px] font-mono font-bold tracking-[0.2em] text-[#85827A] uppercase">
-                TECH STACK
+                TEKNOLOGI & PERANGKAT
               </div>
               <h2 className="font-serif-editorial text-2xl sm:text-3xl lg:text-4xl font-bold text-[#161616]">
-                Curated Stack & Software Tools
+                Daftar Alat & Teknologi Yang Dikuasai
               </h2>
             </div>
             <p className="text-[10px] sm:text-xs font-mono text-[#85827A] uppercase tracking-wider">
-              Hover or tap any icon to reveal tool architecture & role
+              Arahkan kursor atau tekan icon untuk melihat fungsi teknisnya
             </p>
           </div>
 
           {/* Category Filter Pills Bar */}
           <div className="flex flex-wrap items-center gap-2 pt-2">
-            {['ALL', 'Frontend', 'Backend', 'AI & Lab', 'DevOps', 'Industrial'].map((cat) => {
-              const isSelected = selectedTechCategory === cat;
+            {[
+              { key: 'ALL', label: 'SEMUA' },
+              { key: 'Frontend', label: 'FRONTEND' },
+              { key: 'Backend', label: 'BACKEND' },
+              { key: 'AI & Lab', label: 'AI & LAB' },
+              { key: 'DevOps', label: 'DEVOPS' },
+              { key: 'Industrial', label: 'INDUSTRI' }
+            ].map((cat) => {
+              const isSelected = selectedTechCategory === cat.key;
               return (
                 <button
-                  key={cat}
-                  onClick={() => setSelectedTechCategory(cat)}
+                  key={cat.key}
+                  onClick={() => setSelectedTechCategory(cat.key)}
                   className={`px-3 py-1.5 rounded-full text-xs font-mono font-bold transition-all cursor-pointer select-none ${
                     isSelected
                       ? 'bg-[#161616] text-white shadow-sm'
                       : 'bg-[#F0EEE6] text-[#55524C] border border-[#E6E4DD] hover:bg-[#E5E2D8] hover:text-[#161616]'
                   }`}
                 >
-                  {cat.toUpperCase()} {cat === 'ALL' ? `(${INDIVIDUAL_INSTRUMENTS.length})` : ''}
+                  {cat.label} {cat.key === 'ALL' ? `(${INDIVIDUAL_INSTRUMENTS.length})` : ''}
                 </button>
               );
             })}
@@ -682,13 +689,13 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
           
           <div className="space-y-2 sm:space-y-3 text-center md:text-left">
             <div className="inline-flex items-center gap-2 px-2.5 sm:px-3 py-1 rounded-full bg-[#2A2A2A] text-[10px] sm:text-xs font-mono text-[#C5A059] uppercase">
-              <span>GET IN TOUCH</span>
+              <span>HUBUNGI SAYA</span>
             </div>
             <h2 className="font-serif-editorial text-2xl sm:text-3xl lg:text-5xl font-bold text-white">
-              Let&apos;s build something exceptional.
+              Mari bangun sesuatu yang luar biasa bersama.
             </h2>
             <p className="text-[11px] sm:text-xs lg:text-sm text-[#AAAAAA] max-w-md">
-              Available for Full-time Software Engineering roles, AI Product Consulting, and Remote Contracts.
+              Tersedia untuk posisi Full-time Software Engineer, Konsultasi Produk AI, dan Kontrak Remote.
             </p>
           </div>
 
@@ -697,7 +704,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
               href={`mailto:${DEVELOPER_DATA.contact.email}`}
               className="w-full sm:w-auto px-5 sm:px-6 py-3 sm:py-3.5 rounded-full bg-[#FAF9F6] text-[#161616] text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider hover:bg-[#EAE8E1] transition-all cursor-pointer block text-center shadow-md hover:scale-105"
             >
-              SEND AN EMAIL →
+              KIRIM EMAIL →
             </a>
             <a
               href={DEVELOPER_DATA.contact.whatsapp}
@@ -715,7 +722,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
       {/* Footer */}
       <footer className="py-6 sm:py-8 px-4 sm:px-6 max-w-6xl mx-auto border-t border-[#E6E4DD] text-[10px] sm:text-xs font-mono text-[#85827A] flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
         <div className="text-center sm:text-left">
-          © 2026 Bagus Supriyanto. Designed with precision & craftsmanship.
+          © 2026 Bagus Supriyanto. Dirancang dengan presisi & dedikasi.
         </div>
         <div className="flex items-center gap-4">
           <a href="https://github.com/bagussupriyanto" target="_blank" rel="noopener noreferrer" className="hover:text-[#161616] transition-colors">GitHub</a>

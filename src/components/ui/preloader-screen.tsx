@@ -42,8 +42,8 @@ export const PreloaderScreen: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
             className="text-center space-y-4"
           >
-            <div className="font-serif-editorial text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white">
-              WELCOME TO MY PORTFOLIO<span className="text-[#B89355]">.</span>
+            <div className="font-serif-editorial text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
+              SELAMAT DATANG DI PORTOFOLIO SAYA<span className="text-[#B89355]">.</span>
             </div>
           </motion.div>
 
