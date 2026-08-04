@@ -404,44 +404,85 @@ export function getSelectedProjects(lang: Language) {
   if (lang === 'en') {
     return [
       {
-        id: "proj-1",
-        title: "SmartCafe POS & Kitchen Dispatch SaaS",
-        category: "SaaS Platform",
-        year: "2026",
-        impact: "45% Faster Order Dispatch",
-        summary: "All-in-one cafe management platform for real-time POS checkout, kitchen display dispatch, inventory tracking, and multi-branch revenue analytics.",
-        mockup: "/assets/projects/smartcafe/landing.png",
-        tags: ["Next.js 16", "Supabase", "PostgreSQL", "Prisma ORM", "Tailwind CSS"]
-      },
-      {
-        id: "proj-2",
+        id: "pt-surya-mitra-service",
         title: "PT Surya Mitra Service Industrial Portal",
-        category: "Enterprise Web",
+        category: "Company Profile & Custom CMS",
         year: "2025",
         impact: "+65% B2B Inquiry Conversions",
-        summary: "High-performance enterprise portal and product catalog for an industrial equipment, marine logistics & supply partner in Bintan.",
-        mockup: "/assets/projects/sms-hero.png",
-        tags: ["Next.js", "Prisma ORM", "PostgreSQL", "Tailwind CSS"]
+        summary: "High-performance enterprise portal and product catalog for an industrial equipment & marine logistics partner in Bintan.",
+        problem: "PT SMS required an official corporate website for digital branding and an easy way to manage a 100+ industrial product catalog without contacting a developer for every update.",
+        solution: "Engineered a custom corporate website with an integrated CMS admin dashboard so internal staff can add products, edit news articles, and manage client inquiries independently.",
+        outcome: "Portal live at suryamitraservice.com — internal team regularly updates product catalogs and receives direct B2B inquiries without developer intervention.",
+        keyFeatures: [
+          "Custom Admin CMS Dashboard",
+          "Industrial Procurement Product Catalog",
+          "RFQ Request Form & Sales WhatsApp Integration"
+        ],
+        techStack: ["Next.js 16", "Supabase RLS", "Tailwind CSS", "TypeScript"],
+        tags: ["Next.js 16", "Supabase RLS", "Tailwind CSS", "TypeScript"],
+        liveUrl: "https://www.suryamitraservice.com/",
+        mockupPath: "/assets/projects/sms-hero.png?v=10",
+        mockup: "/assets/projects/sms-hero.png?v=10",
+        lang: 'en' as const,
+        galleryImages: [
+          { url: "/assets/projects/sms-hero.png?v=10", label: "SHOT 01: HERO WEBSITE" },
+          { url: "/assets/projects/sms-dashboard.png?v=10", label: "SHOT 02: CMS DASHBOARD" },
+          { url: "/assets/projects/sms-katalog.png?v=10", label: "SHOT 03: PRODUCT CATALOG" },
+          { url: "/assets/projects/sms-promo.png?v=10", label: "SHOT 04: PROMO & SERVICES" },
+        ]
       },
       {
-        id: "proj-3",
-        title: "Automated Billing & PDF Invoicing System",
-        category: "Automation System",
+        id: "smartcafe-pos",
+        title: "SmartCafe POS System",
+        category: "Point of Sale & Inventory System",
+        year: "2026",
+        impact: "45% Faster Order Dispatch",
+        summary: "All-in-one cafe management platform for real-time POS checkout, kitchen display dispatch, inventory tracking, and revenue analytics.",
+        problem: "Cafes struggled with manual paper order notes — long checkout queues during rush hours, frequent inventory count mismatches, and zero sales data visibility for owners.",
+        solution: "Engineered a web POS application with a 3-click cashier order flow, automatic inventory deduction per order item, kitchen display dispatch, and real-time revenue analytics.",
+        outcome: "Order processing time reduced from 3 minutes to 45 seconds per customer, stock mismatches eliminated completely, and real-time revenue monitoring for owners.",
+        keyFeatures: [
+          "Automated Inventory & Stock Tracking",
+          "Real-Time Sales Analytics Dashboard",
+          "QR Table Order & Digital Receipt Integration"
+        ],
+        techStack: ["Next.js 16", "PostgreSQL", "Supabase RLS", "Tailwind CSS"],
+        tags: ["Next.js 16", "PostgreSQL", "Supabase RLS", "Tailwind CSS"],
+        liveUrl: "https://smartcafe-nine.vercel.app/",
+        mockupPath: "/assets/projects/smartcafe/landing.png",
+        mockup: "/assets/projects/smartcafe/landing.png",
+        lang: 'en' as const,
+        galleryImages: [
+          { url: "/assets/projects/smartcafe/landing.png", label: "LANDING" },
+          { url: "/assets/projects/smartcafe/dashboard.png", label: "DASHBOARD" },
+          { url: "/assets/projects/smartcafe/qr-order.png", label: "QR ORDER" },
+          { url: "/assets/projects/smartcafe/kitchen-kds.png", label: "KITCHEN KDS" }
+        ]
+      },
+      {
+        id: "invoice-management-system",
+        title: "Invoice & Shipping System",
+        category: "Business Operations & E-Invoice",
         year: "2024",
         impact: "8+ Hours Saved Weekly",
         summary: "Streamlined billing software featuring instant client management, itemized tax calculations, instant PDF export, and payment tracking.",
+        problem: "Administrative staff spent 15+ minutes typing Excel invoices manually, causing calculation errors, inconsistent formatting, and delayed billing.",
+        solution: "Engineered a centralized invoicing system with instant 1-click PDF generation, stored client databases, itemized tax calculation, and payment status tracking.",
+        outcome: "Invoices generated in seconds with 100% automated calculations, neat billing history, and up to 80% administrative time savings.",
+        keyFeatures: [
+          "Automated E-Invoice PDF Generator",
+          "Shipping Documents & Waybills",
+          "Client Database & Payment Tracking"
+        ],
+        techStack: ["Next.js 16", "Prisma ORM", "PostgreSQL", "Tailwind CSS"],
+        tags: ["Next.js 16", "Prisma ORM", "PostgreSQL", "Tailwind CSS"],
+        mockupPath: "/assets/projects/invoice/login.png",
         mockup: "/assets/projects/invoice/login.png",
-        tags: ["Next.js", "PostgreSQL", "Prisma ORM", "PDF Engine"]
-      },
-      {
-        id: "proj-4",
-        title: "Generative AI Video & Content Automation Lab",
-        category: "AI Automation",
-        year: "2025",
-        impact: "10x Video Production Speed",
-        summary: "Automated video script generation and AI video processing pipeline for TikTok & social content channels.",
-        mockup: "/assets/developer-workstation.jpg",
-        tags: ["OpenAI API", "Google Gemini", "Python", "Automation"]
+        lang: 'en' as const,
+        galleryImages: [
+          { url: "/assets/projects/invoice/login.png", label: "LOGIN PORTAL" },
+          { url: "/assets/projects/invoice/dashboard-blurred.png", label: "DASHBOARD (NDA)" }
+        ]
       }
     ];
   }
@@ -449,44 +490,85 @@ export function getSelectedProjects(lang: Language) {
   if (lang === 'zh') {
     return [
       {
-        id: "proj-1",
+        id: "pt-surya-mitra-service",
+        title: "PT Surya Mitra Service 工业采购门户",
+        category: "企业级 Web 应用 & 自定义 CMS",
+        year: "2025",
+        impact: "B2B 询盘转化率 +65%",
+        summary: "为印尼廖群岛工业设备与船舶物资供应商打造的高性能官方企业门户及 100+ 产品在线目录。",
+        problem: "PT SMS 需要一个官方网站进行数字品牌宣传，同时需要一个自助式 CMS 系统，以便在不聘请开发人员的情况下独立管理 100+ 工业产品目录。",
+        solution: "开发了企业级官方网站并集成专属后台 CMS，内部团队可自主添加产品、编辑新闻动态及管理客户询盘。",
+        outcome: "网站在 suryamitraservice.com 上线运行 — 内部团队无需开发协助即可自行上传产品目录并接收来自网站的直接询盘。",
+        keyFeatures: [
+          "自定义后台 CMS 管理面板",
+          "工业设备采购产品目录",
+          "RFQ 报价申请表单及 Sales WhatsApp 集成"
+        ],
+        techStack: ["Next.js 16", "Supabase RLS", "Tailwind CSS", "TypeScript"],
+        tags: ["Next.js 16", "Supabase RLS", "Tailwind CSS", "TypeScript"],
+        liveUrl: "https://www.suryamitraservice.com/",
+        mockupPath: "/assets/projects/sms-hero.png?v=10",
+        mockup: "/assets/projects/sms-hero.png?v=10",
+        lang: 'zh' as const,
+        galleryImages: [
+          { url: "/assets/projects/sms-hero.png?v=10", label: "01: 网站首页" },
+          { url: "/assets/projects/sms-dashboard.png?v=10", label: "02: CMS 后台" },
+          { url: "/assets/projects/sms-katalog.png?v=10", label: "03: 产品目录" },
+          { url: "/assets/projects/sms-promo.png?v=10", label: "04: 促销与服务" },
+        ]
+      },
+      {
+        id: "smartcafe-pos",
         title: "SmartCafe 智能餐饮 POS 与后厨调度 SaaS",
         category: "SaaS 平台",
         year: "2026",
         impact: "出单速度提升 45%",
         summary: "一体化餐饮管理平台，集成实时收银结账、后厨 KDS 调度、库存自动扣减及多门店营收数据分析。",
+        problem: "传统咖啡馆依赖纸质手写单 — 高峰期结账排队时间长、原料库存经常存在差异，且业主无法实时掌控每日销售数据。",
+        solution: "开发了基于 Web 的 POS 系统，提供 3 次点击快速收银流程、按订单自动扣减库存、后厨 Display 调度及实时营收分析面板。",
+        outcome: "单客点餐出单时间从 3 分钟缩短至 45 秒，库存差异全面消除，业主可随时随地掌控实时营业额。",
+        keyFeatures: [
+          "自动化库存与物料追踪",
+          "实时营收数据分析面板",
+          "扫码点餐与电子小票集成"
+        ],
+        techStack: ["Next.js 16", "PostgreSQL", "Supabase RLS", "Tailwind CSS"],
+        tags: ["Next.js 16", "PostgreSQL", "Supabase RLS", "Tailwind CSS"],
+        liveUrl: "https://smartcafe-nine.vercel.app/",
+        mockupPath: "/assets/projects/smartcafe/landing.png",
         mockup: "/assets/projects/smartcafe/landing.png",
-        tags: ["Next.js 16", "Supabase", "PostgreSQL", "Prisma ORM", "Tailwind CSS"]
+        lang: 'zh' as const,
+        galleryImages: [
+          { url: "/assets/projects/smartcafe/landing.png", label: "首页" },
+          { url: "/assets/projects/smartcafe/dashboard.png", label: "数据仪表盘" },
+          { url: "/assets/projects/smartcafe/qr-order.png", label: "扫码点餐" },
+          { url: "/assets/projects/smartcafe/kitchen-kds.png", label: "后厨 KDS" }
+        ]
       },
       {
-        id: "proj-2",
-        title: "PT Surya Mitra Service 工业采购门户",
-        category: "企业级 Web 应用",
-        year: "2025",
-        impact: "B2B 询盘转化率 +65%",
-        summary: "为印尼廖群岛工业设备与船舶物资供应商打造的高性能官方企业门户及 100+ 产品在线目录。",
-        mockup: "/assets/projects/sms-hero.png",
-        tags: ["Next.js", "Prisma ORM", "PostgreSQL", "Tailwind CSS"]
-      },
-      {
-        id: "proj-3",
+        id: "invoice-management-system",
         title: "智能电子发票与物流单据生成系统",
         category: "业务自动化系统",
         year: "2024",
         impact: "每周节省 8+ 小时行政工时",
         summary: "自动化开票与单据管理系统，支持一键导出 PDF 发票、客户历史账单追溯及付款状态实时监控。",
+        problem: "行政人员每周花费数小时在 Excel 中逐笔录入发票，极易产生计算错误、格式不一致且开票耗时长达 15 分钟。",
+        solution: "构建了集中的开票管理系统，支持一键生成 PDF 发票、客户数据库管理、细化税费计算及付款状态跟踪。",
+        outcome: "发票可在数秒内完成生成，计算 100% 自动精准，历史账单清晰可查，行政处理效率提升最高 80%。",
+        keyFeatures: [
+          "自动化电子发票 PDF 生成器",
+          "发货单与物流单据追踪",
+          "客户数据库与付款状态管理"
+        ],
+        techStack: ["Next.js 16", "Prisma ORM", "PostgreSQL", "Tailwind CSS"],
+        tags: ["Next.js 16", "Prisma ORM", "PostgreSQL", "Tailwind CSS"],
+        mockupPath: "/assets/projects/invoice/login.png",
         mockup: "/assets/projects/invoice/login.png",
-        tags: ["Next.js", "PostgreSQL", "Prisma ORM", "PDF Engine"]
-      },
-      {
-        id: "proj-4",
-        title: "生成式 AI 视频与短视频自动化实验室",
-        category: "AI 自动化实验室",
-        year: "2025",
-        impact: "视频制作效率提升 10 倍",
-        summary: "基于大语言模型与 AI 视频生成接口的自动化脚本撰写与短视频自动化管道。",
-        mockup: "/assets/developer-workstation.jpg",
-        tags: ["OpenAI API", "Google Gemini", "Python", "Automation"]
+        lang: 'zh' as const,
+        galleryImages: [
+          { url: "/assets/projects/invoice/login.png", label: "登录门户" },
+          { url: "/assets/projects/invoice/dashboard-blurred.png", label: "仪表盘 (保密)" }
+        ]
       }
     ];
   }
@@ -494,44 +576,85 @@ export function getSelectedProjects(lang: Language) {
   // Indonesian Default
   return [
     {
-      id: "proj-1",
-      title: "SmartCafe POS & Kitchen Dispatch SaaS",
-      category: "Platform SaaS",
-      year: "2026",
-      impact: "Order POS 45% Lebih Cepat",
-      summary: "Platform manajemen kafe all-in-one untuk kasir real-time, koki dapur KDS, pelacakan stok otomatis, dan analitik omzet bisnis.",
-      mockup: "/assets/projects/smartcafe/landing.png",
-      tags: ["Next.js 16", "Supabase", "PostgreSQL", "Prisma ORM", "Tailwind CSS"]
-    },
-    {
-      id: "proj-2",
-      title: "PT Surya Mitra Service Industrial Portal",
-      category: "Web Enterprise",
+      id: "pt-surya-mitra-service",
+      title: "PT Surya Mitra Service",
+      category: "Company Profile & Custom CMS",
       year: "2025",
       impact: "+65% Konversi Inkuiri B2B",
-      summary: "Portal resmi dan katalog produk pengadaan barang industri & supplier kapal partner di Bintan dan Batam.",
-      mockup: "/assets/projects/sms-hero.png",
-      tags: ["Next.js", "Prisma ORM", "PostgreSQL", "Tailwind CSS"]
+      summary: "Platform digital corporate resmi supplier barang industri & procurement partner di Bintan & Batam.",
+      problem: "PT SMS butuh website resmi untuk branding digital sekaligus cara mudah kelola katalog 100+ produk industri tanpa harus hubungi developer tiap kali update.",
+      solution: "Dibuatkan website company profile + custom CMS admin sehingga tim internal bisa langsung tambah produk, edit artikel, dan kelola inquiry sendiri.",
+      outcome: "Website live di suryamitraservice.com — tim sudah bisa upload katalog dan terima inquiry langsung dari web tanpa bantuan developer.",
+      keyFeatures: [
+        "Custom Admin CMS Dashboard",
+        "Katalog Pengadaan Barang Industri",
+        "Formulir Permintaan Penawaran & WA Sales"
+      ],
+      techStack: ["Next.js 16", "Supabase RLS", "Tailwind CSS", "TypeScript"],
+      tags: ["Next.js 16", "Supabase RLS", "Tailwind CSS", "TypeScript"],
+      liveUrl: "https://www.suryamitraservice.com/",
+      mockupPath: "/assets/projects/sms-hero.png?v=10",
+      mockup: "/assets/projects/sms-hero.png?v=10",
+      lang: 'id' as const,
+      galleryImages: [
+        { url: "/assets/projects/sms-hero.png?v=10", label: "SHOT 01: HERO WEBSITE" },
+        { url: "/assets/projects/sms-dashboard.png?v=10", label: "SHOT 02: CMS DASHBOARD" },
+        { url: "/assets/projects/sms-katalog.png?v=10", label: "SHOT 03: KATALOG PRODUK" },
+        { url: "/assets/projects/sms-promo.png?v=10", label: "SHOT 04: PROMO & SERVIS" },
+      ]
     },
     {
-      id: "proj-3",
-      title: "Automated Billing & PDF Invoicing System",
-      category: "Sistem Otomasi",
+      id: "smartcafe-pos",
+      title: "SmartCafe POS System",
+      category: "Point of Sale & Inventory System",
+      year: "2026",
+      impact: "Order POS 45% Lebih Cepat",
+      summary: "Aplikasi kasir web dan manajemen persediaan untuk operasional bisnis kafe.",
+      problem: "Kafe masih pakai catatan manual — antrian lama, stok bahan sering selisih, dan owner ga punya data penjualan yang jelas.",
+      solution: "Dibuatkan web POS dengan flow kasir 3-klik, stok otomatis berkurang per pesanan, plus dashboard penjualan harian.",
+      outcome: "Proses order turun dari 3 menit jadi 45 detik per pelanggan, stok selisih hilang total, owner bisa pantau omzet real-time.",
+      keyFeatures: [
+        "Manajemen Inventaris & Stok Otomatis",
+        "Dashboard Analytics Penjualan Real-time",
+        "Integrasi Pembayaran QRIS & Struk Digital"
+      ],
+      techStack: ["Next.js 16", "PostgreSQL", "Supabase RLS", "Tailwind CSS"],
+      tags: ["Next.js 16", "PostgreSQL", "Supabase RLS", "Tailwind CSS"],
+      liveUrl: "https://smartcafe-nine.vercel.app/",
+      mockupPath: "/assets/projects/smartcafe/landing.png",
+      mockup: "/assets/projects/smartcafe/landing.png",
+      lang: 'id' as const,
+      galleryImages: [
+        { url: "/assets/projects/smartcafe/landing.png", label: "LANDING" },
+        { url: "/assets/projects/smartcafe/dashboard.png", label: "DASHBOARD" },
+        { url: "/assets/projects/smartcafe/qr-order.png", label: "QR ORDER" },
+        { url: "/assets/projects/smartcafe/kitchen-kds.png", label: "KITCHEN KDS" }
+      ]
+    },
+    {
+      id: "invoice-management-system",
+      title: "Invoice & Shipping System",
+      category: "Business Operations & E-Invoice",
       year: "2024",
       impact: "Hemat 8+ Jam Kerja per Minggu",
-      summary: "Sistem otomatisasi faktur tagihan dan surat jalan dengan generator PDF instant, database klien, dan tracking pembayaran.",
+      summary: "Sistem operasional bisnis internal untuk otomatisasi faktur tagihan dan dokumen pengiriman.",
+      problem: "Admin masih bikin invoice satu-satu di Excel — sering salah hitung, format ga konsisten, dan butuh 15 menit per dokumen.",
+      solution: "Dibuatkan sistem invoice terpusat dengan auto-generate PDF, database client tersimpan, dan tracking status bayar.",
+      outcome: "Invoice tinggal klik generate — selesai dalam hitungan detik, kalkulasi otomatis, dan histori tagihan rapi semua.",
+      keyFeatures: [
+        "Automated E-Invoice PDF Generator",
+        "Surat Jalan & Shipping Tracing",
+        "Manajemen Database Client & Tagihan"
+      ],
+      techStack: ["Next.js 16", "Prisma ORM", "PostgreSQL", "Tailwind CSS"],
+      tags: ["Next.js 16", "Prisma ORM", "PostgreSQL", "Tailwind CSS"],
+      mockupPath: "/assets/projects/invoice/login.png",
       mockup: "/assets/projects/invoice/login.png",
-      tags: ["Next.js", "PostgreSQL", "Prisma ORM", "PDF Engine"]
-    },
-    {
-      id: "proj-4",
-      title: "Generative AI Video & Content Automation Lab",
-      category: "Otomasi AI",
-      year: "2025",
-      impact: "Kecepatan Produksi Video 10x",
-      summary: "Pipeline otomasi skrip dan pengolahan video generatif berbasis AI untuk kanal konten TikTok & media sosial.",
-      mockup: "/assets/developer-workstation.jpg",
-      tags: ["OpenAI API", "Google Gemini", "Python", "Automation"]
+      lang: 'id' as const,
+      galleryImages: [
+        { url: "/assets/projects/invoice/login.png", label: "LOGIN PORTAL" },
+        { url: "/assets/projects/invoice/dashboard-blurred.png", label: "DASHBOARD (NDA)" }
+      ]
     }
   ];
 }

@@ -465,8 +465,19 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
               <div
                 key={item.id}
                 onClick={() => {
-                  const proj = FEATURED_PROJECTS.find(p => p.id === item.id) || FEATURED_PROJECTS[0];
-                  onSelectProject(proj);
+                  const baseProj = FEATURED_PROJECTS.find(p => p.id === item.id) || FEATURED_PROJECTS[0];
+                  const localizedProj: Project = {
+                    ...baseProj,
+                    title: item.title,
+                    category: item.category,
+                    summary: item.summary,
+                    problem: item.problem || baseProj.problem,
+                    solution: item.solution || baseProj.solution,
+                    outcome: item.outcome || baseProj.outcome,
+                    keyFeatures: item.keyFeatures || baseProj.keyFeatures,
+                    lang: lang,
+                  };
+                  onSelectProject(localizedProj);
                 }}
                 className="group bg-white border border-[#E6E4DD] hover:border-[#161616] rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-300 p-3.5 sm:p-5 cursor-pointer shadow-xs hover:shadow-xl hover:-translate-y-1 sm:hover:-translate-y-1.5 space-y-3 sm:space-y-4 flex flex-col justify-between"
               >
