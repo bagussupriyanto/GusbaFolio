@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const GREETINGS = [
@@ -18,11 +18,11 @@ const GREETINGS = [
 export const PreloaderScreen: React.FC = () => {
   const [progress, setProgress] = useState(0);
   const [isDone, setIsDone] = useState(false);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
     let current = 0;
     const interval = setInterval(() => {
-      // Steady 1% steps for smooth, calm iPhone setup pace (~4.5s total)
       current += 1;
       if (current >= 100) {
         current = 100;
@@ -37,7 +37,57 @@ export const PreloaderScreen: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Determine current greeting based on progress percentage
+  // Gold Matrix Rain Canvas Animation Effect
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let animationFrameId: number;
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    const handleResize = () => {
+      if (!canvas) return;
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    };
+    window.addEventListener('resize', handleResize);
+
+    const chars = '0123456789ABCDEFGHJKLMNPQRSTUVWXYZ<>/{}=+*';
+    const fontSize = 14;
+    const columns = Math.floor(width / fontSize);
+    const drops: number[] = Array(columns).fill(1);
+
+    const draw = () => {
+      ctx.fillStyle = 'rgba(10, 10, 10, 0.15)';
+      ctx.fillRect(0, 0, width, height);
+
+      ctx.fillStyle = '#B89355';
+      ctx.font = `${fontSize}px monospace`;
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+
+      animationFrameId = requestAnimationFrame(draw);
+    };
+
+    draw();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
   const greetingIndex = Math.min(
     Math.floor((progress / 100) * GREETINGS.length),
     GREETINGS.length - 1
@@ -52,24 +102,34 @@ export const PreloaderScreen: React.FC = () => {
           initial={{ y: "0%" }}
           exit={{ y: "-100%" }}
           transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}
-          className="fixed inset-0 z-[9999] bg-[#161616] text-[#FAF9F6] flex flex-col items-center justify-center select-none font-sans overflow-hidden"
+          className="fixed inset-0 z-[9999] bg-[#0A0A0A] text-[#FAF9F6] flex flex-col items-center justify-center select-none font-sans overflow-hidden"
         >
-          {/* Background Ambient Code Video Backdrop */}
-          <div className="absolute inset-0 z-0 opacity-25 pointer-events-none overflow-hidden">
+          {/* HTML5 Video Backdrop (Valid Mixkit & Coverr CDN Video URLs) */}
+          <div className="absolute inset-0 z-0 opacity-40 pointer-events-none overflow-hidden">
             <video
               autoPlay
               loop
               muted
               playsInline
-              className="w-full h-full object-cover filter grayscale contrast-125"
+              className="w-full h-full object-cover mix-blend-screen filter contrast-125"
             >
-              <source src="/assets/code-bg.mp4" type="video/mp4" />
+              <source
+                src="https://assets.mixkit.co/videos/preview/mixkit-code-running-on-a-computer-screen-40439-large.mp4"
+                type="video/mp4"
+              />
+              <source
+                src="https://cdn.coverr.co/videos/coverr-typing-code-on-computer-5231/1080p.mp4"
+                type="video/mp4"
+              />
             </video>
-            <div className="absolute inset-0 bg-gradient-to-b from-[#161616]/90 via-[#161616]/70 to-[#161616]/90" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A]/80 via-transparent to-[#0A0A0A]/90" />
           </div>
 
-          {/* Subtle Ambient Background Light */}
-          <div className="absolute w-96 h-96 rounded-full bg-[#B89355]/10 blur-[120px] pointer-events-none z-0" />
+          {/* Matrix Gold Rain Code Stream Canvas */}
+          <canvas ref={canvasRef} className="absolute inset-0 w-full h-full opacity-25 pointer-events-none z-0" />
+
+          {/* Ambient Background Radial Glow */}
+          <div className="absolute w-96 h-96 rounded-full bg-[#B89355]/20 blur-[130px] pointer-events-none z-0" />
 
           {/* iPhone Setup Style Welcome Sequence */}
           <div className="relative z-10 text-center px-4 max-w-4xl min-h-[160px] flex flex-col items-center justify-center">
@@ -82,13 +142,13 @@ export const PreloaderScreen: React.FC = () => {
                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 className="flex flex-col items-center space-y-3"
               >
-                {/* Main Iconic Word: HELLO / HALO / HOLA / BONJOUR / 你好 */}
-                <div className="font-serif-editorial text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white uppercase">
+                {/* Main Iconic Word */}
+                <div className="font-serif-editorial text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white uppercase drop-shadow-md">
                   {currentGreeting.text}<span className="text-[#B89355]">.</span>
                 </div>
 
                 {/* Subtitle Translation */}
-                <div className="text-xs sm:text-sm font-mono tracking-widest text-[#A09C94] uppercase max-w-lg">
+                <div className="text-xs sm:text-sm font-mono tracking-widest text-[#CCCCCC] uppercase max-w-lg drop-shadow-sm">
                   {currentGreeting.subtext}
                 </div>
               </motion.div>
@@ -96,12 +156,12 @@ export const PreloaderScreen: React.FC = () => {
           </div>
 
           {/* Bottom iPhone Progress Indicator */}
-          <div className="absolute bottom-8 sm:bottom-14 left-6 right-6 sm:left-14 sm:right-14 space-y-3 max-w-6xl mx-auto">
+          <div className="absolute bottom-8 sm:bottom-14 left-6 right-6 sm:left-14 sm:right-14 space-y-3 max-w-6xl mx-auto z-10">
             <div className="flex items-end justify-between">
-              <div className="flex items-center gap-2.5 text-[10px] font-mono text-[#888888] tracking-widest uppercase">
+              <div className="flex items-center gap-2.5 text-[10px] font-mono text-[#AAAAAA] tracking-widest uppercase">
                 <span className="text-white font-bold">BAGUS SUPRIYANTO</span>
                 <span className="text-[#55524C]">•</span>
-                <span className="px-2 py-0.5 rounded-full bg-[#262626] border border-[#333333] text-[#B89355] font-bold">
+                <span className="px-2 py-0.5 rounded-full bg-[#262626] border border-[#444444] text-[#B89355] font-bold">
                   {currentGreeting.code}
                 </span>
               </div>
