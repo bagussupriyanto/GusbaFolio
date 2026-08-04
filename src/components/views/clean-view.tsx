@@ -205,139 +205,116 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
         )}
       </header>
 
-      {/* ===== 2. HERO SECTION ===== */}
-      <section className="pt-6 pb-10 sm:pt-10 sm:pb-16 lg:pt-14 lg:pb-20 px-4 sm:px-6 max-w-6xl mx-auto">
+      {/* ===== 2. HERO SECTION (FULL SECTION IMMERSIVE BACKDROP) ===== */}
+      <section className="relative w-full bg-[#161616] text-white overflow-hidden py-14 sm:py-20 lg:py-24 border-b border-[#2A2A2A]">
         
-        {/* Workstation Frame Container */}
-        <div className="rounded-2xl sm:rounded-3xl border border-[#E6E4DD] bg-[#161616] text-white overflow-hidden shadow-2xl relative">
-          
-          {/* Top Bar */}
-          <div className="flex items-center justify-between px-3 sm:px-5 py-2.5 sm:py-3 bg-[#222222] border-b border-[#333333] text-[10px] sm:text-xs font-mono text-[#AAAAAA] relative z-10">
-            <div className="flex items-center gap-2">
-              <div className="flex gap-1.5">
-                <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#FF5F56]" />
-                <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#FFBD2E]" />
-                <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#27C93F]" />
-              </div>
-              <span className="ml-1.5 sm:ml-2 font-medium text-white text-[10px] sm:text-xs">bagus-workspace / studio-hero</span>
-            </div>
-            <div className="hidden sm:flex items-center gap-4 text-[11px]">
-              <span>BINTAN, INDONESIA</span>
-              <span>•</span>
-              <a href="/assets/cv-bagus-supriyanto.pdf.pdf" download className="hover:text-white transition-colors">PDF RESUME ↓</a>
-            </div>
-          </div>
+        {/* Background Code Video & Matrix Canvas Backdrop */}
+        <CodeVideoBackdrop />
+        <div className="absolute inset-0 bg-gradient-to-b sm:bg-gradient-to-r from-[#161616] via-[#161616]/95 sm:via-[#161616]/90 to-[#161616]/75 sm:to-[#161616]/60 z-[1]" />
 
-          {/* Background Code Video & Matrix Canvas Backdrop */}
-          <div className="relative px-4 py-8 sm:p-10 lg:p-14 min-h-[380px] sm:min-h-[440px] lg:min-h-[500px] flex flex-col justify-center overflow-hidden">
-            <CodeVideoBackdrop />
-            <div className="absolute inset-0 bg-gradient-to-b sm:bg-gradient-to-r from-[#161616] via-[#161616]/95 sm:via-[#161616]/90 to-[#161616]/75 sm:to-[#161616]/60 z-[1]" />
-
-            {/* Content & Code Editor Terminal Container */}
-            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center">
+        {/* Content & Code Editor Terminal Container */}
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center">
+            
+            {/* Left Column: Narrative Headline & CTAs (7 Cols) */}
+            <div className="lg:col-span-7 space-y-4 sm:space-y-6 max-w-2xl">
               
-              {/* Left Column: Narrative Headline & CTAs (7 Cols) */}
-              <div className="lg:col-span-7 space-y-4 sm:space-y-6 max-w-2xl">
-                
-                <div className="inline-flex items-center gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-[#2B2B2B]/80 backdrop-blur-md border border-[#444444] text-[9px] sm:text-[11px] font-mono tracking-widest text-[#DDDDDD] uppercase">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  <span>{t.badgeHero}</span>
-                </div>
-
-                <h1 className="font-serif-editorial text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1] sm:leading-[1.08]">
-                  {t.headlineMain}{' '}
-                  <br className="hidden sm:block" />
-                  <span className="italic font-normal text-[#C5A059]">{t.headlineSub}</span>
-                </h1>
-
-                <p className="text-[13px] sm:text-sm lg:text-base text-[#DDDDDD] font-normal leading-relaxed max-w-xl">
-                  {t.heroDesc}
-                </p>
-
-                {/* Action Buttons */}
-                <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-1 sm:pt-2">
-                  <a
-                    href="#work"
-                    className="px-4 sm:px-6 py-2.5 sm:py-3 rounded-full bg-white text-[#161616] text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider hover:bg-[#EAE8E1] transition-all cursor-pointer flex items-center gap-2 shadow-lg hover:scale-105"
-                  >
-                    <span>{t.exploreWork}</span>
-                    <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#161616]" />
-                  </a>
-
-                  <a
-                    href="#about"
-                    className="px-4 sm:px-6 py-2.5 sm:py-3 rounded-full bg-black/40 border border-white/20 text-white text-[10px] sm:text-xs font-mono font-semibold uppercase tracking-wider hover:bg-black/60 transition-all cursor-pointer flex items-center gap-2"
-                  >
-                    <span>{t.aboutMe}</span>
-                    <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#CCCCCC]" />
-                  </a>
-                </div>
-
+              <div className="inline-flex items-center gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-[#2B2B2B]/80 backdrop-blur-md border border-[#444444] text-[9px] sm:text-[11px] font-mono tracking-widest text-[#DDDDDD] uppercase">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span>{t.badgeHero}</span>
               </div>
 
-              {/* Right Column: Live IDE Code Terminal (hire-bagus.ts) — Desktop */}
-              <div className="hidden lg:block lg:col-span-5 relative">
-                <div className="rounded-2xl bg-[#0D1117]/95 border border-[#30363D] p-5 shadow-2xl space-y-3 font-mono text-[11px] text-[#C9D1D9] backdrop-blur-md hover:border-[#79C0FF] transition-all group">
-                  <div className="flex items-center justify-between border-b border-[#30363D] pb-3 text-[10px] text-[#8B949E]">
-                    <div className="flex items-center gap-2">
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F]" />
-                      <span className="ml-1 text-[#79C0FF] font-bold">hire-bagus.ts</span>
-                    </div>
-                    <span className="text-emerald-400 font-bold flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      {t.terminalStatus}
-                    </span>
-                  </div>
+              <h1 className="font-serif-editorial text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1] sm:leading-[1.08]">
+                {t.headlineMain}{' '}
+                <br className="hidden sm:block" />
+                <span className="italic font-normal text-[#C5A059]">{t.headlineSub}</span>
+              </h1>
 
-                  <div className="space-y-1 leading-relaxed">
-                    <div><span className="text-[#FF7B72]">import</span> &#123; Candidate &#125; <span className="text-[#FF7B72]">from</span> <span className="text-[#A5D6FF]">'@uty/s1-komputer'</span>;</div>
-                    <div><span className="text-[#FF7B72]">import</span> &#123; FullStackEngine &#125; <span className="text-[#FF7B72]">from</span> <span className="text-[#A5D6FF]">'@bagus/tech'</span>;</div>
-                    <br />
-                    <div><span className="text-[#FF7B72]">export async function</span> <span className="text-[#D2A8FF]">hireBagusSupriyanto</span>() &#123;</div>
-                    <div className="pl-4 text-[#8B949E]">{t.terminalComment}</div>
-                    <div className="pl-4"><span className="text-[#FF7B72]">const</span> engineer = <span className="text-[#FF7B72]">new</span> <span className="text-[#D2A8FF]">Candidate</span>(<span className="text-[#A5D6FF] font-bold">'Bagus Supriyanto'</span>);</div>
-                    <br />
-                    <div className="pl-4"><span className="text-[#FF7B72]">return await</span> engineer.<span className="text-[#D2A8FF]">hire</span>(&#123;</div>
-                    <div className="pl-8 text-[#79C0FF]">gelar: <span className="text-[#A5D6FF]">'{t.terminalDegree}'</span>,</div>
-                    <div className="pl-8 text-[#79C0FF]">coreStack: [<span className="text-[#A5D6FF]">'Next.js 16'</span>, <span className="text-[#A5D6FF]">'TypeScript'</span>, <span className="text-[#A5D6FF]">'Supabase'</span>],</div>
-                    <div className="pl-8 text-[#79C0FF]">dampak: [<span className="text-[#A5D6FF]">'{t.terminalImpact[0]}'</span>, <span className="text-[#A5D6FF] font-bold">'{t.terminalImpact[1]}'</span>],</div>
-                    <div className="pl-8 text-[#79C0FF]">status: <span className="text-[#7EE787] font-bold">'{t.terminalAvailability}'</span></div>
-                    <div className="pl-4">&#125;);</div>
-                    <div>&#125;</div>
-                  </div>
-                </div>
-              </div>
+              <p className="text-[13px] sm:text-sm lg:text-base text-[#DDDDDD] font-normal leading-relaxed max-w-xl">
+                {t.heroDesc}
+              </p>
 
-              {/* Mobile/Tablet Compact Code Terminal */}
-              <div className="lg:hidden mt-2">
-                <div className="rounded-xl bg-[#0D1117]/95 border border-[#30363D] p-3 sm:p-4 shadow-xl font-mono text-[9px] sm:text-[10px] text-[#C9D1D9] backdrop-blur-md overflow-x-auto">
-                  <div className="flex items-center justify-between border-b border-[#30363D] pb-2 mb-2 text-[9px] text-[#8B949E]">
-                    <div className="flex items-center gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-[#FF5F56]" />
-                      <span className="w-2 h-2 rounded-full bg-[#FFBD2E]" />
-                      <span className="w-2 h-2 rounded-full bg-[#27C93F]" />
-                      <span className="ml-1 text-[#79C0FF] font-bold">hire-bagus.ts</span>
-                    </div>
-                    <span className="text-emerald-400 font-bold flex items-center gap-1">
-                      <span className="w-1 h-1 rounded-full bg-emerald-400 animate-pulse" />
-                      HIRING
-                    </span>
-                  </div>
-                  <div className="space-y-0.5 leading-relaxed whitespace-nowrap">
-                    <div><span className="text-[#FF7B72]">export async function</span> <span className="text-[#D2A8FF]">hireBagusSupriyanto</span>() &#123;</div>
-                    <div className="pl-3"><span className="text-[#FF7B72]">const</span> eng = <span className="text-[#FF7B72]">new</span> <span className="text-[#D2A8FF]">Candidate</span>(<span className="text-[#A5D6FF] font-bold">'Bagus Supriyanto'</span>);</div>
-                    <div className="pl-3"><span className="text-[#FF7B72]">return await</span> eng.<span className="text-[#D2A8FF]">hire</span>(&#123; availability: <span className="text-[#7EE787] font-bold">'FULLTIME_OR_REMOTE'</span> &#125;);</div>
-                    <div>&#125;</div>
-                  </div>
-                </div>
+              {/* Action Buttons */}
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-1 sm:pt-2">
+                <a
+                  href="#work"
+                  className="px-4 sm:px-6 py-2.5 sm:py-3 rounded-full bg-white text-[#161616] text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider hover:bg-[#EAE8E1] transition-all cursor-pointer flex items-center gap-2 shadow-lg hover:scale-105"
+                >
+                  <span>{t.exploreWork}</span>
+                  <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#161616]" />
+                </a>
+
+                <a
+                  href="#about"
+                  className="px-4 sm:px-6 py-2.5 sm:py-3 rounded-full bg-black/40 border border-white/20 text-white text-[10px] sm:text-xs font-mono font-semibold uppercase tracking-wider hover:bg-black/60 transition-all cursor-pointer flex items-center gap-2"
+                >
+                  <span>{t.aboutMe}</span>
+                  <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#CCCCCC]" />
+                </a>
               </div>
 
             </div>
 
-          </div>
+            {/* Right Column: Live IDE Code Terminal (hire-bagus.ts) — Desktop */}
+            <div className="hidden lg:block lg:col-span-5 relative">
+              <div className="rounded-2xl bg-[#0D1117]/95 border border-[#30363D] p-5 shadow-2xl space-y-3 font-mono text-[11px] text-[#C9D1D9] backdrop-blur-md hover:border-[#79C0FF] transition-all group">
+                <div className="flex items-center justify-between border-b border-[#30363D] pb-3 text-[10px] text-[#8B949E]">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F]" />
+                    <span className="ml-1 text-[#79C0FF] font-bold">hire-bagus.ts</span>
+                  </div>
+                  <span className="text-emerald-400 font-bold flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    {t.terminalStatus}
+                  </span>
+                </div>
 
+                <div className="space-y-1 leading-relaxed">
+                  <div><span className="text-[#FF7B72]">import</span> &#123; Candidate &#125; <span className="text-[#FF7B72]">from</span> <span className="text-[#A5D6FF]">'@uty/s1-komputer'</span>;</div>
+                  <div><span className="text-[#FF7B72]">import</span> &#123; FullStackEngine &#125; <span className="text-[#FF7B72]">from</span> <span className="text-[#A5D6FF]">'@bagus/tech'</span>;</div>
+                  <br />
+                  <div><span className="text-[#FF7B72]">export async function</span> <span className="text-[#D2A8FF]">hireBagusSupriyanto</span>() &#123;</div>
+                  <div className="pl-4 text-[#8B949E]">{t.terminalComment}</div>
+                  <div className="pl-4"><span className="text-[#FF7B72]">const</span> engineer = <span className="text-[#FF7B72]">new</span> <span className="text-[#D2A8FF]">Candidate</span>(<span className="text-[#A5D6FF] font-bold">'Bagus Supriyanto'</span>);</div>
+                  <br />
+                  <div className="pl-4"><span className="text-[#FF7B72]">return await</span> engineer.<span className="text-[#D2A8FF]">hire</span>(&#123;</div>
+                  <div className="pl-8 text-[#79C0FF]">gelar: <span className="text-[#A5D6FF]">'{t.terminalDegree}'</span>,</div>
+                  <div className="pl-8 text-[#79C0FF]">coreStack: [<span className="text-[#A5D6FF]">'Next.js 16'</span>, <span className="text-[#A5D6FF]">'TypeScript'</span>, <span className="text-[#A5D6FF]">'Supabase'</span>],</div>
+                  <div className="pl-8 text-[#79C0FF]">dampak: [<span className="text-[#A5D6FF]">'{t.terminalImpact[0]}'</span>, <span className="text-[#A5D6FF] font-bold">'{t.terminalImpact[1]}'</span>],</div>
+                  <div className="pl-8 text-[#79C0FF]">status: <span className="text-[#7EE787] font-bold">'{t.terminalAvailability}'</span></div>
+                  <div className="pl-4">&#125;);</div>
+                  <div>&#125;</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Mobile/Tablet Compact Code Terminal */}
+            <div className="lg:hidden mt-2">
+              <div className="rounded-xl bg-[#0D1117]/95 border border-[#30363D] p-3 sm:p-4 shadow-xl font-mono text-[9px] sm:text-[10px] text-[#C9D1D9] backdrop-blur-md overflow-x-auto">
+                <div className="flex items-center justify-between border-b border-[#30363D] pb-2 mb-2 text-[9px] text-[#8B949E]">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-[#FF5F56]" />
+                    <span className="w-2 h-2 rounded-full bg-[#FFBD2E]" />
+                    <span className="w-2 h-2 rounded-full bg-[#27C93F]" />
+                    <span className="ml-1 text-[#79C0FF] font-bold">hire-bagus.ts</span>
+                  </div>
+                  <span className="text-emerald-400 font-bold flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    HIRING
+                  </span>
+                </div>
+                <div className="space-y-0.5 leading-relaxed whitespace-nowrap">
+                  <div><span className="text-[#FF7B72]">export async function</span> <span className="text-[#D2A8FF]">hireBagusSupriyanto</span>() &#123;</div>
+                  <div className="pl-3"><span className="text-[#FF7B72]">const</span> eng = <span className="text-[#FF7B72]">new</span> <span className="text-[#D2A8FF]">Candidate</span>(<span className="text-[#A5D6FF] font-bold">'Bagus Supriyanto'</span>);</div>
+                  <div className="pl-3"><span className="text-[#FF7B72]">return await</span> eng.<span className="text-[#D2A8FF]">hire</span>(&#123; availability: <span className="text-[#7EE787] font-bold">'FULLTIME_OR_REMOTE'</span> &#125;);</div>
+                  <div>&#125;</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
 
       </section>
