@@ -111,6 +111,15 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if ('scrollRestoration' in window.history) {
+        window.history.scrollRestoration = 'manual';
+      }
+      if (!window.location.hash) {
+        window.scrollTo(0, 0);
+      }
+    }
+
     let lastState = false;
     const handleScroll = () => {
       const isPastThreshold = window.scrollY > 30;
