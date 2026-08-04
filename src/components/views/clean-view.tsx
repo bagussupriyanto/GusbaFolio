@@ -135,6 +135,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
           const elementPosition = elem.getBoundingClientRect().top;
           const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
           window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+          window.history.replaceState(null, '', window.location.pathname + window.location.search);
         }
       }, 700);
       return () => clearTimeout(timer);
@@ -153,7 +154,8 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
         top: offsetPosition,
         behavior: 'smooth'
       });
-      window.history.pushState(null, '', `#${targetId}`);
+      // Clean URL bar so #about never gets stuck in address bar!
+      window.history.replaceState(null, '', window.location.pathname + window.location.search);
     }
   };
 
