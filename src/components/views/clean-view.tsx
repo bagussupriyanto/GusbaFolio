@@ -111,11 +111,12 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
+    let lastState = false;
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
+      const isPastThreshold = window.scrollY > 30;
+      if (isPastThreshold !== lastState) {
+        lastState = isPastThreshold;
+        setIsScrolled(isPastThreshold);
       }
     };
     handleScroll();
@@ -131,12 +132,12 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
     <div className="w-full bg-[#FAF9F6] text-[#161616] min-h-screen font-sans antialiased selection:bg-[#E8DFCE] selection:text-[#161616]">
       
       {/* ===== 1. HEADER NAVBAR (NOTION / LINEAR AESTHETIC) ===== */}
-      <header className={`sticky top-0 inset-x-0 z-40 transition-all duration-300 ${
+      <header className={`sticky top-0 inset-x-0 z-40 transition-colors duration-300 ease-out -mb-[57px] sm:-mb-[61px] ${
         isScrolled
-          ? 'bg-[#FAF9F6]/90 backdrop-blur-md border-b border-[#E6E4DD] shadow-xs py-3 sm:py-3.5'
-          : 'bg-transparent border-b border-transparent py-4 sm:py-5 -mb-[76px] sm:-mb-[84px]'
+          ? 'bg-[#FAF9F6]/90 backdrop-blur-md border-b border-[#E6E4DD] shadow-xs'
+          : 'bg-transparent border-b border-transparent shadow-none'
       }`}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 sm:py-3.5 flex items-center justify-between">
           
           {/* Logo & Availability Status */}
           <div className="flex items-center gap-2 sm:gap-3 min-w-0">
@@ -261,7 +262,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
       </header>
 
       {/* ===== 2. HERO SECTION (FULL SECTION IMMERSIVE BACKDROP) ===== */}
-      <section className="relative w-full bg-[#161616] text-white overflow-hidden min-h-screen flex flex-col justify-center pt-24 sm:pt-28 pb-12 sm:pb-16 border-b border-[#2A2A2A]">
+      <section className="relative w-full bg-[#161616] text-white overflow-hidden min-h-screen flex flex-col justify-center pt-20 sm:pt-24 pb-12 sm:pb-16 border-b border-[#2A2A2A]">
         
         {/* Background Code Video & Matrix Canvas Backdrop */}
         <CodeVideoBackdrop />
