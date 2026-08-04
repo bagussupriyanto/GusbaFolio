@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { Outfit, Space_Grotesk, JetBrains_Mono, Silkscreen, Press_Start_2P, Playfair_Display, Caveat } from 'next/font/google';
 import '@/app/globals.css';
-import { HeaderNav } from '@/components/layout/header-nav';
 import { LenisProvider } from '@/components/providers/lenis-provider';
 import { CustomCursor } from '@/components/ui/custom-cursor';
 import { DEVELOPER_DATA } from '@/lib/constants';
@@ -105,7 +104,6 @@ export default function RootLayout({
         <ThemeProvider>
           <LenisProvider>
             <CustomCursor />
-            <HeaderNav />
             <main>{children}</main>
           </LenisProvider>
         </ThemeProvider>
