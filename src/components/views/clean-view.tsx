@@ -206,7 +206,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
       </header>
 
       {/* ===== 2. HERO SECTION (FULL SECTION IMMERSIVE BACKDROP) ===== */}
-      <section className="relative w-full bg-[#161616] text-white overflow-hidden py-14 sm:py-20 lg:py-24 border-b border-[#2A2A2A]">
+      <section className="relative w-full bg-[#161616] text-white overflow-hidden min-h-[calc(100vh-60px)] sm:min-h-[calc(100vh-64px)] flex flex-col justify-center py-12 sm:py-16 lg:py-20 border-b border-[#2A2A2A]">
         
         {/* Background Code Video & Matrix Canvas Backdrop */}
         <CodeVideoBackdrop />
