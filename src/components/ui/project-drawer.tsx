@@ -5,12 +5,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, ExternalLink, Puzzle, Wrench, TrendingUp, Lock } from 'lucide-react';
 import { Project } from '@/types';
 import { MacOSFrame } from '@/components/ui/macos-frame';
+import { TRANSLATIONS, Language } from '@/lib/translations';
 
 interface ProjectDrawerProps {
   project: Project | null;
   isOpen: boolean;
   onClose: () => void;
   isCleanMode?: boolean;
+  lang?: Language;
 }
 
 export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({
@@ -18,6 +20,7 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({
   isOpen,
   onClose,
   isCleanMode = false,
+  lang,
 }) => {
   const [selectedImage, setSelectedImage] = React.useState<string | null>(null);
   const [isZoomed, setIsZoomed] = React.useState(false);
@@ -50,7 +53,10 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({
 
   if (!project) return null;
 
+  const activeLang: Language = lang || project.lang || 'en';
+  const t = TRANSLATIONS[activeLang] || TRANSLATIONS.en;
   const currentImage = selectedImage || project.mockupPath;
+  const techList = project.techStack || project.tags || [];
 
   return (
     <AnimatePresence>
@@ -88,7 +94,7 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({
                     ? 'rounded-full bg-[#161616] text-white'
                     : 'bg-[#4ee6d8] text-[#0a0e17]'
                 }`}>
-                  CASE STUDY DETAIL
+                  {t.caseStudyDetail || 'CASE STUDY DETAIL'}
                 </span>
                 <span className={`w-2 h-2 rounded-full animate-pulse shrink-0 ${isCleanMode ? 'bg-[#B89355]' : 'bg-[#4ee6d8]'}`} />
                 <span className={`text-xs font-mono font-semibold uppercase tracking-wider truncate max-w-[180px] sm:max-w-none ${
@@ -106,7 +112,7 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({
                 }`}
               >
                 <X className="w-4 h-4" />
-                CLOSE
+                {t.closeModal || 'CLOSE'}
               </button>
             </div>
 
@@ -130,7 +136,7 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({
                       : 'pixel-btn'
                   }`}
                 >
-                  VISIT LIVE WEBSITE
+                  {t.visitLiveWebsite || 'VISIT LIVE WEBSITE'}
                   <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               ) : (
@@ -140,167 +146,172 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({
                     : 'bg-[#2A2A2A] border border-[#3D3D3D] text-[#AAAAAA]'
                 }`}>
                   <Lock className="w-3.5 h-3.5 text-[#B89355]" />
-                  <span>INTERNAL SYSTEM (NDA)</span>
+                  <span>INTERNAL NDA SYSTEM</span>
                 </div>
               )}
             </div>
 
-            {/* ── Row 3: Main Content Area ── */}
-            <div className="flex flex-col lg:flex-row gap-4 p-4 sm:p-6 overflow-y-auto max-h-[75vh] sm:max-h-none scrollbar-hide">
-
-              {/* Left: Browser Frame + Thumbnails */}
-              <div className="lg:w-[58%] flex flex-col gap-3 shrink-0">
-                {/* MacOS Browser Frame */}
-                <MacOSFrame url={project.liveUrl || `https://bagus.dev/${project.id}`}>
-                  <div
-                    onClick={() => currentImage && setIsZoomed(true)}
-                    className="relative aspect-[16/9] bg-[#161616] overflow-hidden cursor-pointer group/preview rounded-b-xl"
-                  >
-                    {currentImage ? (
-                      <>
-                        <img
-                          key={currentImage}
-                          src={currentImage}
-                          alt={project.title}
-                          className="w-full h-full object-cover object-top transition-transform duration-500 group-hover/preview:scale-[1.02]"
-                        />
-                        <div className="absolute inset-0 bg-[#161616]/40 opacity-0 group-hover/preview:opacity-100 flex items-center justify-center transition-opacity duration-200">
-                          <span className={`px-3 py-1.5 text-xs font-mono font-bold ${
-                            isCleanMode ? 'bg-[#FAF9F6] text-[#161616] rounded-full shadow-md' : 'bg-[#4ee6d8] text-[#0a0e17] font-pixel text-[9px] border-2 border-white'
-                          }`}>
-                            🔍 CLICK TO ENLARGE MOCKUP
-                          </span>
-                        </div>
-                      </>
-                    ) : (
-                      <div className="absolute inset-0 bg-[#161616] p-4 flex flex-col justify-center items-center text-center">
-                        <div className="font-serif-editorial text-lg text-white">{project.title}</div>
-                        <p className="text-xs text-[#AAAAAA] mt-1">{project.category}</p>
-                      </div>
-                    )}
-                  </div>
-                </MacOSFrame>
-
-                {/* 4-Shot Thumbnail Strip */}
-                <div className="grid grid-cols-4 gap-2">
-                  {(project.galleryImages && project.galleryImages.length > 0
-                    ? project.galleryImages
-                    : [
-                        { url: project.mockupPath, label: "HERO" },
-                        { url: project.mockupPath, label: "CMS" },
-                        { url: project.mockupPath, label: "KATALOG" },
-                        { url: project.mockupPath, label: "PROMO" },
-                      ]
-                  ).map((item, i) => {
-                    const isActive = currentImage === item.url;
-                    return (
-                      <button
-                        key={i}
-                        onClick={() => setSelectedImage(item.url)}
-                        className={`relative aspect-[16/9] overflow-hidden rounded-xl border-2 transition-all cursor-pointer ${
-                          isActive
-                            ? isCleanMode
-                              ? 'border-[#161616] shadow-md scale-[1.02]'
-                              : 'border-[#4ee6d8] shadow-[0_0_10px_rgba(78,230,216,0.5)]'
-                            : isCleanMode
-                              ? 'border-[#E6E4DD] opacity-60 hover:opacity-100 hover:border-[#161616]'
-                              : 'border-[#4ee6d8]/20 opacity-60 hover:opacity-100'
-                        }`}
-                      >
-                        {item.url && (
+            {/* ── Row 3: Body Content (Scrollable) ── */}
+            <div className="p-5 sm:p-7 overflow-y-auto max-h-[calc(94vh-130px)] space-y-6">
+              
+              {/* Top Split Layout: Gallery (Left) & Narrative Cards (Right) */}
+              <div className="flex flex-col lg:flex-row gap-6 items-stretch">
+                
+                {/* Left: Browser Frame + Thumbnails */}
+                <div className="lg:w-[58%] flex flex-col gap-3 shrink-0">
+                  {/* MacOS Browser Frame */}
+                  <MacOSFrame url={project.liveUrl || `https://bagus.dev/${project.id}`}>
+                    <div
+                      onClick={() => currentImage && setIsZoomed(true)}
+                      className="relative aspect-[16/9] bg-[#161616] overflow-hidden cursor-pointer group/preview rounded-b-xl"
+                    >
+                      {currentImage ? (
+                        <>
                           <img
-                            src={item.url}
-                            alt={`Shot ${i + 1}`}
-                            className="w-full h-full object-cover object-top"
+                            key={currentImage}
+                            src={currentImage}
+                            alt={project.title}
+                            className="w-full h-full object-cover object-top transition-transform duration-500 group-hover/preview:scale-[1.02]"
                           />
-                        )}
-                        <div className={`absolute top-0 left-0 px-1.5 py-0.5 text-[8px] font-mono font-bold ${
-                          isActive
-                            ? isCleanMode ? 'bg-[#161616] text-white' : 'bg-[#4ee6d8] text-[#0a0e17]'
-                            : 'bg-black/70 text-white'
-                        }`}>
-                          {String(i + 1).padStart(2, '0')}
+                          <div className="absolute inset-0 bg-[#161616]/40 opacity-0 group-hover/preview:opacity-100 flex items-center justify-center transition-opacity duration-200">
+                            <span className={`px-3 py-1.5 text-xs font-mono font-bold ${
+                              isCleanMode ? 'bg-[#FAF9F6] text-[#161616] rounded-full shadow-md' : 'bg-[#4ee6d8] text-[#0a0e17] font-pixel text-[9px] border-2 border-white'
+                            }`}>
+                              {t.enlargeMockup || '🔍 CLICK TO ENLARGE MOCKUP'}
+                            </span>
+                          </div>
+                        </>
+                      ) : (
+                        <div className="absolute inset-0 bg-[#161616] p-4 flex flex-col justify-center items-center text-center">
+                          <div className="font-serif-editorial text-lg text-white">{project.title}</div>
+                          <p className="text-xs text-[#AAAAAA] mt-1">{project.category}</p>
                         </div>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
+                      )}
+                    </div>
+                  </MacOSFrame>
 
-              {/* Right: Case Study Narrative Cards */}
-              <div className="lg:w-[42%] flex flex-col gap-3 lg:h-full">
-
-                {/* Problem */}
-                <div className={`flex-1 p-4 rounded-2xl border flex flex-col ${
-                  isCleanMode
-                    ? 'bg-white border-[#E6E4DD] shadow-2xs'
-                    : 'bg-[#0a0e17] border-l-3 border-l-amber-400 border-amber-400/20'
-                }`}>
-                  <div className={`text-xs font-mono font-bold flex items-center gap-1.5 mb-1.5 uppercase ${
-                    isCleanMode ? 'text-[#161616]' : 'text-amber-400'
-                  }`}>
-                    <Puzzle className="w-3.5 h-3.5 text-[#B89355] shrink-0" />
-                    <span>THE PROBLEM</span>
+                  {/* 4-Shot Thumbnail Strip */}
+                  <div className="grid grid-cols-4 gap-2">
+                    {(project.galleryImages && project.galleryImages.length > 0
+                      ? project.galleryImages
+                      : [
+                          { url: project.mockupPath, label: "HERO" },
+                          { url: project.mockupPath, label: "CMS" },
+                          { url: project.mockupPath, label: "KATALOG" },
+                          { url: project.mockupPath, label: "PROMO" },
+                        ]
+                    ).map((item, i) => {
+                      const isActive = currentImage === item.url;
+                      return (
+                        <button
+                          key={i}
+                          onClick={() => setSelectedImage(item.url)}
+                          className={`relative aspect-[16/9] overflow-hidden rounded-xl border-2 transition-all cursor-pointer ${
+                            isActive
+                              ? isCleanMode
+                                ? 'border-[#161616] shadow-md scale-[1.02]'
+                                : 'border-[#4ee6d8] shadow-[0_0_10px_rgba(78,230,216,0.5)]'
+                              : isCleanMode
+                                ? 'border-[#E6E4DD] opacity-60 hover:opacity-100 hover:border-[#161616]'
+                                : 'border-[#4ee6d8]/20 opacity-60 hover:opacity-100'
+                          }`}
+                        >
+                          {item.url && (
+                            <img
+                              src={item.url}
+                              alt={`Shot ${i + 1}`}
+                              className="w-full h-full object-cover object-top"
+                            />
+                          )}
+                          <div className={`absolute top-0 left-0 px-1.5 py-0.5 text-[8px] font-mono font-bold ${
+                            isActive
+                              ? isCleanMode ? 'bg-[#161616] text-white' : 'bg-[#4ee6d8] text-[#0a0e17]'
+                              : 'bg-black/70 text-white'
+                          }`}>
+                            {String(i + 1).padStart(2, '0')}
+                          </div>
+                        </button>
+                      );
+                    })}
                   </div>
-                  <p className={`text-xs leading-relaxed font-sans ${
-                    isCleanMode ? 'text-[#55524C]' : 'text-[#CBD5E1]'
-                  }`}>
-                    {project.problem}
-                  </p>
                 </div>
 
-                {/* Solution */}
-                <div className={`flex-1 p-4 rounded-2xl border flex flex-col ${
-                  isCleanMode
-                    ? 'bg-white border-[#E6E4DD] shadow-2xs'
-                    : 'bg-[#0a0e17] border-l-3 border-l-[#4ee6d8] border-[#4ee6d8]/20'
-                }`}>
-                  <div className={`text-xs font-mono font-bold flex items-center gap-1.5 mb-1.5 uppercase ${
-                    isCleanMode ? 'text-[#161616]' : 'text-[#4ee6d8]'
-                  }`}>
-                    <Wrench className="w-3.5 h-3.5 text-[#B89355] shrink-0" />
-                    <span>THE SOLUTION</span>
-                  </div>
-                  <p className={`text-xs leading-relaxed font-sans ${
-                    isCleanMode ? 'text-[#55524C]' : 'text-[#CBD5E1]'
-                  }`}>
-                    {project.solution}
-                  </p>
-                </div>
+                {/* Right: Case Study Narrative Cards */}
+                <div className="lg:w-[42%] flex flex-col gap-3 lg:h-full">
 
-                {/* Result */}
-                <div className={`flex-1 p-4 rounded-2xl border flex flex-col ${
-                  isCleanMode
-                    ? 'bg-white border-[#E6E4DD] shadow-2xs'
-                    : 'bg-[#0a0e17] border-l-3 border-l-emerald-400 border-emerald-400/20'
-                }`}>
-                  <div className={`text-xs font-mono font-bold flex items-center gap-1.5 mb-1.5 uppercase ${
-                    isCleanMode ? 'text-[#161616]' : 'text-emerald-400'
+                  {/* Problem */}
+                  <div className={`flex-1 p-4 rounded-2xl border flex flex-col ${
+                    isCleanMode
+                      ? 'bg-white border-[#E6E4DD] shadow-2xs'
+                      : 'bg-[#0a0e17] border-l-3 border-l-amber-400 border-amber-400/20'
                   }`}>
-                    <TrendingUp className="w-3.5 h-3.5 text-[#B89355] shrink-0" />
-                    <span>BUSINESS OUTCOME</span>
-                  </div>
-                  <p className={`text-xs leading-relaxed font-sans ${
-                    isCleanMode ? 'text-[#55524C]' : 'text-[#CBD5E1]'
-                  }`}>
-                    {project.outcome}
-                  </p>
-                </div>
-
-                {/* Tech Stack */}
-                <div className="flex flex-wrap gap-1.5 pt-1">
-                  {project.techStack.map((tech) => (
-                    <span key={tech} className={`px-2.5 py-1 text-[10px] font-mono font-semibold rounded-md ${
-                      isCleanMode
-                        ? 'bg-[#F0EEE6] border border-[#E6E4DD] text-[#161616]'
-                        : 'bg-[#0a0e17] border border-[#4ee6d8]/30 text-[#4ee6d8] font-pixel text-[8px]'
+                    <div className={`text-xs font-mono font-bold flex items-center gap-1.5 mb-1.5 uppercase ${
+                      isCleanMode ? 'text-[#161616]' : 'text-amber-400'
                     }`}>
-                      {tech}
-                    </span>
-                  ))}
+                      <Puzzle className="w-3.5 h-3.5 text-[#B89355] shrink-0" />
+                      <span>{t.theProblem || 'THE PROBLEM'}</span>
+                    </div>
+                    <p className={`text-xs leading-relaxed font-sans ${
+                      isCleanMode ? 'text-[#55524C]' : 'text-[#CBD5E1]'
+                    }`}>
+                      {project.problem}
+                    </p>
+                  </div>
+
+                  {/* Solution */}
+                  <div className={`flex-1 p-4 rounded-2xl border flex flex-col ${
+                    isCleanMode
+                      ? 'bg-white border-[#E6E4DD] shadow-2xs'
+                      : 'bg-[#0a0e17] border-l-3 border-l-[#4ee6d8] border-[#4ee6d8]/20'
+                  }`}>
+                    <div className={`text-xs font-mono font-bold flex items-center gap-1.5 mb-1.5 uppercase ${
+                      isCleanMode ? 'text-[#161616]' : 'text-[#4ee6d8]'
+                    }`}>
+                      <Wrench className="w-3.5 h-3.5 text-[#B89355] shrink-0" />
+                      <span>{t.theSolution || 'THE SOLUTION'}</span>
+                    </div>
+                    <p className={`text-xs leading-relaxed font-sans ${
+                      isCleanMode ? 'text-[#55524C]' : 'text-[#CBD5E1]'
+                    }`}>
+                      {project.solution}
+                    </p>
+                  </div>
+
+                  {/* Result */}
+                  <div className={`flex-1 p-4 rounded-2xl border flex flex-col ${
+                    isCleanMode
+                      ? 'bg-white border-[#E6E4DD] shadow-2xs'
+                      : 'bg-[#0a0e17] border-l-3 border-l-emerald-400 border-emerald-400/20'
+                  }`}>
+                    <div className={`text-xs font-mono font-bold flex items-center gap-1.5 mb-1.5 uppercase ${
+                      isCleanMode ? 'text-[#161616]' : 'text-emerald-400'
+                    }`}>
+                      <TrendingUp className="w-3.5 h-3.5 text-[#B89355] shrink-0" />
+                      <span>{t.businessOutcome || 'BUSINESS OUTCOME'}</span>
+                    </div>
+                    <p className={`text-xs leading-relaxed font-sans ${
+                      isCleanMode ? 'text-[#55524C]' : 'text-[#CBD5E1]'
+                    }`}>
+                      {project.outcome}
+                    </p>
+                  </div>
+
+                  {/* Tech Stack */}
+                  <div className="flex flex-wrap gap-1.5 pt-1">
+                    {techList.map((tech) => (
+                      <span key={tech} className={`px-2.5 py-1 text-[10px] font-mono font-semibold rounded-md ${
+                        isCleanMode
+                          ? 'bg-[#F0EEE6] border border-[#E6E4DD] text-[#161616]'
+                          : 'bg-[#0a0e17] border border-[#4ee6d8]/30 text-[#4ee6d8] font-pixel text-[8px]'
+                      }`}>
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
 
               </div>
+
             </div>
 
           </motion.div>

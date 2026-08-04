@@ -65,7 +65,16 @@ export const TRANSLATIONS = {
     contactDesc: "Tersedia untuk posisi Full-time Software Engineer, Konsultasi Produk AI, dan Kontrak Remote.",
     sendEmail: "KIRIM EMAIL →",
     whatsapp: "WHATSAPP",
-    footerText: "© 2026 Bagus Supriyanto. Dirancang dengan presisi & dedikasi."
+    footerText: "© 2026 Bagus Supriyanto. Dirancang dengan presisi & dedikasi.",
+
+    // Drawer Labels
+    caseStudyDetail: "STUDI KASUS PROYEK",
+    visitLiveWebsite: "KUNJUNGI WEBSITE LIVE",
+    closeModal: "TUTUP",
+    theProblem: "PERMASALAHAN",
+    theSolution: "SOLUSI TEKNIS",
+    businessOutcome: "HASIL NISBI & DAMPAK",
+    enlargeMockup: "🔍 KLIK UNTUK MEMPERBESAR MOCKUP"
   },
 
   en: {
@@ -125,6 +134,15 @@ export const TRANSLATIONS = {
     catAi: "AI & LAB",
     catDevops: "DEVOPS",
     catIndustrial: "INDUSTRIAL",
+
+    // Drawer Labels
+    caseStudyDetail: "CASE STUDY DETAIL",
+    visitLiveWebsite: "VISIT LIVE WEBSITE",
+    closeModal: "CLOSE",
+    theProblem: "THE PROBLEM",
+    theSolution: "THE SOLUTION",
+    businessOutcome: "BUSINESS OUTCOME",
+    enlargeMockup: "🔍 CLICK TO ENLARGE MOCKUP",
 
     // Contact
     contactLabel: "GET IN TOUCH",
@@ -192,6 +210,15 @@ export const TRANSLATIONS = {
     catAi: "AI 与实验室",
     catDevops: "DevOps",
     catIndustrial: "工业控制",
+
+    // Drawer Labels
+    caseStudyDetail: "项目案例详情",
+    visitLiveWebsite: "访问在线网站",
+    closeModal: "关闭",
+    theProblem: "核心痛点",
+    theSolution: "技术解决方案",
+    businessOutcome: "业务成效与收益",
+    enlargeMockup: "🔍 点击放大预览效果图",
 
     // Contact
     contactLabel: "联系我",

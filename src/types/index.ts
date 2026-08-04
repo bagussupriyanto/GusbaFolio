@@ -24,12 +24,16 @@ export interface Project {
   problem: string;
   solution: string;
   outcome: string;
-  keyFeatures: string[];
+  keyFeatures?: string[];
   techStack: string[];
+  tags?: string[];
   liveUrl?: string;
   mockupPath: string;
   galleryImages?: { url: string; label: string }[];
-  caseStudy: {
+  year?: string;
+  impact?: string;
+  lang?: 'id' | 'en' | 'zh';
+  caseStudy?: {
     challenge: string;
     approach: string;
     solution: string;
