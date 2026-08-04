@@ -252,11 +252,11 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
         {/* Mobile Dropdown Menu */}
         {mobileMenuOpen && (
           <div className="md:hidden bg-[#FAF9F6] border-b border-[#E6E4DD] px-4 py-4 space-y-1 text-xs font-mono font-bold tracking-widest text-[#161616] uppercase">
-            <a href="#about" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors">Tentang</a>
-            <a href="#work" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors">Proyek</a>
-            <a href="#experience" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors">Pengalaman</a>
-            <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors">Kontak</a>
-            <a href="/assets/cv-bagus-supriyanto.pdf.pdf" download className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors text-[#B89355]">Unduh Resume / CV ↓</a>
+            <a href="#about" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors">{t.about}</a>
+            <a href="#work" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors">{t.project}</a>
+            <a href="#experience" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors">{t.experience}</a>
+            <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors">{t.contact}</a>
+            <a href="/assets/cv-bagus-supriyanto.pdf.pdf" download className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors text-[#B89355]">{t.downloadResume}</a>
           </div>
         )}
       </header>
