@@ -132,7 +132,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
     <div className="w-full bg-[#FAF9F6] text-[#161616] min-h-screen font-sans antialiased selection:bg-[#E8DFCE] selection:text-[#161616]">
       
       {/* ===== 1. HEADER NAVBAR (NOTION / LINEAR AESTHETIC) ===== */}
-      <header className={`sticky top-0 inset-x-0 z-40 transition-colors duration-300 ease-out -mb-[57px] sm:-mb-[61px] ${
+      <header className={`fixed top-0 inset-x-0 z-40 transition-colors duration-300 ease-out ${
         isScrolled
           ? 'bg-[#FAF9F6]/90 backdrop-blur-md border-b border-[#E6E4DD] shadow-xs'
           : 'bg-transparent border-b border-transparent shadow-none'
@@ -262,7 +262,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
       </header>
 
       {/* ===== 2. HERO SECTION (FULL SECTION IMMERSIVE BACKDROP) ===== */}
-      <section className="relative w-full bg-[#161616] text-white overflow-hidden min-h-screen flex flex-col justify-center pt-20 sm:pt-24 pb-12 sm:pb-16 border-b border-[#2A2A2A]">
+      <section className="relative w-full bg-[#161616] text-white overflow-hidden min-h-screen flex flex-col justify-center pt-24 sm:pt-28 pb-12 sm:pb-16 border-b border-[#2A2A2A]">
         
         {/* Background Code Video & Matrix Canvas Backdrop */}
         <CodeVideoBackdrop />
