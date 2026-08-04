@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
   ArrowRight,
@@ -108,6 +108,21 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
   const [activeTool, setActiveTool] = useState<string | null>(null);
   const [selectedTechCategory, setSelectedTechCategory] = useState<string>('ALL');
   const [lang, setLang] = useState<Language>('en');
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const t = TRANSLATIONS[lang];
   const selectedProjects = getSelectedProjects(lang);
   const workExperiences = getWorkExperiences(lang);
@@ -116,47 +131,77 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
     <div className="w-full bg-[#FAF9F6] text-[#161616] min-h-screen font-sans antialiased selection:bg-[#E8DFCE] selection:text-[#161616]">
       
       {/* ===== 1. HEADER NAVBAR (NOTION / LINEAR AESTHETIC) ===== */}
-      <header className="sticky top-0 inset-x-0 z-40 bg-[#FAF9F6]/90 backdrop-blur-md border-b border-[#E6E4DD]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 sm:py-3.5 flex items-center justify-between">
+      <header className={`sticky top-0 inset-x-0 z-40 transition-all duration-300 ${
+        isScrolled
+          ? 'bg-[#FAF9F6]/90 backdrop-blur-md border-b border-[#E6E4DD] shadow-xs py-3 sm:py-3.5'
+          : 'bg-transparent border-b border-transparent py-4 sm:py-5'
+      }`}>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
           
           {/* Logo & Availability Status */}
           <div className="flex items-center gap-2 sm:gap-3 min-w-0">
             <a href="#" className="flex items-center gap-2 sm:gap-2.5 group min-w-0">
-              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#161616] text-white flex items-center justify-center text-[10px] sm:text-xs font-mono font-bold tracking-wider group-hover:bg-[#B89355] transition-colors shrink-0">
+              <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center text-[10px] sm:text-xs font-mono font-bold tracking-wider transition-colors shrink-0 ${
+                isScrolled
+                  ? 'bg-[#161616] text-white group-hover:bg-[#B89355]'
+                  : 'bg-white text-[#161616] group-hover:bg-[#C5A059] group-hover:text-white'
+              }`}>
                 BS
               </div>
-              <span className="font-serif-editorial font-bold text-base sm:text-lg text-[#161616] group-hover:text-[#B89355] transition-colors truncate">
+              <span className={`font-serif-editorial font-bold text-base sm:text-lg transition-colors truncate ${
+                isScrolled ? 'text-[#161616] group-hover:text-[#B89355]' : 'text-white group-hover:text-[#C5A059]'
+              }`}>
                 Bagus Supriyanto
               </span>
             </a>
 
-            <div className="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#F0EEE6] border border-[#E6E4DD] text-[10px] font-mono font-semibold text-[#55524C] shrink-0">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            <div className={`hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-mono font-semibold transition-all shrink-0 ${
+              isScrolled
+                ? 'bg-[#F0EEE6] border border-[#E6E4DD] text-[#55524C]'
+                : 'bg-white/10 backdrop-blur-md border border-white/20 text-white/90'
+            }`}>
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               <span>{t.availability}</span>
             </div>
           </div>
 
           {/* Notion-Style Floating Pill Navigation */}
-          <nav className="hidden md:flex items-center gap-1 bg-[#F0EEE6]/80 p-1 rounded-full border border-[#E6E4DD]">
-            <a href="#about" className="px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs transition-all">{t.about}</a>
-            <a href="#work" className="px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs transition-all">{t.project}</a>
-            <a href="#experience" className="px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs transition-all">{t.experience}</a>
-            <a href="#contact" className="px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs transition-all">{t.contact}</a>
+          <nav className={`hidden md:flex items-center gap-1 p-1 rounded-full transition-all border ${
+            isScrolled
+              ? 'bg-[#F0EEE6]/80 border-[#E6E4DD]'
+              : 'bg-white/10 backdrop-blur-md border-white/20'
+          }`}>
+            <a href="#about" className={`px-3.5 py-1 rounded-full text-xs font-medium transition-all ${
+              isScrolled ? 'text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs' : 'text-white/90 hover:text-white hover:bg-white/20'
+            }`}>{t.about}</a>
+            <a href="#work" className={`px-3.5 py-1 rounded-full text-xs font-medium transition-all ${
+              isScrolled ? 'text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs' : 'text-white/90 hover:text-white hover:bg-white/20'
+            }`}>{t.project}</a>
+            <a href="#experience" className={`px-3.5 py-1 rounded-full text-xs font-medium transition-all ${
+              isScrolled ? 'text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs' : 'text-white/90 hover:text-white hover:bg-white/20'
+            }`}>{t.experience}</a>
+            <a href="#contact" className={`px-3.5 py-1 rounded-full text-xs font-medium transition-all ${
+              isScrolled ? 'text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs' : 'text-white/90 hover:text-white hover:bg-white/20'
+            }`}>{t.contact}</a>
           </nav>
 
           {/* Right Action Items */}
           <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
             
             {/* Multi-Language Switcher Toggle Pill: ENG / ID / CHN */}
-            <div className="flex items-center p-0.5 rounded-full bg-[#F0EEE6] border border-[#E6E4DD] text-[10px] font-mono font-bold">
+            <div className={`flex items-center p-0.5 rounded-full text-[10px] font-mono font-bold transition-all border ${
+              isScrolled
+                ? 'bg-[#F0EEE6] border-[#E6E4DD]'
+                : 'bg-white/10 backdrop-blur-md border-white/20'
+            }`}>
               {(['en', 'id', 'zh'] as Language[]).map((l) => (
                 <button
                   key={l}
                   onClick={() => setLang(l)}
                   className={`px-2 py-1 rounded-full transition-all cursor-pointer uppercase ${
                     lang === l
-                      ? 'bg-[#161616] text-[#FAF9F6] shadow-xs'
-                      : 'text-[#66645E] hover:text-[#161616]'
+                      ? isScrolled ? 'bg-[#161616] text-[#FAF9F6] shadow-xs' : 'bg-white text-[#161616] shadow-xs'
+                      : isScrolled ? 'text-[#66645E] hover:text-[#161616]' : 'text-white/70 hover:text-white'
                   }`}
                 >
                   {l === 'id' ? 'ID' : l === 'en' ? 'ENG' : 'CHN'}
@@ -166,7 +211,11 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
 
             <button
               onClick={onSwitchToGameMode}
-              className="px-2.5 sm:px-3.5 py-1.5 rounded-full bg-[#F0EEE6] border border-[#E6E4DD] text-[#55524C] text-[11px] font-mono font-semibold flex items-center gap-1.5 hover:bg-[#E5E2D8] hover:text-[#161616] transition-all cursor-pointer"
+              className={`px-2.5 sm:px-3.5 py-1.5 rounded-full text-[11px] font-mono font-semibold flex items-center gap-1.5 transition-all cursor-pointer border ${
+                isScrolled
+                  ? 'bg-[#F0EEE6] border-[#E6E4DD] text-[#55524C] hover:bg-[#E5E2D8] hover:text-[#161616]'
+                  : 'bg-white/10 backdrop-blur-md border-white/20 text-white hover:bg-white/20'
+              }`}
               title="Switch to 16-Bit RPG World"
             >
               <Gamepad2 className="w-3.5 h-3.5 text-[#B89355]" />
@@ -176,7 +225,11 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
             <a
               href="/assets/cv-bagus-supriyanto.pdf.pdf"
               download
-              className="hidden sm:flex px-4 py-2 rounded-full bg-[#161616] text-[#FAF9F6] text-xs font-mono font-semibold items-center gap-1.5 hover:bg-[#33312D] transition-all cursor-pointer shadow-xs"
+              className={`hidden sm:flex px-4 py-2 rounded-full text-xs font-mono font-semibold items-center gap-1.5 transition-all cursor-pointer shadow-xs ${
+                isScrolled
+                  ? 'bg-[#161616] text-[#FAF9F6] hover:bg-[#33312D]'
+                  : 'bg-white text-[#161616] hover:bg-[#EAE8E1]'
+              }`}
             >
               <span>{t.resume}</span>
               <Download className="w-3.5 h-3.5" />
@@ -185,7 +238,9 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
             {/* Mobile Nav Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-lg bg-[#F0EEE6] text-[#161616] hover:bg-[#E6E4DD]"
+              className={`md:hidden p-2 rounded-lg transition-all ${
+                isScrolled ? 'bg-[#F0EEE6] text-[#161616] hover:bg-[#E6E4DD]' : 'bg-white/10 text-white hover:bg-white/20'
+              }`}
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
