@@ -124,6 +124,39 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Handle direct hash navigation (e.g. /#about) on load
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.hash) {
+      const targetId = window.location.hash.replace('#', '');
+      const timer = setTimeout(() => {
+        const elem = document.getElementById(targetId);
+        if (elem) {
+          const headerOffset = 70;
+          const elementPosition = elem.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        }
+      }, 700);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    const elem = document.getElementById(targetId);
+    if (elem) {
+      const headerOffset = 70;
+      const elementPosition = elem.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+      window.history.pushState(null, '', `#${targetId}`);
+    }
+  };
+
   const t = TRANSLATIONS[lang];
   const selectedProjects = getSelectedProjects(lang);
   const workExperiences = getWorkExperiences(lang);
@@ -141,7 +174,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
           
           {/* Logo & Availability Status */}
           <div className="flex items-center gap-2 sm:gap-3 min-w-0">
-            <a href="#" className="flex items-center gap-2 sm:gap-2.5 group min-w-0">
+            <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); window.history.pushState(null, '', ' '); }} className="flex items-center gap-2 sm:gap-2.5 group min-w-0">
               <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center text-[10px] sm:text-xs font-mono font-bold tracking-wider transition-colors shrink-0 ${
                 isScrolled
                   ? 'bg-[#161616] text-white group-hover:bg-[#B89355]'
@@ -172,16 +205,16 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
               ? 'gap-1 p-1 rounded-full bg-[#F0EEE6]/80 border border-[#E6E4DD]'
               : 'gap-6 sm:gap-8'
           }`}>
-            <a href="#about" className={`transition-all ${
+            <a href="#about" onClick={(e) => handleNavClick(e, 'about')} className={`transition-all ${
               isScrolled ? 'px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs' : 'text-xs font-mono font-semibold uppercase tracking-wider text-[#CCCCCC] hover:text-white'
             }`}>{t.about}</a>
-            <a href="#work" className={`transition-all ${
+            <a href="#work" onClick={(e) => handleNavClick(e, 'work')} className={`transition-all ${
               isScrolled ? 'px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs' : 'text-xs font-mono font-semibold uppercase tracking-wider text-[#CCCCCC] hover:text-white'
             }`}>{t.project}</a>
-            <a href="#experience" className={`transition-all ${
+            <a href="#experience" onClick={(e) => handleNavClick(e, 'experience')} className={`transition-all ${
               isScrolled ? 'px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs' : 'text-xs font-mono font-semibold uppercase tracking-wider text-[#CCCCCC] hover:text-white'
             }`}>{t.experience}</a>
-            <a href="#contact" className={`transition-all ${
+            <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className={`transition-all ${
               isScrolled ? 'px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs' : 'text-xs font-mono font-semibold uppercase tracking-wider text-[#CCCCCC] hover:text-white'
             }`}>{t.contact}</a>
           </nav>
@@ -252,10 +285,10 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
         {/* Mobile Dropdown Menu */}
         {mobileMenuOpen && (
           <div className="md:hidden bg-[#FAF9F6] border-b border-[#E6E4DD] px-4 py-4 space-y-1 text-xs font-mono font-bold tracking-widest text-[#161616] uppercase">
-            <a href="#about" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors">{t.about}</a>
-            <a href="#work" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors">{t.project}</a>
-            <a href="#experience" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors">{t.experience}</a>
-            <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors">{t.contact}</a>
+            <a href="#about" onClick={(e) => handleNavClick(e, 'about')} className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors">{t.about}</a>
+            <a href="#work" onClick={(e) => handleNavClick(e, 'work')} className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors">{t.project}</a>
+            <a href="#experience" onClick={(e) => handleNavClick(e, 'experience')} className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors">{t.experience}</a>
+            <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors">{t.contact}</a>
             <a href="/assets/cv-bagus-supriyanto.pdf.pdf" download className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors text-[#B89355]">{t.downloadResume}</a>
           </div>
         )}
@@ -294,6 +327,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
               <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-1 sm:pt-2">
                 <a
                   href="#work"
+                  onClick={(e) => handleNavClick(e, 'work')}
                   className="px-4 sm:px-6 py-2.5 sm:py-3 rounded-full bg-white text-[#161616] text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider hover:bg-[#EAE8E1] transition-all cursor-pointer flex items-center gap-2 shadow-lg hover:scale-105"
                 >
                   <span>{t.exploreWork}</span>
@@ -302,6 +336,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
 
                 <a
                   href="#about"
+                  onClick={(e) => handleNavClick(e, 'about')}
                   className="px-4 sm:px-6 py-2.5 sm:py-3 rounded-full bg-black/40 border border-white/20 text-white text-[10px] sm:text-xs font-mono font-semibold uppercase tracking-wider hover:bg-black/60 transition-all cursor-pointer flex items-center gap-2"
                 >
                   <span>{t.aboutMe}</span>
@@ -378,7 +413,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
       {/* ===== 3. ABOUT ME SECTION ===== */}
       <section
         id="about"
-        className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 max-w-6xl mx-auto border-t border-[#E6E4DD]"
+        className="scroll-mt-20 sm:scroll-mt-24 py-12 sm:py-16 lg:py-20 px-4 sm:px-6 max-w-6xl mx-auto border-t border-[#E6E4DD]"
       >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-center">
           
@@ -441,7 +476,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
       {/* ===== 4. SELECTED WORK ===== */}
       <section
         id="work"
-        className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 max-w-6xl mx-auto border-t border-[#E6E4DD]"
+        className="scroll-mt-20 sm:scroll-mt-24 py-12 sm:py-16 lg:py-20 px-4 sm:px-6 max-w-6xl mx-auto border-t border-[#E6E4DD]"
       >
         <div className="space-y-6 sm:space-y-10">
           
@@ -531,7 +566,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
       {/* ===== 5. CAREER EXPERIENCE (GIT COMMIT ARCHITECTURE TIMELINE) ===== */}
       <section
         id="experience"
-        className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 max-w-6xl mx-auto border-t border-[#E6E4DD]"
+        className="scroll-mt-20 sm:scroll-mt-24 py-12 sm:py-16 lg:py-20 px-4 sm:px-6 max-w-6xl mx-auto border-t border-[#E6E4DD]"
       >
         <div className="space-y-6 sm:space-y-10">
           
@@ -749,7 +784,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
       {/* ===== 7. CONTACT SECTION ===== */}
       <section
         id="contact"
-        className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 max-w-6xl mx-auto border-t border-[#E6E4DD]"
+        className="scroll-mt-20 sm:scroll-mt-24 py-12 sm:py-16 lg:py-20 px-4 sm:px-6 max-w-6xl mx-auto border-t border-[#E6E4DD]"
       >
         <div className="p-6 sm:p-8 lg:p-12 rounded-2xl sm:rounded-3xl bg-[#161616] text-[#FAF9F6] shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8">
           
