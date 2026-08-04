@@ -156,10 +156,10 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
               </span>
             </a>
 
-            <div className={`hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-mono font-semibold transition-all shrink-0 ${
+            <div className={`hidden lg:flex items-center gap-1.5 text-[10px] font-mono font-semibold transition-all shrink-0 ${
               isScrolled
-                ? 'bg-[#F0EEE6] border border-[#E6E4DD] text-[#55524C]'
-                : 'bg-white/10 backdrop-blur-md border border-white/20 text-white/90'
+                ? 'px-2.5 py-1 rounded-full bg-[#F0EEE6] border border-[#E6E4DD] text-[#55524C]'
+                : 'text-white/90'
             }`}>
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               <span>{t.availability}</span>
@@ -167,42 +167,42 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
           </div>
 
           {/* Notion-Style Floating Pill Navigation */}
-          <nav className={`hidden md:flex items-center gap-1 p-1 rounded-full transition-all border ${
+          <nav className={`hidden md:flex items-center transition-all ${
             isScrolled
-              ? 'bg-[#F0EEE6]/80 border-[#E6E4DD]'
-              : 'bg-white/10 backdrop-blur-md border-white/20'
+              ? 'gap-1 p-1 rounded-full bg-[#F0EEE6]/80 border border-[#E6E4DD]'
+              : 'gap-6 sm:gap-8'
           }`}>
-            <a href="#about" className={`px-3.5 py-1 rounded-full text-xs font-medium transition-all ${
-              isScrolled ? 'text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs' : 'text-white/90 hover:text-white hover:bg-white/20'
+            <a href="#about" className={`transition-all ${
+              isScrolled ? 'px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs' : 'text-xs font-mono font-semibold uppercase tracking-wider text-[#CCCCCC] hover:text-white'
             }`}>{t.about}</a>
-            <a href="#work" className={`px-3.5 py-1 rounded-full text-xs font-medium transition-all ${
-              isScrolled ? 'text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs' : 'text-white/90 hover:text-white hover:bg-white/20'
+            <a href="#work" className={`transition-all ${
+              isScrolled ? 'px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs' : 'text-xs font-mono font-semibold uppercase tracking-wider text-[#CCCCCC] hover:text-white'
             }`}>{t.project}</a>
-            <a href="#experience" className={`px-3.5 py-1 rounded-full text-xs font-medium transition-all ${
-              isScrolled ? 'text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs' : 'text-white/90 hover:text-white hover:bg-white/20'
+            <a href="#experience" className={`transition-all ${
+              isScrolled ? 'px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs' : 'text-xs font-mono font-semibold uppercase tracking-wider text-[#CCCCCC] hover:text-white'
             }`}>{t.experience}</a>
-            <a href="#contact" className={`px-3.5 py-1 rounded-full text-xs font-medium transition-all ${
-              isScrolled ? 'text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs' : 'text-white/90 hover:text-white hover:bg-white/20'
+            <a href="#contact" className={`transition-all ${
+              isScrolled ? 'px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs' : 'text-xs font-mono font-semibold uppercase tracking-wider text-[#CCCCCC] hover:text-white'
             }`}>{t.contact}</a>
           </nav>
 
           {/* Right Action Items */}
-          <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
             
             {/* Multi-Language Switcher Toggle Pill: ENG / ID / CHN */}
-            <div className={`flex items-center p-0.5 rounded-full text-[10px] font-mono font-bold transition-all border ${
+            <div className={`flex items-center text-[10px] font-mono font-bold transition-all ${
               isScrolled
-                ? 'bg-[#F0EEE6] border-[#E6E4DD]'
-                : 'bg-white/10 backdrop-blur-md border-white/20'
+                ? 'p-0.5 rounded-full bg-[#F0EEE6] border border-[#E6E4DD]'
+                : 'gap-1.5 text-white'
             }`}>
               {(['en', 'id', 'zh'] as Language[]).map((l) => (
                 <button
                   key={l}
                   onClick={() => setLang(l)}
-                  className={`px-2 py-1 rounded-full transition-all cursor-pointer uppercase ${
+                  className={`transition-all cursor-pointer uppercase ${
                     lang === l
-                      ? isScrolled ? 'bg-[#161616] text-[#FAF9F6] shadow-xs' : 'bg-white text-[#161616] shadow-xs'
-                      : isScrolled ? 'text-[#66645E] hover:text-[#161616]' : 'text-white/70 hover:text-white'
+                      ? isScrolled ? 'px-2 py-1 rounded-full bg-[#161616] text-[#FAF9F6] shadow-xs' : 'px-1.5 py-0.5 rounded bg-white/20 text-white font-bold'
+                      : isScrolled ? 'px-2 py-1 rounded-full text-[#66645E] hover:text-[#161616]' : 'px-1 py-0.5 text-white/60 hover:text-white'
                   }`}
                 >
                   {l === 'id' ? 'ID' : l === 'en' ? 'ENG' : 'CHN'}
@@ -212,10 +212,10 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
 
             <button
               onClick={onSwitchToGameMode}
-              className={`px-2.5 sm:px-3.5 py-1.5 rounded-full text-[11px] font-mono font-semibold flex items-center gap-1.5 transition-all cursor-pointer border ${
+              className={`text-[11px] font-mono font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
                 isScrolled
-                  ? 'bg-[#F0EEE6] border-[#E6E4DD] text-[#55524C] hover:bg-[#E5E2D8] hover:text-[#161616]'
-                  : 'bg-white/10 backdrop-blur-md border-white/20 text-white hover:bg-white/20'
+                  ? 'px-2.5 sm:px-3.5 py-1.5 rounded-full bg-[#F0EEE6] border border-[#E6E4DD] text-[#55524C] hover:bg-[#E5E2D8] hover:text-[#161616]'
+                  : 'text-[#CCCCCC] hover:text-white'
               }`}
               title="Switch to 16-Bit RPG World"
             >
@@ -229,7 +229,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
               className={`hidden sm:flex px-4 py-2 rounded-full text-xs font-mono font-semibold items-center gap-1.5 transition-all cursor-pointer shadow-xs ${
                 isScrolled
                   ? 'bg-[#161616] text-[#FAF9F6] hover:bg-[#33312D]'
-                  : 'bg-white text-[#161616] hover:bg-[#EAE8E1]'
+                  : 'bg-white text-[#161616] hover:bg-[#EAE8E1] shadow-md hover:scale-105'
               }`}
             >
               <span>{t.resume}</span>
