@@ -54,8 +54,22 @@ export const PreloaderScreen: React.FC = () => {
           transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}
           className="fixed inset-0 z-[9999] bg-[#161616] text-[#FAF9F6] flex flex-col items-center justify-center select-none font-sans overflow-hidden"
         >
+          {/* Background Ambient Code Video Backdrop */}
+          <div className="absolute inset-0 z-0 opacity-25 pointer-events-none overflow-hidden">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover filter grayscale contrast-125"
+            >
+              <source src="/assets/code-bg.mp4" type="video/mp4" />
+            </video>
+            <div className="absolute inset-0 bg-gradient-to-b from-[#161616]/90 via-[#161616]/70 to-[#161616]/90" />
+          </div>
+
           {/* Subtle Ambient Background Light */}
-          <div className="absolute w-96 h-96 rounded-full bg-[#B89355]/10 blur-[120px] pointer-events-none" />
+          <div className="absolute w-96 h-96 rounded-full bg-[#B89355]/10 blur-[120px] pointer-events-none z-0" />
 
           {/* iPhone Setup Style Welcome Sequence */}
           <div className="relative z-10 text-center px-4 max-w-4xl min-h-[160px] flex flex-col items-center justify-center">
