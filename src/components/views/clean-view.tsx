@@ -107,7 +107,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeTool, setActiveTool] = useState<string | null>(null);
   const [selectedTechCategory, setSelectedTechCategory] = useState<string>('ALL');
-  const [lang, setLang] = useState<Language>('id');
+  const [lang, setLang] = useState<Language>('en');
   const t = TRANSLATIONS[lang];
   const selectedProjects = getSelectedProjects(lang);
   const workExperiences = getWorkExperiences(lang);
@@ -147,9 +147,9 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
           {/* Right Action Items */}
           <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
             
-            {/* Multi-Language Switcher Toggle Pill: ID / ENG / CHN */}
+            {/* Multi-Language Switcher Toggle Pill: ENG / ID / CHN */}
             <div className="flex items-center p-0.5 rounded-full bg-[#F0EEE6] border border-[#E6E4DD] text-[10px] font-mono font-bold">
-              {(['id', 'en', 'zh'] as Language[]).map((l) => (
+              {(['en', 'id', 'zh'] as Language[]).map((l) => (
                 <button
                   key={l}
                   onClick={() => setLang(l)}

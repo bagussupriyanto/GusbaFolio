@@ -96,7 +96,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="id" suppressHydrationWarning className={`${fontSans.variable} ${fontDisplay.variable} ${fontMono.variable} ${fontPixel.variable} ${fontSilkscreen.variable} ${fontSerif.variable} ${fontSignature.variable} scroll-smooth`}>
+    <html lang="en" suppressHydrationWarning className={`${fontSans.variable} ${fontDisplay.variable} ${fontMono.variable} ${fontPixel.variable} ${fontSilkscreen.variable} ${fontSerif.variable} ${fontSignature.variable} scroll-smooth`}>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
