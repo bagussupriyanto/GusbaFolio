@@ -77,7 +77,7 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 15 }}
             transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-            className={`relative w-full max-w-[1100px] max-h-[94vh] overflow-hidden z-10 my-auto flex flex-col ${
+            className={`relative w-full max-w-[1100px] max-h-[90vh] sm:max-h-[92vh] z-10 my-auto flex flex-col overflow-hidden ${
               isCleanMode
                 ? 'bg-[#FAF9F6] text-[#161616] rounded-3xl border border-[#E6E4DD] shadow-2xl'
                 : 'bg-[#12182a] text-[#F8FAFC] border-2 sm:border-4 border-[#4ee6d8] shadow-[4px_4px_0px_#000] sm:shadow-[8px_8px_0px_#000]'
@@ -85,7 +85,7 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({
           >
 
             {/* ── Row 1: Header Bar ── */}
-            <div className={`flex items-center justify-between px-5 sm:px-7 py-3.5 border-b ${
+            <div className={`flex items-center justify-between px-5 sm:px-7 py-3 sm:py-3.5 border-b shrink-0 ${
               isCleanMode ? 'bg-[#F0EEE6] border-[#E6E4DD]' : 'bg-[#0a0e17] border-b-2 border-[#4ee6d8]'
             }`}>
               <div className="flex items-center gap-2 sm:gap-3 min-w-0">
@@ -117,10 +117,10 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({
             </div>
 
             {/* ── Row 2: Title + Visit Button ── */}
-            <div className={`flex items-center justify-between gap-2 sm:gap-4 px-5 sm:px-7 py-4 border-b ${
+            <div className={`flex items-center justify-between gap-2 sm:gap-4 px-5 sm:px-7 py-3 sm:py-3.5 border-b shrink-0 ${
               isCleanMode ? 'bg-[#FAF9F6] border-[#E6E4DD]' : 'bg-[#0d1220] border-[#4ee6d8]/20'
             }`}>
-              <h2 className={`text-lg sm:text-2xl tracking-tight truncate ${
+              <h2 className={`text-base sm:text-xl lg:text-2xl tracking-tight truncate ${
                 isCleanMode ? 'font-serif-editorial font-bold text-[#161616]' : 'font-pixel text-xs sm:text-base text-[#F8FAFC]'
               }`}>
                 {project.title}
@@ -130,7 +130,7 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`px-5 py-2 text-xs font-mono flex items-center gap-2 shrink-0 cursor-pointer font-bold transition-all ${
+                  className={`px-4 sm:px-5 py-1.5 sm:py-2 text-xs font-mono flex items-center gap-2 shrink-0 cursor-pointer font-bold transition-all ${
                     isCleanMode
                       ? 'rounded-full bg-[#161616] text-white hover:bg-[#33312D] shadow-xs'
                       : 'pixel-btn'
@@ -140,7 +140,7 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({
                   <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               ) : (
-                <div className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold flex items-center gap-1.5 shrink-0 ${
+                <div className={`px-3 py-1.5 rounded-full text-xs font-mono font-semibold flex items-center gap-1.5 shrink-0 ${
                   isCleanMode
                     ? 'bg-[#F0EEE6] border border-[#E6E4DD] text-[#55524C]'
                     : 'bg-[#2A2A2A] border border-[#3D3D3D] text-[#AAAAAA]'
@@ -152,13 +152,13 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({
             </div>
 
             {/* ── Row 3: Body Content (Scrollable) ── */}
-            <div className="p-5 sm:p-7 overflow-y-auto max-h-[calc(94vh-130px)] space-y-6">
+            <div className="p-4 sm:p-7 overflow-y-auto flex-1 min-h-0 space-y-6">
               
               {/* Top Split Layout: Gallery (Left) & Narrative Cards (Right) */}
-              <div className="flex flex-col lg:flex-row gap-6 items-stretch">
+              <div className="flex flex-col lg:flex-row gap-6 items-start">
                 
                 {/* Left: Browser Frame + Thumbnails */}
-                <div className="lg:w-[58%] flex flex-col gap-3 shrink-0">
+                <div className="lg:w-[54%] w-full flex flex-col gap-3 shrink-0 lg:sticky lg:top-0">
                   {/* MacOS Browser Frame */}
                   <MacOSFrame url={project.liveUrl || `https://bagus.dev/${project.id}`}>
                     <div
@@ -237,10 +237,10 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({
                 </div>
 
                 {/* Right: Case Study Narrative Cards */}
-                <div className="lg:w-[42%] flex flex-col gap-3 lg:h-full">
+                <div className="lg:w-[46%] w-full flex flex-col gap-3.5">
 
                   {/* Problem */}
-                  <div className={`flex-1 p-4 rounded-2xl border flex flex-col ${
+                  <div className={`p-4 rounded-2xl border flex flex-col ${
                     isCleanMode
                       ? 'bg-white border-[#E6E4DD] shadow-2xs'
                       : 'bg-[#0a0e17] border-l-3 border-l-amber-400 border-amber-400/20'
@@ -259,7 +259,7 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({
                   </div>
 
                   {/* Solution */}
-                  <div className={`flex-1 p-4 rounded-2xl border flex flex-col ${
+                  <div className={`p-4 rounded-2xl border flex flex-col ${
                     isCleanMode
                       ? 'bg-white border-[#E6E4DD] shadow-2xs'
                       : 'bg-[#0a0e17] border-l-3 border-l-[#4ee6d8] border-[#4ee6d8]/20'
@@ -278,7 +278,7 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({
                   </div>
 
                   {/* Result */}
-                  <div className={`flex-1 p-4 rounded-2xl border flex flex-col ${
+                  <div className={`p-4 rounded-2xl border flex flex-col ${
                     isCleanMode
                       ? 'bg-white border-[#E6E4DD] shadow-2xs'
                       : 'bg-[#0a0e17] border-l-3 border-l-emerald-400 border-emerald-400/20'
@@ -295,6 +295,32 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({
                       {project.outcome}
                     </p>
                   </div>
+
+                  {/* Key Features List */}
+                  {project.keyFeatures && project.keyFeatures.length > 0 && (
+                    <div className={`p-4 rounded-2xl border flex flex-col gap-2 ${
+                      isCleanMode
+                        ? 'bg-white border-[#E6E4DD] shadow-2xs'
+                        : 'bg-[#0a0e17] border-l-3 border-l-purple-400 border-purple-400/20'
+                    }`}>
+                      <div className={`text-xs font-mono font-bold flex items-center gap-1.5 uppercase ${
+                        isCleanMode ? 'text-[#161616]' : 'text-purple-400'
+                      }`}>
+                        <span className="text-[#B89355]">⚡</span>
+                        <span>KEY FEATURES & INNOVATIONS</span>
+                      </div>
+                      <ul className="space-y-1.5 pt-1">
+                        {project.keyFeatures.map((feat, idx) => (
+                          <li key={idx} className={`text-xs flex items-start gap-2 leading-relaxed ${
+                            isCleanMode ? 'text-[#55524C]' : 'text-[#CBD5E1]'
+                          }`}>
+                            <span className="text-[#B89355] font-bold shrink-0 mt-0.5">•</span>
+                            <span>{feat}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
 
                   {/* Tech Stack */}
                   <div className="flex flex-wrap gap-1.5 pt-1">
