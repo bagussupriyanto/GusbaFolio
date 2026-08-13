@@ -50,32 +50,43 @@ const fontSignature = Caveat({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://bagus.dev'),
+  metadataBase: new URL('https://gusbafolio.vercel.app'),
   title: `${DEVELOPER_DATA.name} — ${DEVELOPER_DATA.role}`,
   description: `Portfolio profesional ${DEVELOPER_DATA.name}, ${DEVELOPER_DATA.role} berbasis di ${DEVELOPER_DATA.location}. Berfokus membangun website modern, sistem kasir (POS), dan aplikasi web performa tinggi berskala produksi.`,
   keywords: [
     'Bagus Supriyanto',
-    'Product-Focused Frontend Engineer',
-    'Frontend Engineer Indonesia',
+    'Full-Stack Product Engineer',
+    'Full-Stack Developer Indonesia',
     'Next.js Developer',
-    'Supabase',
+    'Supabase Developer',
+    'TypeScript',
     'Kepulauan Riau',
-    'Web Developer'
+    'Web Developer Portfolio',
+    'SaaS Developer',
   ],
   authors: [{ name: DEVELOPER_DATA.name }],
   creator: DEVELOPER_DATA.name,
   openGraph: {
     title: `${DEVELOPER_DATA.name} — ${DEVELOPER_DATA.role}`,
     description: `Portfolio profesional ${DEVELOPER_DATA.name}, ${DEVELOPER_DATA.role} yang berfokus membangun website modern & sistem aplikasi berskala produksi.`,
-    url: 'https://bagus.dev',
+    url: 'https://gusbafolio.vercel.app',
     siteName: `${DEVELOPER_DATA.name} Portfolio`,
     locale: 'id_ID',
     type: 'website',
+    images: [
+      {
+        url: '/assets/profile-photo.jpg',
+        width: 1200,
+        height: 630,
+        alt: `${DEVELOPER_DATA.name} — ${DEVELOPER_DATA.role}`,
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: `${DEVELOPER_DATA.name} — ${DEVELOPER_DATA.role}`,
     description: `Portfolio profesional ${DEVELOPER_DATA.name}, ${DEVELOPER_DATA.role} yang berfokus membangun website modern & sistem aplikasi berskala produksi.`,
+    images: ['/assets/profile-photo.jpg'],
   },
   robots: {
     index: true,
@@ -90,6 +101,28 @@ export const metadata: Metadata = {
 
 import { ThemeProvider } from '@/components/providers/theme-provider';
 
+// JSON-LD Structured Data for SEO
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: DEVELOPER_DATA.name,
+  jobTitle: DEVELOPER_DATA.role,
+  url: 'https://gusbafolio.vercel.app',
+  email: DEVELOPER_DATA.contact.email,
+  telephone: DEVELOPER_DATA.contact.phone,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Tanjung Uban',
+    addressRegion: 'Kepulauan Riau',
+    addressCountry: 'ID',
+  },
+  alumniOf: {
+    '@type': 'CollegeOrUniversity',
+    name: DEVELOPER_DATA.university,
+  },
+  knowsAbout: ['Next.js', 'TypeScript', 'Supabase', 'React', 'Full-Stack Web Development'],
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -99,6 +132,10 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className={`${fontSans.variable} ${fontDisplay.variable} ${fontMono.variable} ${fontPixel.variable} ${fontSilkscreen.variable} ${fontSerif.variable} ${fontSignature.variable} scroll-smooth`}>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body className="bg-white dark:bg-[#0A0A0A] text-slate-900 dark:text-[#F8FAFC] antialiased selection:bg-orange-500/30 selection:text-orange-200 transition-colors duration-300">
         <ThemeProvider>
@@ -111,3 +148,4 @@ export default function RootLayout({
     </html>
   );
 }
+

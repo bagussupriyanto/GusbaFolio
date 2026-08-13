@@ -271,7 +271,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
             </button>
 
             <a
-              href="/assets/cv-bagus-supriyanto.pdf.pdf"
+              href="/assets/cv-bagus-supriyanto.pdf"
               download
               className={`hidden sm:flex px-4 py-2 rounded-full text-xs font-mono font-semibold items-center gap-1.5 transition-all cursor-pointer shadow-xs ${
                 isScrolled
@@ -303,7 +303,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
             <a href="#work" onClick={(e) => handleNavClick(e, 'work')} className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors">{t.project}</a>
             <a href="#experience" onClick={(e) => handleNavClick(e, 'experience')} className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors">{t.experience}</a>
             <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors">{t.contact}</a>
-            <a href="/assets/cv-bagus-supriyanto.pdf.pdf" download className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors text-[#B89355]">{t.downloadResume}</a>
+            <a href="/assets/cv-bagus-supriyanto.pdf" download className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors text-[#B89355]">{t.downloadResume}</a>
           </div>
         )}
       </header>
