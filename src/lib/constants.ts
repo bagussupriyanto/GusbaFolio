@@ -151,36 +151,41 @@ export const FEATURED_PROJECTS: Project[] = [
   },
   {
     id: "invoice-management-system",
-    title: "Invoice & Shipping System",
-    category: "Business Operations & E-Invoice",
-    summary: "Sistem operasional bisnis internal untuk otomatisasi faktur tagihan dan dokumen pengiriman.",
-    problem: "Admin masih bikin invoice satu-satu di Excel — sering salah hitung, format ga konsisten, dan butuh 15 menit per dokumen.",
-    solution: "Dibuatkan sistem invoice terpusat dengan auto-generate PDF, database client tersimpan, dan tracking status bayar.",
-    outcome: "Invoice tinggal klik generate — selesai dalam hitungan detik, kalkulasi otomatis, dan histori tagihan rapi semua.",
+    title: "Smart Inventory & E-Invoice System (PWA)",
+    category: "Business Operations & E-Invoice PWA",
+    summary: "Aplikasi Web & Progressive Web App (PWA) untuk manajemen inventaris stok barang, transaksi invoice penjualan, piutang jatuh tempo (JTO), serta laporan arus kas dual-layer (Cash vs Accrual).",
+    problem: "1) Sering terjadi kerancuan antara omzet penjualan (accrual) dan arus kas riil (cash-basis pelunasan JTO). 2) Pengisian data pelanggan manual berulang memicu typo dan pemborosan waktu. 3) Admin memerlukan pembatasan jam login operasional resmi dan audit trail data sensitif. 4) Risiko keamanan Server Actions, filter injection, serta batas koneksi cloud DB free-tier.",
+    solution: "Mengembangkan arsitektur Web & PWA berbasis Next.js 16 (App Router) & Supabase: A) Dual-Layer Financial Engine (Cash-Basis untuk Kas Riil & Accrual-Basis untuk Omzet) dengan visualisasi Recharts 3-deret data. B) Smart Customer Autocomplete pada Combobox dengan auto-fill kontekstual. C) Work Hours Guard RBAC membatasi waktu login Admin pada jam kerja operasional. D) Security Hardening dengan requireAuth() guard, CSP headers, PostgREST regex sanitization, SHA-256 password hashing, dan Automatic Audit Trail. E) Next.js tag-based cache invalidation (revalidateTag) dan integrasi PWA.",
+    outcome: "⚡ Efisiensi pembuatan invoice 60-70% lebih cepat dengan smart autocomplete. 🎯 Keakuratan laporan keuangan 100% tanpa salah hitung piutang. 🛡️ 100% Server Actions terproteksi auth guard & akses admin terisolasi sesuai jam operasional. 📱 Installable PWA di Desktop & Mobile.",
     keyFeatures: [
-      "Automated E-Invoice PDF Generator",
-      "Surat Jalan & Shipping Tracing",
-      "Manajemen Database Client & Tagihan"
+      "Dual-Layer Financial Engine (Cash vs Accrual)",
+      "Smart Customer Autocomplete Combobox",
+      "Work Hours Guard & RBAC Access Control",
+      "Enterprise Audit Trail & SHA-256 Hashing",
+      "Recharts Multi-Series Financial Analytics",
+      "PWA Support & Tag-Based Cache Invalidation"
     ],
-    techStack: ["Next.js 16", "Prisma ORM", "PostgreSQL", "Tailwind CSS"],
+    techStack: ["Next.js 16", "Supabase", "TypeScript", "Tailwind CSS", "Recharts", "PWA"],
     mockupPath: "/assets/projects/invoice/login.png",
     galleryImages: [
       { url: "/assets/projects/invoice/login.png", label: "LOGIN PORTAL" },
       { url: "/assets/projects/invoice/dashboard-blurred.png", label: "DASHBOARD (NDA)" }
     ],
     caseStudy: {
-      challenge: "Staf administrasi menghabiskan 15+ menit per dokumen mengetik invoice satu per satu di Excel. Sering terjadi kesalahan kalkulasi, format tidak konsisten antar dokumen, penomoran invoice acak, dan tidak ada tracking status pembayaran — menyebabkan keterlambatan penagihan dan kerugian cash flow.",
-      approach: "Mengintegrasikan database pelanggan terpusat dengan modul generator PDF browser-native otomatis. Arsitektur menggunakan Prisma ORM untuk type-safe database operations dan PostgreSQL untuk penyimpanan data invoice, client, dan surat jalan.",
-      solution: "Sistem manajemen operasional terpusat berbasis Prisma ORM dan PostgreSQL. Invoice di-generate otomatis dengan 1-klik: kalkulasi pajak, penomoran sequential, dan export PDF langsung di browser. Database client tersimpan permanen untuk re-use.",
+      challenge: "Sebelum aplikasi dibangun: 1) Sering terjadi kerancuan antara omzet penjualan (invoice baru) dengan kas riil (pelunasan JTO). 2) Pengisian manual data pelanggan berulang memicu typo & pemborosan waktu. 3) Pemilik bisnis memerlukan pembatasan jam login Admin pada jam kerja operasional resmi serta rekam jejak (audit trail) perubahan data sensitif. 4) Risiko keamanan Server Actions/API, filter injection, dan concurrent connection limits pada cloud DB free-tier.",
+      approach: "Merancang arsitektur Dual-Layer Financial Engine memisahkan Cash-Basis (pemasukan/pengeluaran riil) dan Accrual-Basis (omzet penjualan saat invoice dibuat). Menerapkan Work Hours Guard melalui Middleware & Server Actions, Combobox Autocomplete deduplikasi data pelanggan tanpa tabel tambahan, serta Security Hardening komprehensif.",
+      solution: "Aplikasi berbasis Web & PWA terintegrasi: 1) Visualisasi Recharts AreaChart 3-deret data (Pemasukan, Pengeluaran, Omzet) dengan skala Y-axis dinamis. 2) Combobox Autocomplete auto-fill nama, alamat, & telepon pelanggan. 3) RBAC Flex-Guard membatasi login Admin sesuai jadwal shift (termasuk lintas tengah malam) & Owner 24/7. 4) Auth guard requireAuth(), CSP headers, PostgREST regex sanitization, SHA-256 salted password hashing, dan tabel audit_logs otomatis. 5) Optimization dengan unstable_cache & revalidateTag.",
       keyFeatures: [
-        "Auto-Generate Invoice PDF dengan 1-Klik",
-        "Kalkulasi Pajak & Penomoran Invoice Otomatis",
-        "Surat Jalan & Dokumen Pengiriman Barang",
-        "Database Client Terpusat & Reusable",
-        "Tracking Status Pembayaran Real-Time"
+        "Dual-Layer Financial Engine (Cash-Basis vs Accrual-Basis)",
+        "Smart Customer Autocomplete Combobox dengan Auto-Fill Kontekstual",
+        "Work Hours Guard & Multi-Level Role Access (RBAC 24/7 vs Shift)",
+        "Security Hardening: requireAuth() Guard, CSP Headers, Regex Sanitization",
+        "Automatic Enterprise Audit Trail (audit_logs)",
+        "Recharts Multi-Series Interactive AreaChart & Rupiah Tooltip",
+        "Next.js Tag-Based Cache Invalidation & PWA Integration"
       ],
-      outcome: "Invoice selesai dalam hitungan detik (dari 15+ menit). Kalkulasi 100% otomatis tanpa human error. Histori tagihan rapi dan terorganisir. Efisiensi waktu administrasi meningkat hingga 80%, menghemat 8+ jam kerja per minggu.",
-      techStack: ["Next.js 16", "Prisma ORM", "PostgreSQL", "Tailwind CSS"]
+      outcome: "⚡ Pembuatan Invoice 60-70% lebih cepat. 🎯 Keakuratan Laporan Keuangan 100% tanpa salah hitung piutang JTO. 🛡️ 100% Server Actions terproteksi & jam akses admin terisolasi. 📱 Progressive Web App (PWA) berjalan dengan 0 Build Error.",
+      techStack: ["Next.js 16", "Supabase", "TypeScript", "Tailwind CSS", "Recharts", "PWA"]
     }
   }
 ];
