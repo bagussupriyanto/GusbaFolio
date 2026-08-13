@@ -7,6 +7,8 @@ import { Project } from '@/types';
 import { MacOSFrame } from '@/components/ui/macos-frame';
 import { TRANSLATIONS, Language } from '@/lib/translations';
 
+import { useLenis } from '@/components/providers/lenis-provider';
+
 interface ProjectDrawerProps {
   project: Project | null;
   isOpen: boolean;
@@ -22,6 +24,7 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({
   isCleanMode = false,
   lang,
 }) => {
+  const lenis = useLenis();
   const [selectedImage, setSelectedImage] = React.useState<string | null>(null);
   const [isZoomed, setIsZoomed] = React.useState(false);
 
@@ -41,15 +44,20 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({
     };
 
     if (isOpen) {
+      const prevOverflow = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+      lenis?.stop();
       window.addEventListener('keydown', handleKeyDown);
-    }
 
-    return () => {
-      document.body.style.overflow = '';
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [isOpen, isZoomed, onClose]);
+      return () => {
+        document.body.style.overflow = prevOverflow;
+        document.documentElement.style.overflow = '';
+        lenis?.start();
+        window.removeEventListener('keydown', handleKeyDown);
+      };
+    }
+  }, [isOpen, isZoomed, onClose, lenis]);
 
   if (!project) return null;
 
@@ -61,13 +69,14 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className={`fixed inset-0 z-[999] flex items-center justify-center p-3 sm:p-6 ${isCleanMode ? 'font-sans' : 'font-silkscreen'}`}>
+        <div data-lenis-prevent="true" className={`fixed inset-0 z-[999] flex items-center justify-center p-3 sm:p-6 ${isCleanMode ? 'font-sans' : 'font-silkscreen'}`}>
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
+            data-lenis-prevent="true"
             className={`fixed inset-0 backdrop-blur-md ${isCleanMode ? 'bg-[#161616]/70' : 'bg-[#0a0e17]/90'}`}
           />
 
@@ -77,7 +86,8 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 15 }}
             transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-            className={`relative w-full max-w-[1100px] max-h-[90vh] sm:max-h-[92vh] z-10 my-auto flex flex-col overflow-hidden ${
+            data-lenis-prevent="true"
+            className={`relative w-full max-w-[1100px] h-[85vh] sm:h-[90vh] z-10 my-auto flex flex-col overflow-hidden ${
               isCleanMode
                 ? 'bg-[#FAF9F6] text-[#161616] rounded-3xl border border-[#E6E4DD] shadow-2xl'
                 : 'bg-[#12182a] text-[#F8FAFC] border-2 sm:border-4 border-[#4ee6d8] shadow-[4px_4px_0px_#000] sm:shadow-[8px_8px_0px_#000]'
@@ -153,8 +163,10 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({
 
             {/* ── Row 3: Body Content (Scrollable) ── */}
             <div
-              className="p-4 sm:p-7 overflow-y-auto flex-1 space-y-6 overscroll-contain custom-scrollbar"
-              style={{ maxHeight: 'calc(90vh - 120px)', overflowY: 'auto' }}
+              data-lenis-prevent="true"
+              className="p-4 sm:p-7 overflow-y-auto flex-1 min-h-0 space-y-6 overscroll-contain custom-scrollbar"
+              onWheel={(e) => e.stopPropagation()}
+              onTouchMove={(e) => e.stopPropagation()}
             >
               
               {/* Top Split Layout: Gallery (Left) & Narrative Cards (Right) */}
