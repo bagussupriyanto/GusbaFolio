@@ -179,12 +179,14 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
     <div className="w-full bg-[#FAF9F6] text-[#161616] min-h-screen font-sans antialiased selection:bg-[#E8DFCE] selection:text-[#161616]">
       
       {/* ===== 1. HEADER NAVBAR (NOTION / LINEAR AESTHETIC) ===== */}
-      <header className={`fixed top-0 inset-x-0 z-40 transition-all duration-300 ease-out ${
+      <header className={`fixed top-0 inset-x-0 z-40 transition-all duration-500 ease-out ${
         isScrolled
-          ? 'bg-gradient-to-b from-[#FAF9F6] to-[#F5F3EE] backdrop-blur-xl border-b border-[#D4D0C8] shadow-[0_2px_16px_-2px_rgba(0,0,0,0.12)]'
-          : 'bg-transparent border-b border-transparent shadow-none'
+          ? 'bg-[#FAF9F6]/85 backdrop-blur-2xl backdrop-saturate-150 border-b-2 border-[#C5A059]/30 shadow-[0_4px_30px_-4px_rgba(0,0,0,0.12)]'
+          : 'bg-transparent border-b-2 border-transparent shadow-none'
       }`}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 sm:py-4 flex items-center justify-between">
+        <div className={`max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between transition-all duration-500 ${
+          isScrolled ? 'py-2.5 sm:py-3' : 'py-3.5 sm:py-4'
+        }`}>
           
           {/* Logo & Availability Status */}
           <div className="flex items-center gap-2 sm:gap-3 min-w-0">
@@ -203,10 +205,10 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
               </span>
             </a>
 
-            <div className={`hidden xl:flex items-center gap-1.5 text-[11px] font-mono font-semibold transition-all duration-300 shrink-0 ${
+            <div className={`hidden xl:flex items-center gap-1.5 text-[11px] font-mono font-semibold transition-all duration-500 shrink-0 ${
               isScrolled
-                ? 'px-2.5 py-1 rounded-full bg-[#F0EEE6] border border-[#E6E4DD] text-[#55524C]'
-                : 'text-white/90'
+                ? 'px-2.5 py-1 rounded-full bg-[#F0EEE6] border border-[#E6E4DD] text-[#55524C] opacity-100 translate-x-0'
+                : 'text-white/90 opacity-100 translate-x-0'
             }`}>
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               <span>{t.availability}</span>
@@ -214,9 +216,9 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
           </div>
 
           {/* Notion-Style Floating Pill Navigation */}
-          <nav className={`hidden md:flex items-center transition-all duration-300 ${
+          <nav className={`hidden md:flex items-center transition-all duration-500 ${
             isScrolled
-              ? 'gap-0.5 p-1 rounded-full bg-[#F0EEE6]/80 border border-[#E6E4DD] shadow-inner'
+              ? 'gap-0.5 p-1 rounded-full bg-white/70 border border-[#E6E4DD] shadow-sm'
               : 'gap-5 lg:gap-7'
           }`}>
             {[
