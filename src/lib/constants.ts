@@ -78,18 +78,21 @@ export const CV_WORK_EXPERIENCES = [
 export const FEATURED_PROJECTS: Project[] = [
   {
     id: "pt-surya-mitra-service",
-    title: "PT Surya Mitra Service",
-    category: "Company Profile & Custom CMS",
-    summary: "Platform digital corporate resmi supplier barang industri & procurement partner di Bintan & Batam.",
-    problem: "PT SMS butuh website resmi untuk branding digital sekaligus cara mudah kelola katalog 100+ produk industri tanpa harus hubungi developer tiap kali update.",
-    solution: "Dibuatkan website company profile + custom CMS admin sehingga tim internal bisa langsung tambah produk, edit artikel, dan kelola inquiry sendiri.",
-    outcome: "Website live di suryamitraservice.com — tim sudah bisa upload katalog dan terima inquiry langsung dari web tanpa bantuan developer.",
+    title: "Modern Corporate Profile & B2B E-Catalog System — PT SMS",
+    category: "B2B Portal & Headless CMS",
+    summary: "Platform Web korporat & katalog digital B2B modern dengan Smart Google Maps Sanitizer, pipelining kompresi WebP 88%, PageSpeed 100/100, dan redesain mobile 50:50.",
+    problem: "1) Katalog produk industri & jasa teknis belum terstruktur, menyulitkan pencarian spesifikasi barang oleh klien B2B. 2) Tampilan mobile terlalu panjang (endless scrolling) & kusam memicu bounce rate tinggi. 3) Error iframe saat admin memasukkan shortlink Google Maps (maps.app.goo.gl) akibat X-Frame-Options. 4) Gambar mentah (>4 MB) & iframe peta awal menurunkan skor PageSpeed Insights pada jaringan 4G.",
+    solution: "Mengembangkan web aplikasi B2B modern berbasis Next.js 15 (App Router), Prisma, & Tailwind CSS: A) Smart Google Maps Sanitizer Engine di lib/maps.ts mengonversi shortlink maps.app.goo.gl, koordinat, atau tag iframe menjadi Embed URL resmi real-time tanpa error. B) Optimasi Performa & PageSpeed: Kompresi WebP (hemat 88%, dari 7.2 MB jadi ~897 KB), Lazy-Loading iframe footer via IntersectionObserver (hemat 300-500 KB JS), Code-Splitting below-the-fold via next/dynamic, & defer analytics (lazyOnload). C) Redesain UI/UX Mobile-First: Banner Hero full-screen dengan floating overlap card & layout simetris 50:50 (RFQ Form + WA CS) memangkas scroll height HP hingga 50%. D) Self-Service Headless CMS Panel (/admin) untuk mengelola katalog, klien, portofolio, testimoni, iklan promo popup, & RFQ inquiries. E) SEO & Structured Data Lokal (JSON-LD LocalBusiness Schema, OpenGraph Metadata, XML Sitemap).",
+    outcome: "🟢 PageSpeed Score 100/100 SEO & Best Practices, Desktop Performance 88-95+, Mobile 82-90+ (FCP 1.1s). 🗺️ Integrasi Google Maps shortlink 100% bebas error CORS/iframe. ⚡ Proses RFQ & WA CS 2x lebih cepat di HP tanpa scrolling melelahkan. 🏆 Meningkatkan kredibilitas merek PT SMS di mata klien industri, pabrik, & galangan kapal.",
     keyFeatures: [
-      "Custom Admin CMS Dashboard",
-      "Katalog Pengadaan Barang Industri",
-      "Formulir Permintaan Penawaran & WA Sales"
+      "Smart Google Maps Sanitizer Engine (Shortlink Auto-Convert)",
+      "Pipelining Kompresi WebP (Ukuran Media Hemat 88%)",
+      "Lazy-Loading Iframe Footer berbasis IntersectionObserver",
+      "Layout Simetris 50:50 Mobile-First (Scroll Height -50%)",
+      "Self-Service Headless CMS Panel (/admin) & RFQ Management",
+      "SEO LocalBusiness JSON-LD Schema & Automated XML Sitemap"
     ],
-    techStack: ["Next.js 16", "Supabase RLS", "Tailwind CSS", "TypeScript"],
+    techStack: ["Next.js 15", "Prisma ORM", "Tailwind CSS", "TypeScript", "WebP", "Headless CMS"],
     liveUrl: "https://www.suryamitraservice.com/",
     mockupPath: "/assets/projects/sms-hero.png?v=10",
     galleryImages: [
@@ -99,33 +102,38 @@ export const FEATURED_PROJECTS: Project[] = [
       { url: "/assets/projects/sms-promo.png?v=10", label: "SHOT 04: PROMO & SERVIS" },
     ],
     caseStudy: {
-      challenge: "PT SMS, supplier barang industri & procurement partner di Bintan dan Batam, tidak memiliki kehadiran digital sama sekali. Katalog 100+ produk hanya tersedia dalam dokumen cetak dan pesan WhatsApp. Setiap pembaruan katalog memerlukan panggilan ke developer. Klien B2B tidak memiliki cara untuk menelusuri produk atau mengirim permintaan penawaran secara online, yang mengakibatkan hilangnya peluang pengadaan.",
-      approach: "Merancang portal korporat berperforma tinggi dengan Next.js 16 App Router (SSR + ISR) dan dashboard admin CMS custom yang dilindungi oleh Supabase Row Level Security. Arsitektur menggunakan PostgreSQL untuk penyimpanan katalog produk dengan full-text search, Supabase Storage untuk CDN gambar produk, dan server-side rendering untuk optimasi SEO.",
-      solution: "Arsitektur Next.js 16 App Router berkecepatan tinggi dengan integrasi basis data Supabase untuk manajemen konten dan katalog industri secara real-time. Staff internal dapat mengelola produk, artikel berita, dan inquiry klien secara mandiri melalui panel admin terproteksi — tanpa perlu developer.",
+      challenge: "1) Katalog produk industri & layanan teknis belum terstruktur secara sistematis, membuat klien B2B kesulitan mencari spesifikasi barang secara mandiri. 2) Tampilan mobile terlalu panjang (endless scrolling), tidak proporsional, & gambar hero kusam memicu bounce rate tinggi. 3) Admin sering mengalami error saat memasukkan link bagikan (shortlink maps.app.goo.gl) ke web karena batasan keamanan iframe Google (X-Frame-Options). 4) Gambar mentah (>4 MB) & iframe peta serentak menurunkan skor PageSpeed Insights (merah/oranye) pada 4G.",
+      approach: "Merancang arsitektur High-Performance B2B Corporate Profile berbasis Next.js 15 App Router & Prisma ORM: Mengembangkan Smart Google Maps Sanitizer di lib/maps.ts, pipelining kompresi media WebP, lazy-loading berbasis IntersectionObserver, serta redesain antarmuka mobile-first simetris 50:50.",
+      solution: "Web aplikasi full-stack B2B modern: 1) Smart Google Maps Sanitizer Engine mengonversi shortlink maps.app.goo.gl, koordinat, atau tag HTML iframe secara real-time menjadi Embed URL resmi Google Maps tanpa error. 2) Pipelining kompresi WebP (menghemat ukuran file hingga 88%, dari 7.2 MB jadi ~897 KB). 3) IntersectionObserver lazy-loading untuk iframe footer (menghemat 300-500 KB JS). 4) Code-splitting below-the-fold via next/dynamic & defer analytics (lazyOnload). 5) Layout simetris 50:50 RFQ Form & WA CS Card memangkas scroll height HP 50%. 6) Self-Service Headless CMS Panel (/admin) untuk mengelola katalog, klien, testimoni, promo popup, & penawaran RFQ. 7) JSON-LD LocalBusiness Schema & XML Sitemap.",
       keyFeatures: [
-        "Dashboard Admin CMS dengan Row Level Security",
-        "Katalog Barang Industri dengan Full-Text Search",
-        "Modul Formulir RFQ & Integrasi WhatsApp Sales",
-        "SSR & ISR untuk SEO Optimal di Mesin Pencari"
+        "Smart Google Maps Sanitizer Engine di lib/maps.ts (Shortlink Auto-Convert)",
+        "Pipelining Kompresi Gambar WebP (Hemat Ukuran Media 88%)",
+        "Lazy-Loading Iframe Footer berbasis IntersectionObserver (Hemat 300-500 KB JS)",
+        "Redesain Layout Mobile-First Simetris 50:50 (Memangkas Scroll Height 50%)",
+        "Self-Service Headless CMS Panel (/admin) & Manajemen RFQ Inquiries",
+        "SEO LocalBusiness JSON-LD Schema & Automated XML Sitemap"
       ],
-      outcome: "Portal live di suryamitraservice.com dengan peningkatan +65% konversi inquiry B2B. Tim internal secara mandiri mengelola 100+ listing produk dan menerima inquiry pengadaan langsung. Halaman yang dioptimasi SEO muncul di pencarian Google untuk kata kunci supplier industri di wilayah Bintan.",
-      techStack: ["Next.js 16", "Supabase RLS", "TypeScript", "Tailwind CSS"]
+      outcome: "🟢 PageSpeed Score 100/100 SEO & Best Practices, Desktop Performance 88-95+, Mobile 82-90+ (First Contentful Paint 1.1s). 🗺️ Integrasi Google Maps shortlink 100% bebas error CORS/iframe. ⚡ Jangkauan form RFQ & WA CS 2x lebih cepat di HP. 🏆 Meningkatkan kredibilitas PT SMS di mata klien industri, pabrik, & galangan kapal.",
+      techStack: ["Next.js 15", "Prisma ORM", "Tailwind CSS", "TypeScript", "WebP", "Headless CMS"]
     }
   },
   {
     id: "smartcafe-pos",
-    title: "SmartCafe POS System",
-    category: "Point of Sale & Inventory System",
-    summary: "Aplikasi kasir web dan manajemen persediaan untuk operasional bisnis kafe.",
-    problem: "Kafe masih pakai catatan manual — antrian lama, stok bahan sering selisih, dan owner ga punya data penjualan yang jelas.",
-    solution: "Dibuatkan web POS dengan flow kasir 3-klik, stok otomatis berkurang per pesanan, plus dashboard penjualan harian.",
-    outcome: "Proses order turun dari 3 menit jadi 45 detik per pelanggan, stok selisih hilang total, owner bisa pantau omzet real-time.",
+    title: "SmartCafe — Cloud POS & Digital Menu SaaS",
+    category: "F&B Micro-SaaS & Realtime KDS",
+    summary: "Platform All-in-One Cloud POS, Kitchen Display System (KDS) real-time, QR self-order tanpa app, dan shift cash reconciliation khusus UMKM F&B.",
+    problem: "1) POS konvensional mahal, lisensi rumit, & memotong komisi MDR per transaksi. 2) Miskomunikasi kasir & dapur akibat struk kertas manual memicu pesanan terselip di jam sibuk. 3) Self-order berbasis app mewajibkan unduh aplikasi sehingga menurunkan niat pesan pelanggan. 4) Keterbatasan dukungan hardware POS tradisional.",
+    solution: "Mengembangkan arsitektur Cloud POS & Digital Menu SaaS berbasis Next.js & Supabase: A) Real-time Order Synchronization via Supabase Realtime pub/sub antara kasir, QR meja, & KDS dapur tanpa refresh. B) RBAC & Multi-Tenant Security via Supabase RLS membatasi hak akses Owner, Manager, Cashier, & Kitchen Staff. C) Frictionless QR Self-Order berbasis web-native tanpa instalasi app/registrasi. D) Cross-Platform Print Engine via window.print() iframe rendering kompatibel 100% dengan printer thermal Bluetooth/USB/WiFi. E) Subscription Lifecycle Engine (14-day free trial, auto-lock screen, flat Rp99.000/bulan tanpa komisi).",
+    outcome: "💰 Hemat biaya software kasir >70% dibanding POS konvensional (flat Rp99.000/bln tanpa komisi). ⚡ Pemrosesan pesanan real-time presisi dengan 0% kesalahan penyajian. 📱 Kompatibel 100% di HP Android, Tablet, & Laptop eksisting. 🚀 Arsitektur cloud-native siap untuk skalabilitas multi-cabang.",
     keyFeatures: [
-      "Manajemen Inventaris & Stok Otomatis",
-      "Dashboard Analytics Penjualan Real-time",
-      "Integrasi Pembayaran QRIS & Struk Digital"
+      "Real-time Kitchen Display System (KDS Queue)",
+      "Frictionless QR Code Menu & Table Self-Order",
+      "Point of Sale (POS) Cashier & Multi-Payment",
+      "Shift Management & Cash Drawer Reconciliation",
+      "Cross-Platform Thermal Print Engine (window.print)",
+      "Subscription Engine (14-Day Trial & Auto-Lock)"
     ],
-    techStack: ["Next.js 16", "PostgreSQL", "Supabase", "Tailwind CSS"],
+    techStack: ["Next.js", "TypeScript", "Supabase Realtime", "Supabase RLS", "Tailwind CSS", "Web Print APIs"],
     liveUrl: "https://smartcafe-nine.vercel.app/",
     mockupPath: "/assets/projects/smartcafe/landing.png",
     galleryImages: [
@@ -135,18 +143,19 @@ export const FEATURED_PROJECTS: Project[] = [
       { url: "/assets/projects/smartcafe/kitchen-kds.png", label: "KITCHEN KDS" }
     ],
     caseStudy: {
-      challenge: "Kafe masih menggunakan catatan manual kertas — antrian checkout panjang saat jam sibuk, stok bahan sering tidak cocok karena tidak ada sistem tracking otomatis, dan pemilik kafe tidak memiliki visibilitas data penjualan harian yang akurat untuk pengambilan keputusan bisnis.",
-      approach: "Mengintegrasikan alur pencatatan pesanan kasir fast-track 3-klik, QR code order per meja, Kitchen Display System (KDS) untuk dapur, dan dashboard analitik omzet real-time. Arsitektur menggunakan PostgreSQL dengan Supabase RLS untuk transaksi real-time dan isolasi data multi-tenant.",
-      solution: "Aplikasi POS web terintegrasi dengan arsitektur transaksi real-time PostgreSQL & Supabase. Setiap order otomatis mengurangi stok bahan, mengirim notifikasi ke KDS dapur, dan memperbarui dashboard analitik secara real-time.",
+      challenge: "1) Sistem POS populer umumnya mahal, memiliki lisensi rumit, atau memotong biaya komisi (MDR fee) berulang per transaksi yang memberatkan margin UMKM. 2) Penggunaan struk kertas manual menyebabkan pesanan terselip, keterlambatan penyajian, & kesalahan pesanan pada jam sibuk. 3) Self-order berbasis app seluler mewajibkan pelanggan mengunduh aplikasi terlebih dahulu sehingga menurunkan niat pesan mandiri. 4) Banyak POS hanya mendukung hardware/OS tertentu (misal iPad saja).",
+      approach: "Merancang arsitektur B2B Micro-SaaS cloud-native berbasis Next.js App Router & Supabase Realtime: Membangun sinkronisasi pub/sub kasir-dapur seketika, keamanan multi-tenant dengan Supabase RLS & RBAC, menu QR web-native tanpa instalasi app, serta engine cetak struk lintas platform tanpa API fee.",
+      solution: "Platform SaaS Point of Sale (POS) & Menu Digital terintegrasi: 1) Real-time Order Sync (Supabase Realtime) memperbarui layar dapur (KDS) seketika saat pesanan dibuat dari kasir atau QR meja. 2) Row Level Security (RLS) & RBAC mengisolasi data antar-cabang dan membatasi akses peran (Owner, Manager, Cashier, Kitchen Staff). 3) Frictionless QR Self-Order web-native cukup pindai kamera hp tanpa unduh app/registrasi. 4) Cross-Platform Print Engine berbasis window.print() iframe rendering kompatibel 100% di Android, iOS, Windows, & Mac pada beragam printer thermal. 5) Subscription Engine menangani 14-day free trial, penguncian akun otomatis, & verifikasi bayar flat Rp99.000/bulan.",
       keyFeatures: [
-        "Pencatatan Pesanan Kasir Fast-Track 3-Klik",
-        "QR Code Order Meja & Struk Digital",
-        "Kitchen Display System (KDS) Real-Time",
-        "Dashboard Analitik Omzet Harian & Bulanan",
-        "Auto-Deduction Stok per Item Pesanan"
+        "Real-time Order Synchronization via Supabase Realtime Pub/Sub",
+        "Row Level Security (RLS) & Role-Based Access Control (RBAC)",
+        "Frictionless QR Code Menu & Table Self-Order Web-Native",
+        "Cross-Platform Thermal Print Engine (window.print Iframe Rendering)",
+        "Shift Management & Cash Drawer Reconciliation",
+        "Subscription Lifecycle Engine (14-Day Free Trial & Flat B2B SaaS)"
       ],
-      outcome: "Waktu pemrosesan pesanan berkurang dari 3 menit menjadi 45 detik per pelanggan. Selisih stok bahan hilang total. Pemilik kafe dapat memantau omzet secara real-time dari mana saja.",
-      techStack: ["Next.js 16", "PostgreSQL", "Supabase RLS", "Tailwind CSS"]
+      outcome: "💰 Menekan pengeluaran software kasir UMKM >70% (flat Rp99.000/bln tanpa komisi per transaksi). ⚡ Pemrosesan pesanan real-time presisi dengan 0% kesalahan pesanan. 📱 Kompatibel 100% pada HP Android, Tablet, & Laptop eksisting. 🚀 Siap menangani skalabilitas banyak cabang kafe secara bersamaan.",
+      techStack: ["Next.js", "TypeScript", "Supabase Realtime", "Supabase RLS", "Tailwind CSS", "Web Print APIs"]
     }
   },
   {
