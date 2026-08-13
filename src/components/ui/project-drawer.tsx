@@ -152,13 +152,16 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({
             </div>
 
             {/* ── Row 3: Body Content (Scrollable) ── */}
-            <div className="p-4 sm:p-7 overflow-y-auto flex-1 min-h-0 space-y-6">
+            <div
+              className="p-4 sm:p-7 overflow-y-auto flex-1 space-y-6 overscroll-contain custom-scrollbar"
+              style={{ maxHeight: 'calc(90vh - 120px)', overflowY: 'auto' }}
+            >
               
               {/* Top Split Layout: Gallery (Left) & Narrative Cards (Right) */}
               <div className="flex flex-col lg:flex-row gap-6 items-start">
                 
                 {/* Left: Browser Frame + Thumbnails */}
-                <div className="lg:w-[54%] w-full flex flex-col gap-3 shrink-0 lg:sticky lg:top-0">
+                <div className="lg:w-[50%] w-full flex flex-col gap-3 shrink-0">
                   {/* MacOS Browser Frame */}
                   <MacOSFrame url={project.liveUrl || `https://bagus.dev/${project.id}`}>
                     <div
@@ -237,7 +240,7 @@ export const ProjectDrawer: React.FC<ProjectDrawerProps> = ({
                 </div>
 
                 {/* Right: Case Study Narrative Cards */}
-                <div className="lg:w-[46%] w-full flex flex-col gap-3.5">
+                <div className="lg:w-[48%] w-full flex flex-col gap-3.5">
 
                   {/* Problem */}
                   <div className={`p-4 rounded-2xl border flex flex-col ${
