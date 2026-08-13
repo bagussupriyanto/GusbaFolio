@@ -179,9 +179,9 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
     <div className="w-full bg-[#FAF9F6] text-[#161616] min-h-screen font-sans antialiased selection:bg-[#E8DFCE] selection:text-[#161616]">
       
       {/* ===== 1. HEADER NAVBAR (NOTION / LINEAR AESTHETIC) ===== */}
-      <header className={`fixed top-0 inset-x-0 z-40 transition-colors duration-300 ease-out ${
+      <header className={`fixed top-0 inset-x-0 z-40 transition-all duration-300 ease-out ${
         isScrolled
-          ? 'bg-[#FAF9F6]/90 backdrop-blur-md border-b border-[#E6E4DD] shadow-xs'
+          ? 'bg-gradient-to-b from-[#FAF9F6] to-[#F5F3EE] backdrop-blur-xl border-b border-[#D4D0C8] shadow-[0_2px_16px_-2px_rgba(0,0,0,0.12)]'
           : 'bg-transparent border-b border-transparent shadow-none'
       }`}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 sm:py-4 flex items-center justify-between">
@@ -189,21 +189,21 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
           {/* Logo & Availability Status */}
           <div className="flex items-center gap-2 sm:gap-3 min-w-0">
             <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); window.history.pushState(null, '', ' '); }} className="flex items-center gap-2 sm:gap-2.5 group min-w-0">
-              <div className={`w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center text-xs sm:text-sm font-mono font-bold tracking-wider transition-colors shrink-0 ${
+              <div className={`w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center text-xs sm:text-sm font-mono font-bold tracking-wider transition-all duration-300 shrink-0 group-hover:rotate-3 group-hover:scale-110 ${
                 isScrolled
-                  ? 'bg-[#161616] text-white group-hover:bg-[#B89355]'
-                  : 'bg-white text-[#161616] group-hover:bg-[#C5A059] group-hover:text-white'
+                  ? 'bg-[#161616] text-white group-hover:bg-[#B89355] group-hover:shadow-lg'
+                  : 'bg-white text-[#161616] group-hover:bg-[#C5A059] group-hover:text-white group-hover:shadow-[0_0_20px_rgba(197,160,89,0.4)]'
               }`}>
                 BS
               </div>
-              <span className={`font-serif-editorial font-bold text-lg sm:text-xl transition-colors truncate ${
+              <span className={`font-serif-editorial font-bold text-base sm:text-lg transition-all duration-300 whitespace-nowrap ${
                 isScrolled ? 'text-[#161616] group-hover:text-[#B89355]' : 'text-white group-hover:text-[#C5A059]'
               }`}>
                 Bagus Supriyanto
               </span>
             </a>
 
-            <div className={`hidden lg:flex items-center gap-1.5 text-[11px] font-mono font-semibold transition-all shrink-0 ${
+            <div className={`hidden xl:flex items-center gap-1.5 text-[11px] font-mono font-semibold transition-all duration-300 shrink-0 ${
               isScrolled
                 ? 'px-2.5 py-1 rounded-full bg-[#F0EEE6] border border-[#E6E4DD] text-[#55524C]'
                 : 'text-white/90'
@@ -214,33 +214,38 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
           </div>
 
           {/* Notion-Style Floating Pill Navigation */}
-          <nav className={`hidden md:flex items-center transition-all ${
+          <nav className={`hidden md:flex items-center transition-all duration-300 ${
             isScrolled
-              ? 'gap-1 p-1 rounded-full bg-[#F0EEE6]/80 border border-[#E6E4DD]'
+              ? 'gap-0.5 p-1 rounded-full bg-[#F0EEE6]/80 border border-[#E6E4DD] shadow-inner'
               : 'gap-5 lg:gap-7'
           }`}>
-            <a href="#about" onClick={(e) => handleNavClick(e, 'about')} className={`transition-all ${
-              isScrolled ? 'px-3.5 py-1.5 rounded-full text-[13px] font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs' : 'text-[13px] font-mono font-semibold uppercase tracking-wider text-[#CCCCCC] hover:text-white'
-            }`}>{t.about}</a>
-            <a href="#work" onClick={(e) => handleNavClick(e, 'work')} className={`transition-all ${
-              isScrolled ? 'px-3.5 py-1.5 rounded-full text-[13px] font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs' : 'text-[13px] font-mono font-semibold uppercase tracking-wider text-[#CCCCCC] hover:text-white'
-            }`}>{t.project}</a>
-            <a href="#experience" onClick={(e) => handleNavClick(e, 'experience')} className={`transition-all ${
-              isScrolled ? 'px-3.5 py-1.5 rounded-full text-[13px] font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs' : 'text-[13px] font-mono font-semibold uppercase tracking-wider text-[#CCCCCC] hover:text-white'
-            }`}>{t.experience}</a>
-            <a href="#instruments" onClick={(e) => handleNavClick(e, 'instruments')} className={`transition-all ${
-              isScrolled ? 'px-3.5 py-1.5 rounded-full text-[13px] font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs' : 'text-[13px] font-mono font-semibold uppercase tracking-wider text-[#CCCCCC] hover:text-white'
-            }`}>{t.stack}</a>
-            <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className={`transition-all ${
-              isScrolled ? 'px-3.5 py-1.5 rounded-full text-[13px] font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs' : 'text-[13px] font-mono font-semibold uppercase tracking-wider text-[#CCCCCC] hover:text-white'
-            }`}>{t.contact}</a>
+            {[
+              { href: '#about', id: 'about', label: t.about },
+              { href: '#work', id: 'work', label: t.project },
+              { href: '#experience', id: 'experience', label: t.experience },
+              { href: '#instruments', id: 'instruments', label: t.stack },
+              { href: '#contact', id: 'contact', label: t.contact },
+            ].map((item) => (
+              <a
+                key={item.id}
+                href={item.href}
+                onClick={(e) => handleNavClick(e, item.id)}
+                className={`transition-all duration-200 ${
+                  isScrolled
+                    ? 'px-3.5 py-1.5 rounded-full text-[13px] font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-sm hover:-translate-y-[1px]'
+                    : 'relative text-[13px] font-mono font-semibold uppercase tracking-wider text-[#CCCCCC] hover:text-white after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:w-0 after:bg-[#C5A059] after:transition-all after:duration-300 hover:after:w-full'
+                }`}
+              >
+                {item.label}
+              </a>
+            ))}
           </nav>
 
           {/* Right Action Items */}
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             
             {/* Multi-Language Switcher Toggle Pill: ENG / ID / CHN */}
-            <div className={`flex items-center text-[11px] font-mono font-bold transition-all ${
+            <div className={`flex items-center text-[11px] font-mono font-bold transition-all duration-300 ${
               isScrolled
                 ? 'p-0.5 rounded-full bg-[#F0EEE6] border border-[#E6E4DD]'
                 : 'gap-1.5 text-white'
@@ -249,10 +254,10 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
                 <button
                   key={l}
                   onClick={() => setLang(l)}
-                  className={`transition-all cursor-pointer uppercase ${
+                  className={`transition-all duration-200 cursor-pointer uppercase ${
                     lang === l
-                      ? isScrolled ? 'px-2.5 py-1 rounded-full bg-[#161616] text-[#FAF9F6] shadow-xs' : 'px-2 py-0.5 rounded bg-white/20 text-white font-bold'
-                      : isScrolled ? 'px-2.5 py-1 rounded-full text-[#66645E] hover:text-[#161616]' : 'px-1.5 py-0.5 text-white/60 hover:text-white'
+                      ? isScrolled ? 'px-2.5 py-1 rounded-full bg-[#161616] text-[#FAF9F6] shadow-sm scale-105' : 'px-2 py-0.5 rounded bg-white/20 text-white font-bold scale-105'
+                      : isScrolled ? 'px-2.5 py-1 rounded-full text-[#66645E] hover:text-[#161616] hover:scale-105' : 'px-1.5 py-0.5 text-white/60 hover:text-white hover:scale-110'
                   }`}
                 >
                   {l === 'id' ? 'ID' : l === 'en' ? 'ENG' : 'CHN'}
@@ -262,24 +267,24 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
 
             <button
               onClick={onSwitchToGameMode}
-              className={`text-xs font-mono font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
+              className={`group/rpg text-xs font-mono font-semibold flex items-center gap-1.5 transition-all duration-200 cursor-pointer ${
                 isScrolled
-                  ? 'px-3 sm:px-4 py-1.5 rounded-full bg-[#F0EEE6] border border-[#E6E4DD] text-[#55524C] hover:bg-[#E5E2D8] hover:text-[#161616]'
+                  ? 'px-3 sm:px-4 py-1.5 rounded-full bg-[#F0EEE6] border border-[#E6E4DD] text-[#55524C] hover:bg-[#E5E2D8] hover:text-[#161616] hover:shadow-sm hover:-translate-y-[1px]'
                   : 'text-[#CCCCCC] hover:text-white'
               }`}
               title="Switch to 16-Bit RPG World"
             >
-              <Gamepad2 className="w-4 h-4 text-[#B89355]" />
+              <Gamepad2 className="w-4 h-4 text-[#B89355] transition-transform duration-300 group-hover/rpg:rotate-12 group-hover/rpg:scale-110" />
               <span className="hidden sm:inline">16-Bit RPG</span>
             </button>
 
             <a
               href="/assets/cv-bagus-supriyanto.pdf"
               download
-              className={`hidden sm:flex px-5 py-2.5 rounded-full text-[13px] font-mono font-semibold items-center gap-2 transition-all cursor-pointer shadow-xs ${
+              className={`hidden sm:flex px-5 py-2.5 rounded-full text-[13px] font-mono font-semibold items-center gap-2 transition-all duration-200 cursor-pointer active:scale-95 ${
                 isScrolled
-                  ? 'bg-[#161616] text-[#FAF9F6] hover:bg-[#33312D]'
-                  : 'bg-white text-[#161616] hover:bg-[#EAE8E1] shadow-md hover:scale-105'
+                  ? 'bg-[#161616] text-[#FAF9F6] hover:bg-[#33312D] hover:shadow-lg hover:-translate-y-[1px]'
+                  : 'bg-white text-[#161616] hover:bg-[#EAE8E1] shadow-md hover:shadow-xl hover:scale-105'
               }`}
             >
               <span>{t.resume}</span>
@@ -291,7 +296,7 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-expanded={mobileMenuOpen}
               aria-label="Toggle navigation menu"
-              className={`md:hidden p-2 rounded-lg transition-all ${
+              className={`md:hidden p-2 rounded-lg transition-all duration-200 active:scale-90 ${
                 isScrolled ? 'bg-[#F0EEE6] text-[#161616] hover:bg-[#E6E4DD]' : 'bg-white/10 text-white hover:bg-white/20'
               }`}
             >
