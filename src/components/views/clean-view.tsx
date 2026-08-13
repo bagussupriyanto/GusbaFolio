@@ -184,26 +184,26 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
           ? 'bg-[#FAF9F6]/90 backdrop-blur-md border-b border-[#E6E4DD] shadow-xs'
           : 'bg-transparent border-b border-transparent shadow-none'
       }`}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 sm:py-3.5 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 sm:py-4 flex items-center justify-between">
           
           {/* Logo & Availability Status */}
           <div className="flex items-center gap-2 sm:gap-3 min-w-0">
             <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); window.history.pushState(null, '', ' '); }} className="flex items-center gap-2 sm:gap-2.5 group min-w-0">
-              <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center text-[10px] sm:text-xs font-mono font-bold tracking-wider transition-colors shrink-0 ${
+              <div className={`w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center text-xs sm:text-sm font-mono font-bold tracking-wider transition-colors shrink-0 ${
                 isScrolled
                   ? 'bg-[#161616] text-white group-hover:bg-[#B89355]'
                   : 'bg-white text-[#161616] group-hover:bg-[#C5A059] group-hover:text-white'
               }`}>
                 BS
               </div>
-              <span className={`font-serif-editorial font-bold text-base sm:text-lg transition-colors truncate ${
+              <span className={`font-serif-editorial font-bold text-lg sm:text-xl transition-colors truncate ${
                 isScrolled ? 'text-[#161616] group-hover:text-[#B89355]' : 'text-white group-hover:text-[#C5A059]'
               }`}>
                 Bagus Supriyanto
               </span>
             </a>
 
-            <div className={`hidden lg:flex items-center gap-1.5 text-[10px] font-mono font-semibold transition-all shrink-0 ${
+            <div className={`hidden lg:flex items-center gap-1.5 text-[11px] font-mono font-semibold transition-all shrink-0 ${
               isScrolled
                 ? 'px-2.5 py-1 rounded-full bg-[#F0EEE6] border border-[#E6E4DD] text-[#55524C]'
                 : 'text-white/90'
@@ -217,27 +217,30 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
           <nav className={`hidden md:flex items-center transition-all ${
             isScrolled
               ? 'gap-1 p-1 rounded-full bg-[#F0EEE6]/80 border border-[#E6E4DD]'
-              : 'gap-6 sm:gap-8'
+              : 'gap-5 lg:gap-7'
           }`}>
             <a href="#about" onClick={(e) => handleNavClick(e, 'about')} className={`transition-all ${
-              isScrolled ? 'px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs' : 'text-xs font-mono font-semibold uppercase tracking-wider text-[#CCCCCC] hover:text-white'
+              isScrolled ? 'px-3.5 py-1.5 rounded-full text-[13px] font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs' : 'text-[13px] font-mono font-semibold uppercase tracking-wider text-[#CCCCCC] hover:text-white'
             }`}>{t.about}</a>
             <a href="#work" onClick={(e) => handleNavClick(e, 'work')} className={`transition-all ${
-              isScrolled ? 'px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs' : 'text-xs font-mono font-semibold uppercase tracking-wider text-[#CCCCCC] hover:text-white'
+              isScrolled ? 'px-3.5 py-1.5 rounded-full text-[13px] font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs' : 'text-[13px] font-mono font-semibold uppercase tracking-wider text-[#CCCCCC] hover:text-white'
             }`}>{t.project}</a>
             <a href="#experience" onClick={(e) => handleNavClick(e, 'experience')} className={`transition-all ${
-              isScrolled ? 'px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs' : 'text-xs font-mono font-semibold uppercase tracking-wider text-[#CCCCCC] hover:text-white'
+              isScrolled ? 'px-3.5 py-1.5 rounded-full text-[13px] font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs' : 'text-[13px] font-mono font-semibold uppercase tracking-wider text-[#CCCCCC] hover:text-white'
             }`}>{t.experience}</a>
+            <a href="#instruments" onClick={(e) => handleNavClick(e, 'instruments')} className={`transition-all ${
+              isScrolled ? 'px-3.5 py-1.5 rounded-full text-[13px] font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs' : 'text-[13px] font-mono font-semibold uppercase tracking-wider text-[#CCCCCC] hover:text-white'
+            }`}>{t.stack}</a>
             <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className={`transition-all ${
-              isScrolled ? 'px-3.5 py-1 rounded-full text-xs font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs' : 'text-xs font-mono font-semibold uppercase tracking-wider text-[#CCCCCC] hover:text-white'
+              isScrolled ? 'px-3.5 py-1.5 rounded-full text-[13px] font-medium text-[#55524C] hover:text-[#161616] hover:bg-white hover:shadow-xs' : 'text-[13px] font-mono font-semibold uppercase tracking-wider text-[#CCCCCC] hover:text-white'
             }`}>{t.contact}</a>
           </nav>
 
           {/* Right Action Items */}
-          <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             
             {/* Multi-Language Switcher Toggle Pill: ENG / ID / CHN */}
-            <div className={`flex items-center text-[10px] font-mono font-bold transition-all ${
+            <div className={`flex items-center text-[11px] font-mono font-bold transition-all ${
               isScrolled
                 ? 'p-0.5 rounded-full bg-[#F0EEE6] border border-[#E6E4DD]'
                 : 'gap-1.5 text-white'
@@ -248,8 +251,8 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
                   onClick={() => setLang(l)}
                   className={`transition-all cursor-pointer uppercase ${
                     lang === l
-                      ? isScrolled ? 'px-2 py-1 rounded-full bg-[#161616] text-[#FAF9F6] shadow-xs' : 'px-1.5 py-0.5 rounded bg-white/20 text-white font-bold'
-                      : isScrolled ? 'px-2 py-1 rounded-full text-[#66645E] hover:text-[#161616]' : 'px-1 py-0.5 text-white/60 hover:text-white'
+                      ? isScrolled ? 'px-2.5 py-1 rounded-full bg-[#161616] text-[#FAF9F6] shadow-xs' : 'px-2 py-0.5 rounded bg-white/20 text-white font-bold'
+                      : isScrolled ? 'px-2.5 py-1 rounded-full text-[#66645E] hover:text-[#161616]' : 'px-1.5 py-0.5 text-white/60 hover:text-white'
                   }`}
                 >
                   {l === 'id' ? 'ID' : l === 'en' ? 'ENG' : 'CHN'}
@@ -259,33 +262,35 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
 
             <button
               onClick={onSwitchToGameMode}
-              className={`text-[11px] font-mono font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
+              className={`text-xs font-mono font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
                 isScrolled
-                  ? 'px-2.5 sm:px-3.5 py-1.5 rounded-full bg-[#F0EEE6] border border-[#E6E4DD] text-[#55524C] hover:bg-[#E5E2D8] hover:text-[#161616]'
+                  ? 'px-3 sm:px-4 py-1.5 rounded-full bg-[#F0EEE6] border border-[#E6E4DD] text-[#55524C] hover:bg-[#E5E2D8] hover:text-[#161616]'
                   : 'text-[#CCCCCC] hover:text-white'
               }`}
               title="Switch to 16-Bit RPG World"
             >
-              <Gamepad2 className="w-3.5 h-3.5 text-[#B89355]" />
+              <Gamepad2 className="w-4 h-4 text-[#B89355]" />
               <span className="hidden sm:inline">16-Bit RPG</span>
             </button>
 
             <a
               href="/assets/cv-bagus-supriyanto.pdf"
               download
-              className={`hidden sm:flex px-4 py-2 rounded-full text-xs font-mono font-semibold items-center gap-1.5 transition-all cursor-pointer shadow-xs ${
+              className={`hidden sm:flex px-5 py-2.5 rounded-full text-[13px] font-mono font-semibold items-center gap-2 transition-all cursor-pointer shadow-xs ${
                 isScrolled
                   ? 'bg-[#161616] text-[#FAF9F6] hover:bg-[#33312D]'
                   : 'bg-white text-[#161616] hover:bg-[#EAE8E1] shadow-md hover:scale-105'
               }`}
             >
               <span>{t.resume}</span>
-              <Download className="w-3.5 h-3.5" />
+              <Download className="w-4 h-4" />
             </a>
 
             {/* Mobile Nav Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-expanded={mobileMenuOpen}
+              aria-label="Toggle navigation menu"
               className={`md:hidden p-2 rounded-lg transition-all ${
                 isScrolled ? 'bg-[#F0EEE6] text-[#161616] hover:bg-[#E6E4DD]' : 'bg-white/10 text-white hover:bg-white/20'
               }`}
@@ -298,10 +303,11 @@ export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchT
 
         {/* Mobile Dropdown Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden bg-[#FAF9F6] border-b border-[#E6E4DD] px-4 py-4 space-y-1 text-xs font-mono font-bold tracking-widest text-[#161616] uppercase">
+          <div className="md:hidden bg-[#FAF9F6] border-b border-[#E6E4DD] px-4 py-4 space-y-1 text-sm font-mono font-bold tracking-widest text-[#161616] uppercase">
             <a href="#about" onClick={(e) => handleNavClick(e, 'about')} className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors">{t.about}</a>
             <a href="#work" onClick={(e) => handleNavClick(e, 'work')} className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors">{t.project}</a>
             <a href="#experience" onClick={(e) => handleNavClick(e, 'experience')} className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors">{t.experience}</a>
+            <a href="#instruments" onClick={(e) => handleNavClick(e, 'instruments')} className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors">{t.stack}</a>
             <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors">{t.contact}</a>
             <a href="/assets/cv-bagus-supriyanto.pdf" download className="block py-2.5 px-3 rounded-xl hover:bg-[#F0EEE6] transition-colors text-[#B89355]">{t.downloadResume}</a>
           </div>

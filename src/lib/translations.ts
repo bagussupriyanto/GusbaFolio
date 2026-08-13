@@ -2,10 +2,11 @@ export type Language = 'id' | 'en' | 'zh';
 
 export const TRANSLATIONS = {
   id: {
-    availability: "TERSEDIA UNTUK BEKERJA",
+    availability: "TERBUKA UNTUK BEKERJA",
     about: "Tentang",
     project: "Proyek",
     experience: "Pengalaman",
+    stack: "Stack",
     contact: "Kontak",
     resume: "RESUME",
     downloadResume: "Unduh Resume / CV ↓",
@@ -78,10 +79,11 @@ export const TRANSLATIONS = {
   },
 
   en: {
-    availability: "AVAILABLE FOR ROLES",
+    availability: "OPEN TO WORK",
     about: "About",
     project: "Projects",
     experience: "Experience",
+    stack: "Stack",
     contact: "Contact",
     resume: "RESUME",
     downloadResume: "Download Resume ↓",
@@ -154,10 +156,11 @@ export const TRANSLATIONS = {
   },
 
   zh: {
-    availability: "随时入职 / 开放招聘",
+    availability: "开放求职中",
     about: "关于",
     project: "项目",
     experience: "经历",
+    stack: "技术栈",
     contact: "联系",
     resume: "简历",
     downloadResume: "下载简历 ↓",
