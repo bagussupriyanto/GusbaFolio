@@ -98,9 +98,12 @@ const INDIVIDUAL_INSTRUMENTS = [
   { name: "Vercel", category: "DevOps", icon: "▲", role: "Global Edge Network & Serverless Hosting" },
   { name: "DES Cryptography", category: "Security", icon: "🔒", role: "S1 Thesis: Data Encryption Standard" },
 
-  // Industrial & Control
+  // Industrial, Infrastructure & Network
   { name: "Instrument Control", category: "Industrial", icon: "🔧", role: "Process Calibration, Sensors & Transmitters" },
   { name: "Wiring & P&ID", category: "Industrial", icon: "📐", role: "Piping & Instrumentation Diagram Specs" },
+  { name: "TCP/IP & Networking", category: "Industrial", icon: "🌐", role: "Network Fundamentals, Troubleshooting & Configuration" },
+  { name: "CCTV & RTSP", category: "Industrial", icon: "📹", role: "IP Camera Setup, RTSP Streaming & NVR Config" },
+  { name: "Windows Server", category: "Industrial", icon: "🖥️", role: "Server Administration, AD & System Deployment" },
 ];
 
 export const CleanView: React.FC<CleanViewProps> = ({ onSelectProject, onSwitchToGameMode }) => {

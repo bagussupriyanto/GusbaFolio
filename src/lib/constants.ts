@@ -2,7 +2,7 @@ import { DeveloperProfile, Project, Milestone } from '@/types';
 
 export const DEVELOPER_DATA: DeveloperProfile = {
   name: "Bagus Supriyanto",
-  role: "Product-Focused Frontend Engineer",
+  role: "Full-Stack Product Engineer",
   degree: "S1 Teknologi Informatika",
   university: "Universitas Teknologi Yogyakarta (UTY)",
   location: "Tanjung Uban, Kepulauan Riau",
@@ -66,7 +66,7 @@ export const CV_WORK_EXPERIENCES = [
   {
     step: "05",
     company: "Freelance / Self-Employed",
-    role: "Product-Focused Frontend Engineer",
+    role: "Full-Stack Product Engineer",
     period: "Karir IT (Saat Ini)",
     points: [
       "Kembali fokus penuh ke bidang IT, membangun aplikasi web produksi nyata.",
@@ -99,15 +99,16 @@ export const FEATURED_PROJECTS: Project[] = [
       { url: "/assets/projects/sms-promo.png?v=10", label: "SHOT 04: PROMO & SERVIS" },
     ],
     caseStudy: {
-      challenge: "Perusahaan memerlukan website profil korporat resmi untuk memperkuat reputasi di era digital, sekaligus membutuhkan kebebasan mengelola katalog produk tanpa bergantung pada tim teknis.",
-      approach: "Merancang antarmuka Company Profile yang profesional khas industri procurement dipadukan dengan CMS Admin terproteksi Supabase Row Level Security.",
-      solution: "Arsitektur Next.js 16 App Router berkecepatan tinggi dengan integrasi basis data Supabase untuk manajemen konten dan katalog industri secara real-time.",
+      challenge: "PT SMS, supplier barang industri & procurement partner di Bintan dan Batam, tidak memiliki kehadiran digital sama sekali. Katalog 100+ produk hanya tersedia dalam dokumen cetak dan pesan WhatsApp. Setiap pembaruan katalog memerlukan panggilan ke developer. Klien B2B tidak memiliki cara untuk menelusuri produk atau mengirim permintaan penawaran secara online, yang mengakibatkan hilangnya peluang pengadaan.",
+      approach: "Merancang portal korporat berperforma tinggi dengan Next.js 16 App Router (SSR + ISR) dan dashboard admin CMS custom yang dilindungi oleh Supabase Row Level Security. Arsitektur menggunakan PostgreSQL untuk penyimpanan katalog produk dengan full-text search, Supabase Storage untuk CDN gambar produk, dan server-side rendering untuk optimasi SEO.",
+      solution: "Arsitektur Next.js 16 App Router berkecepatan tinggi dengan integrasi basis data Supabase untuk manajemen konten dan katalog industri secara real-time. Staff internal dapat mengelola produk, artikel berita, dan inquiry klien secara mandiri melalui panel admin terproteksi — tanpa perlu developer.",
       keyFeatures: [
-        "Dashboard Admin CMS Pengelolaan Konten",
-        "Katalog Barang Industri & General Supplier",
-        "Modul Formulir Penawaran & Integrasi Sales WA"
+        "Dashboard Admin CMS dengan Row Level Security",
+        "Katalog Barang Industri dengan Full-Text Search",
+        "Modul Formulir RFQ & Integrasi WhatsApp Sales",
+        "SSR & ISR untuk SEO Optimal di Mesin Pencari"
       ],
-      outcome: "Identitas digital perusahaan semakin kuat dan staf internal dapat memperbarui konten katalog pengadaan kapan saja secara teratur.",
+      outcome: "Portal live di suryamitraservice.com dengan peningkatan +65% konversi inquiry B2B. Tim internal secara mandiri mengelola 100+ listing produk dan menerima inquiry pengadaan langsung. Halaman yang dioptimasi SEO muncul di pencarian Google untuk kata kunci supplier industri di wilayah Bintan.",
       techStack: ["Next.js 16", "Supabase RLS", "TypeScript", "Tailwind CSS"]
     }
   },
@@ -134,15 +135,17 @@ export const FEATURED_PROJECTS: Project[] = [
       { url: "/assets/projects/smartcafe/kitchen-kds.png", label: "KITCHEN KDS" }
     ],
     caseStudy: {
-      challenge: "Kasir sering kewalahan saat jam sibuk dan pemilik kafe tidak memiliki visibilitas data penjualan harian yang akurat.",
-      approach: "Mengintegrasikan alur pencatatan pesanan kasir fast-track, QR order meja, KDS dapur, dan dasbor analitik omzet.",
-      solution: "Aplikasi kasir web terintegrasi dengan arsitektur transaksi real-time PostgreSQL & Supabase.",
+      challenge: "Kafe masih menggunakan catatan manual kertas — antrian checkout panjang saat jam sibuk, stok bahan sering tidak cocok karena tidak ada sistem tracking otomatis, dan pemilik kafe tidak memiliki visibilitas data penjualan harian yang akurat untuk pengambilan keputusan bisnis.",
+      approach: "Mengintegrasikan alur pencatatan pesanan kasir fast-track 3-klik, QR code order per meja, Kitchen Display System (KDS) untuk dapur, dan dashboard analitik omzet real-time. Arsitektur menggunakan PostgreSQL dengan Supabase RLS untuk transaksi real-time dan isolasi data multi-tenant.",
+      solution: "Aplikasi POS web terintegrasi dengan arsitektur transaksi real-time PostgreSQL & Supabase. Setiap order otomatis mengurangi stok bahan, mengirim notifikasi ke KDS dapur, dan memperbarui dashboard analitik secara real-time.",
       keyFeatures: [
-        "Pencatatan Pesanan Kasir Fast-Track & QR Order Meja",
-        "Modul KDS Dapur (Kitchen Display System) Real-Time",
-        "Laporan Analitik Omzet Harian & Bulanan"
+        "Pencatatan Pesanan Kasir Fast-Track 3-Klik",
+        "QR Code Order Meja & Struk Digital",
+        "Kitchen Display System (KDS) Real-Time",
+        "Dashboard Analitik Omzet Harian & Bulanan",
+        "Auto-Deduction Stok per Item Pesanan"
       ],
-      outcome: "Waktu pemrosesan pesanan berkurang dari 3 menit menjadi 45 detik per pelanggan.",
+      outcome: "Waktu pemrosesan pesanan berkurang dari 3 menit menjadi 45 detik per pelanggan. Selisih stok bahan hilang total. Pemilik kafe dapat memantau omzet secara real-time dari mana saja.",
       techStack: ["Next.js 16", "PostgreSQL", "Supabase RLS", "Tailwind CSS"]
     }
   },
@@ -166,15 +169,17 @@ export const FEATURED_PROJECTS: Project[] = [
       { url: "/assets/projects/invoice/dashboard-blurred.png", label: "DASHBOARD (NDA)" }
     ],
     caseStudy: {
-      challenge: "Staf administrasi menghabiskan berjam-jam setiap minggu untuk mengetik ulang tagihan dan mencetak surat jalan secara terpisah.",
-      approach: "Mengintegrasikan database pelanggan dengan modul generator PDF browser-native otomatis.",
-      solution: "Sistem manajemen operasional terpusat berbasis Prisma ORM dan PostgreSQL dengan penanganan status tagihan.",
+      challenge: "Staf administrasi menghabiskan 15+ menit per dokumen mengetik invoice satu per satu di Excel. Sering terjadi kesalahan kalkulasi, format tidak konsisten antar dokumen, penomoran invoice acak, dan tidak ada tracking status pembayaran — menyebabkan keterlambatan penagihan dan kerugian cash flow.",
+      approach: "Mengintegrasikan database pelanggan terpusat dengan modul generator PDF browser-native otomatis. Arsitektur menggunakan Prisma ORM untuk type-safe database operations dan PostgreSQL untuk penyimpanan data invoice, client, dan surat jalan.",
+      solution: "Sistem manajemen operasional terpusat berbasis Prisma ORM dan PostgreSQL. Invoice di-generate otomatis dengan 1-klik: kalkulasi pajak, penomoran sequential, dan export PDF langsung di browser. Database client tersimpan permanen untuk re-use.",
       keyFeatures: [
-        "Penerbitan Invoice & Export PDF 1-Click",
-        "Penerbitan Surat Jalan Pengiriman Barang",
-        "Pencatatan Status Pembayaran Client"
+        "Auto-Generate Invoice PDF dengan 1-Klik",
+        "Kalkulasi Pajak & Penomoran Invoice Otomatis",
+        "Surat Jalan & Dokumen Pengiriman Barang",
+        "Database Client Terpusat & Reusable",
+        "Tracking Status Pembayaran Real-Time"
       ],
-      outcome: "Otomasi total pembuatan invoice dan efisiensi waktu administrasi hingga 80%.",
+      outcome: "Invoice selesai dalam hitungan detik (dari 15+ menit). Kalkulasi 100% otomatis tanpa human error. Histori tagihan rapi dan terorganisir. Efisiensi waktu administrasi meningkat hingga 80%, menghemat 8+ jam kerja per minggu.",
       techStack: ["Next.js 16", "Prisma ORM", "PostgreSQL", "Tailwind CSS"]
     }
   }
@@ -207,7 +212,7 @@ export const MILESTONES: Milestone[] = [
   },
   {
     year: "Fase 5 (Saat Ini)",
-    title: "Product-Focused Frontend Engineer",
+    title: "Full-Stack Product Engineer",
     subtitle: "Terjun Kembali ke Dunia IT",
     description: "Fokus penuh membangun aplikasi web modern skala produksi (POS, Corporate CMS, E-Invoice)."
   }
