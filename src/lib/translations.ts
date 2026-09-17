@@ -495,6 +495,33 @@ export function getSelectedProjects(lang: Language) {
           { url: "/assets/projects/invoice/login.png", label: "LOGIN PORTAL" },
           { url: "/assets/projects/invoice/dashboard-blurred.png", label: "DASHBOARD (NDA)" }
         ]
+      },
+      {
+        id: "3-putri-mulya",
+        title: "3 Putri Mulya — Car Rental & Tour Booking Platform",
+        category: "Car Rental & Tour Booking SPA",
+        year: "2025",
+        impact: "Multi-Language • WhatsApp Booking",
+        summary: "Modern car rental fleet catalog & tour booking SPA for Bintan Island with real-time availability, multi-language (EN/ID), and WhatsApp Business integration.",
+        problem: "1) Potential customers had no way to browse fleet catalog, pricing, or availability without manual WhatsApp inquiries. 2) No standardized booking form — all reservations handled through unstructured chat messages. 3) International tourists lacked English-language information about rental options and tour packages.",
+        solution: "Built a modern Single Page Application (SPA) using React + TypeScript + Tailwind CSS: A) Interactive fleet catalog with vehicle category, passenger capacity, and daily rate filters. B) Structured booking form with pickup/return dates, vehicle category, and passenger count — directly connected to WhatsApp Business. C) Destinations & Tour Packages module with photo galleries and detailed itineraries. D) Multi-language EN/ID toggle with currency display (IDR). E) Deployed on Cloudflare Pages for global CDN performance.",
+        outcome: "🚗 Full fleet catalog accessible 24/7 replacing manual chat inquiries. 📱 Structured booking form increased reservation conversions. 🌏 International tourist reach via English language support. ⚡ Sub-second page loads via SPA architecture + Cloudflare CDN.",
+        keyFeatures: [
+          "Interactive Fleet Catalog with Category & Capacity Filters",
+          "Smart Booking Form → WhatsApp Business Integration",
+          "Destinations & Tour Packages Module with Photo Gallery",
+          "Multi-Language Support (English / Bahasa Indonesia)",
+          "Cloudflare Pages Deployment for Global CDN"
+        ],
+        techStack: ["React", "TypeScript", "Tailwind CSS", "Vite", "Cloudflare"],
+        tags: ["React", "TypeScript", "Tailwind CSS", "Vite", "Cloudflare"],
+        mockupPath: "/assets/projects/3pm-hero.png",
+        mockup: "/assets/projects/3pm-hero.png",
+        liveUrl: "https://www.3putrimulya.com/",
+        lang: 'en' as const,
+        galleryImages: [
+          { url: "/assets/projects/3pm-hero.png", label: "HERO LANDING PAGE" }
+        ]
       }
     ];
   }
@@ -589,6 +616,33 @@ export function getSelectedProjects(lang: Language) {
         galleryImages: [
           { url: "/assets/projects/invoice/login.png", label: "登录门户" },
           { url: "/assets/projects/invoice/dashboard-blurred.png", label: "仪表盘 (保密)" }
+        ]
+      },
+      {
+        id: "3-putri-mulya",
+        title: "3 Putri Mulya — 汽车租赁与旅游预订平台",
+        category: "汽车租赁与旅游预订 SPA",
+        year: "2025",
+        impact: "多语言 • WhatsApp 预订",
+        summary: "民丹岛现代汽车租赁车队目录与旅游预订 SPA，支持实时可用性查询、多语言 (EN/ID) 及 WhatsApp Business 集成。",
+        problem: "1) 潜在客户无法在线浏览车队目录、价格或可用性，只能通过 WhatsApp 手动咨询。2) 没有标准化的预订表单——所有预约都通过非结构化聊天消息处理。3) 国际游客缺乏英语租车和旅游套餐信息。",
+        solution: "使用 React + TypeScript + Tailwind CSS 构建现代单页应用 (SPA)：A) 交互式车队目录，支持车辆类别、乘客容量和每日费率筛选。B) 结构化预订表单，含接送日期、车辆类别和乘客数量——直接连接 WhatsApp Business。C) 目的地与旅游套餐模块，含照片画廊和详细行程。D) 多语言 EN/ID 切换。E) 部署在 Cloudflare Pages 上实现全球 CDN 加速。",
+        outcome: "🚗 完整车队目录 24/7 全天候可访问。📱 结构化预订表单提升预约转化率。🌏 英语支持覆盖国际游客。⚡ SPA 架构 + Cloudflare CDN 实现亚秒级页面加载。",
+        keyFeatures: [
+          "交互式车队目录（类别与容量筛选）",
+          "智能预订表单 → WhatsApp Business 集成",
+          "目的地与旅游套餐模块（含照片画廊）",
+          "多语言支持（英语 / 印尼语）",
+          "Cloudflare Pages 全球 CDN 部署"
+        ],
+        techStack: ["React", "TypeScript", "Tailwind CSS", "Vite", "Cloudflare"],
+        tags: ["React", "TypeScript", "Tailwind CSS", "Vite", "Cloudflare"],
+        mockupPath: "/assets/projects/3pm-hero.png",
+        mockup: "/assets/projects/3pm-hero.png",
+        liveUrl: "https://www.3putrimulya.com/",
+        lang: 'zh' as const,
+        galleryImages: [
+          { url: "/assets/projects/3pm-hero.png", label: "首页" }
         ]
       }
     ];
@@ -685,6 +739,33 @@ export function getSelectedProjects(lang: Language) {
       galleryImages: [
         { url: "/assets/projects/invoice/login.png", label: "LOGIN PORTAL" },
         { url: "/assets/projects/invoice/dashboard-blurred.png", label: "DASHBOARD (NDA)" }
+      ]
+    },
+    {
+      id: "3-putri-mulya",
+      title: "3 Putri Mulya — Platform Rental Mobil & Booking Wisata",
+      category: "Car Rental & Tour Booking SPA",
+      year: "2025",
+      impact: "Multi-Bahasa • WhatsApp Booking",
+      summary: "Platform katalog armada rental mobil & booking paket wisata Pulau Bintan dengan ketersediaan real-time, multi-bahasa (EN/ID), dan integrasi WhatsApp Business.",
+      problem: "1) Calon pelanggan tidak bisa melihat katalog armada, harga, atau ketersediaan tanpa bertanya manual via WhatsApp. 2) Tidak ada formulir booking standar — semua reservasi melalui pesan chat tidak terstruktur. 3) Wisatawan asing kesulitan karena tidak ada informasi dalam bahasa Inggris.",
+      solution: "Membangun Single Page Application (SPA) modern menggunakan React + TypeScript + Tailwind CSS: A) Katalog armada interaktif dengan filter kategori kendaraan, kapasitas penumpang, dan tarif harian. B) Formulir booking terstruktur dengan tanggal jemput/kembali, kategori kendaraan, dan jumlah penumpang — langsung terhubung WhatsApp Business. C) Modul Destinasi & Paket Wisata dengan galeri foto dan detail itinerary. D) Multi-bahasa EN/ID dengan toggle switcher. E) Deploy di Cloudflare Pages untuk performa CDN global.",
+      outcome: "🚗 Katalog armada lengkap dapat diakses 24/7 tanpa tanya manual. 📱 Formulir booking terstruktur meningkatkan konversi reservasi. 🌏 Jangkauan wisatawan internasional berkat dukungan bahasa Inggris. ⚡ Waktu muat halaman <1 detik berkat arsitektur SPA + Cloudflare CDN.",
+      keyFeatures: [
+        "Katalog Armada Interaktif (Filter Kategori & Kapasitas)",
+        "Smart Booking Form → Integrasi WhatsApp Business",
+        "Modul Destinasi & Paket Wisata dengan Galeri Foto",
+        "Dukungan Multi-Bahasa (English / Bahasa Indonesia)",
+        "Deployment Cloudflare Pages untuk CDN Global"
+      ],
+      techStack: ["React", "TypeScript", "Tailwind CSS", "Vite", "Cloudflare"],
+      tags: ["React", "TypeScript", "Tailwind CSS", "Vite", "Cloudflare"],
+      mockupPath: "/assets/projects/3pm-hero.png",
+      mockup: "/assets/projects/3pm-hero.png",
+      liveUrl: "https://www.3putrimulya.com/",
+      lang: 'id' as const,
+      galleryImages: [
+        { url: "/assets/projects/3pm-hero.png", label: "HERO LANDING PAGE" }
       ]
     }
   ];
