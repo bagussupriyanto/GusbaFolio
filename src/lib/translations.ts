@@ -25,9 +25,9 @@ export const TRANSLATIONS = {
     
     // About
     aboutLabel: "TENTANG PENGEMBANG",
-    aboutHeading: "Menggabungkan Presisi Manufaktur Industri dengan Rekayasa Perangkat Lunak Modern.",
-    aboutBio1: "Saya adalah lulusan Sarjana Komputer dari Universitas Teknologi Yogyakarta (S1 Teknologi Informasi, 2024). Latar belakang saya menggabungkan disiplin kerja industri manufaktur presisi (PT Pertama Precision Indonesia) dengan kecepatan rekayasa perangkat lunak modern.",
-    aboutBio2: "Saya tidak memandang AI sebagai pengganti rekayasa perangkat lunak, melainkan sebagai katalisator produktivitas yang memungkinkan ide dikembangkan menjadi aplikasi SaaS skala produksi dalam waktu yang jauh lebih cepat, tanpa mengorbankan kualitas arsitektur data.",
+    aboutHeading: "Dari Lantai Produksi ke Full-Stack Engineering — Perjalanan yang Membentuk Cara Saya Membangun Software.",
+    aboutBio1: "Saya lulusan S1 Teknologi Informasi dari Universitas Teknologi Yogyakarta (2024). Sebelum terjun ke dunia software, saya pernah bekerja di lini produksi pabrik dan menangani perawatan kapal yacht — pengalaman yang mengajarkan saya tentang deadline ketat, SOP, dan pentingnya kualitas di setiap detail.",
+    aboutBio2: "Sekarang saya fokus membangun aplikasi web full-stack untuk bisnis kecil dan menengah. Saya memanfaatkan AI sebagai alat bantu produktivitas — bukan pengganti — untuk mempercepat development tanpa mengorbankan kualitas arsitektur dan keamanan data.",
     degreeLabel: "GELAR AKADEMIK",
     certLabel: "SERTIFIKASI",
     aiLabLabel: "LAB KONTEN",
@@ -102,9 +102,9 @@ export const TRANSLATIONS = {
 
     // About
     aboutLabel: "ABOUT THE BUILDER",
-    aboutHeading: "Combining Industrial Precision with Modern Full-Stack Software Engineering.",
-    aboutBio1: "I hold a Bachelor's Degree in Computer Science from Universitas Teknologi Yogyakarta (S1 IT, 2024). My background blends precision manufacturing engineering (PT Pertama Precision Indonesia) with modern software speed.",
-    aboutBio2: "I view AI not as a replacement for software engineering, but as a productivity catalyst that transforms ideas into production SaaS applications rapidly without compromising data architecture.",
+    aboutHeading: "From the Factory Floor to Full-Stack Engineering — A Journey That Shaped How I Build Software.",
+    aboutBio1: "I hold a Bachelor's Degree in Computer Science from Universitas Teknologi Yogyakarta (2024). Before going all-in on software, I worked on a factory production line and handled yacht maintenance — experiences that taught me about tight deadlines, SOPs, and why quality matters in every detail.",
+    aboutBio2: "Now I focus on building full-stack web applications for small and medium businesses. I use AI as a productivity tool — not a replacement — to accelerate development without cutting corners on architecture and data security.",
     degreeLabel: "ACADEMIC DEGREE",
     certLabel: "CERTIFICATION",
     aiLabLabel: "CONTENT LAB",
@@ -179,9 +179,9 @@ export const TRANSLATIONS = {
 
     // About
     aboutLabel: "关于开发者",
-    aboutHeading: "结合工业制造精密标准与现代全栈软件工程",
-    aboutBio1: "毕业于日惹科技大学 (UTY 计算机科学, 2024)。拥有精密制造工业背景 (PT Pertama Precision Indonesia)，并融合现代软件开发的高效节奏。",
-    aboutBio2: "我不把 AI 视为替代品，而是生产力催化剂，能够在不牺牲架构质量的前提下，快速将创意转化为生产级 SaaS 应用。",
+    aboutHeading: "从工厂车间到全栈工程师 — 塑造我构建软件方式的一段旅程",
+    aboutBio1: "毕业于日惹科技大学计算机科学专业 (2024)。在全面投入软件开发之前，我曾在工厂生产线工作，也从事过游艇维护 — 这些经历教会了我严格的截止期限、标准化流程，以及每个细节都必须追求质量的重要性。",
+    aboutBio2: "现在我专注于为中小企业构建全栈 Web 应用。我将 AI 视为生产力工具而非替代品，用以加速开发过程，同时不在架构和数据安全上打折扣。",
     degreeLabel: "学术学位",
     certLabel: "专业认证",
     aiLabLabel: "内容实验室",
