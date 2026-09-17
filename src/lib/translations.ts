@@ -498,29 +498,35 @@ export function getSelectedProjects(lang: Language) {
       },
       {
         id: "3-putri-mulya",
-        title: "3 Putri Mulya — Car Rental & Tour Booking Platform",
-        category: "Car Rental & Tour Booking SPA",
+        title: "Integrated Car Rental & Financial Management Ecosystem — 3 Putri Mulya & FinancialFlow",
+        category: "Multi-Client Web Ecosystem (Customer Portal + Admin ERP + REST API)",
         year: "2025",
-        impact: "Multi-Language • WhatsApp Booking",
-        summary: "Modern car rental fleet catalog & tour booking SPA for Bintan Island with real-time availability, multi-language (EN/ID), and WhatsApp Business integration.",
-        problem: "1) Potential customers had no way to browse fleet catalog, pricing, or availability without manual WhatsApp inquiries. 2) No standardized booking form — all reservations handled through unstructured chat messages. 3) International tourists lacked English-language information about rental options and tour packages.",
-        solution: "Built a modern Single Page Application (SPA) using React + TypeScript + Tailwind CSS: A) Interactive fleet catalog with vehicle category, passenger capacity, and daily rate filters. B) Structured booking form with pickup/return dates, vehicle category, and passenger count — directly connected to WhatsApp Business. C) Destinations & Tour Packages module with photo galleries and detailed itineraries. D) Multi-language EN/ID toggle with currency display (IDR). E) Deployed on Cloudflare Pages for global CDN performance.",
-        outcome: "🚗 Full fleet catalog accessible 24/7 replacing manual chat inquiries. 📱 Structured booking form increased reservation conversions. 🌏 International tourist reach via English language support. ⚡ Sub-second page loads via SPA architecture + Cloudflare CDN.",
+        impact: "Decoupled Multi-Client • Real-Time Sync",
+        summary: "Headless multi-client web ecosystem: Customer-Facing Booking SPA + Secured Admin ERP (FinancialFlow) interconnected via Central Laravel 12 & MySQL REST API.",
+        problem: "1) Vehicle rentals and tour bookings were previously processed through unstructured manual WhatsApp chats, causing delayed response times and lost bookings from overseas tourists. 2) No centralized financial recordkeeping for rental revenues, operating expenditures (fuel, routine maintenance, car washes, driver payroll), and net profit analytics. 3) Any change in vehicle status or pricing required manual code edits.",
+        solution: "Architected and delivered an end-to-end decoupled multi-client ecosystem: A) Customer Booking Portal (Vue 3, Vite, Tailwind CSS) featuring live fleet inventory, dual-pricing calculator (Self-Drive vs. With Driver), instant multi-currency conversion (IDR ⇄ SGD ⇄ MYR), bilingual localization (EN/ID), 15+ curated Bintan destination guide, WhatsApp Deep-Link booking engine, and offline cache resilience against backend cold starts. B) FinancialFlow Operations & Financial ERP Dashboard: Secured with Laravel Sanctum token auth, full vehicle CRUD (seats, auto/manual transmission, availability states, rates), tour package management, operational cash flow accounting, and interactive profit/loss visualizations via ApexCharts. C) Central RESTful API (Laravel 12, PHP 8.2, MySQL): Dual-tier routing separating public rate-limited endpoints (/api/public/*) from token-guarded admin endpoints for instant data synchronization.",
+        outcome: "🚀 Real-time synchronization: Fleet and pricing changes made in Admin update live on the Customer Portal instantly without code deployment. 💰 Automated fleet bookkeeping: Complete visibility over operating margins, repair costs, and net profit per vehicle. 🌏 International market expansion: Seamless booking for Singapore and Malaysian tourists via multi-currency and bilingual UX. 🛡️ 100% uptime: Client-side resilience fallback guarantees zero blank-screen incidents during server cold-starts.",
         keyFeatures: [
-          "Interactive Fleet Catalog with Category & Capacity Filters",
-          "Smart Booking Form → WhatsApp Business Integration",
-          "Destinations & Tour Packages Module with Photo Gallery",
-          "Multi-Language Support (English / Bahasa Indonesia)",
-          "Cloudflare Pages Deployment for Global CDN"
+          "Separation of Concerns: Customer Booking Portal vs. Internal Admin ERP",
+          "Live Fleet Catalog & Dual-Pricing Switcher (Self-Drive vs. Chauffeur)",
+          "Multi-Currency (IDR ⇄ SGD ⇄ MYR) & Bilingual Localization (EN ⇄ ID)",
+          "WhatsApp Deep-Link Booking Engine & 15+ Bintan Tour Guide",
+          "FinancialFlow ERP: Fleet CRUD, Status Tracking & Driver Salary Logs",
+          "Interactive Profit & Loss Analytics & Cash Flow Reports (ApexCharts)",
+          "Central REST API (Laravel 12, MySQL, Throttle Rate Limiting & Sanctum RBAC)",
+          "Resilience Architecture: Offline Fallback Cache Data Protection"
         ],
-        techStack: ["React", "TypeScript", "Tailwind CSS", "Vite", "Cloudflare"],
-        tags: ["React", "TypeScript", "Tailwind CSS", "Vite", "Cloudflare"],
+        techStack: ["Vue 3", "Laravel 12", "TypeScript", "Tailwind CSS", "MySQL", "Sanctum", "ApexCharts", "Pinia", "Vite"],
+        tags: ["Vue 3", "Laravel 12", "TypeScript", "Tailwind CSS", "MySQL", "Sanctum", "ApexCharts", "Pinia", "Vite"],
         mockupPath: "/assets/projects/3pm-hero.png",
         mockup: "/assets/projects/3pm-hero.png",
         liveUrl: "https://www.3putrimulya.com/",
         lang: 'en' as const,
         galleryImages: [
-          { url: "/assets/projects/3pm-hero.png", label: "HERO LANDING PAGE" }
+          { url: "/assets/projects/3pm-hero.png", label: "CUSTOMER BOOKING PORTAL" },
+          { url: "/assets/projects/3pm/dashboard.png", label: "FINANCIALFLOW: ADMIN DASHBOARD" },
+          { url: "/assets/projects/3pm/armada.png", label: "FINANCIALFLOW: FLEET & PRICING CRUD" },
+          { url: "/assets/projects/3pm/laba-rugi.png", label: "FINANCIALFLOW: PROFIT & LOSS ANALYTICS" }
         ]
       }
     ];
@@ -620,29 +626,35 @@ export function getSelectedProjects(lang: Language) {
       },
       {
         id: "3-putri-mulya",
-        title: "3 Putri Mulya — 汽车租赁与旅游预订平台",
-        category: "汽车租赁与旅游预订 SPA",
+        title: "汽车租赁与财务管理一体化生态系统 — 3 Putri Mulya & FinancialFlow",
+        category: "多客户端 Web 生态系统 (客户门户 + 管理 ERP + REST API)",
         year: "2025",
-        impact: "多语言 • WhatsApp 预订",
-        summary: "民丹岛现代汽车租赁车队目录与旅游预订 SPA，支持实时可用性查询、多语言 (EN/ID) 及 WhatsApp Business 集成。",
-        problem: "1) 潜在客户无法在线浏览车队目录、价格或可用性，只能通过 WhatsApp 手动咨询。2) 没有标准化的预订表单——所有预约都通过非结构化聊天消息处理。3) 国际游客缺乏英语租车和旅游套餐信息。",
-        solution: "使用 React + TypeScript + Tailwind CSS 构建现代单页应用 (SPA)：A) 交互式车队目录，支持车辆类别、乘客容量和每日费率筛选。B) 结构化预订表单，含接送日期、车辆类别和乘客数量——直接连接 WhatsApp Business。C) 目的地与旅游套餐模块，含照片画廊和详细行程。D) 多语言 EN/ID 切换。E) 部署在 Cloudflare Pages 上实现全球 CDN 加速。",
-        outcome: "🚗 完整车队目录 24/7 全天候可访问。📱 结构化预订表单提升预约转化率。🌏 英语支持覆盖国际游客。⚡ SPA 架构 + Cloudflare CDN 实现亚秒级页面加载。",
+        impact: "解耦多端架构 • 实时数据同步",
+        summary: "一体化多端 Web 生态：民丹岛租车与旅游预订客户门户 (SPA) + 运营与财务管理 ERP (FinancialFlow)，通过基于 Laravel 12 & MySQL 的中央 REST API 实现全流程互联。",
+        problem: "1) 过去租车与包车预订全依赖人工 WhatsApp 沟通，缺乏实时在线目录，响应滞后且易流失海外游客。2) 缺乏数字化财务管理系统，租金收入、车辆运营成本（油费、日常保养、洗车、司机薪资）及净利润无法实时统计。3) 任何车辆状态或租金变动必须由开发者手动修改代码。",
+        solution: "设计并实现解耦式多端 Web 生态：A) 客户预订门户 (Vue 3, Vite, Tailwind CSS)：具备实时车队目录、双重计价切换（自驾 vs 带司机）、实时多币种汇率转换 (IDR ⇄ SGD ⇄ MYR)、中英双语、15+ 民丹岛景点指南、WhatsApp 深度链接即时预订，以及后端冷启动离线缓存容灾保护。B) FinancialFlow 运营与财务 ERP 后台：基于 Laravel Sanctum Token 认证，支持车辆完整 CRUD（座位、自动/手动挡、状态、费率）、旅游套餐管理、日常现金流收支流水录入，以及 ApexCharts 交互式利润与成本分析。C) 中央 RESTful API (Laravel 12, PHP 8.2, MySQL)：分离限流公共数据接口 (/api/public/*) 与 Sanctum 鉴权管理接口，确保数据实时秒级同步。",
+        outcome: "🚀 实时数据同步：后台增改车辆与费率，前端客户门户即刻生效，无需重新部署。 💰 全自动车队财务看板：清晰掌控各车辆毛利率、保养支出与纯利润。 🌏 拓展国际客源：支持新币/马币与双语体验，极大便利新加坡与马来西亚游客。 🛡️ 零白屏容灾：离线缓存兜底机制保障高可用，杜绝后端冷启动故障。",
         keyFeatures: [
-          "交互式车队目录（类别与容量筛选）",
-          "智能预订表单 → WhatsApp Business 集成",
-          "目的地与旅游套餐模块（含照片画廊）",
-          "多语言支持（英语 / 印尼语）",
-          "Cloudflare Pages 全球 CDN 部署"
+          "职责分离架构：客户预订门户 vs 企业内部管理 ERP",
+          "实时车队目录与双重计价引擎（自驾 vs 专职司机）",
+          "实时多币种转换 (IDR ⇄ SGD ⇄ MYR) 与双语本地化 (EN ⇄ ID)",
+          "WhatsApp 深度链接极速预订与 15+ 民丹岛旅游向导",
+          "FinancialFlow ERP: 车队全生命周期管理、状态追踪与司机薪资记录",
+          "ApexCharts 交互式损益分析与运营现金流报表",
+          "中央 REST API (Laravel 12, MySQL, 速率限制与 Sanctum RBAC)",
+          "离线缓存容灾系统：杜绝服务器冷启动白屏"
         ],
-        techStack: ["React", "TypeScript", "Tailwind CSS", "Vite", "Cloudflare"],
-        tags: ["React", "TypeScript", "Tailwind CSS", "Vite", "Cloudflare"],
+        techStack: ["Vue 3", "Laravel 12", "TypeScript", "Tailwind CSS", "MySQL", "Sanctum", "ApexCharts", "Pinia", "Vite"],
+        tags: ["Vue 3", "Laravel 12", "TypeScript", "Tailwind CSS", "MySQL", "Sanctum", "ApexCharts", "Pinia", "Vite"],
         mockupPath: "/assets/projects/3pm-hero.png",
         mockup: "/assets/projects/3pm-hero.png",
         liveUrl: "https://www.3putrimulya.com/",
         lang: 'zh' as const,
         galleryImages: [
-          { url: "/assets/projects/3pm-hero.png", label: "首页" }
+          { url: "/assets/projects/3pm-hero.png", label: "客户预订门户首页" },
+          { url: "/assets/projects/3pm/dashboard.png", label: "FINANCIALFLOW 运营总览" },
+          { url: "/assets/projects/3pm/armada.png", label: "FINANCIALFLOW 车队与费率管理" },
+          { url: "/assets/projects/3pm/laba-rugi.png", label: "FINANCIALFLOW 损益与成本分析" }
         ]
       }
     ];
@@ -743,29 +755,35 @@ export function getSelectedProjects(lang: Language) {
     },
     {
       id: "3-putri-mulya",
-      title: "3 Putri Mulya — Platform Rental Mobil & Booking Wisata",
-      category: "Car Rental & Tour Booking SPA",
+      title: "Integrated Car Rental & Financial Management Ecosystem — 3 Putri Mulya & FinancialFlow",
+      category: "Multi-Client Web Ecosystem (Customer Portal + Admin ERP + REST API)",
       year: "2025",
-      impact: "Multi-Bahasa • WhatsApp Booking",
-      summary: "Platform katalog armada rental mobil & booking paket wisata Pulau Bintan dengan ketersediaan real-time, multi-bahasa (EN/ID), dan integrasi WhatsApp Business.",
-      problem: "1) Calon pelanggan tidak bisa melihat katalog armada, harga, atau ketersediaan tanpa bertanya manual via WhatsApp. 2) Tidak ada formulir booking standar — semua reservasi melalui pesan chat tidak terstruktur. 3) Wisatawan asing kesulitan karena tidak ada informasi dalam bahasa Inggris.",
-      solution: "Membangun Single Page Application (SPA) modern menggunakan React + TypeScript + Tailwind CSS: A) Katalog armada interaktif dengan filter kategori kendaraan, kapasitas penumpang, dan tarif harian. B) Formulir booking terstruktur dengan tanggal jemput/kembali, kategori kendaraan, dan jumlah penumpang — langsung terhubung WhatsApp Business. C) Modul Destinasi & Paket Wisata dengan galeri foto dan detail itinerary. D) Multi-bahasa EN/ID dengan toggle switcher. E) Deploy di Cloudflare Pages untuk performa CDN global.",
-      outcome: "🚗 Katalog armada lengkap dapat diakses 24/7 tanpa tanya manual. 📱 Formulir booking terstruktur meningkatkan konversi reservasi. 🌏 Jangkauan wisatawan internasional berkat dukungan bahasa Inggris. ⚡ Waktu muat halaman <1 detik berkat arsitektur SPA + Cloudflare CDN.",
+      impact: "Arsitektur Multi-Client • Sinkronisasi Real-Time",
+      summary: "Ekosistem web multi-aplikasi terintegrasi: Portal Pemesanan Rental Mobil & Wisata Bintan (Customer SPA) + Dashboard ERP Manajemen Armada & Keuangan (FinancialFlow Backoffice) terhubung melalui Central RESTful API berbasis Laravel 12 & MySQL.",
+      problem: "1) Pemesanan rental mobil & paket tour sebelumnya dilakukan secara manual via WhatsApp tanpa katalog live, memicu lambatnya konfirmasi dan hilangnya potensi turis asing. 2) Tidak ada pembukuan digital terpusat untuk memantau pendapatan sewa, biaya operasional armada (BBM, servis rutin, cuci mobil, gaji driver), serta laporan laba-rugi bisnis secara real-time. 3) Ketergantungan tinggi pada update manual file koding jika ada penambahan mobil, perubahan harga, atau status ketersediaan armada.",
+      solution: "Merancang dan mengimplementasikan arsitektur Multi-Client Web Ecosystem decoupled: A) Customer Booking Portal (Vue 3 / Vite / Tailwind CSS) dengan live fleet catalog, dual-pricing switcher (Lepas Kunci vs Supir), konversi mata uang otomatis (IDR ⇄ SGD ⇄ MYR), dwibahasa (ID/EN), panduan 15+ destinasi Bintan, pemesanan instan via WhatsApp Deep-Link Engine, serta resilience/fallback cache jika server backend offline/cold-start. B) FinancialFlow Backoffice Admin Dashboard: Autentikasi token Laravel Sanctum (/api/auth/login), CRUD armada mobil (kursi, transmisi Matic/Manual, status Tersedia/Disewa/Bengkel, foto, tarif), manajemen paket tour, pembukuan cash flow operasional, dan visualisasi laporan laba-rugi interaktif (ApexCharts). C) Central RESTful API Engine (Laravel 12, PHP 8.2, MySQL) dengan dual-tier architecture: public rate-limited endpoints (/api/public/*) & secured authenticated endpoints (auth:sanctum) untuk sinkronisasi data real-time.",
+      outcome: "🚀 Real-time data synchronization: perubahan armada/tarif di Admin langsung ter-update di Website Publik tanpa sentuh kodingan. 💰 Pembukuan keuangan armada 100% terotomasi dengan kalkulasi laba bersih, neraca kas, dan biaya servis per unit. 🌏 Jangkauan pasar turis internasional (Singapura & Malaysia) meningkat berkat multi-currency & bilingual localization. ⚡ Uptime tinggi & 0% blank screen berkat sistem offline resilience fallback.",
       keyFeatures: [
-        "Katalog Armada Interaktif (Filter Kategori & Kapasitas)",
-        "Smart Booking Form → Integrasi WhatsApp Business",
-        "Modul Destinasi & Paket Wisata dengan Galeri Foto",
-        "Dukungan Multi-Bahasa (English / Bahasa Indonesia)",
-        "Deployment Cloudflare Pages untuk CDN Global"
+        "Separation of Concerns: Customer Booking Portal vs Internal Admin ERP",
+        "Live Fleet Catalog & Dual-Pricing Switcher (Lepas Kunci vs Supir)",
+        "Multi-Currency (IDR ⇄ SGD ⇄ MYR) & Bilingual Localization (ID ⇄ EN)",
+        "WhatsApp Deep-Link Booking Engine & 15+ Bintan Tour Guide",
+        "FinancialFlow ERP: Fleet CRUD, Status Tracking & Driver Salary Logs",
+        "Interactive Profit & Loss Analytics & Cash Flow Reports (ApexCharts)",
+        "Central REST API (Laravel 12, MySQL, Throttle Rate Limiting & Sanctum RBAC)",
+        "Resilience Fallback: Offline Cache Protection Anti Cold-Start"
       ],
-      techStack: ["React", "TypeScript", "Tailwind CSS", "Vite", "Cloudflare"],
-      tags: ["React", "TypeScript", "Tailwind CSS", "Vite", "Cloudflare"],
+      techStack: ["Vue 3", "Laravel 12", "TypeScript", "Tailwind CSS", "MySQL", "Sanctum", "ApexCharts", "Pinia", "Vite"],
+      tags: ["Vue 3", "Laravel 12", "TypeScript", "Tailwind CSS", "MySQL", "Sanctum", "ApexCharts", "Pinia", "Vite"],
       mockupPath: "/assets/projects/3pm-hero.png",
       mockup: "/assets/projects/3pm-hero.png",
       liveUrl: "https://www.3putrimulya.com/",
       lang: 'id' as const,
       galleryImages: [
-        { url: "/assets/projects/3pm-hero.png", label: "HERO LANDING PAGE" }
+        { url: "/assets/projects/3pm-hero.png", label: "PORTAL PELANGGAN: HERO & BOOKING" },
+        { url: "/assets/projects/3pm/dashboard.png", label: "FINANCIALFLOW: RINGKASAN & STATUS ARMADA" },
+        { url: "/assets/projects/3pm/armada.png", label: "FINANCIALFLOW: MANAJEMEN ARMADA & TARIF" },
+        { url: "/assets/projects/3pm/laba-rugi.png", label: "FINANCIALFLOW: LAPORAN LABA RUGI & BIAYA" }
       ]
     }
   ];

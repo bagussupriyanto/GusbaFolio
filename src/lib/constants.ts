@@ -199,38 +199,46 @@ export const FEATURED_PROJECTS: Project[] = [
   },
   {
     id: "3-putri-mulya",
-    title: "3 Putri Mulya — Car Rental & Tour Booking Platform",
-    category: "Car Rental & Tour Booking SPA",
-    summary: "Platform reservasi rental mobil & paket wisata Pulau Bintan dengan sistem booking real-time, multi-bahasa (EN/ID), dan integrasi WhatsApp.",
-    problem: "1) Calon pelanggan kesulitan membandingkan armada, harga, dan ketersediaan mobil tanpa katalog digital terstruktur. 2) Proses reservasi masih sepenuhnya manual via WhatsApp tanpa formulir booking standar. 3) Tidak ada sistem katalog paket wisata (tour packages) yang bisa diakses 24/7 secara mandiri oleh wisatawan.",
-    solution: "Mengembangkan Single Page Application (SPA) modern berbasis React + TypeScript + Tailwind CSS: A) Katalog armada interaktif dengan filter kategori kendaraan, kapasitas penumpang, dan ketersediaan tanggal. B) Booking form terintegrasi WhatsApp Business API untuk konfirmasi reservasi instan. C) Modul paket wisata (Destinations & Tour Packages) dengan galeri foto destinasi dan itinerary detail. D) Multi-bahasa (EN/ID) dengan currency switcher (IDR). E) UI/UX responsif mobile-first dengan hero section immersive dan smooth scroll navigation.",
-    outcome: "🚗 Katalog armada lengkap 24/7 menggantikan konsultasi manual via chat. 📱 Booking form terstruktur meningkatkan konversi reservasi. 🌏 Jangkauan wisatawan internasional berkat dukungan multi-bahasa EN/ID. ⚡ Performa cepat dengan arsitektur SPA tanpa reload halaman.",
+    title: "Integrated Car Rental & Financial Management Ecosystem — 3 Putri Mulya & FinancialFlow",
+    category: "Multi-Client Web Ecosystem (Customer Portal + Admin ERP + REST API)",
+    summary: "Ekosistem web multi-aplikasi terintegrasi: Portal Pemesanan Rental Mobil & Wisata Bintan (Customer SPA) + Dashboard ERP Manajemen Armada & Keuangan (FinancialFlow Backoffice) terhubung melalui Central RESTful API berbasis Laravel 12 & MySQL.",
+    problem: "1) Pemesanan rental mobil & paket tour sebelumnya dilakukan secara manual via WhatsApp tanpa katalog live, memicu lambatnya konfirmasi dan hilangnya potensi turis asing. 2) Tidak ada pembukuan digital terpusat untuk memantau pendapatan sewa, biaya operasional armada (BBM, servis rutin, cuci mobil, gaji driver), serta laporan laba-rugi bisnis secara real-time. 3) Ketergantungan tinggi pada update manual file koding jika ada penambahan mobil, perubahan harga, atau status ketersediaan armada.",
+    solution: "Merancang dan mengimplementasikan arsitektur Multi-Client Web Ecosystem decoupled: A) Customer Booking Portal (Vue 3 / Vite / Tailwind CSS) dengan live fleet catalog, dual-pricing switcher (Lepas Kunci vs Supir), konversi mata uang otomatis (IDR ⇄ SGD ⇄ MYR), dwibahasa (ID/EN), panduan 15+ destinasi Bintan, pemesanan instan via WhatsApp Deep-Link Engine, serta resilience/fallback cache jika server backend offline/cold-start. B) FinancialFlow Backoffice Admin Dashboard: Autentikasi token Laravel Sanctum (/api/auth/login), CRUD armada mobil (kursi, transmisi Matic/Manual, status Tersedia/Disewa/Bengkel, foto, tarif), manajemen paket tour, pembukuan cash flow operasional, dan visualisasi laporan laba-rugi interaktif (ApexCharts). C) Central RESTful API Engine (Laravel 12, PHP 8.2, MySQL) dengan dual-tier architecture: public rate-limited endpoints (/api/public/*) & secured authenticated endpoints (auth:sanctum) untuk sinkronisasi data real-time.",
+    outcome: "🚀 Real-time data synchronization: perubahan armada/tarif di Admin langsung ter-update di Website Publik tanpa sentuh kodingan. 💰 Pembukuan keuangan armada 100% terotomasi dengan kalkulasi laba bersih, neraca kas, dan biaya servis per unit. 🌏 Jangkauan pasar turis internasional (Singapura & Malaysia) meningkat berkat multi-currency & bilingual localization. ⚡ Uptime tinggi & 0% blank screen berkat sistem offline resilience fallback.",
     keyFeatures: [
-      "Katalog Armada Interaktif dengan Filter Kategori & Kapasitas",
-      "Booking Form Terintegrasi WhatsApp Business",
-      "Modul Paket Wisata & Destinasi dengan Galeri Foto",
-      "Multi-Bahasa (EN/ID) & Currency Switcher (IDR)",
-      "Responsive Mobile-First SPA dengan Smooth Navigation"
+      "Multi-Client Architecture (Customer Portal, Admin ERP & Central API)",
+      "Live Fleet Catalog & Dual-Pricing Switcher (Lepas Kunci vs Supir)",
+      "Multi-Currency (IDR ⇄ SGD ⇄ MYR) & Bilingual Localization (ID ⇄ EN)",
+      "WhatsApp Deep-Link Booking Engine & 15+ Bintan Tour Guide",
+      "FinancialFlow ERP: Fleet CRUD, Status Tracking & Driver Salary Logs",
+      "Interactive Profit & Loss Analytics & Cash Flow Reports (ApexCharts)",
+      "Central REST API (Laravel 12, Sanctum Auth & Rate-Limited Public Routes)",
+      "Resilience Fallback: Offline Cache Protection Anti Cold-Start"
     ],
-    techStack: ["React", "TypeScript", "Tailwind CSS", "Vite", "Cloudflare"],
+    techStack: ["Vue 3", "Laravel 12", "TypeScript", "Tailwind CSS", "MySQL", "Sanctum", "ApexCharts", "Pinia", "Vite"],
     liveUrl: "https://www.3putrimulya.com/",
     mockupPath: "/assets/projects/3pm-hero.png",
     galleryImages: [
-      { url: "/assets/projects/3pm-hero.png", label: "HERO LANDING PAGE" }
+      { url: "/assets/projects/3pm-hero.png", label: "PORTAL PELANGGAN: HERO & BOOKING" },
+      { url: "/assets/projects/3pm/dashboard.png", label: "FINANCIALFLOW: RINGKASAN & STATUS ARMADA" },
+      { url: "/assets/projects/3pm/armada.png", label: "FINANCIALFLOW: MANAJEMEN ARMADA & TARIF" },
+      { url: "/assets/projects/3pm/laba-rugi.png", label: "FINANCIALFLOW: LAPORAN LABA RUGI & BIAYA" }
     ],
     caseStudy: {
-      challenge: "CV 3 Putri Mulya adalah penyedia jasa rental mobil dan paket wisata di Pulau Bintan. Sebelumnya: 1) Tidak memiliki website resmi — semua promosi hanya melalui WhatsApp dan mulut ke mulut. 2) Calon pelanggan tidak bisa melihat katalog armada, harga, atau ketersediaan secara mandiri. 3) Wisatawan asing kesulitan karena tidak ada informasi dalam bahasa Inggris.",
-      approach: "Merancang Single Page Application (SPA) modern yang ringan, cepat, dan SEO-friendly menggunakan React + Vite + Tailwind CSS. Fokus pada UX booking yang seamless dengan integrasi langsung ke WhatsApp Business untuk konfirmasi reservasi.",
-      solution: "SPA car rental & tour booking platform: 1) Katalog armada kendaraan interaktif dengan filter kategori (MPV, SUV, Minibus), kapasitas penumpang, dan rentang harga harian. 2) Booking form dengan pemilihan tanggal pickup/return, kategori kendaraan, dan jumlah penumpang — langsung terhubung ke WhatsApp. 3) Halaman Destinations & Tour Packages menampilkan destinasi wisata Bintan dengan galeri foto dan deskripsi itinerary. 4) Multi-bahasa EN/ID dengan toggle switcher di navbar. 5) Deploy di Cloudflare Pages untuk performa global.",
+      challenge: "Bisnis rental mobil dan wisata CV 3 Putri Mulya di Pulau Bintan menghadapi tantangan operasional: 1) Ketiadaan platform pemesanan online membuat pelanggan (terutama turis Singapura & Malaysia) kesulitan membandingkan tipe mobil, harga sewa lepas kunci vs supir, dan kurs mata uang secara mandiri. 2) Pengelolaan operasional dan keuangan masih dicatat terpisah (atau di kertas/Excel), menyulitkan pemantauan biaya bensin, servis rutin, cuci mobil, gaji supir, dan laba-rugi per unit mobil. 3) Pembaruan armada atau tarif membutuhkan intervensi teknis pengembang tanpa adanya panel admin terintegrasi.",
+      approach: "Membangun ekosistem headless multi-client dengan pemisahan tanggung jawab (Separation of Concerns): Website Publik dibuat ultra-ringan, SEO-friendly, dan berorientasi konversi tinggi dengan perlindungan fallback offline. Website Backoffice Admin (FinancialFlow) dirancang khusus untuk efisiensi operasional dan intelijen keuangan dengan token security Sanctum. Keduanya dihubungkan oleh Central REST API berbasis Laravel 12 & MySQL.",
+      solution: "Ekosistem Perangkat Lunak 3-Tier Terpadu: 1) Website Publik: Single Page Application berbasis Vue 3 & Tailwind dengan etalase armada live, kalkulator dual pricing, konversi mata uang instan IDR/SGD/MYR, katalog 15+ destinasi Bintan, dan WhatsApp Deep-Link generator. Sistem resilience memastikan website tetap menyajikan data lokal jika backend cold-start. 2) Website Dashboard Admin (FinancialFlow): Terproteksi Laravel Sanctum untuk manajemen inventaris mobil (kursi, transmisi, tarif, status ketersediaan), paket wisata, pencatatan transaksi masuk/keluar harian, dan grafik analitik laba-rugi (ApexCharts). 3) Central REST API: Dibangun dengan Laravel 12 (PHP 8.2) & MySQL, memisahkan rute publik ter-throttle (/api/public/fleet) dan rute privat (auth:sanctum) sehingga setiap pembaruan admin otomatis tersinkronisasi ke website publik seketika.",
       keyFeatures: [
-        "Katalog Armada Kendaraan Interaktif (Filter Kategori, Kapasitas & Harga)",
-        "Smart Booking Form → WhatsApp Business Integration",
-        "Modul Destinations & Tour Packages dengan Galeri Foto",
-        "Multi-Language Support (English / Bahasa Indonesia)",
-        "Cloudflare Pages Deployment untuk CDN Global"
+        "Separation of Concerns: Customer Booking Portal vs Internal Admin ERP",
+        "Dual Pricing Engine (Lepas Kunci vs Supir) & Real-time Multi-Currency",
+        "WhatsApp Deep-Link Engine untuk Konfirmasi Booking Instan",
+        "FinancialFlow: Manajemen Armada, Kesiapan Unit & Transaksi Operasional",
+        "Laporan Laba-Rugi Performa Tiap Mobil & ApexCharts Financial Analytics",
+        "Central REST API (Laravel 12, MySQL, Throttle Rate Limiting & Sanctum RBAC)",
+        "Resilience Architecture: Offline Fallback Cache Data Protection"
       ],
-      outcome: "🚗 Armada rental dapat diakses 24/7 tanpa perlu tanya manual via chat. 📱 Reservasi lebih terstruktur dan cepat melalui booking form → WhatsApp. 🌏 Wisatawan asing dapat melihat informasi dalam bahasa Inggris. ⚡ Waktu muat halaman <1 detik berkat arsitektur SPA + Cloudflare CDN.",
-      techStack: ["React", "TypeScript", "Tailwind CSS", "Vite", "Cloudflare"]
+      outcome: "🚀 Sinkronisasi Real-Time: Admin bebas menambah mobil dan mengubah tarif tanpa perlu utak-atik kode program. 💰 Visibilitas Finansial: Arus kas dan laba bersih per unit armada terpantau jelas secara digital. 🌐 Peningkatan Konversi Turis: Wisatawan mancanegara dapat booking mudah dengan mata uang SGD/MYR dan dwibahasa. 🛡️ Keamanan & Kestabilan: Data privat aman di balik Sanctum dan website publik tetap aktif tanpa pernah down.",
+      techStack: ["Vue 3", "Laravel 12", "TypeScript", "Tailwind CSS", "MySQL", "Sanctum", "ApexCharts", "Pinia", "Vite"]
     }
   }
 ];
