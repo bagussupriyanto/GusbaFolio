@@ -21,9 +21,10 @@ export const WorldMapSection: React.FC<WorldMapSectionProps> = React.memo(({ onS
   const [currentPos, setCurrentPos] = useState({ x: 50, y: 78 });
 
   const landmarks = [
-    { pin: "1", name: "PT SURYA MITRA\nSERVICE", projectId: "pt-surya-mitra-service", posClass: "left-1/2 top-[25%] sm:left-[22%] sm:top-[46%]", desktopX: 22, desktopY: 68, mobileX: 50, mobileY: 33 },
-    { pin: "2", name: "SMARTCAFE POS", projectId: "smartcafe-pos", posClass: "left-1/2 top-[45%] sm:left-[48%] sm:top-[44%]", desktopX: 48, desktopY: 66, mobileX: 50, mobileY: 53 },
-    { pin: "3", name: "INVOICE\nSYSTEM", projectId: "invoice-management-system", posClass: "left-1/2 top-[65%] sm:left-[74%] sm:top-[46%]", desktopX: 74, desktopY: 68, mobileX: 50, mobileY: 73 },
+    { pin: "1", name: "PT SURYA MITRA\nSERVICE", projectId: "pt-surya-mitra-service", posClass: "left-1/2 top-[22%] sm:left-[22%] sm:top-[46%]", desktopX: 22, desktopY: 68, mobileX: 50, mobileY: 26 },
+    { pin: "2", name: "SMARTCAFE POS", projectId: "smartcafe-pos", posClass: "left-1/2 top-[40%] sm:left-[45%] sm:top-[44%]", desktopX: 45, desktopY: 66, mobileX: 50, mobileY: 43 },
+    { pin: "3", name: "3 PUTRI MULYA\n& FINANCIALFLOW", projectId: "3-putri-mulya", posClass: "left-1/2 top-[58%] sm:left-[61%] sm:top-[44%]", desktopX: 61, desktopY: 66, mobileX: 50, mobileY: 60 },
+    { pin: "4", name: "INVOICE & ERP\nSYSTEM (PWA)", projectId: "invoice-management-system", posClass: "left-1/2 top-[76%] sm:left-[78%] sm:top-[46%]", desktopX: 78, desktopY: 68, mobileX: 50, mobileY: 77 },
   ];
 
   const animatePlayerTo = (targetX: number, targetY: number, onDone?: () => void) => {
@@ -191,6 +192,22 @@ export const WorldMapSection: React.FC<WorldMapSectionProps> = React.memo(({ onS
           </div>
         ))}
 
+        {/* Parked Rental Car next to 3 Putri Mulya */}
+        <div
+          onClick={(e) => {
+            const loc = landmarks.find(l => l.projectId === '3-putri-mulya');
+            if (loc) handleLandmarkClick(e, loc);
+          }}
+          className="absolute left-[54%] top-[62%] sm:left-[64.5%] sm:top-[63%] z-15 cursor-pointer transform -translate-x-1/2 -translate-y-1/2 group/car"
+          title="3 Putri Mulya Fleet Unit (Click to View)"
+        >
+          <img
+            src="/assets/game/pixel-car-cyan.svg"
+            alt="3PM Rental Car"
+            className="w-9 sm:w-13 h-auto pixelated drop-shadow-[0_4px_8px_rgba(0,0,0,0.6)] group-hover/car:scale-110 transition-transform"
+          />
+        </div>
+
         {/* Player */}
         <div
           ref={playerRef}
@@ -215,7 +232,7 @@ export const WorldMapSection: React.FC<WorldMapSectionProps> = React.memo(({ onS
         {/* Minimap */}
         <div className="absolute bottom-4 right-4 z-10 hidden sm:block w-20 h-16 sm:w-24 sm:h-20 bg-[#0a0e17]/80 border border-[#4ee6d8]/40 overflow-hidden">
           <div className="absolute inset-1 bg-[radial-gradient(#4ee6d8_1px,transparent_1px)] [background-size:8px_8px] opacity-30" />
-          {[22, 48, 74].map((x, i) => (
+          {[22, 45, 61, 78].map((x, i) => (
             <div key={i} className="absolute top-[40%] w-1.5 h-1.5 bg-[#4ee6d8] rounded-full" style={{ left: `${x}%` }} />
           ))}
           <div ref={minimapDotRef} className="absolute w-2 h-2 bg-amber-400 rounded-full animate-pulse border border-white" style={{ left: `${currentPos.x * 0.8 + 5}%`, top: '55%', willChange: 'left', transform: 'translateZ(0)' }} />

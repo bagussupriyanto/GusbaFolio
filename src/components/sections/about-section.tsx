@@ -93,7 +93,7 @@ export const AboutSection: React.FC = memo(() => {
                 BAGUS SUPRIYANTO
               </h2>
               <div className="text-[10px] sm:text-xs text-amber-400 font-bold mt-1">
-                Product-Focused Frontend Engineer
+                Full-Stack Product Engineer
               </div>
               <div className="flex items-center gap-1.5 mt-1">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
@@ -113,8 +113,8 @@ export const AboutSection: React.FC = memo(() => {
               dengan pengalaman kerja di bidang <span className="text-amber-400 font-semibold">Instrument Control</span>, 
               <span className="text-amber-400 font-semibold"> Operator Produksi WVC</span>, dan 
               <span className="text-amber-400 font-semibold"> Washing Boats & Yacht</span>. 
-              Terbiasa bekerja sesuai SOP dan K3, mudah beradaptasi, dan sekarang fokus penuh 
-              mengembangkan kompetensi di bidang IT sebagai frontend engineer.
+              Terbiasa bekerja sesuai SOP dan K3, disiplin tinggi, dan sekarang fokus penuh 
+              mengembangkan aplikasi web berskala produksi sebagai full-stack product engineer.
             </p>
           </div>
 
@@ -164,7 +164,7 @@ export const AboutSection: React.FC = memo(() => {
           {/* Download CV + Contact */}
           <div className="flex items-center gap-2">
             <a
-              href="/assets/cv-bagus-supriyanto.pdf.pdf"
+              href="/assets/cv-bagus-supriyanto.pdf"
               download
               className="pixel-btn flex-1 px-3 py-2.5 text-[10px] sm:text-[11px] flex items-center justify-center gap-2 cursor-pointer"
             >
