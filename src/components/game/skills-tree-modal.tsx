@@ -28,24 +28,24 @@ export const SkillsTreeModal: React.FC<SkillsTreeModalProps> = ({ isOpen, onClos
       category: 'WORLD 3 // FRONTEND NODE',
       level: 'LV.MAX • MASTERED',
       icon: <Layout className="w-6 h-6 text-[#45D3B2]" />,
-      skills: ['Next.js 16 (App Router)', 'React 19', 'TypeScript', 'Tailwind CSS v4', 'Framer Motion & GSAP'],
-      description: 'Mastered production frontend architectures, high-performance UI components, smooth motion design, and responsive design systems.'
+      skills: ['Next.js 16 (App Router)', 'React 19', 'Vue 3 & Vite', 'TypeScript', 'Tailwind CSS', 'Pinia', 'Framer Motion & GSAP'],
+      description: 'Mastered production frontend architectures, reactive state engines, high-performance UI components, smooth motion design, and responsive design systems.'
     },
     {
       id: 'backend',
       category: 'WORLD 3 // BACKEND NODE',
       level: 'LV.85 • ADVANCED',
       icon: <Cpu className="w-6 h-6 text-[#45D3B2]" />,
-      skills: ['Node.js & Express', 'Supabase', 'RESTful API Architecture', 'Authentication & JWT', 'Server Actions'],
-      description: 'Building secure server infrastructure, serverless functions, authentication pipelines, and fast API integration.'
+      skills: ['Laravel 12 (PHP 8.2)', 'Node.js & Express', 'Supabase & RLS', 'Sanctum Token Auth', 'RESTful API Architecture', 'Server Actions'],
+      description: 'Building secure multi-client server infrastructure, token authentication pipelines, and high-performance REST APIs.'
     },
     {
       id: 'database',
       category: 'WORLD 3 // DATABASE NODE',
       level: 'LV.80 • ADVANCED',
       icon: <Database className="w-6 h-6 text-[#45D3B2]" />,
-      skills: ['PostgreSQL', 'Supabase DB', 'Prisma ORM', 'Relational Schema Design', 'Query Optimization'],
-      description: 'Designing structured relational database schemas, index optimization, real-time subscriptions, and data integrity.'
+      skills: ['PostgreSQL', 'MySQL', 'Prisma ORM', 'Relational Schema Design', 'Query Optimization & Indexing'],
+      description: 'Designing structured relational database schemas, multi-tenant isolation, real-time subscriptions, and transaction integrity.'
     },
     {
       id: 'ai-workflow',

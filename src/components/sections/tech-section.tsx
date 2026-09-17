@@ -37,10 +37,12 @@ const categories: TechCategory[] = [
     borderColor: "border-[#4ee6d8]/30",
     items: [
       { name: 'Next.js', desc: 'React framework fullstack — SSR, routing, API routes. Ini framework utama yang aku pakai di semua project.', logo: si('nextdotjs', '4ee6d8') },
+      { name: 'React', desc: 'Library UI berbasis komponen. Fondasi utama untuk antarmuka web interaktif.', logo: si('react', '61DAFB') },
+      { name: 'Vue.js', desc: 'Framework progresif berbasis komponen & Composition API — dipakai di platform 3 Putri Mulya.', logo: si('vuedotjs', '4FC08D') },
       { name: 'TypeScript', desc: 'JavaScript + type-safety. Bikin kode lebih aman dan gampang di-maintain dalam jangka panjang.', logo: si('typescript', '3178C6') },
-      { name: 'React', desc: 'Library UI berbasis komponen. Semua antarmuka web yang aku buat pakai React sebagai fondasi.', logo: si('react', '61DAFB') },
-      { name: 'JavaScript', desc: 'Bahasa utama untuk logika interaktif di browser. Dasar dari semua web development.', logo: si('javascript', 'F7DF1E') },
       { name: 'Tailwind CSS', desc: 'Utility-first CSS — styling cepat tanpa ribet bikin class manual satu-satu.', logo: si('tailwindcss', '06B6D4') },
+      { name: 'Vite', desc: 'Build tool modern & dev server super cepat dengan instant Hot Module Replacement.', logo: si('vite', '646CFF') },
+      { name: 'Pinia', desc: 'State management store intuitif & modular untuk aplikasi Vue 3.', logo: si('pinia', 'FFE56D') },
       { name: 'HTML5', desc: 'Markup standar web. Struktur dan semantik halaman dimulai dari sini.', logo: si('html5', 'E34F26') },
       { name: 'CSS3', desc: 'Bahasa styling buat layout, animasi, dan visual web. Dukung responsive design.', logo: si('css', '1572B6') },
     ]
@@ -50,8 +52,10 @@ const categories: TechCategory[] = [
     color: "text-emerald-400",
     borderColor: "border-emerald-400/30",
     items: [
+      { name: 'Laravel', desc: 'PHP framework enterprise — REST API, Sanctum token auth, & Eloquent ORM di backoffice ERP.', logo: si('laravel', 'FF2D20') },
       { name: 'Supabase', desc: 'Backend-as-a-Service dengan Row Level Security — auth, database, storage dalam satu platform.', logo: si('supabase', '3FCF8E') },
       { name: 'PostgreSQL', desc: 'Database relasional open-source. Powerful, reliable, jadi pilihan utama untuk data production.', logo: si('postgresql', '4169E1') },
+      { name: 'MySQL', desc: 'Database relasional untuk menyimpan data armada mobil, booking sewa, dan transaksi operasional.', logo: si('mysql', '4479A1') },
       { name: 'Prisma', desc: 'Type-safe ORM — query database dengan auto-completion. Developer experience-nya top.', logo: si('prisma', '4ee6d8') },
       { name: 'Node.js', desc: 'JavaScript runtime di server. Backend API dan server-side logic semua jalan di sini.', logo: si('nodedotjs', '5FA04E') },
       { name: 'REST APIs', desc: 'Arsitektur standar komunikasi client-server. Semua integrasi data lewat sini.', fallbackIcon: <Workflow className="w-5 h-5 text-emerald-400" /> },
@@ -62,6 +66,7 @@ const categories: TechCategory[] = [
     color: "text-sky-400",
     borderColor: "border-sky-400/30",
     items: [
+      { name: 'Cloudflare', desc: 'Global Edge CDN & DNS protection — hosting aset statis & optimasi performa web.', logo: si('cloudflare', 'F38020') },
       { name: 'Git', desc: 'Version control — tracking setiap perubahan kode. Wajib di setiap project.', logo: si('git', 'F05032') },
       { name: 'GitHub', desc: 'Platform kolaborasi kode, CI/CD, dan code hosting. Semua repo project ada di sini.', logo: si('github', '4ee6d8') },
       { name: 'Vercel', desc: 'Deployment otomatis untuk Next.js — push ke Git, langsung live. Zero config.', logo: si('vercel', '4ee6d8') },

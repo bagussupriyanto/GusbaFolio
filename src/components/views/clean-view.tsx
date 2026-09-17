@@ -72,19 +72,25 @@ const SELECTED_PROJECTS = [
   }
 ];
 
-// Individual Notion-Style Tech Instrument Cards (Comprehensive 18-Tool Array)
+// Individual Notion-Style Tech Instrument Cards (Comprehensive Array)
 const INDIVIDUAL_INSTRUMENTS = [
   // Frontend
   { name: "Next.js 16", category: "Frontend", icon: "⚡", role: "App Router, SSR, Turbopack & Server Actions" },
-  { name: "TypeScript", category: "Frontend", icon: "📘", role: "Strict Type Safety, Generics & Interfaces" },
   { name: "React 19", category: "Frontend", icon: "⚛️", role: "Component Driven UI & Reactive State Engine" },
+  { name: "Vue 3", category: "Frontend", icon: "🟢", role: "Composition API, Single File Components & Reactive State" },
+  { name: "TypeScript", category: "Frontend", icon: "📘", role: "Strict Type Safety, Generics & Interfaces" },
   { name: "Tailwind CSS", category: "Frontend", icon: "🎨", role: "Utility Design System & Modern Aesthetics" },
+  { name: "Vite", category: "Frontend", icon: "⚡", role: "Fast HMR Bundler & Next-Gen Build Tooling" },
+  { name: "Pinia", category: "Frontend", icon: "🍍", role: "Intuitive, Modular & Type-Safe State Store for Vue" },
   
   // Backend & DB
+  { name: "Laravel 12", category: "Backend", icon: "🔴", role: "PHP 8.2, Sanctum Auth, Eloquent ORM & REST APIs" },
   { name: "Supabase", category: "Backend", icon: "🟩", role: "PostgreSQL BaaS, Auth & Realtime RLS" },
   { name: "PostgreSQL", category: "Backend", icon: "🐘", role: "Relational Schema & Query Optimization" },
+  { name: "MySQL", category: "Backend", icon: "🐬", role: "Relational DB, Indexing & Transaction Isolation" },
   { name: "Prisma ORM", category: "Backend", icon: "💎", role: "Type-Safe DB Client & Schema Migrations" },
   { name: "Node.js & REST", category: "Backend", icon: "🟢", role: "Server-side APIs & Asynchronous Processing" },
+  { name: "ApexCharts", category: "Backend", icon: "📊", role: "Financial & Operational Interactive Data Visualizations" },
 
   // AI & Intelligence
   { name: "OpenAI API", category: "AI & Lab", icon: "🤖", role: "GPT-4o Integration & Function Calling" },
@@ -94,6 +100,7 @@ const INDIVIDUAL_INSTRUMENTS = [
   { name: "Python", category: "AI & Lab", icon: "🐍", role: "AI Automation Scripts & Data Pipelines" },
 
   // DevOps & Security
+  { name: "Cloudflare", category: "DevOps", icon: "🟠", role: "Pages, Global CDN & Edge Caching" },
   { name: "GitHub & CI/CD", category: "DevOps", icon: "🐙", role: "Version Control, Actions & Automations" },
   { name: "Vercel", category: "DevOps", icon: "▲", role: "Global Edge Network & Serverless Hosting" },
   { name: "DES Cryptography", category: "Security", icon: "🔒", role: "S1 Thesis: Data Encryption Standard" },
